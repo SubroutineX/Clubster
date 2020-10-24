@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:workflow/views/styles/styles.dart';
 
 class Loginpage extends StatelessWidget {
+  TabController loginPageTabController;
+
+  Loginpage(this.loginPageTabController);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +23,7 @@ class Loginpage extends StatelessWidget {
                     alignment: Alignment(0.0, 0.0),
                     child: Column(
                       children: <Widget>[
-                        SizedBox(height: 30),
+                        SizedBox(height: 50),
                         Text(
                           "Login",
                           style: headingStyle,
@@ -128,7 +132,7 @@ class Loginpage extends StatelessWidget {
                             TextSpan(
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  print("register");
+                                  loginPageTabController.animateTo(1);
                                 },
                               text: "Register.",
                               style: questionStyleBold,

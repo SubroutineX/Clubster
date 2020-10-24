@@ -9,8 +9,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'workflow managment demo',
+      theme: ThemeData(fontFamily: "Sofia_Pro"),
       debugShowCheckedModeBanner: false,
-      home: TabView(),
+      home: TabPage(),
     );
   }
 }
