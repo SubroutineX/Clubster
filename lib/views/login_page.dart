@@ -1,4 +1,6 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:workflow/views/styles/styles.dart';
 
 class Loginpage extends StatelessWidget {
   @override
@@ -7,131 +9,141 @@ class Loginpage extends StatelessWidget {
       backgroundColor: Colors.grey.shade200,
       body: SafeArea(
         child: Container(
-            padding: EdgeInsets.fromLTRB(5, 35, 5, 0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    SizedBox(width: 20),
-                    Text(
-                      "Login",
-                      style:
-                          TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(width: 30),
-                    Text(
-                      "Signup",
-                      style:
-                          TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 80),
-                Container(
-                  alignment: Alignment(0.0, 0.0),
-                  child: Column(
-                    children: <Widget>[
-                      Text(
-                        "Login",
-                        style: TextStyle(
-                            fontSize: 40, fontWeight: FontWeight.bold),
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(height: 15),
-                Container(
-                  alignment: Alignment(0.0, 0.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        "Access account",
-                        style: TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(height: 50),
-                Column(
-                  children: <Widget>[
-                    Text(
-                      "Email",
-                      style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-                Column(
-                  children: <Widget>[
-                    TextFormField(
-                      decoration: InputDecoration(),
-                    )
-                  ],
-                ),
-                SizedBox(height: 30),
-                Column(
-                  children: <Widget>[
-                    Text(
-                      "Password",
-                      style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-                Column(
-                  children: <Widget>[
-                    TextFormField(
-                      decoration: InputDecoration(),
-                    )
-                  ],
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 15.0, left: 280.0),
-                  child: InkWell(
-                    child: Text(
-                      "Forgot Password ",
-                      style: TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.normal),
+          height: MediaQuery.of(context).size.height,
+          child: SingleChildScrollView(
+            child: Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    alignment: Alignment(0.0, 0.0),
+                    child: Column(
+                      children: <Widget>[
+                        SizedBox(height: 30),
+                        Text(
+                          "Login",
+                          style: headingStyle,
+                        ),
+                        SizedBox(height: 15),
+                        Text(
+                          "Access account",
+                          style: subHeadingStyle,
+                        )
+                      ],
                     ),
                   ),
-                ),
-                SizedBox(height: 100),
-                Container(
-                  height: 50,
-                  width: 380,
-                  child: Material(
-                    color: Colors.white,
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: Center(
-                        child: Text(
-                          'Login',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                  SizedBox(height: 50),
+                  Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          "Email",
+                          style: labelStyle,
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 5),
+                          decoration: BoxDecoration(color: Colors.white),
+                          child: TextFormField(
+                            style: formFieldStyle,
+                            decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: "Email",
+                                hintStyle: hintStyle),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Text(
+                          "Password",
+                          style: labelStyle,
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 5),
+                          decoration: BoxDecoration(color: Colors.white),
+                          child: TextFormField(
+                            obscureText: true,
+                            style: formFieldStyle,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: "Password",
+                              hintStyle: hintStyle,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            RichText(
+                              text: TextSpan(
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    print("Forgot pass");
+                                  },
+                                text: "Forgot Password?",
+                                style: questionStyle,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 50),
+                  Container(
+                    height: 50,
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Material(
+                      color: Colors.white,
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: Center(
+                          child: Text(
+                            'Login',
+                            style: buttonTextStyle,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                SizedBox(height: 40),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text("Don't have an account?"),
-                    Text(
-                      " Register",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                )
-              ],
-            )),
+                  SizedBox(height: 40),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: "Don't have an account? ",
+                              style: questionStyle,
+                            ),
+                            TextSpan(
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  print("register");
+                                },
+                              text: "Register.",
+                              style: questionStyleBold,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
