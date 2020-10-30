@@ -12,6 +12,14 @@ class _RegisterPageState extends State<RegisterPage> {
   int currentStep = 0;
   bool complete = false;
 
+  int _user = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _user = 0;
+  }
+
   next() {
     currentStep + 1 != steps.length
         ? goTo(currentStep + 1)
@@ -28,144 +36,22 @@ class _RegisterPageState extends State<RegisterPage> {
     setState(() => currentStep = step);
   }
 
-  List<Step> steps = [
-    Step(
-      title: Text(
-        'Step 1',
-        style: formFieldStyle,
-      ),
-      isActive: true,
-      state: StepState.indexed,
-      content: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          SizedBox(
-            height: 10,
-          ),
-          FadeAnimation(
-            1,
-            Text(
-              "Name",
-              style: labelStyle,
-            ),
-          ),
-          SizedBox(height: 10),
-          FadeAnimation(
-            2,
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 5),
-              decoration: BoxDecoration(color: Colors.white),
-              child: TextFormField(
-                style: formFieldStyle,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "Name",
-                    hintStyle: hintStyle),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          FadeAnimation(
-            3,
-            Text(
-              "Username",
-              style: labelStyle,
-            ),
-          ),
-          SizedBox(height: 10),
-          FadeAnimation(
-            4,
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 5),
-              decoration: BoxDecoration(color: Colors.white),
-              child: TextFormField(
-                style: formFieldStyle,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "Username",
-                  hintStyle: hintStyle,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    ),
-    Step(
-      isActive: false,
-      state: StepState.indexed,
-      title: Text(
-        'Step 2',
-        style: formFieldStyle,
-      ),
-      content: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          SizedBox(
-            height: 10,
-          ),
-          FadeAnimation(
-            1,
-            Text(
-              "Email",
-              style: labelStyle,
-            ),
-          ),
-          SizedBox(height: 10),
-          FadeAnimation(
-            2,
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 5),
-              decoration: BoxDecoration(color: Colors.white),
-              child: TextFormField(
-                style: formFieldStyle,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "Email",
-                    hintStyle: hintStyle),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          FadeAnimation(
-            3,
-            Text(
-              "Password",
-              style: labelStyle,
-            ),
-          ),
-          SizedBox(height: 10),
-          FadeAnimation(
-            4,
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 5),
-              decoration: BoxDecoration(color: Colors.white),
-              child: TextFormField(
-                keyboardType: TextInputType.emailAddress,
-                obscureText: true,
-                style: formFieldStyle,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "Password",
-                  hintStyle: hintStyle,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    ),
-  ];
+  selectRadio(int val) {
+    setState(() {
+      _user = val;
+    });
+  }
+
+  List<Step> get steps => <Step>[
+        _firstStep(),
+        _secondStep(),
+        _thirdStep(),
+      ];
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
     return new Scaffold(
       backgroundColor: Colors.grey[200],
       body: Column(
@@ -244,4 +130,202 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     );
   }
+
+  Step _secondStep() {
+    return Step(
+      isActive: false,
+      state: StepState.indexed,
+      title: Text(
+        'Step 2',
+        style: formFieldStyle,
+      ),
+      content: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          SizedBox(
+            height: 10,
+          ),
+          FadeAnimation(
+            3,
+            Text(
+              "User",
+              style: labelStyle,
+            ),
+          ),
+          SizedBox(height: 10),
+          FadeAnimation(
+            4,
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(horizontal: 5),
+              decoration: BoxDecoration(color: Colors.transparent),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: RadioListTile(
+                        title: Text("Student"),
+                        value: 0,
+                        groupValue: _user,
+                        onChanged: (val) {
+                          selectRadio(val);
+                        }),
+                  ),
+                  Expanded(
+                    child: RadioListTile(
+                        title: Text("Teacher"),
+                        value: 1,
+                        groupValue: _user,
+                        onChanged: (val) {
+                          selectRadio(val);
+                        }),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+Step _firstStep() {
+  return Step(
+    title: Text(
+      'Step 1',
+      style: formFieldStyle,
+    ),
+    isActive: true,
+    state: StepState.indexed,
+    content: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        SizedBox(
+          height: 10,
+        ),
+        FadeAnimation(
+          1,
+          Text(
+            "Name",
+            style: labelStyle,
+          ),
+        ),
+        SizedBox(height: 10),
+        FadeAnimation(
+          2,
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 5),
+            decoration: BoxDecoration(color: Colors.white),
+            child: TextFormField(
+              style: formFieldStyle,
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "Name",
+                  hintStyle: hintStyle),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        FadeAnimation(
+          3,
+          Text(
+            "Username",
+            style: labelStyle,
+          ),
+        ),
+        SizedBox(height: 10),
+        FadeAnimation(
+          4,
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 5),
+            decoration: BoxDecoration(color: Colors.white),
+            child: TextFormField(
+              style: formFieldStyle,
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "Username",
+                hintStyle: hintStyle,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        FadeAnimation(
+          1,
+          Text(
+            "Mobile Number",
+            style: labelStyle,
+          ),
+        ),
+        SizedBox(height: 10),
+        FadeAnimation(
+          2,
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 5),
+            decoration: BoxDecoration(color: Colors.white),
+            child: TextFormField(
+              style: formFieldStyle,
+              keyboardType: TextInputType.number,
+              maxLength: 10,
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "Mobile Number",
+                  hintStyle: hintStyle),
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+Step _thirdStep() {
+  return Step(
+    isActive: false,
+    state: StepState.indexed,
+    title: Text(
+      'Step 3',
+      style: formFieldStyle,
+    ),
+    content: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        SizedBox(
+          height: 10,
+        ),
+        FadeAnimation(
+          3,
+          Text(
+            "Password",
+            style: labelStyle,
+          ),
+        ),
+        SizedBox(height: 10),
+        FadeAnimation(
+          4,
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 5),
+            decoration: BoxDecoration(color: Colors.white),
+            child: TextFormField(
+              keyboardType: TextInputType.emailAddress,
+              obscureText: true,
+              style: formFieldStyle,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "Password",
+                hintStyle: hintStyle,
+              ),
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
 }

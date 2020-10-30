@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:workflow/views/animations/FadeAnimation.dart';
 import 'package:workflow/views/styles/styles.dart';
 
@@ -53,7 +54,7 @@ class Loginpage extends StatelessWidget {
                         FadeAnimation(
                           3,
                           Text(
-                            "Email",
+                            "Mobile Number",
                             style: labelStyle,
                           ),
                         ),
@@ -65,9 +66,10 @@ class Loginpage extends StatelessWidget {
                             decoration: BoxDecoration(color: Colors.white),
                             child: TextFormField(
                               style: formFieldStyle,
+                              keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                   border: InputBorder.none,
-                                  hintText: "Email",
+                                  hintText: "Mobile Number",
                                   hintStyle: hintStyle),
                             ),
                           ),
@@ -91,6 +93,7 @@ class Loginpage extends StatelessWidget {
                             child: TextFormField(
                               obscureText: true,
                               style: formFieldStyle,
+                              keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: "Password",
