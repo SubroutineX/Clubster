@@ -14,12 +14,12 @@ class FadeAnimation extends StatelessWidget {
       [
         // ignore: deprecated_member_use
         Track("opacity").add(
-          Duration(milliseconds: 500),
+          Duration(milliseconds: 200),
           Tween(begin: 0.0, end: 1.0),
         ),
         // ignore: deprecated_member_use
         Track("translateY").add(
-          Duration(milliseconds: 500),
+          Duration(milliseconds: 200),
           Tween(begin: -30.0, end: 0.0),
         )
       ],
@@ -27,7 +27,7 @@ class FadeAnimation extends StatelessWidget {
 
     // ignore: deprecated_member_use
     return ControlledAnimation(
-      delay: Duration(milliseconds: (500 + delay).round()),
+      delay: Duration(milliseconds: (200 + delay).round()),
       duration: tween.duration,
       tween: tween,
       child: child,

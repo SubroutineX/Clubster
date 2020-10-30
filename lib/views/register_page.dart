@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:workflow/views/animations/FadeAnimation.dart';
+import 'package:workflow/views/styles/styles.dart';
+
 class RegisterPage extends StatefulWidget {
   @override
   _RegisterPageState createState() => new _RegisterPageState();
@@ -27,31 +30,130 @@ class _RegisterPageState extends State<RegisterPage> {
 
   List<Step> steps = [
     Step(
-      title: const Text('Step 1'),
+      title: Text(
+        'Step 1',
+        style: formFieldStyle,
+      ),
       isActive: true,
-      state: StepState.complete,
+      state: StepState.indexed,
       content: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          TextFormField(
-            decoration: InputDecoration(labelText: 'Name'),
+          SizedBox(
+            height: 10,
           ),
-          TextFormField(
-            decoration: InputDecoration(labelText: 'Username'),
+          FadeAnimation(
+            1,
+            Text(
+              "Name",
+              style: labelStyle,
+            ),
+          ),
+          SizedBox(height: 10),
+          FadeAnimation(
+            2,
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 5),
+              decoration: BoxDecoration(color: Colors.white),
+              child: TextFormField(
+                style: formFieldStyle,
+                decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: "Name",
+                    hintStyle: hintStyle),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          FadeAnimation(
+            3,
+            Text(
+              "Username",
+              style: labelStyle,
+            ),
+          ),
+          SizedBox(height: 10),
+          FadeAnimation(
+            4,
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 5),
+              decoration: BoxDecoration(color: Colors.white),
+              child: TextFormField(
+                obscureText: true,
+                style: formFieldStyle,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "Username",
+                  hintStyle: hintStyle,
+                ),
+              ),
+            ),
           ),
         ],
       ),
     ),
     Step(
       isActive: false,
-      state: StepState.editing,
-      title: const Text('Step 2'),
+      state: StepState.indexed,
+      title: Text(
+        'Step 2',
+        style: formFieldStyle,
+      ),
       content: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          TextFormField(
-            decoration: InputDecoration(labelText: 'Email'),
+          SizedBox(
+            height: 10,
           ),
-          TextFormField(
-            decoration: InputDecoration(labelText: 'Password'),
+          FadeAnimation(
+            1,
+            Text(
+              "Email",
+              style: labelStyle,
+            ),
+          ),
+          SizedBox(height: 10),
+          FadeAnimation(
+            2,
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 5),
+              decoration: BoxDecoration(color: Colors.white),
+              child: TextFormField(
+                style: formFieldStyle,
+                decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: "Email",
+                    hintStyle: hintStyle),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          FadeAnimation(
+            3,
+            Text(
+              "Password",
+              style: labelStyle,
+            ),
+          ),
+          SizedBox(height: 10),
+          FadeAnimation(
+            4,
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 5),
+              decoration: BoxDecoration(color: Colors.white),
+              child: TextFormField(
+                style: formFieldStyle,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "Password",
+                  hintStyle: hintStyle,
+                ),
+              ),
+            ),
           ),
         ],
       ),
@@ -71,6 +173,65 @@ class _RegisterPageState extends State<RegisterPage> {
               onStepContinue: next,
               onStepTapped: (step) => goTo(step),
               onStepCancel: cancel,
+              controlsBuilder: (BuildContext context,
+                  {VoidCallback onStepContinue, VoidCallback onStepCancel}) {
+                return Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        FlatButton(
+                          color: Colors.blueAccent,
+                          child: Text(
+                            "Next",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          onPressed: () {
+                            setState(
+                              () {
+                                // update the variable handling the current step value
+                                // going back one step i.e adding 1, until its the length of the step
+                                if (currentStep < steps.length - 1) {
+                                  currentStep = currentStep + 1;
+                                }
+                                // } else {
+                                //   currentStep = 0;
+                                // }
+                              },
+                            );
+                          },
+                        ),
+                        SizedBox(width: 20),
+                        FlatButton(
+                          color: Colors.grey,
+                          child: Text(
+                            "Back",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          onPressed: () {
+                            // On hitting cancel button, change the state
+                            setState(
+                              () {
+                                // update the variable handling the current step value
+                                // going back one step i.e subtracting 1, until its 0
+                                if (currentStep > 0) {
+                                  currentStep = currentStep - 1;
+                                } else {
+                                  currentStep = currentStep + 1;
+                                }
+                              },
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                );
+              },
             ),
           ),
         ],

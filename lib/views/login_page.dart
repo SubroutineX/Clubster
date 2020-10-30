@@ -26,7 +26,7 @@ class Loginpage extends StatelessWidget {
                       children: <Widget>[
                         SizedBox(height: 50),
                         FadeAnimation(
-                          100,
+                          1,
                           Text(
                             "Login",
                             style: headingStyle,
@@ -34,7 +34,7 @@ class Loginpage extends StatelessWidget {
                         ),
                         SizedBox(height: 15),
                         FadeAnimation(
-                          125,
+                          2,
                           Text(
                             "Access account",
                             style: subHeadingStyle,
@@ -51,7 +51,7 @@ class Loginpage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         FadeAnimation(
-                          175,
+                          3,
                           Text(
                             "Email",
                             style: labelStyle,
@@ -59,7 +59,7 @@ class Loginpage extends StatelessWidget {
                         ),
                         SizedBox(height: 10),
                         FadeAnimation(
-                          225,
+                          4,
                           Container(
                             padding: EdgeInsets.symmetric(horizontal: 5),
                             decoration: BoxDecoration(color: Colors.white),
@@ -76,7 +76,7 @@ class Loginpage extends StatelessWidget {
                           height: 30,
                         ),
                         FadeAnimation(
-                          275,
+                          5,
                           Text(
                             "Password",
                             style: labelStyle,
@@ -84,7 +84,7 @@ class Loginpage extends StatelessWidget {
                         ),
                         SizedBox(height: 10),
                         FadeAnimation(
-                          325,
+                          6,
                           Container(
                             padding: EdgeInsets.symmetric(horizontal: 5),
                             decoration: BoxDecoration(color: Colors.white),
@@ -103,7 +103,7 @@ class Loginpage extends StatelessWidget {
                           height: 20,
                         ),
                         FadeAnimation(
-                          375,
+                          7,
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
@@ -125,7 +125,7 @@ class Loginpage extends StatelessWidget {
                   ),
                   SizedBox(height: 50),
                   FadeAnimation(
-                    450,
+                    8,
                     Container(
                       height: 50,
                       padding: EdgeInsets.symmetric(horizontal: 20),
@@ -145,7 +145,7 @@ class Loginpage extends StatelessWidget {
                   ),
                   SizedBox(height: 40),
                   FadeAnimation(
-                    500,
+                    9,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
