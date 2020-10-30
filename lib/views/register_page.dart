@@ -57,6 +57,7 @@ class _RegisterPageState extends State<RegisterPage> {
               decoration: BoxDecoration(color: Colors.white),
               child: TextFormField(
                 style: formFieldStyle,
+                keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: "Name",
@@ -81,8 +82,8 @@ class _RegisterPageState extends State<RegisterPage> {
               padding: EdgeInsets.symmetric(horizontal: 5),
               decoration: BoxDecoration(color: Colors.white),
               child: TextFormField(
-                obscureText: true,
                 style: formFieldStyle,
+                keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: "Username",
@@ -122,6 +123,7 @@ class _RegisterPageState extends State<RegisterPage> {
               decoration: BoxDecoration(color: Colors.white),
               child: TextFormField(
                 style: formFieldStyle,
+                keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: "Email",
@@ -146,6 +148,8 @@ class _RegisterPageState extends State<RegisterPage> {
               padding: EdgeInsets.symmetric(horizontal: 5),
               decoration: BoxDecoration(color: Colors.white),
               child: TextFormField(
+                keyboardType: TextInputType.emailAddress,
+                obscureText: true,
                 style: formFieldStyle,
                 decoration: InputDecoration(
                   border: InputBorder.none,
@@ -186,42 +190,44 @@ class _RegisterPageState extends State<RegisterPage> {
                       children: <Widget>[
                         FlatButton(
                           color: Colors.blueAccent,
-                          child: Text(
-                            "Next",
-                            style: TextStyle(color: Colors.white),
-                          ),
+                          child: currentStep < steps.length - 1
+                              ? Text(
+                                  "Next",
+                                  style: TextStyle(color: Colors.white),
+                                )
+                              : Text(
+                                  "Register",
+                                  style: TextStyle(color: Colors.white),
+                                ),
                           onPressed: () {
                             setState(
                               () {
-                                // update the variable handling the current step value
-                                // going back one step i.e adding 1, until its the length of the step
                                 if (currentStep < steps.length - 1) {
                                   currentStep = currentStep + 1;
                                 }
-                                // } else {
-                                //   currentStep = 0;
-                                // }
                               },
                             );
                           },
                         ),
                         SizedBox(width: 20),
                         FlatButton(
-                          color: Colors.grey,
-                          child: Text(
-                            "Back",
-                            style: TextStyle(color: Colors.white),
-                          ),
+                          color: currentStep > 0
+                              ? Colors.white
+                              : Color(0xffcccccc),
+                          child: currentStep > 0
+                              ? Text(
+                                  "Back",
+                                  style: TextStyle(color: Colors.blueAccent),
+                                )
+                              : Text(
+                                  "Back",
+                                  style: TextStyle(color: Colors.black38),
+                                ),
                           onPressed: () {
-                            // On hitting cancel button, change the state
                             setState(
                               () {
-                                // update the variable handling the current step value
-                                // going back one step i.e subtracting 1, until its 0
                                 if (currentStep > 0) {
                                   currentStep = currentStep - 1;
-                                } else {
-                                  currentStep = currentStep + 1;
                                 }
                               },
                             );
