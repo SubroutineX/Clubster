@@ -199,6 +199,9 @@ class _RegisterPageState extends State<RegisterPage> {
               padding: EdgeInsets.symmetric(horizontal: 5),
               decoration: BoxDecoration(color: Colors.white),
               child: DropdownButtonFormField(
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                  ),
                   value: _value,
                   items: [
                     DropdownMenuItem(
@@ -209,8 +212,14 @@ class _RegisterPageState extends State<RegisterPage> {
                       child: Text("DYP"),
                       value: 2,
                     ),
-                    DropdownMenuItem(child: Text("Indira"), value: 3),
-                    DropdownMenuItem(child: Text("PCCOE"), value: 4)
+                    DropdownMenuItem(
+                      child: Text("Indira"),
+                      value: 3,
+                    ),
+                    DropdownMenuItem(
+                      child: Text("PCCOE"),
+                      value: 4,
+                    )
                   ],
                   onChanged: (value) {
                     setState(() {
@@ -238,8 +247,8 @@ class _RegisterPageState extends State<RegisterPage> {
               decoration: BoxDecoration(color: Colors.white),
               child: DropdownButtonFormField(
                   decoration: InputDecoration(
-                      border: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white))),
+                    border: InputBorder.none,
+                  ),
                   style: formFieldStyle,
                   value: _value2,
                   items: [
@@ -251,10 +260,22 @@ class _RegisterPageState extends State<RegisterPage> {
                       child: Text("IT"),
                       value: 2,
                     ),
-                    DropdownMenuItem(child: Text("ENTC"), value: 3),
-                    DropdownMenuItem(child: Text("Mechanical"), value: 4),
-                    DropdownMenuItem(child: Text("Civil"), value: 5),
-                    DropdownMenuItem(child: Text("Electrical"), value: 6),
+                    DropdownMenuItem(
+                      child: Text("ENTC"),
+                      value: 3,
+                    ),
+                    DropdownMenuItem(
+                      child: Text("Mechanical"),
+                      value: 4,
+                    ),
+                    DropdownMenuItem(
+                      child: Text("Civil"),
+                      value: 5,
+                    ),
+                    DropdownMenuItem(
+                      child: Text("Electrical"),
+                      value: 6,
+                    ),
                   ],
                   onChanged: (value) {
                     setState(() {
