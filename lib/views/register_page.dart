@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:workflow/views/animations/FadeAnimation.dart';
 import 'package:workflow/views/styles/styles.dart';
 
@@ -11,7 +10,8 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   int currentStep = 0;
   bool complete = false;
-
+  int _value = 1;
+  int _value2 = 1;
   int _user = 0;
 
   @override
@@ -153,35 +153,114 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
           ),
           SizedBox(height: 10),
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(horizontal: 5),
+            decoration: BoxDecoration(color: Colors.transparent),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: RadioListTile(
+                      title: Text("Student"),
+                      value: 0,
+                      groupValue: _user,
+                      onChanged: (val) {
+                        selectRadio(val);
+                      }),
+                ),
+                Expanded(
+                  child: RadioListTile(
+                      title: Text("Teacher"),
+                      value: 1,
+                      groupValue: _user,
+                      onChanged: (val) {
+                        selectRadio(val);
+                      }),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
           FadeAnimation(
-            4,
+            1,
+            Text(
+              "College",
+              style: labelStyle,
+            ),
+          ),
+          SizedBox(height: 10),
+          FadeAnimation(
+            2,
             Container(
               width: double.infinity,
               padding: EdgeInsets.symmetric(horizontal: 5),
-              decoration: BoxDecoration(color: Colors.transparent),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: RadioListTile(
-                        title: Text("Student"),
-                        value: 0,
-                        groupValue: _user,
-                        onChanged: (val) {
-                          selectRadio(val);
-                        }),
-                  ),
-                  Expanded(
-                    child: RadioListTile(
-                        title: Text("Teacher"),
-                        value: 1,
-                        groupValue: _user,
-                        onChanged: (val) {
-                          selectRadio(val);
-                        }),
-                  ),
-                ],
-              ),
+              decoration: BoxDecoration(color: Colors.white),
+              child: DropdownButtonFormField(
+                  value: _value,
+                  items: [
+                    DropdownMenuItem(
+                      child: Text("RSCOE"),
+                      value: 1,
+                    ),
+                    DropdownMenuItem(
+                      child: Text("DYP"),
+                      value: 2,
+                    ),
+                    DropdownMenuItem(child: Text("Indira"), value: 3),
+                    DropdownMenuItem(child: Text("PCCOE"), value: 4)
+                  ],
+                  onChanged: (value) {
+                    setState(() {
+                      _value = value;
+                    });
+                  }),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          FadeAnimation(
+            1,
+            Text(
+              "Department",
+              style: labelStyle,
+            ),
+          ),
+          SizedBox(height: 10),
+          FadeAnimation(
+            2,
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(horizontal: 5),
+              decoration: BoxDecoration(color: Colors.white),
+              child: DropdownButtonFormField(
+                  decoration: InputDecoration(
+                      border: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white))),
+                  style: formFieldStyle,
+                  value: _value2,
+                  items: [
+                    DropdownMenuItem(
+                      child: Text("CS"),
+                      value: 1,
+                    ),
+                    DropdownMenuItem(
+                      child: Text("IT"),
+                      value: 2,
+                    ),
+                    DropdownMenuItem(child: Text("ENTC"), value: 3),
+                    DropdownMenuItem(child: Text("Mechanical"), value: 4),
+                    DropdownMenuItem(child: Text("Civil"), value: 5),
+                    DropdownMenuItem(child: Text("Electrical"), value: 6),
+                  ],
+                  onChanged: (value) {
+                    setState(() {
+                      _value2 = value;
+                    });
+                  }),
             ),
           ),
         ],
