@@ -9,7 +9,7 @@ var UsersSchema = new Schema({
     user:String,//
     phone:Number,//
     hashedPassword:String,
-    college:String,
+    college:String,//
     dept:String,
 });
 

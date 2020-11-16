@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:workflow/views/animations/FadeAnimation.dart';
-import 'package:workflow/views/styles/styles.dart';
-
-import 'package:workflow/views/clubs.dart';
-
 import 'package:get/get.dart';
+import 'package:workflow/views/animations/FadeAnimation.dart';
+import 'package:workflow/views/clubs.dart';
+import 'package:workflow/views/styles/styles.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -94,6 +92,8 @@ class _RegisterPageState extends State<RegisterPage> {
                               () {
                                 if (currentStep < steps.length - 1) {
                                   currentStep = currentStep + 1;
+                                } else {
+                                  Get.to(Clubs());
                                 }
                               },
                             );
@@ -118,8 +118,6 @@ class _RegisterPageState extends State<RegisterPage> {
                               () {
                                 if (currentStep > 0) {
                                   currentStep = currentStep - 1;
-                                } else {
-                                  Get.to(Clubs());
                                 }
                               },
                             );
