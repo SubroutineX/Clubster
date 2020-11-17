@@ -5,7 +5,11 @@ final TextStyle tabLabelStyle = TextStyle(
   fontSize: 16,
   fontFamily: "Sofia_Pro",
 );
-
+final TextStyle searchLabelStyle = TextStyle(
+  fontSize: 16,
+  color: fontColor,
+  fontFamily: "Sofia_Pro_Bold",
+);
 final TextStyle appBarHead = TextStyle(
   fontSize: 20,
   color: fontColor,
