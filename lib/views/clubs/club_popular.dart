@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 
+import 'package:auto_size_text/auto_size_text.dart';
+
 class PopularClubs extends StatelessWidget {
   final String imgUrl;
   final String name;
@@ -23,10 +25,10 @@ class PopularClubs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-        left: 20,
+        right: 10,
       ),
       child: Container(
-        width: 160,
+        width: 155,
         height: 220,
         child: Stack(
           fit: StackFit.expand,
@@ -65,9 +67,12 @@ class PopularClubs extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    AutoSizeText(
                       name,
                       style: productTitleStyle,
+                      minFontSize: 15,
+                      stepGranularity: 3,
+                      maxLines: 2,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -98,7 +103,7 @@ class PopularClubs extends StatelessWidget {
               ),
             ),
             Positioned(
-              right: 20,
+              right: 15,
               top: 10,
               child: Container(
                 width: 65,
@@ -122,7 +127,7 @@ class PopularClubs extends StatelessWidget {
                               )
                             : Icon(
                                 Icons.bookmark_outline_rounded,
-                                color: Colors.grey[400],
+                                color: Colors.grey[600],
                                 size: 16,
                               ),
                       ),
@@ -143,7 +148,7 @@ class PopularClubs extends StatelessWidget {
                               )
                             : Icon(
                                 Icons.favorite_outline_rounded,
-                                color: Colors.grey[400],
+                                color: Colors.grey[600],
                                 size: 16,
                               ),
                       ),

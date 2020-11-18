@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 Color transparent = Colors.transparent;
-Color clubsBackground = Color(0xffdde4ff);
+Color white = Colors.white;
+Color black = Colors.black;
+Color clubsBackground = Color(0xffF5F7FF);
+Color clubsBackground2 = Color(0xffdde4ff);
 Color fontColor = Color(0xff131a31);
 Color fontColorLight = Color(0x80131a31);
 Color red = Color(0xffFF5E5E);

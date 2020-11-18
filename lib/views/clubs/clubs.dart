@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:workflow/views/animations/FadeAnimation.dart';
-import 'package:workflow/views/clubs/club_model/club_model.dart';
+import 'package:workflow/views/clubs/club_model/club_other_model.dart';
+import 'package:workflow/views/clubs/club_model/club_popular_model.dart';
+import 'package:workflow/views/clubs/club_other.dart';
 import 'package:workflow/views/clubs/club_popular.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
@@ -8,6 +10,7 @@ import 'package:workflow/views/styles/styles.dart';
 class Clubs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var deviceDimensions = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: clubsBackground,
       drawer: Drawer(),
@@ -30,9 +33,10 @@ class Clubs extends StatelessWidget {
         ),
       ),
       body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
+        height: deviceDimensions.height,
+        width: deviceDimensions.width,
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,39 +95,61 @@ class Clubs extends StatelessWidget {
                     ),
                     Container(
                       height: 220,
+                      width: deviceDimensions.width,
                       padding: EdgeInsets.symmetric(vertical: 10),
-                      child: ListView.builder(
-                        itemCount: clubs.length,
-                        physics: BouncingScrollPhysics(),
+                      child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          var club = clubs[index];
-                          return PopularClubs(
-                            imgUrl: club.image,
-                            name: club.name,
-                            status: club.status,
-                            id: club.id,
-                            bookmark: club.bookmark,
-                            like: club.like,
-                          );
-                        },
+                        physics: BouncingScrollPhysics(),
+                        child: Row(
+                          children: [
+                            SizedBox(width: 20),
+                            for (int i = 0; i < popularClubs.length; i++)
+                              PopularClubs(
+                                imgUrl: popularClubs[i].image,
+                                name: popularClubs[i].name,
+                                status: popularClubs[i].status,
+                                id: popularClubs[i].id,
+                                bookmark: popularClubs[i].bookmark,
+                                like: popularClubs[i].like,
+                              ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
               SizedBox(
-                height: 40,
+                height: 30,
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     FadeAnimation(
                       1,
                       Text(
                         "Other",
                         style: appBarHead,
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      physics: BouncingScrollPhysics(),
+                      child: Column(
+                        children: [
+                          for (int j = 0; j < otherClubs.length; j++)
+                            OtherClubs(
+                              imgUrl: otherClubs[j].image,
+                              name: otherClubs[j].name,
+                              status: otherClubs[j].status,
+                              id: otherClubs[j].id,
+                              bookmark: otherClubs[j].bookmark,
+                              like: otherClubs[j].like,
+                            ),
+                        ],
                       ),
                     ),
                   ],
@@ -139,3 +165,20 @@ class Clubs extends StatelessWidget {
     );
   }
 }
+
+// ListView.builder(
+//                                 itemCount: clubs.length,
+//                                 physics: BouncingScrollPhysics(),
+//                                 scrollDirection: Axis.horizontal,
+//                                 itemBuilder: (context, index) {
+//                                   var club = clubs[index];
+//                                   return PopularClubs(
+//                                     imgUrl: club.image,
+//                                     name: club.name,
+//                                     status: club.status,
+//                                     id: club.id,
+//                                     bookmark: club.bookmark,
+//                                     like: club.like,
+//                                   );
+//                                 },
+//                               ),
