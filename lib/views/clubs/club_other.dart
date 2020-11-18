@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:workflow/views/clubs/club_detail_other.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 
@@ -29,150 +31,169 @@ class OtherClubs extends StatelessWidget {
       padding: EdgeInsets.only(
         bottom: 15,
       ),
-      child: Container(
-        height: 115,
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            Positioned(
-              top: 0,
-              left: 0,
-              child: Container(
-                width: deviceDimensions.width * 0.34,
-                height: 115,
-                decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Image(
-                    fit: BoxFit.cover,
-                    image: AssetImage(imgUrl),
+      child: GestureDetector(
+        onTap: () => Get.to(
+          ClubDetailsOther(
+            clubInfo: OtherClubs(
+              imgUrl: imgUrl,
+              id: id,
+              name: name,
+              status: status,
+              bookmark: bookmark,
+              like: like,
+            ),
+          ),
+        ),
+        child: Container(
+          height: 115,
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              Positioned(
+                top: 0,
+                left: 0,
+                child: Container(
+                  width: deviceDimensions.width * 0.34,
+                  height: 115,
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Hero(
+                      tag: id,
+                      child: Image(
+                        fit: BoxFit.cover,
+                        image: AssetImage(imgUrl),
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
-            Positioned(
-              top: 0,
-              right: 0,
-              child: Container(
-                width: deviceDimensions.width * 0.63,
-                height: 115,
-                padding:
-                    EdgeInsets.only(top: 12, left: 10, right: 10, bottom: 10),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: width63 - 95,
-                          child: AutoSizeText(
-                            name,
-                            style: productTitleStyle,
-                            minFontSize: 15,
-                            stepGranularity: 3,
-                            maxLines: 2,
+              Positioned(
+                top: 0,
+                right: 0,
+                child: Container(
+                  width: deviceDimensions.width * 0.63,
+                  height: 115,
+                  padding:
+                      EdgeInsets.only(top: 12, left: 10, right: 10, bottom: 10),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: width63 - 95,
+                            child: AutoSizeText(
+                              name,
+                              style: productTitleStyle,
+                              minFontSize: 15,
+                              stepGranularity: 3,
+                              maxLines: 2,
+                            ),
                           ),
-                        ),
-                        Container(
-                          width: 65,
-                          height: 28,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          Container(
+                            width: 65,
+                            height: 28,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  width: 28,
+                                  height: 28,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(7),
+                                    color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey[200],
+                                          blurRadius: 10)
+                                    ],
+                                  ),
+                                  child: Center(
+                                    child: bookmark
+                                        ? Icon(
+                                            Icons.bookmark_rounded,
+                                            color: yellow,
+                                            size: 16,
+                                          )
+                                        : Icon(
+                                            Icons.bookmark_outline_rounded,
+                                            color: Colors.grey[600],
+                                            size: 16,
+                                          ),
+                                  ),
+                                ),
+                                Container(
+                                  width: 28,
+                                  height: 28,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(7),
+                                    color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey[200],
+                                          blurRadius: 10)
+                                    ],
+                                  ),
+                                  child: Center(
+                                    child: like
+                                        ? Icon(
+                                            Icons.favorite_rounded,
+                                            color: red,
+                                            size: 16,
+                                          )
+                                        : Icon(
+                                            Icons.favorite_outline_rounded,
+                                            color: Colors.grey[600],
+                                            size: 16,
+                                          ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Container(
-                                width: 28,
-                                height: 28,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(7),
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.grey[200], blurRadius: 10)
-                                  ],
-                                ),
-                                child: Center(
-                                  child: bookmark
-                                      ? Icon(
-                                          Icons.bookmark_rounded,
-                                          color: yellow,
-                                          size: 16,
-                                        )
-                                      : Icon(
-                                          Icons.bookmark_outline_rounded,
-                                          color: Colors.grey[600],
-                                          size: 16,
-                                        ),
-                                ),
+                              Text(
+                                "Status",
+                                style: catHeadStyle,
                               ),
-                              Container(
-                                width: 28,
-                                height: 28,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(7),
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.grey[200], blurRadius: 10)
-                                  ],
-                                ),
-                                child: Center(
-                                  child: like
-                                      ? Icon(
-                                          Icons.favorite_rounded,
-                                          color: red,
-                                          size: 16,
-                                        )
-                                      : Icon(
-                                          Icons.favorite_outline_rounded,
-                                          color: Colors.grey[600],
-                                          size: 16,
-                                        ),
-                                ),
+                              SizedBox(height: 5),
+                              Text(
+                                status,
+                                style: catStyle,
                               ),
                             ],
                           ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Status",
-                              style: catHeadStyle,
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              status,
-                              style: catStyle,
-                            ),
-                          ],
-                        ),
-                        Text(
-                          id,
-                          style: idStyle,
-                        ),
-                      ],
-                    )
-                  ],
+                          Text(
+                            id,
+                            style: idStyle,
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

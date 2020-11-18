@@ -75,11 +75,20 @@ final TextStyle headingClubsStyle =
 final TextStyle productTitleStyle =
     TextStyle(fontSize: 18, fontFamily: "Sofia_Pro_SemiBold", color: fontColor);
 
-final TextStyle categoryTitleStyle =
-    TextStyle(fontSize: 24, fontFamily: "Sofia_Pro_Bold", color: fontColor);
+final TextStyle productDetailTitleStyle =
+    TextStyle(fontSize: 24, fontFamily: "Sofia_Pro_SemiBold", color: fontColor);
+
+final TextStyle descriptionTitleStyle =
+    TextStyle(fontSize: 22, fontFamily: "Sofia_Pro", color: fontColor);
+
+final TextStyle descriptionStyle = TextStyle(
+    fontSize: 18, fontFamily: "Sofia_Pro", color: fontColor, height: 1.25);
 
 final TextStyle idStyle =
     TextStyle(fontSize: 16, fontFamily: "Sofia_Pro", color: fontColorLight);
+
+final TextStyle idDetailStyle =
+    TextStyle(fontSize: 18, fontFamily: "Sofia_Pro", color: fontColorLight);
 
 final TextStyle catHeadStyle =
     TextStyle(fontSize: 13, fontFamily: "Sofia_Pro", color: fontColorLight);
@@ -87,5 +96,14 @@ final TextStyle catHeadStyle =
 final TextStyle catStyle =
     TextStyle(fontSize: 16, fontFamily: "Sofia_Pro", color: fontColor);
 
+final TextStyle catHeadDetailStyle =
+    TextStyle(fontSize: 16, fontFamily: "Sofia_Pro", color: fontColorLight);
+
+final TextStyle catDetailStyle =
+    TextStyle(fontSize: 20, fontFamily: "Sofia_Pro", color: fontColor);
+
 final TextStyle speakerdescStyle = TextStyle(
     fontSize: 16, fontFamily: "Sofia_Pro_Light", color: fontColorLight);
+
+final TextStyle viewButtonStyle =
+    TextStyle(fontSize: 18, fontFamily: "Sofia_Pro", color: blue);
