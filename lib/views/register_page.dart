@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workflow/views/animations/FadeAnimation.dart';
-import 'package:workflow/views/clubs.dart';
+import 'package:workflow/views/clubs/clubs.dart';
 import 'package:workflow/views/styles/styles.dart';
 
 class RegisterPage extends StatefulWidget {
