@@ -51,9 +51,9 @@ class Clubs extends StatelessWidget {
                   borderRadius: BorderRadius.circular(50),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(.12),
+                      color: Colors.black.withOpacity(.05),
                       offset: Offset(0, 10),
-                      blurRadius: 30,
+                      blurRadius: 20,
                     )
                   ],
                 ),
