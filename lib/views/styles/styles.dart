@@ -63,3 +63,29 @@ final TextStyle labelStyle = TextStyle(
   color: fontColor,
   fontFamily: "Sofia_Pro_Bold",
 );
+
+//CLUBS STYLE
+
+final TextStyle searchBarStyle =
+    TextStyle(fontSize: 18, fontFamily: "Sofia_Pro_Light", color: fontColor);
+
+final TextStyle headingClubsStyle =
+    TextStyle(fontSize: 26, fontFamily: "Sofia_Pro_Bold", color: fontColor);
+
+final TextStyle productTitleStyle =
+    TextStyle(fontSize: 18, fontFamily: "Sofia_Pro_SemiBold", color: fontColor);
+
+final TextStyle categoryTitleStyle =
+    TextStyle(fontSize: 24, fontFamily: "Sofia_Pro_Bold", color: fontColor);
+
+final TextStyle idStyle =
+    TextStyle(fontSize: 16, fontFamily: "Sofia_Pro", color: fontColorLight);
+
+final TextStyle catHeadStyle =
+    TextStyle(fontSize: 13, fontFamily: "Sofia_Pro", color: fontColorLight);
+
+final TextStyle catStyle =
+    TextStyle(fontSize: 16, fontFamily: "Sofia_Pro", color: fontColor);
+
+final TextStyle speakerdescStyle = TextStyle(
+    fontSize: 16, fontFamily: "Sofia_Pro_Light", color: fontColorLight);

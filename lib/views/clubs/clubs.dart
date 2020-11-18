@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:workflow/views/animations/FadeAnimation.dart';
+import 'package:workflow/views/clubs/club_model/club_model.dart';
+import 'package:workflow/views/clubs/club_popular.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 
@@ -32,29 +34,37 @@ class Clubs extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         child: SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Container(
-                  padding: EdgeInsets.only(
-                    left: 20,
-                  ),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white),
-                  child: Center(
-                    child: TextFormField(
-                      style: formFieldStyle,
-                      keyboardType: TextInputType.multiline,
+                width: double.infinity,
+                height: 50,
+                margin: EdgeInsets.symmetric(horizontal: 22),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(.12),
+                      offset: Offset(0, 10),
+                      blurRadius: 30,
+                    )
+                  ],
+                ),
+                child: Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 18, right: 12),
+                    child: TextField(
                       decoration: InputDecoration(
-                          suffixIcon: Icon(
-                            Icons.search,
-                            color: fontColor,
-                          ),
-                          border: InputBorder.none,
-                          hintText: "search clubs...",
-                          hintStyle: searchLabelStyle),
+                        border: InputBorder.none,
+                        hintText: "Search clubs...",
+                        hintStyle: searchBarStyle,
+                        suffixIcon: Icon(
+                          Icons.search,
+                          color: Colors.black,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -80,18 +90,21 @@ class Clubs extends StatelessWidget {
                       height: 10,
                     ),
                     Container(
-                      margin: EdgeInsets.symmetric(vertical: 10.0),
-                      height: 150.0,
+                      height: 220,
+                      padding: EdgeInsets.symmetric(vertical: 10),
                       child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
+                        itemCount: clubs.length,
                         physics: BouncingScrollPhysics(),
-                        itemCount: 10,
-                        itemBuilder: (context, int index) {
-                          return Container(
-                            color: Colors.red,
-                            margin: EdgeInsets.only(left: 20),
-                            height: 100,
-                            width: 100,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          var club = clubs[index];
+                          return PopularClubs(
+                            imgUrl: club.image,
+                            name: club.name,
+                            status: club.status,
+                            id: club.id,
+                            bookmark: club.bookmark,
+                            like: club.like,
                           );
                         },
                       ),
@@ -100,7 +113,7 @@ class Clubs extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 40,
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 20),
