@@ -67,7 +67,7 @@ final TextStyle labelStyle = TextStyle(
 //CLUBS STYLE
 
 final TextStyle searchBarStyle =
-    TextStyle(fontSize: 18, fontFamily: "Sofia_Pro_Light", color: fontColor);
+    TextStyle(fontSize: 18, fontFamily: "Sofia_Pro", color: fontColor);
 
 final TextStyle headingClubsStyle =
     TextStyle(fontSize: 26, fontFamily: "Sofia_Pro_Bold", color: fontColor);

@@ -41,13 +41,14 @@ class Clubs extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: 10),
               Container(
                 width: double.infinity,
                 height: 50,
                 margin: EdgeInsets.symmetric(horizontal: 22),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(50),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(.12),
