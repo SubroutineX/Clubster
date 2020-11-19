@@ -1,8 +1,7 @@
-import 'dart:ui' as ui;
-
-import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:workflow/views/animations/FadeAnimation.dart';
+import 'package:workflow/views/clubs/bottom_navigation.dart';
 import 'package:workflow/views/clubs/club_model/club_other_model.dart';
 import 'package:workflow/views/clubs/club_model/club_popular_model.dart';
 import 'package:workflow/views/clubs/club_other.dart';
@@ -10,28 +9,12 @@ import 'package:workflow/views/clubs/club_popular.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-
 class Clubs extends StatefulWidget {
   @override
   _ClubsState createState() => _ClubsState();
 }
 
 class _ClubsState extends State<Clubs> {
-  int _currentIndex;
-
-  @override
-  void initState() {
-    super.initState();
-    _currentIndex = 0;
-  }
-
-  void changePage(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     var deviceDimensions = MediaQuery.of(context).size;
@@ -41,8 +24,9 @@ class _ClubsState extends State<Clubs> {
       appBar: AppBar(
         actions: [
           IconButton(
-              icon: Icon(
-                Icons.notifications_active_rounded,
+              tooltip: "Logout",
+              icon: FaIcon(
+                FontAwesomeIcons.signOutAlt,
                 color: fontColor,
               ),
               onPressed: null),
@@ -56,70 +40,7 @@ class _ClubsState extends State<Clubs> {
           style: appBarHead,
         ),
       ),
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(vertical: 5),
-        decoration: BoxDecoration(
-          color: white,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-        ),
-        child: BubbleBottomBar(
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-          backgroundColor: white,
-          opacity: 1,
-          elevation: 0,
-          currentIndex: _currentIndex,
-          onTap: changePage,
-          items: [
-            BubbleBottomBarItem(
-              backgroundColor: faintViolet,
-              activeIcon: Icon(
-                Icons.home_rounded,
-                color: violet,
-              ),
-              icon: Icon(
-                Icons.home_rounded,
-                color: fontColorLight,
-              ),
-              title: Text(
-                "Clubs",
-                style: bottomBarItemStyle,
-              ),
-            ),
-            BubbleBottomBarItem(
-              backgroundColor: faintViolet,
-              activeIcon: Icon(
-                Icons.favorite_outline_rounded,
-                color: violet,
-              ),
-              icon: Icon(
-                Icons.favorite_outline_rounded,
-                color: fontColorLight,
-              ),
-              title: Text(
-                "Favourites",
-                style: bottomBarItemStyle,
-              ),
-            ),
-            BubbleBottomBarItem(
-              backgroundColor: faintViolet,
-              activeIcon: Icon(
-                Icons.person_rounded,
-                color: violet,
-              ),
-              icon: Icon(
-                Icons.person_rounded,
-                color: fontColorLight,
-              ),
-              title: Text(
-                "Profile",
-                style: bottomBarItemStyle,
-              ),
-            ),
-          ],
-        ),
-      ),
+      bottomNavigationBar: CustomBottomNav(),
       body: Container(
         height: deviceDimensions.height,
         width: deviceDimensions.width,

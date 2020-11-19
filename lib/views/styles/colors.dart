@@ -13,3 +13,4 @@ Color violet = Color(0xff8948FC);
 Color faintViolet = Color(0xffF6F0FF);
 Color darkBlue = Color(0xff6281B6);
 Color yellow = Color(0xffFFC43D);
+Color orange = Colors.orange;
