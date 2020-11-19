@@ -25,8 +25,8 @@ class _ClubsState extends State<Clubs> {
         actions: [
           IconButton(
               tooltip: "Logout",
-              icon: FaIcon(
-                FontAwesomeIcons.signOutAlt,
+              icon: Icon(
+                Icons.login_outlined,
                 color: fontColor,
               ),
               onPressed: null),
