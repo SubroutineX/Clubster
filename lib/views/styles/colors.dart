@@ -10,5 +10,6 @@ Color fontColorLight = Color(0x80131a31);
 Color red = Color(0xffFF5E5E);
 Color blue = Color(0xff60A2FF);
 Color violet = Color(0xff8948FC);
+Color faintViolet = Color(0xffF6F0FF);
 Color darkBlue = Color(0xff6281B6);
 Color yellow = Color(0xffFFC43D);
