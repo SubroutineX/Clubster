@@ -35,6 +35,7 @@ class CustomBottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    var deviceDimensions = MediaQuery.of(context).size;
 
     return Padding(
       padding: margin,
@@ -77,7 +78,7 @@ class CustomBottomBar extends StatelessWidget {
                             data: IconThemeData(
                               color: Color.lerp(
                                   _unselectedColor, _selectedColor, t),
-                              size: 24,
+                              size: (deviceDimensions.width > 400) ? 24 : 20,
                             ),
                             child: item.icon ?? SizedBox.shrink(),
                           ),
@@ -93,6 +94,7 @@ class CustomBottomBar extends StatelessWidget {
                                       right: itemPadding.right),
                                   child: DefaultTextStyle(
                                     style: TextStyle(
+                                      fontFamily: "Sofia_Pro_SemiBold",
                                       color: Color.lerp(
                                           _selectedColor.withOpacity(0.0),
                                           _selectedColor,

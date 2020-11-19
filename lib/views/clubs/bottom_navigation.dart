@@ -17,12 +17,15 @@ class _CustomBottomNavState extends State<CustomBottomNav> {
   void _handleIndexChanged(int i) {
     setState(() {
       _selectedTab = _SelectedTab.values[i];
+      print(MediaQuery.of(context).size.width);
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    var deviceDimensions = MediaQuery.of(context).size;
     return Container(
+      width: deviceDimensions.width,
       padding: EdgeInsets.symmetric(vertical: 5),
       decoration: BoxDecoration(
         color: white,

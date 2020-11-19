@@ -40,7 +40,6 @@ class _ClubsState extends State<Clubs> {
           style: appBarHead,
         ),
       ),
-      bottomNavigationBar: CustomBottomNav(),
       body: Container(
         height: deviceDimensions.height,
         width: deviceDimensions.width,
@@ -136,7 +135,7 @@ class _ClubsState extends State<Clubs> {
                     ),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 70,
                   ),
                 ],
               ),
@@ -189,6 +188,11 @@ class _ClubsState extends State<Clubs> {
                 ),
               ),
             ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              child: CustomBottomNav(),
+            )
           ],
         ),
       ),
