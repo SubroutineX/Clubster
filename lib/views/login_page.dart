@@ -54,7 +54,7 @@ class Loginpage extends GetWidget<AuthController> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 80),
+                  SizedBox(height: 50),
                   Container(
                     width: double.infinity,
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
