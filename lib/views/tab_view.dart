@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:workflow/views/clubs/clubs.dart';
 import 'package:workflow/views/custom_indicator.dart';
 import 'package:workflow/views/styles/styles.dart';
-
 import 'package:workflow/views/login_page.dart';
 import 'package:workflow/views/register_page.dart';
 
@@ -16,16 +12,8 @@ class TabPage extends StatefulWidget {
 class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
   TabController _tabController;
 
-  checkLoginStatus() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    if (sharedPreferences.getBool("logged-in") == true) {
-      Get.offAll(Clubs());
-    }
-  }
-
   @override
   void initState() {
-    checkLoginStatus();
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
   }

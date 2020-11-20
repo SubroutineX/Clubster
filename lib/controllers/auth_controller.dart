@@ -5,8 +5,6 @@ import 'package:workflow/views/clubs/clubs.dart';
 import 'package:workflow/views/tab_view.dart';
 
 class AuthController extends GetxController {
-  RxInt user = 0.obs;
-
   void registerUser(String name, String userName, String user, String phone,
       String college, String dept, String password) async {
     try {
@@ -36,7 +34,7 @@ class AuthController extends GetxController {
         SharedPreferences sharedPreferences =
             await SharedPreferences.getInstance();
         sharedPreferences.setBool("logged-in", true);
-        Get.offAll(Clubs());
+        Get.off(Clubs());
       } else {
         Get.snackbar('error signing In', response.body,
             snackPosition: SnackPosition.BOTTOM);
