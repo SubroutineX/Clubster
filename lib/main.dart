@@ -11,11 +11,14 @@ Future<void> main() async {
 
   print(sharedPreferences.getBool("logged-in"));
 
-  runApp(GetMaterialApp(
-    initialBinding: AuthBinding(),
-    title: 'workflow managment demo',
-    theme: ThemeData(fontFamily: "Sofia_Pro"),
-    debugShowCheckedModeBanner: false,
-    home: sharedPreferences.getBool("logged-in") == true ? Clubs() : TabPage(),
-  ));
+  runApp(
+    GetMaterialApp(
+      initialBinding: AuthBinding(),
+      title: 'workflow managment demo',
+      theme: ThemeData(fontFamily: "Sofia_Pro"),
+      debugShowCheckedModeBanner: false,
+      home:
+          sharedPreferences.getBool("logged-in") == true ? Clubs() : TabPage(),
+    ),
+  );
 }
