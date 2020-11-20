@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sliding_sheet/sliding_sheet.dart';
 import 'package:workflow/views/animations/FadeAnimation.dart';
+import 'package:workflow/views/clubs/club_model/club_other_model.dart';
+import 'package:workflow/views/clubs/club_other.dart';
 import 'package:workflow/views/clubs/club_popular.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
@@ -145,35 +148,30 @@ class ClubDetailsPopular extends StatelessWidget {
                       Row(
                         children: [
                           Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                FadeAnimation(
-                                  30,
-                                  Text(
-                                    "Members",
-                                    style: catHeadDetailStyle,
+                            child: GestureDetector(
+                              onTap: () {
+                                _showAsBottomSheet();
+                              },
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  FadeAnimation(
+                                    30,
+                                    Text(
+                                      "Members",
+                                      style: catHeadDetailStyle,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(height: 10),
-                                FadeAnimation(
-                                  35,
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "12",
-                                        style: catDetailStyle,
-                                      ),
-                                      Text(
-                                        "view",
-                                        style: viewButtonStyle,
-                                      ),
-                                    ],
+                                  SizedBox(height: 10),
+                                  FadeAnimation(
+                                    35,
+                                    Text(
+                                      "12",
+                                      style: catDetailStyle,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                           SizedBox(width: 20),
@@ -248,11 +246,62 @@ class ClubDetailsPopular extends StatelessWidget {
                     ],
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  void _showAsBottomSheet() async {
+    await showSlidingBottomSheet(
+      Get.context,
+      builder: (context) {
+        return SlidingSheetDialog(
+          duration: Duration(milliseconds: 250),
+          scrollSpec: ScrollSpec.bouncingScroll(),
+          elevation: 0,
+          cornerRadius: 20,
+          snapSpec: const SnapSpec(
+            snap: true,
+            snappings: [0.4, 0.7, 1.0],
+            positioning: SnapPositioning.relativeToAvailableSpace,
+          ),
+          builder: (context, state) {
+            return Material(
+              color: white,
+              child: Container(
+                height: 360,
+                padding: EdgeInsets.all(20),
+                width: MediaQuery.of(context).size.width,
+                child: SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    physics: BouncingScrollPhysics(),
+                    child: Column(
+                      children: [
+                        for (int j = 0; j < otherClubs.length; j++)
+                          OtherClubs(
+                            imgUrl: otherClubs[j].image,
+                            name: otherClubs[j].name,
+                            status: otherClubs[j].status,
+                            id: otherClubs[j].id,
+                            bookmark: otherClubs[j].bookmark,
+                            like: otherClubs[j].like,
+                          ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+
+    // This is the result.
   }
 }
