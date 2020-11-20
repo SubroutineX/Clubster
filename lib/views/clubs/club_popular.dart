@@ -42,6 +42,7 @@ class PopularClubs extends StatelessWidget {
                 like: like,
               ),
             ),
+            duration: Duration(milliseconds: 250),
           );
         },
         child: Container(

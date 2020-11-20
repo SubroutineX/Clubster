@@ -107,3 +107,9 @@ final TextStyle bottomBarItemStyle =
 
 final TextStyle viewButtonStyle =
     TextStyle(fontSize: 18, fontFamily: "Sofia_Pro", color: blue);
+
+final TextStyle memberHeadStyle =
+    TextStyle(fontSize: 20, fontFamily: "Sofia_Pro_SemiBold", color: fontColor);
+
+final TextStyle joinStyle =
+    TextStyle(fontSize: 18, fontFamily: "Sofia_Pro_SemiBold", color: white);
