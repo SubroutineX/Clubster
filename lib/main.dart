@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:workflow/bindings/auth_binding.dart';
+import 'package:get/get.dart';
+import 'package:workflow/views/clubs/clubs.dart';
 import 'package:workflow/views/tab_view.dart';
 
-import 'package:get/get.dart';
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
-void main() => runApp(MyApp());
+  print(sharedPreferences.getBool("logged-in"));
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'workflow managment demo',
-      theme: ThemeData(fontFamily: "Sofia_Pro"),
-      debugShowCheckedModeBanner: false,
-      home: TabPage(),
-    );
-  }
+  runApp(GetMaterialApp(
+    initialBinding: AuthBinding(),
+    title: 'workflow managment demo',
+    theme: ThemeData(fontFamily: "Sofia_Pro"),
+    debugShowCheckedModeBanner: false,
+    home: sharedPreferences.getBool("logged-in") == true ? Clubs() : TabPage(),
+  ));
 }

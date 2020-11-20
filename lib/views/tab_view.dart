@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workflow/views/custom_indicator.dart';
 import 'package:workflow/views/styles/styles.dart';
-
 import 'package:workflow/views/login_page.dart';
 import 'package:workflow/views/register_page.dart';
 

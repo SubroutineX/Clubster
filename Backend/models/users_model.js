@@ -7,7 +7,7 @@ var UsersSchema = new Schema({
     name:String,//
     userName:String,//
     user:String,//
-    phone:Number,//
+    phone:String,//
     hashedPassword:String,
     college:String,//
     dept:String,

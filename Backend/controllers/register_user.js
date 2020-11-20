@@ -13,7 +13,6 @@ module.exports = async (req, res) => {
             name:req.body.name,
             userName:req.body.username,
             user:req.body.user,
-            email:req.body.name,
             phone:req.body.phone,
             hashedPassword:hashedPassword,
             college:req.body.college,

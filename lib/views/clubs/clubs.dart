@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:workflow/controllers/auth_controller.dart';
 import 'package:workflow/views/animations/FadeAnimation.dart';
 import 'package:workflow/views/clubs/bottom_navigation.dart';
 import 'package:workflow/views/clubs/club_model/club_other_model.dart';
@@ -29,7 +30,9 @@ class _ClubsState extends State<Clubs> {
                 Icons.login_outlined,
                 color: fontColor,
               ),
-              onPressed: null),
+              onPressed: () {
+                Get.find<AuthController>().logoutUser();
+              }),
         ],
         iconTheme: IconThemeData(color: fontColor),
         centerTitle: true,
