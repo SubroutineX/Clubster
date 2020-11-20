@@ -75,6 +75,9 @@ flutter:
         - family: Sofia_Pro_Light
           fonts:
               - asset: fonts/SofiaPro_Light.otf
+        - family: CustomIcons
+          fonts:
+              - asset: fonts/CustomIcons.ttf
     # fonts:
     #   - family: Schyler
     #     fonts:

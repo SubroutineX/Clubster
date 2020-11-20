@@ -1,22 +1,28 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:workflow/controllers/auth_controller.dart';
+import 'package:workflow/controllers/showPassword_controller.dart';
+import 'package:workflow/views/CustomIcons.dart';
 import 'package:workflow/views/animations/FadeAnimation.dart';
+import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 
 class Loginpage extends GetWidget<AuthController> {
   final TabController loginPageTabController;
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final ShowPassController showPassword = Get.put(ShowPassController());
+  // Toggles the password show status
 
   Loginpage(this.loginPageTabController);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
+      backgroundColor: loginSignup,
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height,
@@ -48,7 +54,7 @@ class Loginpage extends GetWidget<AuthController> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 50),
+                  SizedBox(height: 80),
                   Container(
                     width: double.infinity,
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -66,8 +72,11 @@ class Loginpage extends GetWidget<AuthController> {
                         FadeAnimation(
                           4,
                           Container(
-                            padding: EdgeInsets.symmetric(horizontal: 5),
-                            decoration: BoxDecoration(color: Colors.white),
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            decoration: BoxDecoration(
+                              color: white,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
                             child: TextFormField(
                               style: formFieldStyle,
                               keyboardType: TextInputType.number,
@@ -80,7 +89,7 @@ class Loginpage extends GetWidget<AuthController> {
                           ),
                         ),
                         SizedBox(
-                          height: 30,
+                          height: 20,
                         ),
                         FadeAnimation(
                           5,
@@ -93,18 +102,70 @@ class Loginpage extends GetWidget<AuthController> {
                         FadeAnimation(
                           6,
                           Container(
-                            padding: EdgeInsets.symmetric(horizontal: 5),
-                            decoration: BoxDecoration(color: Colors.white),
-                            child: TextFormField(
-                              obscureText: true,
-                              style: formFieldStyle,
-                              keyboardType: TextInputType.emailAddress,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "Password",
-                                hintStyle: hintStyle,
-                              ),
-                              controller: passwordController,
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            decoration: BoxDecoration(
+                              color: passwordColor,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: GetBuilder(
+                              init: ShowPassController(),
+                              builder: (_) {
+                                return Stack(
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.only(right: 45),
+                                      child: TextFormField(
+                                        obscureText: _.invisible,
+                                        style: formFieldStyle,
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          hintText: "Password",
+                                          hintStyle: hintStyle,
+                                        ),
+                                        controller: passwordController,
+                                      ),
+                                    ),
+                                    Positioned(
+                                      right: 0,
+                                      top: 6.5,
+                                      child: GestureDetector(
+                                        onTapDown: (TapDownDetails details) {
+                                          showPassword.showPass(details);
+                                        },
+                                        onTapUp: (TapUpDetails details) {
+                                          showPassword.hidePass(details);
+                                        },
+                                        child: Container(
+                                          width: 35,
+                                          height: 35,
+                                          decoration: BoxDecoration(
+                                            color: loginSignup,
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          child: Center(
+                                            child: _.invisible
+                                                ? Icon(
+                                                    CustomIcons.eye,
+                                                    size: 17,
+                                                    color: fontColorLight
+                                                        .withOpacity(.35),
+                                                  )
+                                                : Icon(
+                                                    CustomIcons.eye_off,
+                                                    size: 17,
+                                                    color: fontColorLight
+                                                        .withOpacity(.35),
+                                                  ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              },
                             ),
                           ),
                         ),
@@ -135,11 +196,21 @@ class Loginpage extends GetWidget<AuthController> {
                   SizedBox(height: 50),
                   FadeAnimation(
                     8,
-                    Container(
-                      height: 50,
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Material(
-                        color: Colors.white,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Container(
+                        height: 50,
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: AlignmentDirectional.bottomEnd,
+                              colors: [
+                                blue,
+                                violet,
+                              ],
+                            )),
                         child: GestureDetector(
                           onTap: () {
                             Get.find<AuthController>().loginUser(
@@ -155,7 +226,7 @@ class Loginpage extends GetWidget<AuthController> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 40),
+                  SizedBox(height: 25),
                   FadeAnimation(
                     9,
                     Row(

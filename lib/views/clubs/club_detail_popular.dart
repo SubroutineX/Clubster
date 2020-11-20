@@ -148,7 +148,7 @@ class ClubDetailsPopular extends StatelessWidget {
                       Row(
                         children: [
                           Expanded(
-                            child: GestureDetector(
+                            child: InkWell(
                               onTap: () {
                                 _showAsBottomSheet();
                               },
@@ -301,7 +301,5 @@ class ClubDetailsPopular extends StatelessWidget {
         );
       },
     );
-
-    // This is the result.
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workflow/views/custom_indicator.dart';
+import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 import 'package:workflow/views/login_page.dart';
 import 'package:workflow/views/register_page.dart';
@@ -23,7 +24,7 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
     return SafeArea(
       child: Material(
         child: Container(
-          color: Colors.grey[200],
+          color: loginSignup,
           child: Column(
             children: [
               Row(
@@ -35,11 +36,11 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
                     child: TabBar(
                       controller: _tabController,
                       labelPadding: EdgeInsets.all(0),
-                      unselectedLabelColor: Colors.grey,
+                      unselectedLabelColor: fontColorLight.withOpacity(0.5),
                       labelColor: Colors.black,
                       indicator: CustomIndicator(
                         indicatorHeight: 3,
-                        indicatorColor: Color(0xff1967d2),
+                        indicatorColor: blue,
                         indicatorSize: CustomIndicatorSize.normal,
                       ),
                       tabs: [

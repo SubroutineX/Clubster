@@ -3,7 +3,7 @@ import 'package:workflow/views/styles/colors.dart';
 
 final TextStyle tabLabelStyle = TextStyle(
   fontSize: 16,
-  fontFamily: "Sofia_Pro",
+  fontFamily: "Sofia_Pro_SemiBold",
 );
 final TextStyle searchLabelStyle = TextStyle(
   fontSize: 16,
@@ -24,7 +24,7 @@ final TextStyle headingStyle = TextStyle(
 
 final TextStyle buttonTextStyle = TextStyle(
   fontSize: 20,
-  color: fontColor,
+  color: white,
   fontFamily: "Sofia_Pro_Bold",
 );
 
