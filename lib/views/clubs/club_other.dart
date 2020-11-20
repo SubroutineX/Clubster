@@ -56,7 +56,7 @@ class OtherClubs extends StatelessWidget {
                   width: deviceDimensions.width * 0.34,
                   height: 115,
                   decoration: BoxDecoration(
-                    color: Colors.red,
+                    color: white,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: ClipRRect(

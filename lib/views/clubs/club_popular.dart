@@ -57,7 +57,7 @@ class PopularClubs extends StatelessWidget {
                   width: 150,
                   height: 130,
                   decoration: BoxDecoration(
-                    color: Colors.red,
+                    color: clubsBackground,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: ClipRRect(
@@ -80,7 +80,7 @@ class PopularClubs extends StatelessWidget {
                   height: 100,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: white,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Column(
@@ -142,7 +142,7 @@ class PopularClubs extends StatelessWidget {
                           child: bookmark
                               ? Icon(
                                   Icons.bookmark_rounded,
-                                  color: yellow,
+                                  color: orange,
                                   size: 16,
                                 )
                               : Icon(
