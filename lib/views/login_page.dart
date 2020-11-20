@@ -1,11 +1,15 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:workflow/controllers/auth_controller.dart';
 import 'package:workflow/views/animations/FadeAnimation.dart';
 import 'package:workflow/views/styles/styles.dart';
 
-class Loginpage extends StatelessWidget {
-  TabController loginPageTabController;
+class Loginpage extends GetWidget<AuthController> {
+  final TabController loginPageTabController;
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   Loginpage(this.loginPageTabController);
 
@@ -71,6 +75,7 @@ class Loginpage extends StatelessWidget {
                                   border: InputBorder.none,
                                   hintText: "Mobile Number",
                                   hintStyle: hintStyle),
+                              controller: phoneController,
                             ),
                           ),
                         ),
@@ -99,6 +104,7 @@ class Loginpage extends StatelessWidget {
                                 hintText: "Password",
                                 hintStyle: hintStyle,
                               ),
+                              controller: passwordController,
                             ),
                           ),
                         ),
@@ -135,7 +141,10 @@ class Loginpage extends StatelessWidget {
                       child: Material(
                         color: Colors.white,
                         child: GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Get.find<AuthController>().loginUser(
+                                phoneController.text, passwordController.text);
+                          },
                           child: Center(
                             child: Text(
                               'Login',

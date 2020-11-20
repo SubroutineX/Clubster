@@ -295,6 +295,9 @@ class _RegisterPageState extends State<RegisterPage> {
 }
 
 Step _firstStep() {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController userNameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
   return Step(
     title: Text(
       'Step 1',
@@ -328,6 +331,7 @@ Step _firstStep() {
                   border: InputBorder.none,
                   hintText: "Name",
                   hintStyle: hintStyle),
+              controller: nameController,
             ),
           ),
         ),
@@ -355,6 +359,7 @@ Step _firstStep() {
                 hintText: "Username",
                 hintStyle: hintStyle,
               ),
+              controller: userNameController,
             ),
           ),
         ),
@@ -382,6 +387,7 @@ Step _firstStep() {
                   border: InputBorder.none,
                   hintText: "Mobile Number",
                   hintStyle: hintStyle),
+              controller: phoneController,
             ),
           ),
         ),
@@ -391,6 +397,7 @@ Step _firstStep() {
 }
 
 Step _thirdStep() {
+  final TextEditingController passwordController = TextEditingController();
   return Step(
     isActive: false,
     state: StepState.indexed,
@@ -426,6 +433,7 @@ Step _thirdStep() {
                 hintText: "Password",
                 hintStyle: hintStyle,
               ),
+              controller: passwordController,
             ),
           ),
         ),

@@ -6,7 +6,7 @@ const app = express();
 const passport = require("passport");
 const session = require("express-session");
 const override = require("method-override");
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
@@ -51,7 +51,7 @@ app.post(
               return res.status(500).json({errors:err});
             }
             if(!user){
-              return res.status(200).json(info);
+              return res.status(500).json(info);
             }
             req.logIn(user,function(err){
                 if(err){

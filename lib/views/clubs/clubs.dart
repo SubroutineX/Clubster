@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:workflow/controllers/auth_controller.dart';
 import 'package:workflow/views/animations/FadeAnimation.dart';
 import 'package:workflow/views/clubs/club_model/club_other_model.dart';
 import 'package:workflow/views/clubs/club_model/club_popular_model.dart';
@@ -21,7 +23,9 @@ class Clubs extends StatelessWidget {
                 Icons.notifications_active_rounded,
                 color: fontColor,
               ),
-              onPressed: null),
+              onPressed: () {
+                Get.find<AuthController>().logoutUser();
+              }),
         ],
         iconTheme: IconThemeData(color: fontColor),
         centerTitle: true,

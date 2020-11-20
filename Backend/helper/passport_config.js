@@ -4,19 +4,19 @@ const users = require("../models/users_model");
 
 function initialize(passport) {
     
-    const authenticateUser = async (email, password, done) => { 
+    const authenticateUser = async (phone, password, done) => { 
         try {
-        const user = await users.findOne({email:email});
+        const user = await users.findOne({phone:phone});
         
         
         if (user == null) {
-            return done(null, false, { message: "User not Found" });
+            return done(null, false,  "User not Found" );
         }
                
             if (await bcrypt.compare(password, user.hashedPassword)) {
                 return done(null, user);
             } else {
-                return done(null, false, { message: "Password Incorrect" });
+                return done(null, false,  "Password Incorrect" );
             }
         } catch (error) {
             return done(error);
@@ -25,7 +25,7 @@ function initialize(passport) {
 
     passport.use(
         new LocalStrategy(
-            { usernameField: "email", passwordField: "password" },
+            { usernameField: "phone", passwordField: "password" },
             authenticateUser
         )
     );
