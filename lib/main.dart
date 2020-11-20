@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workflow/bindings/auth_binding.dart';
 import 'package:get/get.dart';
 import 'package:workflow/views/clubs/clubs.dart';
+import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/tab_view.dart';
 
 Future<void> main() async {
@@ -15,7 +16,7 @@ Future<void> main() async {
     GetMaterialApp(
       initialBinding: AuthBinding(),
       title: 'workflow managment demo',
-      theme: ThemeData(fontFamily: "Sofia_Pro"),
+      theme: ThemeData(fontFamily: "Sofia_Pro", accentColor: violet),
       debugShowCheckedModeBanner: false,
       home:
           sharedPreferences.getBool("logged-in") == true ? Clubs() : TabPage(),

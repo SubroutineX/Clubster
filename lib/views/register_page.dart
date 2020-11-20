@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:workflow/controllers/showPassword_controller.dart';
+import 'package:workflow/views/CustomIcons.dart';
 import 'package:workflow/views/animations/FadeAnimation.dart';
 import 'package:workflow/views/clubs/clubs.dart';
+import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -52,14 +55,13 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-
     return new Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: loginSignup,
       body: Column(
         children: <Widget>[
           Expanded(
             child: Stepper(
+              physics: BouncingScrollPhysics(),
               steps: steps,
               currentStep: currentStep,
               onStepContinue: next,
@@ -136,6 +138,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Step _secondStep() {
+    var deviceSize = MediaQuery.of(context).size;
     return Step(
       isActive: false,
       state: StepState.indexed,
@@ -159,14 +162,23 @@ class _RegisterPageState extends State<RegisterPage> {
           SizedBox(height: 10),
           Container(
             width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 5),
-            decoration: BoxDecoration(color: Colors.transparent),
+            padding: EdgeInsets.symmetric(horizontal: 0),
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(12),
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Expanded(
                   child: RadioListTile(
-                      title: Text("Student"),
+                      activeColor: violet,
+                      title: Text(
+                        "Student",
+                        style: TextStyle(
+                          fontSize: deviceSize.width < 400 ? 16 : 14,
+                        ),
+                      ),
                       value: 0,
                       groupValue: _user,
                       onChanged: (val) {
@@ -175,7 +187,13 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 Expanded(
                   child: RadioListTile(
-                      title: Text("Teacher"),
+                      activeColor: violet,
+                      title: Text(
+                        "Teacher",
+                        style: TextStyle(
+                          fontSize: deviceSize.width < 400 ? 16 : 14,
+                        ),
+                      ),
                       value: 1,
                       groupValue: _user,
                       onChanged: (val) {
@@ -200,8 +218,11 @@ class _RegisterPageState extends State<RegisterPage> {
             2,
             Container(
               width: double.infinity,
-              padding: EdgeInsets.symmetric(horizontal: 5),
-              decoration: BoxDecoration(color: Colors.white),
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+              ),
               child: DropdownButtonFormField(
                   decoration: InputDecoration(
                     border: InputBorder.none,
@@ -247,8 +268,11 @@ class _RegisterPageState extends State<RegisterPage> {
             2,
             Container(
               width: double.infinity,
-              padding: EdgeInsets.symmetric(horizontal: 5),
-              decoration: BoxDecoration(color: Colors.white),
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+              ),
               child: DropdownButtonFormField(
                   decoration: InputDecoration(
                     border: InputBorder.none,
@@ -322,8 +346,11 @@ Step _firstStep() {
         FadeAnimation(
           2,
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 5),
-            decoration: BoxDecoration(color: Colors.white),
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+            ),
             child: TextFormField(
               style: formFieldStyle,
               keyboardType: TextInputType.emailAddress,
@@ -349,8 +376,11 @@ Step _firstStep() {
         FadeAnimation(
           4,
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 5),
-            decoration: BoxDecoration(color: Colors.white),
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+            ),
             child: TextFormField(
               style: formFieldStyle,
               keyboardType: TextInputType.emailAddress,
@@ -377,8 +407,11 @@ Step _firstStep() {
         FadeAnimation(
           2,
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 5),
-            decoration: BoxDecoration(color: Colors.white),
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+            ),
             child: TextFormField(
               style: formFieldStyle,
               keyboardType: TextInputType.number,
@@ -398,6 +431,8 @@ Step _firstStep() {
 
 Step _thirdStep() {
   final TextEditingController passwordController = TextEditingController();
+
+  final ShowPassController showPassword = Get.put(ShowPassController());
   return Step(
     isActive: false,
     state: StepState.indexed,
@@ -422,18 +457,66 @@ Step _thirdStep() {
         FadeAnimation(
           4,
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 5),
-            decoration: BoxDecoration(color: Colors.white),
-            child: TextFormField(
-              keyboardType: TextInputType.emailAddress,
-              obscureText: true,
-              style: formFieldStyle,
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: "Password",
-                hintStyle: hintStyle,
-              ),
-              controller: passwordController,
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            decoration: BoxDecoration(
+              color: passwordColor,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: GetBuilder(
+              init: ShowPassController(),
+              builder: (_) {
+                return Stack(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(right: 45),
+                      child: TextFormField(
+                        obscureText: _.invisible,
+                        style: formFieldStyle,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Password",
+                          hintStyle: hintStyle,
+                        ),
+                        controller: passwordController,
+                      ),
+                    ),
+                    Positioned(
+                      right: 0,
+                      top: 6.5,
+                      child: GestureDetector(
+                        onTapDown: (TapDownDetails details) {
+                          showPassword.showPass(details);
+                        },
+                        onTapUp: (TapUpDetails details) {
+                          showPassword.hidePass(details);
+                        },
+                        child: Container(
+                          width: 35,
+                          height: 35,
+                          decoration: BoxDecoration(
+                            color: loginSignup,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Center(
+                            child: _.invisible
+                                ? Icon(
+                                    CustomIcons.eye,
+                                    size: 17,
+                                    color: fontColorLight.withOpacity(.35),
+                                  )
+                                : Icon(
+                                    CustomIcons.eye_off,
+                                    size: 17,
+                                    color: fontColorLight.withOpacity(.35),
+                                  ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
           ),
         ),
