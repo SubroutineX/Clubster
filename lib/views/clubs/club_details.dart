@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
@@ -277,7 +275,7 @@ class ClubDetailsPage extends StatelessWidget {
                                 FadeAnimation(
                                   35,
                                   Text(
-                                    "12",
+                                    clubInfoPage.members.toString(),
                                     style: catDetailStyle,
                                   ),
                                 ),

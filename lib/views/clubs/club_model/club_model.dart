@@ -6,6 +6,7 @@ class Club {
   bool popular;
   bool bookmark;
   bool like;
+  int members;
   Club(
       {this.imgUrl,
       this.name,
@@ -13,7 +14,8 @@ class Club {
       this.id,
       this.bookmark,
       this.like,
-      this.popular});
+      this.popular,
+      this.members});
 }
 
 var clubs = [
@@ -22,6 +24,7 @@ var clubs = [
     name: "Inventors",
     status: "open",
     id: "#2171",
+    members: 35,
     bookmark: false,
     like: false,
     popular: false,
@@ -31,6 +34,7 @@ var clubs = [
     name: "Mechanical maniac",
     status: "open",
     id: "#2259",
+    members: 28,
     bookmark: false,
     like: true,
     popular: false,
@@ -40,6 +44,7 @@ var clubs = [
     name: "Red line racing",
     status: "open",
     id: "#2375",
+    members: 39,
     bookmark: false,
     like: false,
     popular: true,
@@ -49,6 +54,7 @@ var clubs = [
     name: "Dancer squad",
     status: "closed",
     id: "#2482",
+    members: 16,
     bookmark: false,
     like: true,
     popular: true,
@@ -58,6 +64,7 @@ var clubs = [
     name: "Cricket",
     status: "invite only",
     id: "#2291",
+    members: 18,
     bookmark: true,
     like: true,
     popular: true,

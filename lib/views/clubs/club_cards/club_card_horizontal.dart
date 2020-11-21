@@ -30,6 +30,7 @@ class ClubCardHorizontal extends StatelessWidget {
               id: clubInfoCard.id,
               bookmark: clubInfoCard.bookmark,
               like: clubInfoCard.like,
+              members: clubInfoCard.members,
             ),
           ),
         ),

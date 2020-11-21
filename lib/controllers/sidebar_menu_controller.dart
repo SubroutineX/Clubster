@@ -1,34 +1,31 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SideBarController extends GetxController
-    with SingleGetTickerProviderMixin {
-  bool isCollapsed = true;
-  double screenWidth, screenHeight;
-  final Duration duration = const Duration(milliseconds: 300);
-  AnimationController _controller;
-  Animation<double> scaleAnimation;
-  Animation<double> menuScaleAnimation;
-  Animation<Offset> slideAnimation;
+class SideBarController extends GetxController {
+  var deviceDimensions = MediaQuery.of(Get.context).size;
+  double xOffset = 0;
+  double yOffset = 0;
+  bool isDrawerOpen = false;
+  double scaleFactor = 1;
+  BorderRadiusGeometry borderRadius = BorderRadius.circular(0);
 
-  void initState() {
-    _controller = AnimationController(vsync: this, duration: duration);
-    scaleAnimation = Tween<double>(begin: 1, end: 0.8).animate(_controller);
-    menuScaleAnimation = Tween<double>(begin: 0.5, end: 1).animate(_controller);
-    slideAnimation = Tween<Offset>(begin: Offset(-1, 0), end: Offset(0, 0))
-        .animate(_controller);
+  void showDrawer() {
+    xOffset = deviceDimensions.width / 1.8;
+    yOffset = 150;
+    scaleFactor = .6;
+    isDrawerOpen = !isDrawerOpen;
+    borderRadius = BorderRadius.circular(30);
+    update();
   }
 
-  void dispose() {
-    _controller.dispose();
-  }
-
-  void menuClicked() {
-    if (isCollapsed) {
-      _controller.forward();
-    } else {
-      _controller.reverse();
-    }
-    isCollapsed = !isCollapsed;
+  void hideDrawer() {
+    xOffset = 00;
+    yOffset = 00;
+    scaleFactor = 1;
+    isDrawerOpen = !isDrawerOpen;
+    borderRadius = BorderRadius.circular(0);
+    update();
   }
 }

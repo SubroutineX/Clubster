@@ -29,8 +29,8 @@ class _CustomBottomNavState extends State<CustomBottomNav> {
       padding: EdgeInsets.symmetric(vertical: 5),
       decoration: BoxDecoration(
         color: white,
-        borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+        borderRadius: BorderRadius.circular(20),
+        //  topLeft: Radius.circular(20), topRight: Radius.circular(20)
       ),
       child: CustomBottomBar(
         currentIndex: _SelectedTab.values.indexOf(_selectedTab),

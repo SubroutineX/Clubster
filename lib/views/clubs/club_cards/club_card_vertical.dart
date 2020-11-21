@@ -29,6 +29,7 @@ class ClubCardVertical extends StatelessWidget {
                 status: clubInfoCard.status,
                 bookmark: clubInfoCard.bookmark,
                 like: clubInfoCard.like,
+                members: clubInfoCard.members,
               ),
             ),
             duration: Duration(milliseconds: 250),
