@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:workflow/views/clubs/custom_bottomNav.dart';
+import 'package:workflow/views/clubs/club_nav/custom_bottomNav.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 

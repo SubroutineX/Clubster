@@ -1,27 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:workflow/views/clubs/club_detail_other.dart';
+import 'package:workflow/views/clubs/club_details.dart';
+import 'package:workflow/views/clubs/club_model/club_model.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
 
-class OtherClubs extends StatelessWidget {
-  final String imgUrl;
-  final String name;
-  final String status;
-  final String id;
-  final bool bookmark;
-  final bool like;
+class ClubCardHorizontal extends StatelessWidget {
+  final Club clubInfoCard;
 
-  OtherClubs({
-    this.imgUrl,
-    this.name,
-    this.status,
-    this.id,
-    this.bookmark,
-    this.like,
-  });
+  ClubCardHorizontal({this.clubInfoCard});
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +22,14 @@ class OtherClubs extends StatelessWidget {
       ),
       child: GestureDetector(
         onTap: () => Get.to(
-          ClubDetailsOther(
-            clubInfo: OtherClubs(
-              imgUrl: imgUrl,
-              id: id,
-              name: name,
-              status: status,
-              bookmark: bookmark,
-              like: like,
+          ClubDetailsPage(
+            clubInfoPage: Club(
+              imgUrl: clubInfoCard.imgUrl,
+              name: clubInfoCard.name,
+              status: clubInfoCard.status,
+              id: clubInfoCard.id,
+              bookmark: clubInfoCard.bookmark,
+              like: clubInfoCard.like,
             ),
           ),
         ),
@@ -62,10 +51,10 @@ class OtherClubs extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Hero(
-                      tag: id,
+                      tag: clubInfoCard.id,
                       child: Image(
                         fit: BoxFit.cover,
-                        image: AssetImage(imgUrl),
+                        image: AssetImage(clubInfoCard.imgUrl),
                       ),
                     ),
                   ),
@@ -94,7 +83,7 @@ class OtherClubs extends StatelessWidget {
                           Container(
                             width: width63 - 95,
                             child: AutoSizeText(
-                              name,
+                              clubInfoCard.name,
                               style: productTitleStyle,
                               minFontSize: 15,
                               stepGranularity: 3,
@@ -120,7 +109,7 @@ class OtherClubs extends StatelessWidget {
                                     ],
                                   ),
                                   child: Center(
-                                    child: bookmark
+                                    child: clubInfoCard.bookmark
                                         ? Icon(
                                             Icons.bookmark_rounded,
                                             color: yellow,
@@ -146,7 +135,7 @@ class OtherClubs extends StatelessWidget {
                                     ],
                                   ),
                                   child: Center(
-                                    child: like
+                                    child: clubInfoCard.like
                                         ? Icon(
                                             Icons.favorite_rounded,
                                             color: red,
@@ -177,13 +166,13 @@ class OtherClubs extends StatelessWidget {
                               ),
                               SizedBox(height: 5),
                               Text(
-                                status,
+                                clubInfoCard.status,
                                 style: catStyle,
                               ),
                             ],
                           ),
                           Text(
-                            id,
+                            clubInfoCard.id,
                             style: idStyle,
                           ),
                         ],

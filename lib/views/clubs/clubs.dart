@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:workflow/controllers/auth_controller.dart';
 import 'package:workflow/views/animations/FadeAnimation.dart';
-import 'package:workflow/views/clubs/bottom_navigation.dart';
-import 'package:workflow/views/clubs/club_model/club_other_model.dart';
-import 'package:workflow/views/clubs/club_model/club_popular_model.dart';
-import 'package:workflow/views/clubs/club_other.dart';
-import 'package:workflow/views/clubs/club_popular.dart';
+import 'package:workflow/views/clubs/club_cards/club_card_horizontal.dart';
+import 'package:workflow/views/clubs/club_cards/club_card_vertical.dart';
+import 'package:workflow/views/clubs/club_model/club_model.dart';
+import 'package:workflow/views/clubs/club_nav/bottom_navigation.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 
-class Clubs extends StatefulWidget {
-  @override
-  _ClubsState createState() => _ClubsState();
-}
-
-class _ClubsState extends State<Clubs> {
+class Clubs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var deviceDimensions = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: clubsBackground,
-      drawer: Drawer(),
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(
+            Icons.menu,
+            color: fontColor,
+          ),
+        ),
         actions: [
           IconButton(
               tooltip: "Logout",
@@ -84,15 +84,11 @@ class _ClubsState extends State<Clubs> {
                             child: Row(
                               children: [
                                 SizedBox(width: 20),
-                                for (int i = 0; i < popularClubs.length; i++)
-                                  PopularClubs(
-                                    imgUrl: popularClubs[i].image,
-                                    name: popularClubs[i].name,
-                                    status: popularClubs[i].status,
-                                    id: popularClubs[i].id,
-                                    bookmark: popularClubs[i].bookmark,
-                                    like: popularClubs[i].like,
-                                  ),
+                                for (int i = 0; i < clubs.length; i++)
+                                  if (clubs[i].popular)
+                                    ClubCardVertical(
+                                      clubInfoCard: clubs[i],
+                                    ),
                                 SizedBox(width: 5),
                               ],
                             ),
@@ -122,15 +118,11 @@ class _ClubsState extends State<Clubs> {
                           physics: BouncingScrollPhysics(),
                           child: Column(
                             children: [
-                              for (int j = 0; j < otherClubs.length; j++)
-                                OtherClubs(
-                                  imgUrl: otherClubs[j].image,
-                                  name: otherClubs[j].name,
-                                  status: otherClubs[j].status,
-                                  id: otherClubs[j].id,
-                                  bookmark: otherClubs[j].bookmark,
-                                  like: otherClubs[j].like,
-                                ),
+                              for (int j = 0; j < clubs.length; j++)
+                                if (!clubs[j].popular)
+                                  ClubCardHorizontal(
+                                    clubInfoCard: clubs[j],
+                                  ),
                             ],
                           ),
                         ),

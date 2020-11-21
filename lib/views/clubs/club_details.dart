@@ -4,21 +4,98 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 import 'package:workflow/views/animations/FadeAnimation.dart';
-import 'package:workflow/views/clubs/club_model/club_other_model.dart';
-import 'package:workflow/views/clubs/club_other.dart';
-import 'package:workflow/views/clubs/club_popular.dart';
+import 'package:workflow/views/clubs/club_model/club_model.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 
-class ClubDetailsOther extends StatelessWidget {
-  final OtherClubs clubInfo;
+class ClubDetailsPage extends StatelessWidget {
+  final Club clubInfoPage;
 
-  ClubDetailsOther({Key key, @required this.clubInfo});
+  ClubDetailsPage({Key key, @required this.clubInfoPage});
 
   @override
   Widget build(BuildContext context) {
     var deviceDimensions = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: white,
+      bottomNavigationBar: Container(
+        width: deviceDimensions.width,
+        padding: EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
+        decoration: BoxDecoration(
+          color: white,
+          boxShadow: [
+            BoxShadow(
+              color: fontColor.withOpacity(.1),
+              offset: Offset(0, -3),
+              blurRadius: 10,
+            ),
+          ],
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(30),
+            topLeft: Radius.circular(30),
+          ),
+        ),
+        height: 70,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Material(
+              shape: StadiumBorder(),
+              color: violet,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(30),
+                onTap: () {
+                  print("hello");
+                },
+                focusColor: violetSplash,
+                highlightColor: violetSplash,
+                splashColor: violetSplash,
+                hoverColor: violetSplash,
+                child: Container(
+                  height: 48,
+                  width: deviceDimensions.width * .55,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Join",
+                      style: joinStyle,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Material(
+              shape: StadiumBorder(),
+              color: blue,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(30),
+                onTap: () {
+                  print("hello");
+                },
+                focusColor: blueSplash,
+                highlightColor: blueSplash,
+                splashColor: blueSplash,
+                hoverColor: blueSplash,
+                child: Container(
+                  height: 48,
+                  width: deviceDimensions.width * .35,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Follow",
+                      style: joinStyle,
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
       body: SingleChildScrollView(
         child: Container(
           width: deviceDimensions.width,
@@ -41,11 +118,11 @@ class ClubDetailsOther extends StatelessWidget {
                     width: deviceDimensions.width,
                     height: deviceDimensions.height * 0.45,
                     child: Hero(
-                      tag: clubInfo.id,
+                      tag: clubInfoPage.id,
                       child: Image(
                         fit: BoxFit.cover,
                         image: AssetImage(
-                          clubInfo.imgUrl,
+                          clubInfoPage.imgUrl,
                         ),
                       ),
                     ),
@@ -98,7 +175,7 @@ class ClubDetailsOther extends StatelessWidget {
                             FadeAnimation(
                               20,
                               Text(
-                                clubInfo.name,
+                                clubInfoPage.name,
                                 style: productDetailTitleStyle,
                               ),
                             ),
@@ -106,7 +183,7 @@ class ClubDetailsOther extends StatelessWidget {
                             FadeAnimation(
                               25,
                               Text(
-                                clubInfo.id,
+                                clubInfoPage.id,
                                 style: idDetailStyle,
                               ),
                             ),
@@ -133,7 +210,7 @@ class ClubDetailsOther extends StatelessWidget {
                                     color: Colors.white,
                                   ),
                                   child: Center(
-                                    child: clubInfo.bookmark
+                                    child: clubInfoPage.bookmark
                                         ? Icon(
                                             Icons.bookmark_rounded,
                                             color: yellow,
@@ -159,7 +236,7 @@ class ClubDetailsOther extends StatelessWidget {
                                     ],
                                   ),
                                   child: Center(
-                                    child: clubInfo.like
+                                    child: clubInfoPage.like
                                         ? Icon(
                                             Icons.favorite_rounded,
                                             color: red,
@@ -224,7 +301,7 @@ class ClubDetailsOther extends StatelessWidget {
                               FadeAnimation(
                                 35,
                                 Text(
-                                  clubInfo.status,
+                                  clubInfoPage.status,
                                   style: catDetailStyle,
                                 ),
                               ),
@@ -250,65 +327,6 @@ class ClubDetailsOther extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 30),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Material(
-                          shape: StadiumBorder(),
-                          color: violet,
-                          child: InkWell(
-                            borderRadius: BorderRadius.circular(30),
-                            onTap: () {
-                              print("hello");
-                            },
-                            focusColor: violetSplash,
-                            highlightColor: violetSplash,
-                            splashColor: violetSplash,
-                            hoverColor: violetSplash,
-                            child: Container(
-                              height: 48,
-                              width: deviceDimensions.width * .55,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  "Join",
-                                  style: joinStyle,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Material(
-                          shape: StadiumBorder(),
-                          color: blue,
-                          child: InkWell(
-                            borderRadius: BorderRadius.circular(30),
-                            onTap: () {
-                              print("hello");
-                            },
-                            focusColor: blueSplash,
-                            highlightColor: blueSplash,
-                            splashColor: blueSplash,
-                            hoverColor: blueSplash,
-                            child: Container(
-                              height: 48,
-                              width: deviceDimensions.width * .3,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  "Follow",
-                                  style: joinStyle,
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    )
                   ],
                 ),
               );
