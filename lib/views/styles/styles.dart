@@ -66,50 +66,122 @@ final TextStyle labelStyle = TextStyle(
 
 //CLUBS STYLE
 
-final TextStyle searchBarStyle =
-    TextStyle(fontSize: 18, fontFamily: "Sofia_Pro", color: fontColor);
+final TextStyle searchBarStyle = TextStyle(
+  fontSize: 18,
+  fontFamily: "Sofia_Pro",
+  color: fontColor,
+);
 
-final TextStyle headingClubsStyle =
-    TextStyle(fontSize: 26, fontFamily: "Sofia_Pro_Bold", color: fontColor);
+final TextStyle headingClubsStyle = TextStyle(
+  fontSize: 26,
+  fontFamily: "Sofia_Pro_Bold",
+  color: fontColor,
+);
 
-final TextStyle productTitleStyle =
-    TextStyle(fontSize: 18, fontFamily: "Sofia_Pro_SemiBold", color: fontColor);
+final TextStyle productTitleStyle = TextStyle(
+  fontSize: 18,
+  fontFamily: "Sofia_Pro_SemiBold",
+  color: fontColor,
+);
 
-final TextStyle productDetailTitleStyle =
-    TextStyle(fontSize: 24, fontFamily: "Sofia_Pro_SemiBold", color: fontColor);
+final TextStyle productDetailTitleStyle = TextStyle(
+  fontSize: 24,
+  fontFamily: "Sofia_Pro_SemiBold",
+  color: fontColor,
+);
 
-final TextStyle descriptionTitleStyle =
-    TextStyle(fontSize: 22, fontFamily: "Sofia_Pro", color: fontColor);
+final TextStyle descriptionTitleStyle = TextStyle(
+  fontSize: 22,
+  fontFamily: "Sofia_Pro",
+  color: fontColor,
+);
 
 final TextStyle descriptionStyle = TextStyle(
-    fontSize: 18, fontFamily: "Sofia_Pro", color: fontColor, height: 1.25);
+  fontSize: 18,
+  fontFamily: "Sofia_Pro",
+  color: fontColor,
+  height: 1.25,
+);
 
-final TextStyle idStyle =
-    TextStyle(fontSize: 16, fontFamily: "Sofia_Pro", color: fontColorLight);
+final TextStyle idStyle = TextStyle(
+  fontSize: 16,
+  fontFamily: "Sofia_Pro",
+  color: fontColorLight,
+);
 
-final TextStyle idDetailStyle =
-    TextStyle(fontSize: 18, fontFamily: "Sofia_Pro", color: fontColorLight);
+final TextStyle idDetailStyle = TextStyle(
+  fontSize: 18,
+  fontFamily: "Sofia_Pro",
+  color: fontColorLight,
+);
 
-final TextStyle catHeadStyle =
-    TextStyle(fontSize: 13, fontFamily: "Sofia_Pro", color: fontColorLight);
+final TextStyle catHeadStyle = TextStyle(
+  fontSize: 13,
+  fontFamily: "Sofia_Pro",
+  color: fontColorLight,
+);
 
-final TextStyle catStyle =
-    TextStyle(fontSize: 16, fontFamily: "Sofia_Pro", color: fontColor);
+final TextStyle catStyle = TextStyle(
+  fontSize: 16,
+  fontFamily: "Sofia_Pro",
+  color: fontColor,
+);
 
-final TextStyle catHeadDetailStyle =
-    TextStyle(fontSize: 16, fontFamily: "Sofia_Pro", color: fontColorLight);
+final TextStyle catHeadDetailStyle = TextStyle(
+  fontSize: 16,
+  fontFamily: "Sofia_Pro",
+  color: fontColorLight,
+);
 
-final TextStyle catDetailStyle =
-    TextStyle(fontSize: 20, fontFamily: "Sofia_Pro", color: fontColor);
+final TextStyle catDetailStyle = TextStyle(
+  fontSize: 20,
+  fontFamily: "Sofia_Pro",
+  color: fontColor,
+);
 
-final TextStyle bottomBarItemStyle =
-    TextStyle(fontSize: 16, fontFamily: "Sofia_Pro_Light", color: violet);
+final TextStyle bottomBarItemStyle = TextStyle(
+  fontSize: 16,
+  fontFamily: "Sofia_Pro_Light",
+  color: violet,
+);
 
-final TextStyle viewButtonStyle =
-    TextStyle(fontSize: 18, fontFamily: "Sofia_Pro", color: blue);
+final TextStyle viewButtonStyle = TextStyle(
+  fontSize: 18,
+  fontFamily: "Sofia_Pro",
+  color: blue,
+);
 
-final TextStyle memberHeadStyle =
-    TextStyle(fontSize: 20, fontFamily: "Sofia_Pro_SemiBold", color: fontColor);
+final TextStyle memberHeadStyle = TextStyle(
+  fontSize: 20,
+  fontFamily: "Sofia_Pro_SemiBold",
+  color: fontColor,
+);
 
-final TextStyle joinStyle =
-    TextStyle(fontSize: 18, fontFamily: "Sofia_Pro_SemiBold", color: white);
+final TextStyle joinStyle = TextStyle(
+  fontSize: 18,
+  fontFamily: "Sofia_Pro_SemiBold",
+  color: white,
+);
+
+final TextStyle profileName = TextStyle(
+  fontSize: 20,
+  fontFamily: "Sofia_Pro_SemiBold",
+  color: white,
+);
+
+final TextStyle profileDesc = TextStyle(
+  fontSize: 15,
+  fontFamily: "Sofia_Pro",
+  color: white.withOpacity(0.6),
+);
+
+final TextStyle activelistTile = TextStyle(
+  fontSize: 18,
+  fontFamily: "Sofia_Pro_SemiBold",
+  color: white,
+);
+
+final TextStyle inActivelistTile = TextStyle(
+    fontSize: 18,
+    fontFamily: "Sofia_Pro_SemiBold",
+    color: white.withOpacity(.6));
