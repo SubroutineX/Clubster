@@ -167,7 +167,7 @@ class MainScreen extends StatelessWidget {
                         child: Container(
                           width: deviceDimensions.width,
                           padding: EdgeInsets.symmetric(horizontal: 22),
-                          height: 80,
+                          height: 70,
                           decoration: BoxDecoration(
                             color: clubsBackground,
                             borderRadius: BorderRadius.only(
