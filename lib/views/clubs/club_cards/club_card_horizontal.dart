@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:workflow/controllers/club_controller.dart';
 import 'package:workflow/views/clubs/club_details.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
@@ -99,17 +100,33 @@ class ClubCardHorizontal extends StatelessWidget {
                                     ],
                                   ),
                                   child: Center(
-                                    child: true
-                                        ? Icon(
-                                            Icons.bookmark_rounded,
-                                            color: yellow,
-                                            size: 16,
-                                          )
-                                        : Icon(
-                                            Icons.bookmark_outline_rounded,
-                                            color: Colors.grey[600],
-                                            size: 16,
-                                          ),
+                                    child: GetX<ClubController>(
+                                      builder: (controller) {
+                                        return IconButton(
+                                          splashColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          padding: EdgeInsets.all(0),
+                                          onPressed: () {
+                                            clubInfoCard.bookmark.value =
+                                                !clubInfoCard.bookmark.value;
+                                          },
+                                          icon: clubInfoCard.bookmark.value
+                                              ? Icon(
+                                                  Icons.bookmark_rounded,
+                                                  size: 16,
+                                                )
+                                              : Icon(
+                                                  Icons
+                                                      .bookmark_outline_rounded,
+                                                  size: 16,
+                                                ),
+                                          color: clubInfoCard.bookmark.value
+                                              ? yellow
+                                              : Colors.grey[600],
+                                        );
+                                      },
+                                    ),
                                   ),
                                 ),
                                 Container(
@@ -125,17 +142,33 @@ class ClubCardHorizontal extends StatelessWidget {
                                     ],
                                   ),
                                   child: Center(
-                                    child: true
-                                        ? Icon(
-                                            Icons.favorite_rounded,
-                                            color: red,
-                                            size: 16,
-                                          )
-                                        : Icon(
-                                            Icons.favorite_outline_rounded,
-                                            color: Colors.grey[600],
-                                            size: 16,
-                                          ),
+                                    child: GetX<ClubController>(
+                                      builder: (controller) {
+                                        return IconButton(
+                                          splashColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          padding: EdgeInsets.all(0),
+                                          onPressed: () {
+                                            clubInfoCard.like.value =
+                                                !clubInfoCard.like.value;
+                                          },
+                                          icon: clubInfoCard.like.value
+                                              ? Icon(
+                                                  Icons.favorite_rounded,
+                                                  size: 16,
+                                                )
+                                              : Icon(
+                                                  Icons
+                                                      .favorite_outline_rounded,
+                                                  size: 16,
+                                                ),
+                                          color: clubInfoCard.like.value
+                                              ? red
+                                              : Colors.grey[600],
+                                        );
+                                      },
+                                    ),
                                   ),
                                 ),
                               ],

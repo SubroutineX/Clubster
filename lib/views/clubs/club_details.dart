@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
+import 'package:workflow/controllers/club_controller.dart';
 import 'package:workflow/views/animations/FadeAnimation.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 
 class ClubDetailsPage extends StatelessWidget {
   dynamic clubInfoPage;
+  final cController = Get.find<ClubController>();
 
   ClubDetailsPage({Key key, @required this.clubInfoPage});
 
@@ -207,17 +209,32 @@ class ClubDetailsPage extends StatelessWidget {
                                     color: Colors.white,
                                   ),
                                   child: Center(
-                                    child: true
-                                        ? Icon(
-                                            Icons.bookmark_rounded,
-                                            color: yellow,
-                                            size: 20,
-                                          )
-                                        : Icon(
-                                            Icons.bookmark_outline_rounded,
-                                            color: Colors.grey[600],
-                                            size: 20,
-                                          ),
+                                    child: GetX<ClubController>(
+                                      builder: (controller) {
+                                        return IconButton(
+                                          splashColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          onPressed: () {
+                                            clubInfoPage.bookmark.value =
+                                                !clubInfoPage.bookmark.value;
+                                          },
+                                          icon: clubInfoPage.bookmark.value
+                                              ? Icon(
+                                                  Icons.bookmark_rounded,
+                                                  size: 20,
+                                                )
+                                              : Icon(
+                                                  Icons
+                                                      .bookmark_outline_rounded,
+                                                  size: 20,
+                                                ),
+                                          color: clubInfoPage.bookmark.value
+                                              ? yellow
+                                              : Colors.grey[600],
+                                        );
+                                      },
+                                    ),
                                   ),
                                 ),
                                 Container(
@@ -228,22 +245,38 @@ class ClubDetailsPage extends StatelessWidget {
                                     color: Colors.white,
                                     boxShadow: [
                                       BoxShadow(
-                                          color: Colors.grey[200],
-                                          blurRadius: 10)
+                                        color: Colors.grey[200],
+                                        blurRadius: 10,
+                                      )
                                     ],
                                   ),
                                   child: Center(
-                                    child: true
-                                        ? Icon(
-                                            Icons.favorite_rounded,
-                                            color: red,
-                                            size: 20,
-                                          )
-                                        : Icon(
-                                            Icons.favorite_outline_rounded,
-                                            color: Colors.grey[600],
-                                            size: 20,
-                                          ),
+                                    child: GetX<ClubController>(
+                                      builder: (controller) {
+                                        return IconButton(
+                                          splashColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          onPressed: () {
+                                            clubInfoPage.like.value =
+                                                !clubInfoPage.like.value;
+                                          },
+                                          icon: clubInfoPage.like.value
+                                              ? Icon(
+                                                  Icons.favorite_rounded,
+                                                  size: 20,
+                                                )
+                                              : Icon(
+                                                  Icons
+                                                      .favorite_outline_rounded,
+                                                  size: 20,
+                                                ),
+                                          color: clubInfoPage.like.value
+                                              ? red
+                                              : Colors.grey[600],
+                                        );
+                                      },
+                                    ),
                                   ),
                                 ),
                               ],
