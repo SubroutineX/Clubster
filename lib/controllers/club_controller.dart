@@ -12,7 +12,7 @@ class ClubController extends GetxController {
 
   void fetchClubs() async {
     await Future.delayed(Duration(
-      milliseconds: 250,
+      milliseconds: 0,
     ));
     var fetchResults = [
       Club(
@@ -52,6 +52,6 @@ class ClubController extends GetxController {
       ),
     ];
 
-    clubs.value = fetchResults;
+    clubs.assignAll(fetchResults);
   }
 }

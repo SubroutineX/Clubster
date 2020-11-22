@@ -146,7 +146,7 @@ final TextStyle bottomBarItemStyle = TextStyle(
 );
 
 final TextStyle viewButtonStyle = TextStyle(
-  fontSize: 18,
+  fontSize: 14,
   fontFamily: "Sofia_Pro",
   color: blue,
 );

@@ -273,9 +273,20 @@ class ClubDetailsPage extends StatelessWidget {
                                 SizedBox(height: 10),
                                 FadeAnimation(
                                   35,
-                                  Text(
-                                    clubInfoPage.members.toString(),
-                                    style: catDetailStyle,
+                                  Row(
+                                    children: [
+                                      Text(
+                                        clubInfoPage.members.toString(),
+                                        style: catDetailStyle,
+                                      ),
+                                      // SizedBox(
+                                      //   width: 20,
+                                      // ),
+                                      // Text(
+                                      //   "view",
+                                      //   style: viewButtonStyle,
+                                      // ),
+                                    ],
                                   ),
                                 ),
                               ],
