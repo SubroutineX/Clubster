@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workflow/views/clubs/club_details.dart';
-import 'package:workflow/views/clubs/club_model/club_model.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
 
 class ClubCardHorizontal extends StatelessWidget {
-  final Club clubInfoCard;
+  dynamic clubInfoCard;
 
   ClubCardHorizontal({this.clubInfoCard});
 
@@ -22,17 +21,7 @@ class ClubCardHorizontal extends StatelessWidget {
       ),
       child: GestureDetector(
         onTap: () => Get.to(
-          ClubDetailsPage(
-            clubInfoPage: Club(
-              imgUrl: clubInfoCard.imgUrl,
-              name: clubInfoCard.name,
-              status: clubInfoCard.status,
-              id: clubInfoCard.id,
-              bookmark: clubInfoCard.bookmark,
-              like: clubInfoCard.like,
-              members: clubInfoCard.members,
-            ),
-          ),
+          ClubDetailsPage(clubInfoPage: clubInfoCard),
         ),
         child: Container(
           height: 115,
@@ -110,7 +99,7 @@ class ClubCardHorizontal extends StatelessWidget {
                                     ],
                                   ),
                                   child: Center(
-                                    child: clubInfoCard.bookmark
+                                    child: true
                                         ? Icon(
                                             Icons.bookmark_rounded,
                                             color: yellow,
@@ -136,7 +125,7 @@ class ClubCardHorizontal extends StatelessWidget {
                                     ],
                                   ),
                                   child: Center(
-                                    child: clubInfoCard.like
+                                    child: true
                                         ? Icon(
                                             Icons.favorite_rounded,
                                             color: red,

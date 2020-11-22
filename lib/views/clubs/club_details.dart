@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 import 'package:workflow/views/animations/FadeAnimation.dart';
-import 'package:workflow/views/clubs/club_model/club_model.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 
 class ClubDetailsPage extends StatelessWidget {
-  final Club clubInfoPage;
+  dynamic clubInfoPage;
 
   ClubDetailsPage({Key key, @required this.clubInfoPage});
 
@@ -208,7 +207,7 @@ class ClubDetailsPage extends StatelessWidget {
                                     color: Colors.white,
                                   ),
                                   child: Center(
-                                    child: clubInfoPage.bookmark
+                                    child: true
                                         ? Icon(
                                             Icons.bookmark_rounded,
                                             color: yellow,
@@ -234,7 +233,7 @@ class ClubDetailsPage extends StatelessWidget {
                                     ],
                                   ),
                                   child: Center(
-                                    child: clubInfoPage.like
+                                    child: true
                                         ? Icon(
                                             Icons.favorite_rounded,
                                             color: red,

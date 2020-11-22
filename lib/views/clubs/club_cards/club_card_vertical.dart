@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workflow/views/clubs/club_details.dart';
-import 'package:workflow/views/clubs/club_model/club_model.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
 
 class ClubCardVertical extends StatelessWidget {
-  final Club clubInfoCard;
+  dynamic clubInfoCard;
 
   ClubCardVertical({this.clubInfoCard});
 
@@ -21,17 +20,7 @@ class ClubCardVertical extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Get.to(
-            ClubDetailsPage(
-              clubInfoPage: Club(
-                imgUrl: clubInfoCard.imgUrl,
-                id: clubInfoCard.id,
-                name: clubInfoCard.name,
-                status: clubInfoCard.status,
-                bookmark: clubInfoCard.bookmark,
-                like: clubInfoCard.like,
-                members: clubInfoCard.members,
-              ),
-            ),
+            ClubDetailsPage(clubInfoPage: clubInfoCard),
             duration: Duration(milliseconds: 250),
           );
         },
@@ -130,7 +119,7 @@ class ClubCardVertical extends StatelessWidget {
                           color: Colors.white,
                         ),
                         child: Center(
-                          child: clubInfoCard.bookmark
+                          child: true
                               ? Icon(
                                   Icons.bookmark_rounded,
                                   color: orange,
@@ -151,7 +140,7 @@ class ClubCardVertical extends StatelessWidget {
                           color: Colors.white,
                         ),
                         child: Center(
-                          child: clubInfoCard.like
+                          child: true
                               ? Icon(
                                   Icons.favorite_rounded,
                                   color: red,
