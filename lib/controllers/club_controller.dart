@@ -21,6 +21,7 @@ class ClubController extends GetxController {
         status: "open",
         id: "#2171",
         popular: false,
+        genre: "Technology",
       ),
       Club(
         imgUrl: "assets/images/mechanical.jpg",
@@ -28,6 +29,7 @@ class ClubController extends GetxController {
         status: "open",
         id: "#2259",
         popular: false,
+        genre: "Technology",
       ),
       Club(
         imgUrl: "assets/images/redline.jpg",
@@ -35,6 +37,7 @@ class ClubController extends GetxController {
         status: "open",
         id: "#2375",
         popular: true,
+        genre: "Mechanical",
       ),
       Club(
         imgUrl: "assets/images/dancers.jpg",
@@ -42,6 +45,7 @@ class ClubController extends GetxController {
         status: "closed",
         id: "#2482",
         popular: true,
+        genre: "Entertainment",
       ),
       Club(
         imgUrl: "assets/images/cricket.jpg",
@@ -49,6 +53,7 @@ class ClubController extends GetxController {
         status: "invite only",
         id: "#2291",
         popular: true,
+        genre: "Sports",
       ),
     ];
 

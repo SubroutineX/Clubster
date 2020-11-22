@@ -6,10 +6,12 @@ class Club {
   final String status;
   final String id;
   final String description;
+  final String genre;
 
   bool popular = false;
 
   final members = 0.obs;
+  final followers = 0.obs;
   final bookmark = false.obs;
   final like = false.obs;
 
@@ -20,5 +22,6 @@ class Club {
     this.status,
     this.id,
     this.popular,
+    this.genre,
   });
 }

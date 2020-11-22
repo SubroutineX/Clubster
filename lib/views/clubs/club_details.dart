@@ -290,6 +290,62 @@ class ClubDetailsPage extends StatelessWidget {
                       children: [
                         Expanded(
                           child: InkWell(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                FadeAnimation(
+                                  30,
+                                  Text(
+                                    "Genre",
+                                    style: catHeadDetailStyle,
+                                  ),
+                                ),
+                                SizedBox(height: 10),
+                                FadeAnimation(
+                                  35,
+                                  Row(
+                                    children: [
+                                      Text(
+                                        clubInfoPage.genre,
+                                        style: catDetailStyle,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 30),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              FadeAnimation(
+                                30,
+                                Text(
+                                  "Status",
+                                  style: catHeadDetailStyle,
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              FadeAnimation(
+                                35,
+                                Text(
+                                  clubInfoPage.status,
+                                  style: catDetailStyle,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 22),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: InkWell(
                             onTap: () {
                               _showAsBottomSheet();
                             },
@@ -312,13 +368,6 @@ class ClubDetailsPage extends StatelessWidget {
                                         clubInfoPage.members.toString(),
                                         style: catDetailStyle,
                                       ),
-                                      // SizedBox(
-                                      //   width: 20,
-                                      // ),
-                                      // Text(
-                                      //   "view",
-                                      //   style: viewButtonStyle,
-                                      // ),
                                     ],
                                   ),
                                 ),
@@ -326,7 +375,7 @@ class ClubDetailsPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(width: 20),
+                        SizedBox(width: 30),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -334,7 +383,7 @@ class ClubDetailsPage extends StatelessWidget {
                               FadeAnimation(
                                 30,
                                 Text(
-                                  "Status",
+                                  "Followers",
                                   style: catHeadDetailStyle,
                                 ),
                               ),
@@ -342,7 +391,7 @@ class ClubDetailsPage extends StatelessWidget {
                               FadeAnimation(
                                 35,
                                 Text(
-                                  clubInfoPage.status,
+                                  clubInfoPage.followers.toString(),
                                   style: catDetailStyle,
                                 ),
                               ),
