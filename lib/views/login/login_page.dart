@@ -198,24 +198,22 @@ class Loginpage extends GetWidget<AuthController> {
                     8,
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                      child: Container(
-                        height: 50,
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: AlignmentDirectional.bottomEnd,
-                              colors: [
-                                blue,
-                                violet,
-                              ],
-                            )),
-                        child: GestureDetector(
-                          onTap: () {
-                            Get.find<AuthController>().loginUser(
-                                phoneController.text, passwordController.text);
-                          },
+                      child: InkWell(
+                        onTap: () => Get.find<AuthController>().loginUser(
+                            phoneController.text, passwordController.text),
+                        child: Container(
+                          height: 50,
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: AlignmentDirectional.bottomEnd,
+                                colors: [
+                                  blue,
+                                  violet,
+                                ],
+                              )),
                           child: Center(
                             child: Text(
                               'Login',
