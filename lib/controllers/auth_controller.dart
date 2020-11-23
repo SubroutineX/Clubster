@@ -5,10 +5,12 @@ import 'package:workflow/views/clubs/clubs.dart';
 import 'package:workflow/views/tab_view.dart';
 
 class AuthController extends GetxController {
+  static const IP_SERVER =
+      '192.168.43.217'; //atharva:192.168.0.18 , nuke:192.168.43.217
   void registerUser(String name, String userName, String user, String phone,
       String college, String dept, String password) async {
     try {
-      var response = await http.post("localhost:3000/register", body: {
+      var response = await http.post("http://$IP_SERVER:8000/register", body: {
         'name': name,
         'username': userName,
         'user': user,
@@ -27,7 +29,7 @@ class AuthController extends GetxController {
 
   void loginUser(String phone, String password) async {
     try {
-      var response = await http.post("http://192.168.0.18:8000/login",
+      var response = await http.post("http://$IP_SERVER:8000/login",
           body: {'phone': phone, 'password': password});
 
       if (response.statusCode == 200) {
@@ -48,7 +50,7 @@ class AuthController extends GetxController {
 
   void logoutUser() async {
     try {
-      var response = await http.delete("http://192.168.0.18:8000/logout");
+      var response = await http.delete("http://$IP_SERVER:8000/logout");
       if (response.statusCode == 200) {
         SharedPreferences sharedPreferences =
             await SharedPreferences.getInstance();

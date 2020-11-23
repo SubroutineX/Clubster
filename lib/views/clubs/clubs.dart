@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workflow/controllers/club_controller.dart';
+import 'package:workflow/controllers/auth_controller.dart';
 import 'package:workflow/views/animations/FadeAnimation.dart';
 import 'package:workflow/views/clubs/club_cards/club_card_horizontal.dart';
 import 'package:workflow/views/clubs/club_cards/club_card_vertical.dart';
@@ -10,6 +11,7 @@ import 'package:workflow/views/styles/styles.dart';
 
 class Clubs extends StatelessWidget {
   final clubController = Get.put(ClubController());
+  final authController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,9 @@ class Clubs extends StatelessWidget {
                 Icons.login_outlined,
                 color: fontColor,
               ),
-              onPressed: () {}),
+              onPressed: () {
+                authController.logoutUser();
+              }),
         ],
         iconTheme: IconThemeData(color: fontColor),
         centerTitle: true,
