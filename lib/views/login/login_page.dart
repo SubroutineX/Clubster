@@ -1,10 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:workflow/controllers/auth_controller.dart';
-import 'package:workflow/controllers/showPassword_controller.dart';
+import 'package:workflow/controllers/show_password_controller.dart';
 import 'package:workflow/views/CustomIcons.dart';
 import 'package:workflow/views/animations/FadeAnimation.dart';
 import 'package:workflow/views/styles/colors.dart';
