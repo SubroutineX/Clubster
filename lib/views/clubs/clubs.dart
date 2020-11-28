@@ -13,14 +13,20 @@ class Clubs extends StatelessWidget {
   final clubController = Get.put(ClubController());
   final authController = Get.put(AuthController());
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     var deviceDimensions = MediaQuery.of(context).size;
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: clubsBackground,
       drawer: Drawer(),
       appBar: AppBar(
         leading: IconButton(
+          onPressed: () {
+            _scaffoldKey.currentState.openDrawer();
+          },
           icon: Icon(
             Icons.menu,
             color: fontColor,

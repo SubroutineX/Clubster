@@ -103,10 +103,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                 if (currentStep < steps.length - 1) {
                                   currentStep = currentStep + 1;
                                 } else {
-                                  print(
-                                      '$_name $_userName $_phoneNo $_password');
-                                  registerController.registerUser(
-                                      _user, _value, _value2);
+                                  // registerController.registerUser(
+                                  //     _user, _value, _value2);
+                                  Get.to(Clubs());
                                 }
                               },
                             );

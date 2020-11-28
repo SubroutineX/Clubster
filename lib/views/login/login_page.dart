@@ -6,6 +6,7 @@ import 'package:workflow/controllers/auth_controller.dart';
 import 'package:workflow/controllers/show_password_controller.dart';
 import 'package:workflow/views/CustomIcons.dart';
 import 'package:workflow/views/animations/FadeAnimation.dart';
+import 'package:workflow/views/clubs/clubs.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 
@@ -242,6 +243,29 @@ class Loginpage extends GetWidget<AuthController> {
                                     loginPageTabController.animateTo(1);
                                   },
                                 text: "Register.",
+                                style: questionStyleBold,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 25),
+                  FadeAnimation(
+                    9,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    Get.to(Clubs());
+                                  },
+                                text: "Bypass Login",
                                 style: questionStyleBold,
                               ),
                             ],

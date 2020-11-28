@@ -1,8 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workflow/models/clubs.dart';
 
 class ClubController extends GetxController {
   var clubs = List<Club>().obs;
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   void onInit() {
