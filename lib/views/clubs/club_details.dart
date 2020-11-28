@@ -38,60 +38,30 @@ class ClubDetailsPage extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Material(
+            FlatButton(
               shape: StadiumBorder(),
               color: violet,
-              child: InkWell(
-                borderRadius: BorderRadius.circular(30),
-                onTap: () {
-                  print("hello");
-                },
-                focusColor: violetSplash,
-                highlightColor: violetSplash,
-                splashColor: violetSplash,
-                hoverColor: violetSplash,
-                child: Container(
-                  height: 48,
-                  width: deviceDimensions.width * .55,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Join",
-                      style: joinStyle,
-                    ),
-                  ),
+              minWidth: deviceDimensions.width * .57,
+              onPressed: () => print("join"),
+              child: Center(
+                child: Text(
+                  "Join",
+                  style: joinStyle,
                 ),
               ),
             ),
-            Material(
+            FlatButton(
               shape: StadiumBorder(),
               color: blue,
-              child: InkWell(
-                borderRadius: BorderRadius.circular(30),
-                onTap: () {
-                  print("hello");
-                },
-                focusColor: blueSplash,
-                highlightColor: blueSplash,
-                splashColor: blueSplash,
-                hoverColor: blueSplash,
-                child: Container(
-                  height: 48,
-                  width: deviceDimensions.width * .35,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Follow",
-                      style: joinStyle,
-                    ),
-                  ),
+              minWidth: deviceDimensions.width * .37,
+              onPressed: () => print("follow"),
+              child: Center(
+                child: Text(
+                  "Follow",
+                  style: joinStyle,
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
