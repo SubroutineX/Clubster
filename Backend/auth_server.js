@@ -5,18 +5,25 @@ const jwt = require("jsonwebtoken")
 const mongoose = require("mongoose")
 const users = require("./models/users_model")
 const bcrypt = require("bcrypt")
+const bodyParser = require("body-parser")
 
 //database connection
 var mongoDB =
 	"mongodb+srv://admin:" +
 	process.env.mongoDB +
 	"@cluster0.hed3w.mongodb.net/WorkFlow?retryWrites=true&w=majority"
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(mongoDB, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+})
 
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
 app.delete("/logout", (req, res) => {
-	res.status(200).statusMessage("logged out")
+	res.status(200).json("logged out")
 })
 
 app.post("/login", async (req, res) => {
@@ -24,6 +31,7 @@ app.post("/login", async (req, res) => {
 	try {
 		const phone = req.body.phone
 		const password = req.body.password
+		console.log(req.body)
 		const user = await users.findOne({ phone: phone })
 
 		if (user == null) {
