@@ -38,27 +38,42 @@ class _CustomBottomNavState extends State<CustomBottomNav> {
         items: [
           CustomBottomBarItem(
             icon: Icon(Icons.group_outlined),
-            title: Text("Clubs"),
+            title: Text(
+              "Clubs",
+              textScaleFactor: 1,
+            ),
             selectedColor: violet,
           ),
           CustomBottomBarItem(
             icon: Icon(Icons.favorite_border_rounded),
-            title: Text("Favourite"),
+            title: Text(
+              "Favourite",
+              textScaleFactor: 1,
+            ),
             selectedColor: Colors.pink,
           ),
           CustomBottomBarItem(
             icon: Icon(Icons.add),
-            title: Text("Create"),
+            title: Text(
+              "Create",
+              textScaleFactor: 1,
+            ),
             selectedColor: Colors.teal,
           ),
           CustomBottomBarItem(
             icon: Icon(Icons.bookmark_outline_rounded),
-            title: Text("Bookmarks"),
+            title: Text(
+              "Bookmarks",
+              textScaleFactor: 1,
+            ),
             selectedColor: Colors.orange,
           ),
           CustomBottomBarItem(
             icon: Icon(Icons.person_outline_rounded),
-            title: Text("Clash"),
+            title: Text(
+              "Clash",
+              textScaleFactor: 1,
+            ),
             selectedColor: Colors.blueAccent,
           ),
         ],

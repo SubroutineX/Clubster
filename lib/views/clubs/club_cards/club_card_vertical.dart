@@ -74,6 +74,7 @@ class ClubCardVertical extends StatelessWidget {
                         minFontSize: 15,
                         stepGranularity: 3,
                         maxLines: 2,
+                        textScaleFactor: 1,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -85,17 +86,20 @@ class ClubCardVertical extends StatelessWidget {
                               Text(
                                 "Status",
                                 style: catHeadStyle,
+                                textScaleFactor: 1,
                               ),
                               SizedBox(height: 5),
                               Text(
                                 clubInfoCard.status,
                                 style: catStyle,
+                                textScaleFactor: 1,
                               ),
                             ],
                           ),
                           Text(
                             clubInfoCard.id,
                             style: idStyle,
+                            textScaleFactor: 1,
                           ),
                         ],
                       )

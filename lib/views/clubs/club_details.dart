@@ -161,11 +161,26 @@ class ClubDetailsPage extends StatelessWidget {
             ),
             builder: (context, state) {
               return Container(
-                padding: EdgeInsets.all(20),
+                padding:
+                    EdgeInsets.only(left: 20, right: 20, bottom: 20, top: 10),
                 height: deviceDimensions.height * .78,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 30,
+                          height: 3,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.grey[300],
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 10),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -186,6 +201,7 @@ class ClubDetailsPage extends StatelessWidget {
                               Text(
                                 clubInfoPage.id,
                                 style: idDetailStyle,
+                                textScaleFactor: 1,
                               ),
                             ),
                           ],
@@ -287,138 +303,172 @@ class ClubDetailsPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 40),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: InkWell(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                FadeAnimation(
-                                  30,
-                                  Text(
-                                    "Genre",
-                                    style: catHeadDetailStyle,
-                                  ),
-                                ),
-                                SizedBox(height: 10),
-                                FadeAnimation(
-                                  35,
-                                  Row(
-                                    children: [
-                                      Text(
-                                        clubInfoPage.genre,
-                                        style: catDetailStyle,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 30),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              FadeAnimation(
-                                30,
-                                Text(
-                                  "Status",
-                                  style: catHeadDetailStyle,
-                                ),
-                              ),
-                              SizedBox(height: 10),
-                              FadeAnimation(
-                                35,
-                                Text(
-                                  clubInfoPage.status,
-                                  style: catDetailStyle,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 22),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: InkWell(
-                            onTap: () {
-                              _showAsBottomSheet();
-                            },
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                FadeAnimation(
-                                  30,
-                                  Text(
-                                    "Members",
-                                    style: catHeadDetailStyle,
-                                  ),
-                                ),
-                                SizedBox(height: 10),
-                                FadeAnimation(
-                                  35,
-                                  Row(
-                                    children: [
-                                      Text(
-                                        clubInfoPage.members.toString(),
-                                        style: catDetailStyle,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 30),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              FadeAnimation(
-                                30,
-                                Text(
-                                  "Followers",
-                                  style: catHeadDetailStyle,
-                                ),
-                              ),
-                              SizedBox(height: 10),
-                              FadeAnimation(
-                                35,
-                                Text(
-                                  clubInfoPage.followers.toString(),
-                                  style: catDetailStyle,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 40),
-                    FadeAnimation(
-                      45,
-                      Text(
-                        "Description",
-                        style: descriptionTitleStyle,
-                      ),
-                    ),
                     SizedBox(height: 20),
-                    FadeAnimation(
-                      50,
-                      Text(
-                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-                        style: descriptionStyle,
+                    Expanded(
+                      child: Container(
+                        child: SingleChildScrollView(
+                          physics: BouncingScrollPhysics(),
+                          scrollDirection: Axis.vertical,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: InkWell(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.stretch,
+                                        children: [
+                                          FadeAnimation(
+                                            30,
+                                            Text(
+                                              "Genre",
+                                              style: catHeadDetailStyle,
+                                              textScaleFactor: 1,
+                                            ),
+                                          ),
+                                          SizedBox(height: 10),
+                                          FadeAnimation(
+                                            35,
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  clubInfoPage.genre,
+                                                  style: catDetailStyle,
+                                                  textScaleFactor: 1,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(width: 30),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        FadeAnimation(
+                                          30,
+                                          Text(
+                                            "Status",
+                                            style: catHeadDetailStyle,
+                                            textScaleFactor: 1,
+                                          ),
+                                        ),
+                                        SizedBox(height: 10),
+                                        FadeAnimation(
+                                          35,
+                                          Text(
+                                            clubInfoPage.status,
+                                            style: catDetailStyle,
+                                            textScaleFactor: 1,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 22),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: () {
+                                        _showAsBottomSheet();
+                                      },
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.stretch,
+                                        children: [
+                                          FadeAnimation(
+                                            30,
+                                            Text(
+                                              "Members",
+                                              style: catHeadDetailStyle,
+                                              textScaleFactor: 1,
+                                            ),
+                                          ),
+                                          SizedBox(height: 10),
+                                          FadeAnimation(
+                                            35,
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  clubInfoPage.members
+                                                      .toString(),
+                                                  style: catDetailStyle,
+                                                  textScaleFactor: 1,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(width: 30),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        FadeAnimation(
+                                          30,
+                                          Text(
+                                            "Followers",
+                                            style: catHeadDetailStyle,
+                                            textScaleFactor: 1,
+                                          ),
+                                        ),
+                                        SizedBox(height: 10),
+                                        FadeAnimation(
+                                          35,
+                                          Text(
+                                            clubInfoPage.followers.toString(),
+                                            style: catDetailStyle,
+                                            textScaleFactor: 1,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 40),
+                              FadeAnimation(
+                                45,
+                                Text(
+                                  "Description",
+                                  style: descriptionTitleStyle,
+                                  textScaleFactor: 1,
+                                ),
+                              ),
+                              SizedBox(height: 20),
+                              FadeAnimation(
+                                50,
+                                Text(
+                                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                                  style: descriptionStyle,
+                                  textScaleFactor: 1,
+                                ),
+                              ),
+                              SizedBox(height: 30),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(
+                      height: 50,
+                    ),
                   ],
                 ),
               );
@@ -456,10 +506,10 @@ class ClubDetailsPage extends StatelessWidget {
                   children: [
                     Container(
                       width: 30,
-                      height: 5,
+                      height: 3,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey,
+                        color: Colors.grey[300],
                       ),
                     ),
                     SizedBox(height: 15),
@@ -490,6 +540,7 @@ class ClubDetailsPage extends StatelessWidget {
                               Text(
                                 "Founder",
                                 style: TextStyle(fontSize: 14),
+                                textScaleFactor: 1,
                               ),
                               SizedBox(width: 20),
                               Container(
@@ -508,6 +559,7 @@ class ClubDetailsPage extends StatelessWidget {
                               Text(
                                 "President",
                                 style: TextStyle(fontSize: 14),
+                                textScaleFactor: 1,
                               ),
                             ],
                           ),
@@ -554,7 +606,7 @@ class ClubMemberCard extends StatelessWidget {
       height: 70,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: clubsBackground2.withOpacity(.3),
+        color: clubsBackground2.withOpacity(.2),
         borderRadius: BorderRadius.circular(15),
       ),
       child: Stack(
@@ -584,7 +636,7 @@ class ClubMemberCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Kanchan A. Takale",
+                        "Nupsi (male)",
                         style: memberName,
                       ),
                       Row(
@@ -595,7 +647,7 @@ class ClubMemberCard extends StatelessWidget {
                             style: memberInfo,
                           ),
                           Text(
-                            "Wife",
+                            "husband",
                             style: memberInfo,
                           ),
                         ],
@@ -611,7 +663,7 @@ class ClubMemberCard extends StatelessWidget {
             top: 0,
             child: Container(
               height: 25,
-              width: 50,
+              width: 40,
               decoration: BoxDecoration(
                 color: white,
                 boxShadow: [
@@ -641,14 +693,14 @@ class ClubMemberCard extends StatelessWidget {
                     bottom: 0,
                     left: 0,
                     child: Container(
-                      height: 12,
-                      width: 12,
+                      height: 10,
+                      width: 10,
                       decoration: BoxDecoration(
                         color: blue,
                         borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(12),
-                          topRight: Radius.circular(12),
-                          bottomRight: Radius.circular(12),
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
                         ),
                       ),
                     ),
