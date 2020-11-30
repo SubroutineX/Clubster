@@ -9,9 +9,6 @@ import 'package:workflow/views/tab_view.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  print(sharedPreferences.getBool("login-stat"));
-  print(sharedPreferences.getString("token"));
-
   runApp(
     GetMaterialApp(
       initialBinding: AuthBinding(),
