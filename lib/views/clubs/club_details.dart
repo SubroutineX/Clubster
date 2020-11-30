@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
@@ -38,30 +40,60 @@ class ClubDetailsPage extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            FlatButton(
+            Material(
               shape: StadiumBorder(),
               color: violet,
-              minWidth: deviceDimensions.width * .57,
-              onPressed: () => print("join"),
-              child: Center(
-                child: Text(
-                  "Join",
-                  style: joinStyle,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(30),
+                onTap: () {
+                  print("hello");
+                },
+                focusColor: violetSplash,
+                highlightColor: violetSplash,
+                splashColor: violetSplash,
+                hoverColor: violetSplash,
+                child: Container(
+                  height: 48,
+                  width: deviceDimensions.width * .55,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Join",
+                      style: joinStyle,
+                    ),
+                  ),
                 ),
               ),
             ),
-            FlatButton(
+            Material(
               shape: StadiumBorder(),
               color: blue,
-              minWidth: deviceDimensions.width * .37,
-              onPressed: () => print("follow"),
-              child: Center(
-                child: Text(
-                  "Follow",
-                  style: joinStyle,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(30),
+                onTap: () {
+                  print("hello");
+                },
+                focusColor: blueSplash,
+                highlightColor: blueSplash,
+                splashColor: blueSplash,
+                hoverColor: blueSplash,
+                child: Container(
+                  height: 48,
+                  width: deviceDimensions.width * .35,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Follow",
+                      style: joinStyle,
+                    ),
+                  ),
                 ),
               ),
-            ),
+            )
           ],
         ),
       ),
@@ -419,83 +451,214 @@ class ClubDetailsPage extends StatelessWidget {
                 height: deviceDimensions.height * 0.60,
                 padding: EdgeInsets.only(left: 20, right: 20, top: 10),
                 width: MediaQuery.of(context).size.width,
-                child: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    physics: BouncingScrollPhysics(),
-                    child: Column(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: 30,
+                      height: 5,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.grey,
+                      ),
+                    ),
+                    SizedBox(height: 15),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+                        Text(
+                          "Members",
+                          style: memberHeadStyle,
+                        ),
                         Container(
-                          width: 30,
-                          height: 5,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.grey,
+                          child: Row(
+                            children: [
+                              Container(
+                                height: 20,
+                                width: 20,
+                                decoration: BoxDecoration(
+                                  color: blue,
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(10),
+                                    topRight: Radius.circular(10),
+                                    bottomRight: Radius.circular(10),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              Text(
+                                "Founder",
+                                style: TextStyle(fontSize: 14),
+                              ),
+                              SizedBox(width: 20),
+                              Container(
+                                height: 20,
+                                width: 20,
+                                decoration: BoxDecoration(
+                                  color: violet,
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(10),
+                                    topRight: Radius.circular(10),
+                                    bottomRight: Radius.circular(10),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              Text(
+                                "President",
+                                style: TextStyle(fontSize: 14),
+                              ),
+                            ],
                           ),
                         ),
-                        SizedBox(height: 15),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Members",
-                              style: memberHeadStyle,
-                            ),
-                            Container(
-                              child: Row(
-                                children: [
-                                  Container(
-                                    height: 20,
-                                    width: 20,
-                                    decoration: BoxDecoration(
-                                      color: blue,
-                                      borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(10),
-                                        topRight: Radius.circular(10),
-                                        bottomRight: Radius.circular(10),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(width: 10),
-                                  Text(
-                                    "Founder",
-                                    style: TextStyle(fontSize: 14),
-                                  ),
-                                  SizedBox(width: 20),
-                                  Container(
-                                    height: 20,
-                                    width: 20,
-                                    decoration: BoxDecoration(
-                                      color: violet,
-                                      borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(10),
-                                        topRight: Radius.circular(10),
-                                        bottomRight: Radius.circular(10),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(width: 10),
-                                  Text(
-                                    "President",
-                                    style: TextStyle(fontSize: 14),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        )
                       ],
                     ),
-                  ),
+                    SizedBox(height: 10),
+                    Expanded(
+                      child: Container(
+                        width: double.infinity,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          physics: BouncingScrollPhysics(),
+                          child: Column(
+                            children: [
+                              SizedBox(height: 10),
+                              for (int i = 0; i < 5; i++) ClubMemberCard(),
+                              SizedBox(height: 10),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             );
           },
         );
       },
+    );
+  }
+}
+
+class ClubMemberCard extends StatelessWidget {
+  const ClubMemberCard({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 12),
+      height: 70,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: clubsBackground2.withOpacity(.3),
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          Row(
+            children: [
+              SizedBox(
+                width: 10,
+              ),
+              Container(
+                height: 50,
+                width: 50,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(7),
+                  child: Image(
+                    fit: BoxFit.cover,
+                    image: AssetImage("assets/images/inventors.jpg"),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Kanchan A. Takale",
+                        style: memberName,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "CS",
+                            style: memberInfo,
+                          ),
+                          Text(
+                            "Wife",
+                            style: memberInfo,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Positioned(
+            right: 0,
+            top: 0,
+            child: Container(
+              height: 25,
+              width: 50,
+              decoration: BoxDecoration(
+                color: white,
+                boxShadow: [
+                  BoxShadow(
+                    color: black.withOpacity(.05),
+                    blurRadius: 1,
+                    offset: Offset(-1, 1),
+                  ),
+                ],
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    bottomRight: Radius.circular(10)),
+              ),
+              child: Stack(
+                children: [
+                  Container(
+                    child: Center(
+                      child: Text(
+                        "1",
+                        style: TextStyle(
+                          color: fontColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    child: Container(
+                      height: 12,
+                      width: 12,
+                      decoration: BoxDecoration(
+                        color: blue,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(12),
+                          topRight: Radius.circular(12),
+                          bottomRight: Radius.circular(12),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

@@ -185,3 +185,15 @@ final TextStyle inActivelistTile = TextStyle(
     fontSize: 18,
     fontFamily: "Sofia_Pro_SemiBold",
     color: white.withOpacity(.6));
+
+final TextStyle memberName = TextStyle(
+  fontSize: 16,
+  fontFamily: "Sofia_Pro",
+  color: fontColor,
+);
+
+final TextStyle memberInfo = TextStyle(
+  fontSize: 14,
+  fontFamily: "Sofia_Pro",
+  color: fontColorLight,
+);
