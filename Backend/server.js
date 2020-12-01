@@ -21,12 +21,14 @@ mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true })
 
 //controllers:-
 const registerUser = require("./controllers/register_user.js")
+const registerClub = require("./controllers/register_club.js")
 
 app.get("/", authenticateToken, (req, res) => {
 	res.status(200).send("hello")
 })
 
 app.post("/register", registerUser)
+app.post("/registerClub", authenticateToken, registerClub)
 
 function authenticateToken(req, res, next) {
 	const authHeader = req.headers["authorization"]
