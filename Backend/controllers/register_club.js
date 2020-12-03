@@ -9,8 +9,10 @@ module.exports = (req, res) => {
             genre: req.body.genre,
             description: req.body.description,
             status: req.body.status,
-            memberLimit: req.body.memberLimit
+            memberLimit: req.body.memberLimit,
+            members: req.body.members
         });
+        // clubsModel.members.push(req.body.members);
         clubsModel.save();
         res.status(200).json("club created");
 
