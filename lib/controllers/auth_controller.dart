@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:workflow/views/clubs/clubs.dart';
+import 'package:workflow/views/clubs/club_home.dart';
 import 'package:workflow/views/tab_view.dart';
 
 class AuthController extends GetxController {
@@ -24,7 +24,7 @@ class AuthController extends GetxController {
           sharedPreferences.setString('token', body['accessToken']);
           sharedPreferences.setBool('login-stat', true);
           print(sharedPreferences.getString('token'));
-          Get.off(Clubs());
+          Get.off(ClubHome());
         } else {
           var body = jsonDecode(response.body);
           Get.snackbar('error signing In', body,

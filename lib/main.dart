@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workflow/bindings/auth_binding.dart';
 import 'package:get/get.dart';
-import 'package:workflow/views/clubs/clubs.dart';
+import 'package:workflow/views/clubs/club_home.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/tab_view.dart';
 
@@ -15,8 +15,9 @@ Future<void> main() async {
       title: 'workflow managment demo',
       theme: ThemeData(fontFamily: "Sofia_Pro", accentColor: violet),
       debugShowCheckedModeBanner: false,
-      home:
-          sharedPreferences.getBool("login-stat") == true ? Clubs() : TabPage(),
+      home: sharedPreferences.getBool("login-stat") == true
+          ? ClubHome()
+          : TabPage(),
     ),
   );
 }

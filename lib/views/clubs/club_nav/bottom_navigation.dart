@@ -1,26 +1,10 @@
 import "package:flutter/material.dart";
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:workflow/controllers/navigation_controller.dart';
 import 'package:workflow/views/clubs/club_nav/custom_bottomNav.dart';
 import 'package:workflow/views/styles/colors.dart';
-import 'package:workflow/views/styles/styles.dart';
 
-class CustomBottomNav extends StatefulWidget {
-  @override
-  _CustomBottomNavState createState() => _CustomBottomNavState();
-}
-
-enum _SelectedTab { home, likes, search, profile, clash }
-
-class _CustomBottomNavState extends State<CustomBottomNav> {
-  var _selectedTab = _SelectedTab.home;
-
-  void _handleIndexChanged(int i) {
-    setState(() {
-      _selectedTab = _SelectedTab.values[i];
-      print(MediaQuery.of(context).size.width);
-    });
-  }
-
+class CustomBottomNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var deviceDimensions = MediaQuery.of(context).size;
@@ -30,54 +14,65 @@ class _CustomBottomNavState extends State<CustomBottomNav> {
       decoration: BoxDecoration(
         color: white,
         borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
       ),
-      child: CustomBottomBar(
-        currentIndex: _SelectedTab.values.indexOf(_selectedTab),
-        onTap: _handleIndexChanged,
-        items: [
-          CustomBottomBarItem(
-            icon: Icon(Icons.group_outlined),
-            title: Text(
-              "Clubs",
-              textScaleFactor: 1,
-            ),
-            selectedColor: violet,
-          ),
-          CustomBottomBarItem(
-            icon: Icon(Icons.favorite_border_rounded),
-            title: Text(
-              "Favourite",
-              textScaleFactor: 1,
-            ),
-            selectedColor: Colors.pink,
-          ),
-          CustomBottomBarItem(
-            icon: Icon(Icons.add),
-            title: Text(
-              "Create",
-              textScaleFactor: 1,
-            ),
-            selectedColor: Colors.teal,
-          ),
-          CustomBottomBarItem(
-            icon: Icon(Icons.bookmark_outline_rounded),
-            title: Text(
-              "Bookmarks",
-              textScaleFactor: 1,
-            ),
-            selectedColor: Colors.orange,
-          ),
-          CustomBottomBarItem(
-            icon: Icon(Icons.person_outline_rounded),
-            title: Text(
-              "Clash",
-              textScaleFactor: 1,
-            ),
-            selectedColor: Colors.blueAccent,
-          ),
-        ],
-      ),
+      child: GetBuilder(
+          init: Get.find<ClubNavigationController>(),
+          builder: (_controller) {
+            return CustomBottomBar(
+              currentIndex: _controller.selectedTab,
+              onTap: (index) {
+                _controller.changeIndex(index);
+                _controller.pageController.animateToPage(index,
+                    duration: Duration(milliseconds: 500), curve: Curves.ease);
+                ;
+              },
+              items: [
+                CustomBottomBarItem(
+                  icon: Icon(Icons.group_outlined),
+                  title: Text(
+                    "Clubs",
+                    textScaleFactor: 1,
+                  ),
+                  selectedColor: violet,
+                ),
+                CustomBottomBarItem(
+                  icon: Icon(Icons.favorite_border_rounded),
+                  title: Text(
+                    "Favourite",
+                    textScaleFactor: 1,
+                  ),
+                  selectedColor: Colors.pink,
+                ),
+                CustomBottomBarItem(
+                  icon: Icon(Icons.add),
+                  title: Text(
+                    "Create",
+                    textScaleFactor: 1,
+                  ),
+                  selectedColor: Colors.teal,
+                ),
+                CustomBottomBarItem(
+                  icon: Icon(Icons.bookmark_outline_rounded),
+                  title: Text(
+                    "Bookmarks",
+                    textScaleFactor: 1,
+                  ),
+                  selectedColor: Colors.orange,
+                ),
+                CustomBottomBarItem(
+                  icon: Icon(Icons.person_outline_rounded),
+                  title: Text(
+                    "Clash",
+                    textScaleFactor: 1,
+                  ),
+                  selectedColor: Colors.blueAccent,
+                ),
+              ],
+            );
+          }),
     );
   }
 }

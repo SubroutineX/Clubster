@@ -1,3 +1,6 @@
 {
-    "dart.flutterHotRestartOnSave": false
+    "dart.flutterHotRestartOnSave": false,
+    "editor.fontFamily": "Cascadia Code, 'Courier New', monospace",
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true
 }

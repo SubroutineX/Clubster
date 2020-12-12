@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:workflow/controllers/auth_controller.dart';
 import 'package:workflow/controllers/register_controller.dart';
 import 'package:workflow/controllers/show_password_controller.dart';
 import 'package:workflow/views/CustomIcons.dart';
 import 'package:workflow/views/animations/FadeAnimation.dart';
-import 'package:workflow/views/clubs/clubs.dart';
+import 'package:workflow/views/clubs/club_home.dart';
 
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
@@ -105,7 +104,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 } else {
                                   // registerController.registerUser(
                                   //     _user, _value, _value2);
-                                  Get.to(Clubs());
+                                  Get.to(ClubHome());
                                 }
                               },
                             );

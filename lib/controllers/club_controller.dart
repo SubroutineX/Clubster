@@ -5,8 +5,6 @@ import 'package:workflow/models/clubs.dart';
 class ClubController extends GetxController {
   var clubs = List<Club>().obs;
 
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-
   @override
   void onInit() {
     super.onInit();
