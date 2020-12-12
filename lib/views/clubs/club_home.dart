@@ -27,39 +27,10 @@ class ClubHome extends StatelessWidget {
           key: _scaffoldKey,
           backgroundColor: clubsBackground,
           drawer: Drawer(),
-          appBar: AppBar(
-            leading: IconButton(
-              onPressed: () {
-                _scaffoldKey.currentState.openDrawer();
-              },
-              icon: Icon(
-                Icons.menu,
-                color: fontColor,
-              ),
-            ),
-            actions: [
-              IconButton(
-                tooltip: "Logout",
-                icon: Icon(
-                  Icons.login_outlined,
-                  color: fontColor,
-                ),
-                onPressed: () {
-                  authController.logoutUser();
-                },
-              ),
-            ],
-            iconTheme: IconThemeData(color: fontColor),
-            centerTitle: true,
-            backgroundColor: transparent,
-            elevation: 0,
-            title: Text(
-              "Clubs",
-              style: appBarHead,
-            ),
-          ),
+          appBar: clubAppBar(),
           body: PageView(
             controller: _controller.pageController,
+            physics: NeverScrollableScrollPhysics(),
             onPageChanged: (index) {
               _controller.changeIndex(index);
             },
@@ -67,12 +38,75 @@ class ClubHome extends StatelessWidget {
               ClubView(),
               Container(
                 color: clubsBackground,
+                child: Center(
+                  child: Text(
+                    "Favourites",
+                  ),
+                ),
+              ),
+              Container(
+                color: clubsBackground,
+                child: Center(
+                  child: Text(
+                    "Create",
+                  ),
+                ),
+              ),
+              Container(
+                color: clubsBackground,
+                child: Center(
+                  child: Text(
+                    "Bookmarks",
+                  ),
+                ),
+              ),
+              Container(
+                color: clubsBackground,
+                child: Center(
+                  child: Text(
+                    "Clash",
+                  ),
+                ),
               ),
             ],
           ),
           bottomNavigationBar: CustomBottomNav(),
         );
       },
+    );
+  }
+
+  AppBar clubAppBar() {
+    return AppBar(
+      leading: IconButton(
+        onPressed: () {
+          _scaffoldKey.currentState.openDrawer();
+        },
+        icon: Icon(
+          Icons.menu,
+          color: fontColor,
+        ),
+      ),
+      actions: [
+        IconButton(
+          tooltip: "Logout",
+          icon: Icon(
+            Icons.login_outlined,
+            color: fontColor,
+          ),
+          onPressed: () {
+            authController.logoutUser();
+          },
+        ),
+      ],
+      iconTheme: IconThemeData(color: fontColor),
+      centerTitle: true,
+      backgroundColor: transparent,
+      elevation: 0,
+      title: Text(
+        "Clubs",
+        style: appBarHead,
+      ),
     );
   }
 }
