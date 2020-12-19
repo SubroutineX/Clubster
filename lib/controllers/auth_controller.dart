@@ -40,7 +40,6 @@ class AuthController extends GetxController {
 
   void logoutUser() async {
     try {
-      print('logged OUT');
       var response = await http.delete("http://$IP_SERVER:4000/logout");
       if (response.statusCode == 200) {
         SharedPreferences sharedPreferences =

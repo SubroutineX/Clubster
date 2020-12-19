@@ -20,10 +20,6 @@ class _RegisterPageState extends State<RegisterPage> {
   var _value = 'RSCOE';
   var _value2 = 'CS';
   var _user = 'student';
-  var _userName = '';
-  var _name = '';
-  var _password = 'nopass';
-  var _phoneNo = '';
 
   RegisterController registerController = Get.put(RegisterController());
   @override
@@ -102,8 +98,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                 if (currentStep < steps.length - 1) {
                                   currentStep = currentStep + 1;
                                 } else {
-                                  // registerController.registerUser(
-                                  //     _user, _value, _value2);
+                                  registerController.registerUser(
+                                      _user, _value, _value2);
                                   Get.to(ClubHome());
                                 }
                               },
@@ -443,7 +439,6 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Step _thirdStep() {
-    final passwordController = TextEditingController();
     final ShowPassController showPassword = Get.put(ShowPassController());
     return Step(
       isActive: false,
@@ -490,7 +485,6 @@ class _RegisterPageState extends State<RegisterPage> {
                             hintText: "Password",
                             hintStyle: hintStyle,
                           ),
-                          controller: passwordController,
                           onChanged: (password) {
                             Get.find<RegisterController>()
                                 .getPassword(password);
