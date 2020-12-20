@@ -5,7 +5,7 @@ const clubs = require("../models/clubs_model");
 
 module.exports = (req, res) => {
     try {
-        fileName = "filename.jpg";
+        fileName = req.body.clubName + ".jpg";
         var storage = multer.diskStorage({
             destination: function (req, file, cb) {
                 // Uploads is the Upload_folder_name
