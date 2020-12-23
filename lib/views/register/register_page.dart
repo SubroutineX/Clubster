@@ -196,7 +196,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       title: Text(
                         "Teacher",
                         style: TextStyle(
-                          fontSize: deviceSize.width < 400 ? 16 : 14,
+                          fontSize: deviceSize.width < 400 ? 16 : 12,
                         ),
                       ),
                       value: 'teacher',
