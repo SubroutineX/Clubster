@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 import 'package:workflow/controllers/club_image_controller.dart';
+import 'package:workflow/controllers/create_club_controller.dart';
 import 'package:workflow/controllers/status_selector_controller.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
@@ -9,6 +10,7 @@ import 'package:workflow/views/styles/styles.dart';
 class CreateClub extends StatelessWidget {
   final clubImageController = Get.put(ClubImageController());
   final statusSelector = Get.put(StatusSelector());
+  final createClubController = Get.put(CreateClubController());
 
   @override
   Widget build(BuildContext context) {
@@ -106,14 +108,16 @@ class CreateClub extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: TextFormField(
-                    style: formFieldStyle,
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Club Name",
-                      hintStyle: hintStyle,
-                    ),
-                  ),
+                      style: formFieldStyle,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Club Name",
+                        hintStyle: hintStyle,
+                      ),
+                      onChanged: (value) {
+                        createClubController.getName(value);
+                      }),
                 ),
                 SizedBox(
                   height: 20,
@@ -137,6 +141,9 @@ class CreateClub extends StatelessWidget {
                       hintText: "Genre",
                       hintStyle: hintStyle,
                     ),
+                    onChanged: (value) {
+                      createClubController.getGenre(value);
+                    },
                   ),
                 ),
                 SizedBox(
@@ -161,12 +168,15 @@ class CreateClub extends StatelessWidget {
                             ),
                             child: TextFormField(
                               style: formFieldStyle,
-                              keyboardType: TextInputType.number,
+                              keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: "Member limit",
                                 hintStyle: hintStyle,
                               ),
+                              onChanged: (value) {
+                                createClubController.getLimit(value);
+                              },
                             ),
                           ),
                         ],
@@ -209,7 +219,8 @@ class CreateClub extends StatelessWidget {
                                     ),
                                   ],
                                   onChanged: (value) {
-                                    _controller.changeStatus();
+                                    _controller.changeStatus(value);
+                                    createClubController.getStatus(value);
                                   },
                                 );
                               },
@@ -246,6 +257,9 @@ class CreateClub extends StatelessWidget {
                       hintText: "Description here",
                       hintStyle: hintStyle,
                     ),
+                    onChanged: (value) {
+                      createClubController.getdescription(value);
+                    },
                   ),
                 ),
                 SizedBox(
@@ -257,7 +271,7 @@ class CreateClub extends StatelessWidget {
                   child: InkWell(
                     borderRadius: BorderRadius.circular(30),
                     onTap: () {
-                      print("created");
+                      createClubController.createClub();
                     },
                     focusColor: violetSplash,
                     highlightColor: violetSplash,

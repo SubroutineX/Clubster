@@ -5,6 +5,13 @@ const clubs = require("../models/clubs_model");
 
 module.exports = (req, res) => {
     try {
+        console.log(
+            req.body.clubName,
+            req.body.genre,
+            req.body.description,
+            req.body.status,
+            req.body.memberLimit
+        );
         fileName = req.body.clubName + ".jpg";
         var storage = multer.diskStorage({
             destination: function (req, file, cb) {
@@ -57,11 +64,11 @@ module.exports = (req, res) => {
                     description: req.body.description,
                     status: req.body.status,
                     memberLimit: req.body.memberLimit,
-                    members: req.body.members,
+                    members: ["a", "b", "c"],
                 });
                 // clubsModel.members.push(req.body.members);
                 clubsModel.save();
-                res.status(200).json("club created");
+                res.status(200).json("Club created successfully");
 
                 // SUCCESS, image successfully uploaded
                 // res.status(200).json("Success, Image uploaded!")
