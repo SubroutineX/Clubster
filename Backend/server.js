@@ -34,6 +34,6 @@ app.get("/", authenticateToken, (req, res) => {
     res.status(200).send("hello");
 });
 app.post("/register", registerUser);
-app.post("/registerClub", registerClub);
+app.post("/registerClub", authenticateToken, registerClub);
 
 app.listen(PORT);

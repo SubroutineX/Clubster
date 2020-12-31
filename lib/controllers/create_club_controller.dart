@@ -1,9 +1,10 @@
-import 'dart:convert';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
+import 'dart:io';
+import 'package:dio/dio.dart' as D;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CreateClubController extends GetxController {
-  static const IP_SERVER = '192.168.0.10';
+  static const IP_SERVER = '192.168.0.13';
   String name, genre, status, description;
   String memberLimit;
 
@@ -32,32 +33,42 @@ class CreateClubController extends GetxController {
     print(status.runtimeType);
   }
 
-  void createClub() async {
+  void createClub(File image) async {
     try {
-      print("inside create club function");
-      if (name.isEmpty) {
+      if (name?.isEmpty ?? true) {
         Get.snackbar("Error Creating Club", "name field empty");
-      } else if (genre.isEmpty) {
+      } else if (genre?.isEmpty ?? true) {
         Get.snackbar("Error Creating Club", "genre field empty");
-      } else if (memberLimit.isEmpty) {
+      } else if (memberLimit?.isEmpty ?? true) {
         Get.snackbar("Error Creating Club", "Limit field empty");
-      } else if (description.isEmpty) {
+      } else if (description?.isEmpty ?? true) {
         Get.snackbar("Error Creating Club", "description field empty");
       } else {
-        var response =
-            await http.post("http://$IP_SERVER:8000/registerClub", body: {
+        SharedPreferences sharedPreferences =
+            await SharedPreferences.getInstance();
+        final token = sharedPreferences.getString('token');
+        D.Dio dio = new D.Dio();
+        String fileName = image.path.split("/").last;
+        D.FormData formdata = D.FormData.fromMap({
           'clubName': name,
           'genre': genre,
           'memberLimit': memberLimit,
           'description': description,
-          'status': status
+          'status': status,
+          "clubImage": await D.MultipartFile.fromFile(
+            image.path,
+            filename: fileName,
+          )
         });
-        print("helloowwws");
-        var body = jsonDecode(response.body);
+        var response = await dio.post("http://$IP_SERVER:8000/registerClub",
+            data: formdata,
+            options: D.Options(
+              headers: {"Authorization": "Bearer $token"},
+            ));
         if (response.statusCode == 200) {
-          Get.snackbar("Success", response.body);
+          Get.snackbar("Success", response.data);
         } else {
-          Get.snackbar("Error creating Club", body);
+          Get.snackbar("Error creating Club", response.data);
         }
       }
     } catch (error) {

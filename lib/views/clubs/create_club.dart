@@ -42,9 +42,9 @@ class CreateClub extends StatelessWidget {
                       child: Container(
                         height: 250,
                         width: double.infinity,
-                        child: null != _controller.tmpFile
+                        child: null != _controller.image
                             ? Image.file(
-                                _controller.tmpFile,
+                                _controller.image,
                                 fit: BoxFit.cover,
                               )
                             : Container(
@@ -271,7 +271,8 @@ class CreateClub extends StatelessWidget {
                   child: InkWell(
                     borderRadius: BorderRadius.circular(30),
                     onTap: () {
-                      createClubController.createClub();
+                      createClubController
+                          .createClub(clubImageController.image);
                     },
                     focusColor: violetSplash,
                     highlightColor: violetSplash,
