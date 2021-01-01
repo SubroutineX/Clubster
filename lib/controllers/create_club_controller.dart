@@ -10,7 +10,6 @@ class CreateClubController extends GetxController {
 
   void getName(getName) {
     name = getName;
-    print(name.runtimeType);
   }
 
   void getGenre(getGenre) {
@@ -20,22 +19,21 @@ class CreateClubController extends GetxController {
 
   void getdescription(getDescription) {
     description = getDescription;
-    print(description.runtimeType);
   }
 
   void getLimit(getLimit) {
     memberLimit = getLimit;
-    print(memberLimit.runtimeType);
   }
 
   void getStatus(getStatus) {
     status = getStatus;
-    print(status.runtimeType);
   }
 
   void createClub(File image) async {
     try {
-      if (name?.isEmpty ?? true) {
+      if (image.isNull) {
+        Get.snackbar("Error creating Club", "select image for club");
+      } else if (name?.isEmpty ?? true) {
         Get.snackbar("Error Creating Club", "name field empty");
       } else if (genre?.isEmpty ?? true) {
         Get.snackbar("Error Creating Club", "genre field empty");
@@ -56,7 +54,7 @@ class CreateClubController extends GetxController {
           'description': description,
           'status': status,
           "clubImage": await D.MultipartFile.fromFile(
-            image.path,
+            image?.path,
             filename: fileName,
           )
         });

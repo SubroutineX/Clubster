@@ -22,6 +22,8 @@ module.exports = (req, res) => {
                     description: fields.description,
                     status: fields.status,
                     memberLimit: fields.memberLimit,
+                    elite: "No",
+                    college: req.user.college,
                     members: [],
                 });
                 clubsModel.save();
