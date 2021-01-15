@@ -65,7 +65,7 @@ class CustomBottomNav extends StatelessWidget {
                 CustomBottomBarItem(
                   icon: Icon(Icons.person_outline_rounded),
                   title: Text(
-                    "Clash",
+                    "Profile",
                     textScaleFactor: 1,
                   ),
                   selectedColor: Colors.blueAccent,

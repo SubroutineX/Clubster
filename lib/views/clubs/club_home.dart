@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:workflow/controllers/auth_controller.dart';
 import 'package:workflow/controllers/navigation_controller.dart';
 import 'package:workflow/views/clubs/club_nav/bottom_navigation.dart';
+import 'package:workflow/views/clubs/createTabs.dart';
 import 'package:workflow/views/clubs/clubs_view.dart';
-import 'package:workflow/views/clubs/create_club.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 
@@ -45,7 +45,7 @@ class ClubHome extends StatelessWidget {
                   ),
                 ),
               ),
-              CreateClub(),
+              CreatePage(),
               Container(
                 color: clubsBackground,
                 child: Center(
@@ -58,7 +58,7 @@ class ClubHome extends StatelessWidget {
                 color: clubsBackground,
                 child: Center(
                   child: Text(
-                    "Clash",
+                    "Profile",
                   ),
                 ),
               ),
