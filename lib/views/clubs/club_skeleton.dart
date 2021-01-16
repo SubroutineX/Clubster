@@ -7,6 +7,7 @@ import 'package:workflow/controllers/navigation_controller.dart';
 
 //PAGES
 import 'package:workflow/views/clubs/club_nav/bottom_navigation.dart';
+import 'package:workflow/views/clubs/club_profile/club_profile.dart';
 import 'package:workflow/views/clubs/club_view/clubs_view.dart';
 import 'package:workflow/views/clubs/create/createTabs.dart';
 
@@ -58,14 +59,7 @@ class ClubHome extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
-                color: clubsBackground,
-                child: Center(
-                  child: Text(
-                    "Profile",
-                  ),
-                ),
-              ),
+              CreateProfile(),
             ],
           ),
           bottomNavigationBar: CustomBottomNav(),
