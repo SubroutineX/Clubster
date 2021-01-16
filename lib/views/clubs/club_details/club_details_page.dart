@@ -50,6 +50,7 @@ class ClubDetailsPage extends StatelessWidget {
           children: [
             ButtonBuilder(
               multiple: .55,
+              height: 48,
               buttonText: "Join",
               color: violet,
               splashColor: violetSplash,
@@ -59,6 +60,7 @@ class ClubDetailsPage extends StatelessWidget {
             ),
             ButtonBuilder(
               multiple: .35,
+              height: 48,
               buttonText: "Follow",
               color: blue,
               splashColor: blueSplash,

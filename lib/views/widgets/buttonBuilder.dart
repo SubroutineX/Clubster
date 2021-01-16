@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 //GETX CONTROLLERS
 import 'package:get/get.dart';
 import 'package:workflow/controllers/club_controller.dart';
-import 'package:workflow/models/clubs.dart';
 
 //STYLES
 import 'package:workflow/views/styles/colors.dart';
@@ -14,20 +13,26 @@ class ButtonBuilder extends StatelessWidget {
     Key key,
     this.buttonText,
     this.width,
+    this.height,
     this.multiple,
     this.padding,
     this.onTapCall,
     this.color,
     this.splashColor,
+    this.textStyle,
+    this.borderRadius,
   }) : super(key: key);
 
   final String buttonText;
   final double width;
+  final double height;
   final double multiple;
   final double padding;
   final VoidCallback onTapCall;
   final Color color;
   final Color splashColor;
+  final TextStyle textStyle;
+  final BorderRadius borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -36,14 +41,15 @@ class ButtonBuilder extends StatelessWidget {
       shape: StadiumBorder(),
       color: color,
       child: InkWell(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius:
+            borderRadius != null ? borderRadius : BorderRadius.circular(30),
         onTap: onTapCall,
         focusColor: splashColor,
         highlightColor: splashColor,
         splashColor: splashColor,
         hoverColor: splashColor,
         child: Container(
-          height: 48,
+          height: height,
           padding: padding == null
               ? EdgeInsets.all(0)
               : EdgeInsets.symmetric(
@@ -52,12 +58,13 @@ class ButtonBuilder extends StatelessWidget {
                 ),
           width: width != null ? width : deviceDimension.width * multiple,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
+            borderRadius:
+                borderRadius != null ? borderRadius : BorderRadius.circular(30),
           ),
           child: Center(
             child: Text(
               buttonText,
-              style: joinStyle,
+              style: textStyle == null ? joinStyle : textStyle,
             ),
           ),
         ),
