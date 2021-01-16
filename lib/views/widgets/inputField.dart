@@ -21,6 +21,7 @@ class InputBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           inputHead != null ? inputHead : "Input field",

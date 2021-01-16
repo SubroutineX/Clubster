@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 //GETX CONTROLLERS
 import 'package:workflow/models/clubs.dart';
-import 'package:workflow/views/widgets/club_card_vertical.dart';
 
 //WIDGETS
+import 'package:workflow/views/widgets/club_card_vertical.dart';
 
 class CreateProfile extends StatelessWidget {
   List clubs = [

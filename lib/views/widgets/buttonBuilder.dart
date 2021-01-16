@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 //GETX CONTROLLERS
 import 'package:get/get.dart';
 import 'package:workflow/controllers/club_controller.dart';
+import 'package:workflow/models/clubs.dart';
 
 //STYLES
 import 'package:workflow/views/styles/colors.dart';
@@ -17,6 +18,7 @@ class ButtonBuilder extends StatelessWidget {
     this.padding,
     this.onTapCall,
     this.color,
+    this.splashColor,
   }) : super(key: key);
 
   final String buttonText;
@@ -25,20 +27,21 @@ class ButtonBuilder extends StatelessWidget {
   final double padding;
   final VoidCallback onTapCall;
   final Color color;
+  final Color splashColor;
 
   @override
   Widget build(BuildContext context) {
     var deviceDimension = MediaQuery.of(context).size;
     return Material(
       shape: StadiumBorder(),
-      color: blue,
+      color: color,
       child: InkWell(
         borderRadius: BorderRadius.circular(30),
         onTap: onTapCall,
-        focusColor: color,
-        highlightColor: color,
-        splashColor: color,
-        hoverColor: color,
+        focusColor: splashColor,
+        highlightColor: splashColor,
+        splashColor: splashColor,
+        hoverColor: splashColor,
         child: Container(
           height: 48,
           padding: padding == null
@@ -47,13 +50,13 @@ class ButtonBuilder extends StatelessWidget {
                   horizontal: padding * 2,
                   vertical: padding,
                 ),
-          width: width != null ? width : deviceDimension * multiple,
+          width: width != null ? width : deviceDimension.width * multiple,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
           ),
           child: Center(
             child: Text(
-              "Follow",
+              buttonText,
               style: joinStyle,
             ),
           ),
@@ -103,54 +106,55 @@ class GradientButtonBuilder extends StatelessWidget {
 }
 
 class LikeButtonBuilder extends StatelessWidget {
-  const LikeButtonBuilder({
-    Key key,
-    @required this.pageInfo,
-    this.size,
-  }) : super(key: key);
+  const LikeButtonBuilder(
+      {Key key,
+      @required this.pageInfo,
+      this.size,
+      this.iconSize,
+      this.shadowColor})
+      : super(key: key);
 
   final dynamic pageInfo;
   final double size;
+  final double iconSize;
+  final Color shadowColor;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: size != null ? size : 48,
-      height: size != null ? size : 48,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey[200],
-            blurRadius: 10,
-          )
-        ],
-      ),
-      child: Center(
-        child: GetX<ClubController>(
-          builder: (controller) {
-            return IconButton(
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              onPressed: () {
-                pageInfo.like.value = !pageInfo.like.value;
-              },
-              icon: pageInfo.like.value
+    return GetX<ClubController>(
+      builder: (controller) {
+        return InkWell(
+          onTap: () {
+            pageInfo.like.value = !pageInfo.like.value;
+          },
+          child: Container(
+            width: size,
+            height: size,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(7),
+              boxShadow: [
+                BoxShadow(
+                    color: shadowColor != null ? shadowColor : Colors.grey[200],
+                    blurRadius: 10),
+              ],
+              color: Colors.white,
+            ),
+            child: Center(
+              child: pageInfo.like.value
                   ? Icon(
                       Icons.favorite_rounded,
-                      size: 20,
+                      size: iconSize,
+                      color: pageInfo.like.value ? red : Colors.grey[600],
                     )
                   : Icon(
                       Icons.favorite_outline_rounded,
-                      size: 20,
+                      size: iconSize,
+                      color: pageInfo.like.value ? red : Colors.grey[600],
                     ),
-              color: pageInfo.like.value ? red : Colors.grey[600],
-            );
-          },
-        ),
-      ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
@@ -160,47 +164,53 @@ class BookmarkButtonBuilder extends StatelessWidget {
     Key key,
     @required this.pageInfo,
     this.size,
+    this.iconSize,
+    this.shadowColor,
   }) : super(key: key);
 
   final dynamic pageInfo;
   final double size;
+  final double iconSize;
+  final Color shadowColor;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: size != null ? size : 48,
-      height: size != null ? size : 48,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
-        boxShadow: [
-          BoxShadow(color: Colors.grey[200], blurRadius: 10),
-        ],
-        color: Colors.white,
-      ),
-      child: Center(
-        child: GetX<ClubController>(
-          builder: (controller) {
-            return IconButton(
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              onPressed: () {
-                pageInfo.bookmark.value = !pageInfo.bookmark.value;
-              },
-              icon: pageInfo.bookmark.value
+    return GetX<ClubController>(
+      builder: (controller) {
+        return InkWell(
+          onTap: () {
+            pageInfo.bookmark.value = !pageInfo.bookmark.value;
+          },
+          child: Container(
+            width: size,
+            height: size,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(7),
+              boxShadow: [
+                BoxShadow(
+                    color: shadowColor != null ? shadowColor : Colors.grey[200],
+                    blurRadius: 10),
+              ],
+              color: Colors.white,
+            ),
+            child: Center(
+              child: pageInfo.bookmark.value
                   ? Icon(
                       Icons.bookmark_rounded,
-                      size: 20,
+                      size: iconSize,
+                      color:
+                          pageInfo.bookmark.value ? yellow : Colors.grey[600],
                     )
                   : Icon(
                       Icons.bookmark_outline_rounded,
-                      size: 20,
+                      size: iconSize,
+                      color:
+                          pageInfo.bookmark.value ? yellow : Colors.grey[600],
                     ),
-              color: pageInfo.bookmark.value ? yellow : Colors.grey[600],
-            );
-          },
-        ),
-      ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

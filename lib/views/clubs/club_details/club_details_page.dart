@@ -51,12 +51,20 @@ class ClubDetailsPage extends StatelessWidget {
             ButtonBuilder(
               multiple: .55,
               buttonText: "Join",
-              color: violetSplash,
+              color: violet,
+              splashColor: violetSplash,
+              onTapCall: () {
+                print("join");
+              },
             ),
             ButtonBuilder(
               multiple: .35,
               buttonText: "Follow",
-              color: blueSplash,
+              color: blue,
+              splashColor: blueSplash,
+              onTapCall: () {
+                print("follow");
+              },
             ),
           ],
         ),

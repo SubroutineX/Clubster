@@ -78,8 +78,16 @@ class ClubDetailSheet extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      BookmarkButtonBuilder(pageInfo: page),
-                      LikeButtonBuilder(pageInfo: page),
+                      BookmarkButtonBuilder(
+                        pageInfo: page,
+                        size: 38,
+                        iconSize: 20,
+                      ),
+                      LikeButtonBuilder(
+                        pageInfo: page,
+                        size: 38,
+                        iconSize: 20,
+                      ),
                     ],
                   ),
                 ),

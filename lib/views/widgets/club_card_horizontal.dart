@@ -99,10 +99,14 @@ class ClubCardHorizontal extends StatelessWidget {
                                 BookmarkButtonBuilder(
                                   pageInfo: clubInfoCard,
                                   size: 28,
+                                  iconSize: 18,
+                                  shadowColor: fontColor.withOpacity(.1),
                                 ),
                                 LikeButtonBuilder(
                                   pageInfo: clubInfoCard,
                                   size: 28,
+                                  iconSize: 18,
+                                  shadowColor: fontColor.withOpacity(.1),
                                 ),
                               ],
                             ),
