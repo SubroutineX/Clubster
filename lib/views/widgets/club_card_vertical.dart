@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
+
+//PACKAGES
+import 'package:auto_size_text/auto_size_text.dart';
+
+//GETX CONTROLLERS
 import 'package:get/get.dart';
-import 'package:workflow/controllers/club_controller.dart';
-import 'package:workflow/views/clubs/club_details.dart';
+
+//PAGES
+import 'package:workflow/views/clubs/club_details/club_details_page.dart';
+
+//STYLES
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 
-import 'package:auto_size_text/auto_size_text.dart';
+//WIDGETS
+import 'package:workflow/views/widgets/buttonBuilder.dart';
 
 class ClubCardVertical extends StatelessWidget {
   dynamic clubInfoCard;
@@ -116,77 +125,13 @@ class ClubCardVertical extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        width: 28,
-                        height: 28,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(7),
-                          color: Colors.white,
-                        ),
-                        child: Center(
-                          child: GetX<ClubController>(
-                            builder: (controller) {
-                              return IconButton(
-                                splashColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                padding: EdgeInsets.all(0),
-                                onPressed: () {
-                                  clubInfoCard.bookmark.value =
-                                      !clubInfoCard.bookmark.value;
-                                },
-                                icon: clubInfoCard.bookmark.value
-                                    ? Icon(
-                                        Icons.bookmark_rounded,
-                                        size: 16,
-                                      )
-                                    : Icon(
-                                        Icons.bookmark_outline_rounded,
-                                        size: 16,
-                                      ),
-                                color: clubInfoCard.bookmark.value
-                                    ? yellow
-                                    : Colors.grey[600],
-                              );
-                            },
-                          ),
-                        ),
+                      BookmarkButtonBuilder(
+                        pageInfo: clubInfoCard,
+                        size: 28,
                       ),
-                      Container(
-                        width: 28,
-                        height: 28,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(7),
-                          color: Colors.white,
-                        ),
-                        child: Center(
-                          child: GetX<ClubController>(
-                            builder: (controller) {
-                              return IconButton(
-                                splashColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                padding: EdgeInsets.all(0),
-                                onPressed: () {
-                                  clubInfoCard.like.value =
-                                      !clubInfoCard.like.value;
-                                },
-                                icon: clubInfoCard.like.value
-                                    ? Icon(
-                                        Icons.favorite_rounded,
-                                        size: 16,
-                                      )
-                                    : Icon(
-                                        Icons.favorite_outline_rounded,
-                                        size: 16,
-                                      ),
-                                color: clubInfoCard.like.value
-                                    ? red
-                                    : Colors.grey[600],
-                              );
-                            },
-                          ),
-                        ),
+                      LikeButtonBuilder(
+                        pageInfo: clubInfoCard,
+                        size: 28,
                       ),
                     ],
                   ),

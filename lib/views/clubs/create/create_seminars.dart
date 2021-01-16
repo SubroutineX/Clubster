@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
+
+//GETX CONTROLLERS
 import 'package:get/get.dart';
-import 'package:sliding_sheet/sliding_sheet.dart';
 import 'package:workflow/controllers/club_image_controller.dart';
+
+//PACKAGES
+import 'package:sliding_sheet/sliding_sheet.dart';
+
+//STYLES
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 
-class Createseminars extends StatefulWidget {
+class CreateSeminar extends StatefulWidget {
   @override
-  _CreateseminarState createState() => _CreateseminarState();
+  _CreateSeminarState createState() => _CreateSeminarState();
 }
 
-class _CreateseminarState extends State<Createseminars> {
-   DateTime selectedDate = DateTime.now();
+class _CreateSeminarState extends State<CreateSeminar> {
+  DateTime selectedDate = DateTime.now();
 
   TextEditingController _date = new TextEditingController();
 
@@ -181,7 +187,7 @@ class _CreateseminarState extends State<Createseminars> {
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: GestureDetector(
-                             onTap: () => _selectDate(context),
+                              onTap: () => _selectDate(context),
                               child: AbsorbPointer(
                                 child: TextFormField(
                                   style: formFieldStyle,
@@ -293,6 +299,4 @@ class _CreateseminarState extends State<Createseminars> {
       ),
     );
   }
-
-  
 }

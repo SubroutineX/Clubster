@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+
+//GETX CONTROLLERS
 import 'package:get/get.dart';
 import 'package:workflow/controllers/register_controller.dart';
 import 'package:workflow/controllers/show_password_controller.dart';
+
+//PAGES
 import 'package:workflow/views/CustomIcons.dart';
 import 'package:workflow/views/animations/FadeAnimation.dart';
-import 'package:workflow/views/clubs/club_home.dart';
+import 'package:workflow/views/clubs/club_skeleton.dart';
 
+//STYLES
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 
@@ -149,7 +154,7 @@ class _RegisterPageState extends State<RegisterPage> {
       state: StepState.indexed,
       title: Text(
         'Step 2',
-        style: formFieldStyle,
+        style: textStyleR(18, fontColor),
       ),
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -192,18 +197,19 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 Expanded(
                   child: RadioListTile(
-                      activeColor: violet,
-                      title: Text(
-                        "Teacher",
-                        style: TextStyle(
-                          fontSize: deviceSize.width < 400 ? 16 : 12,
-                        ),
+                    activeColor: violet,
+                    title: Text(
+                      "Teacher",
+                      style: TextStyle(
+                        fontSize: deviceSize.width < 400 ? 16 : 12,
                       ),
-                      value: 'teacher',
-                      groupValue: _user,
-                      onChanged: (val) {
-                        selectRadio(val);
-                      }),
+                    ),
+                    value: 'teacher',
+                    groupValue: _user,
+                    onChanged: (val) {
+                      selectRadio(val);
+                    },
+                  ),
                 ),
               ],
             ),
@@ -326,7 +332,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return Step(
       title: Text(
         'Step 1',
-        style: formFieldStyle,
+        style: textStyleR(18, fontColor),
       ),
       isActive: true,
       state: StepState.indexed,
@@ -445,7 +451,7 @@ class _RegisterPageState extends State<RegisterPage> {
       state: StepState.indexed,
       title: Text(
         'Step 3',
-        style: formFieldStyle,
+        style: textStyleR(18, fontColor),
       ),
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

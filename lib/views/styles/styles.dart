@@ -4,7 +4,45 @@ import 'package:workflow/views/styles/colors.dart';
 final TextStyle tabLabelStyle = TextStyle(
   fontSize: 16,
   fontFamily: "Sofia_Pro_SemiBold",
+  color: fontColor,
 );
+
+TextStyle textStyleSB(double size, Color color) {
+  return TextStyle(
+    fontSize: size,
+    fontFamily: "Sofia_Pro_SemiBold",
+    color: color,
+  );
+}
+
+TextStyle textStyleB(double size, Color color) {
+  return TextStyle(
+    fontSize: size,
+    fontFamily: "Sofia_Pro_Bold",
+    color: color,
+  );
+}
+
+TextStyle textStyleR(double size, Color color) {
+  return TextStyle(
+    fontSize: size,
+    fontFamily: "Sofia_Pro",
+    color: color,
+  );
+}
+
+TextStyle textStyleL(double size, Color color) {
+  return TextStyle(
+    fontSize: size,
+    fontFamily: "Sofia_Pro_Light",
+    color: color,
+  );
+}
+
+final TextStyle labelStyle = textStyleB(18, fontColor);
+
+final TextStyle hintStyle = textStyleL(16, fontColorLight);
+
 final TextStyle searchLabelStyle = TextStyle(
   fontSize: 16,
   color: fontColor,
@@ -52,17 +90,11 @@ final TextStyle questionStyleBold = TextStyle(
   fontFamily: "Sofia_Pro_Bold",
 );
 
-final TextStyle hintStyle = TextStyle(
-  fontSize: 16,
-  color: fontColorLight,
-  fontFamily: "Sofia_Pro_Light",
-);
-
-final TextStyle labelStyle = TextStyle(
-  fontSize: 18,
-  color: fontColor,
-  fontFamily: "Sofia_Pro_Bold",
-);
+// final TextStyle hintStyle = TextStyle(
+//   fontSize: 16,
+//   color: fontColorLight,
+//   fontFamily: "Sofia_Pro_Light",
+// );
 
 //CLUBS STYLE
 

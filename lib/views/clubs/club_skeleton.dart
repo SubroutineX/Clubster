@@ -1,11 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+//GETX CONTROLLERS
 import 'package:get/get.dart';
 import 'package:workflow/controllers/auth_controller.dart';
 import 'package:workflow/controllers/navigation_controller.dart';
+
+//PAGES
 import 'package:workflow/views/clubs/club_nav/bottom_navigation.dart';
-import 'package:workflow/views/clubs/createTabs.dart';
-import 'package:workflow/views/clubs/clubs_view.dart';
+import 'package:workflow/views/clubs/club_view/clubs_view.dart';
+import 'package:workflow/views/clubs/create/createTabs.dart';
+
+//STYLES
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 
@@ -20,7 +25,6 @@ class ClubHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var deviceDimensions = MediaQuery.of(context).size;
     return GetBuilder(
       init: ClubNavigationController(),
       builder: (_controller) {

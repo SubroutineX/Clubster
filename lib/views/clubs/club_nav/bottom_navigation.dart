@@ -1,7 +1,13 @@
 import "package:flutter/material.dart";
+
+//GETX CONTROLLERS
 import 'package:get/get.dart';
 import 'package:workflow/controllers/navigation_controller.dart';
+
+//PAGES
 import 'package:workflow/views/clubs/club_nav/custom_bottomNav.dart';
+
+//STYLES
 import 'package:workflow/views/styles/colors.dart';
 
 class CustomBottomNav extends StatelessWidget {

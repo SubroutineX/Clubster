@@ -18,3 +18,4 @@ Color faintViolet = Color(0xffF6F0FF);
 Color darkBlue = Color(0xff6281B6);
 Color yellow = Color(0xffFFC43D);
 Color orange = Colors.orange;
+Color teal = Colors.teal;

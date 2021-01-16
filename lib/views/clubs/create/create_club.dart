@@ -1,36 +1,22 @@
 import 'package:flutter/material.dart';
+
+//GETX CONTROLLERS
 import 'package:get/get.dart';
-import 'package:sliding_sheet/sliding_sheet.dart';
 import 'package:workflow/controllers/club_image_controller.dart';
+import 'package:workflow/controllers/create_club_controller.dart';
+import 'package:workflow/controllers/status_selector_controller.dart';
+
+//PACKAGES
+import 'package:sliding_sheet/sliding_sheet.dart';
+
+//STYLES
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 
-
-class Createworkshop extends StatefulWidget {
-  @override
-  _CreateworkshopState createState() => _CreateworkshopState();
-}
-
-class _CreateworkshopState extends State<Createworkshop> {
-  DateTime selectedDate = DateTime.now();
-
-  TextEditingController _date = new TextEditingController();
-
-  _selectDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
-        context: context,
-        initialDate: selectedDate,
-        firstDate: DateTime(2000),
-        lastDate: DateTime(2100));
-    if (picked != null && picked != selectedDate) {
-      setState(() {
-        selectedDate = picked;
-        var date = DateTime.parse(picked.toString());
-        String formatDate = "${date.day}/${date.month}/${date.year}";
-        _date.value = TextEditingValue(text: formatDate);
-      });
-    }
-  }
+class CreateClub extends StatelessWidget {
+  final clubImageController = Get.put(ClubImageController());
+  final statusSelector = Get.put(StatusSelector());
+  final createClubController = Get.put(CreateClubController());
 
   @override
   Widget build(BuildContext context) {
@@ -103,21 +89,21 @@ class _CreateworkshopState extends State<Createworkshop> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Host Workshop",
+                  "Create a Club",
                   style: appBarHead,
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 Text(
-                  "Host Workshop to educate the your fellow friend's",
+                  "connect with people and explore clubs",
                   style: questionStyle,
                 ),
                 SizedBox(
                   height: 30,
                 ),
                 Text(
-                  "Workshop Title",
+                  "Name",
                   style: labelStyle,
                 ),
                 SizedBox(height: 10),
@@ -128,20 +114,22 @@ class _CreateworkshopState extends State<Createworkshop> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: TextFormField(
-                    style: formFieldStyle,
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Workshop Title",
-                      hintStyle: hintStyle,
-                    ),
-                  ),
+                      style: formFieldStyle,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Club Name",
+                        hintStyle: hintStyle,
+                      ),
+                      onChanged: (value) {
+                        createClubController.getName(value);
+                      }),
                 ),
                 SizedBox(
                   height: 20,
                 ),
                 Text(
-                  "Host",
+                  "Genre",
                   style: labelStyle,
                 ),
                 SizedBox(height: 10),
@@ -156,9 +144,12 @@ class _CreateworkshopState extends State<Createworkshop> {
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: "Host",
+                      hintText: "Genre",
                       hintStyle: hintStyle,
                     ),
+                    onChanged: (value) {
+                      createClubController.getGenre(value);
+                    },
                   ),
                 ),
                 SizedBox(
@@ -171,44 +162,7 @@ class _CreateworkshopState extends State<Createworkshop> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Date",
-                            style: labelStyle,
-                          ),
-                          SizedBox(height: 10),
-                          Container(
-                            padding: EdgeInsets.symmetric(horizontal: 10),
-                            decoration: BoxDecoration(
-                              color: white,
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: GestureDetector(
-                            onTap: () => _selectDate(context),
-                              child: AbsorbPointer(
-                                child: TextFormField(
-                                  style: formFieldStyle,
-                                  keyboardType: TextInputType.text,
-                                  controller: _date,
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                     hintText: "Select date",
-                                     hintStyle: hintStyle,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Member limit",
+                            "Members",
                             style: labelStyle,
                           ),
                           SizedBox(height: 10),
@@ -223,9 +177,59 @@ class _CreateworkshopState extends State<Createworkshop> {
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
-                                hintText: "Enter member limit",
+                                hintText: "Member limit",
                                 hintStyle: hintStyle,
                               ),
+                              onChanged: (value) {
+                                createClubController.getLimit(value);
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Status",
+                            style: labelStyle,
+                          ),
+                          SizedBox(height: 10),
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            decoration: BoxDecoration(
+                              color: white,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: GetBuilder(
+                              init: StatusSelector(),
+                              builder: (_controller) {
+                                return DropdownButtonFormField(
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                  ),
+                                  value: _controller.value,
+                                  items: [
+                                    DropdownMenuItem(
+                                      child: Text("Open"),
+                                      value: 'open',
+                                    ),
+                                    DropdownMenuItem(
+                                      child: Text("Invite only"),
+                                      value: 'invite_only',
+                                    ),
+                                  ],
+                                  onChanged: (value) {
+                                    _controller.changeStatus(value);
+                                    createClubController.getStatus(value);
+                                  },
+                                );
+                              },
                             ),
                           ),
                         ],
@@ -259,6 +263,9 @@ class _CreateworkshopState extends State<Createworkshop> {
                       hintText: "Description here",
                       hintStyle: hintStyle,
                     ),
+                    onChanged: (value) {
+                      createClubController.getdescription(value);
+                    },
                   ),
                 ),
                 SizedBox(
@@ -269,6 +276,10 @@ class _CreateworkshopState extends State<Createworkshop> {
                   color: violet,
                   child: InkWell(
                     borderRadius: BorderRadius.circular(30),
+                    onTap: () {
+                      createClubController
+                          .createClub(clubImageController.image);
+                    },
                     focusColor: violetSplash,
                     highlightColor: violetSplash,
                     splashColor: violetSplash,

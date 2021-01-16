@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:workflow/views/clubs/club_home.dart';
+import 'package:workflow/views/clubs/club_skeleton.dart';
 
 class RegisterController extends GetxController {
   String password;

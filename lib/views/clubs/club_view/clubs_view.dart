@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+
+//GETX CONTROLLERS
 import 'package:get/get.dart';
 import 'package:workflow/controllers/club_controller.dart';
-import 'package:workflow/views/animations/FadeAnimation.dart';
-import 'package:workflow/views/clubs/club_cards/club_card_horizontal.dart';
-import 'package:workflow/views/clubs/club_cards/club_card_vertical.dart';
+
+// STYLES
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
+
+//WIDGETS
+import 'package:workflow/views/widgets/club_card_horizontal.dart';
+import 'package:workflow/views/widgets/club_card_vertical.dart';
 
 class ClubView extends StatelessWidget {
   final clubController = Get.put(ClubController());
@@ -31,14 +36,11 @@ class ClubView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      FadeAnimation(
-                        1,
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: Text(
-                            "Popular",
-                            style: appBarHead,
-                          ),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Text(
+                          "Popular",
+                          style: appBarHead,
                         ),
                       ),
                       SizedBox(
@@ -81,12 +83,9 @@ class ClubView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      FadeAnimation(
-                        1,
-                        Text(
-                          "Other",
-                          style: appBarHead,
-                        ),
+                      Text(
+                        "Other",
+                        style: appBarHead,
                       ),
                       SizedBox(height: 20),
                       GetX<ClubController>(
