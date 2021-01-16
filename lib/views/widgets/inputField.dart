@@ -11,14 +11,12 @@ class InputBuilder extends StatelessWidget {
     this.inputHead,
     this.hintText,
     this.type,
-    this.onChanged,
   }) : super(key: key);
 
   final TextEditingController fieldController;
   final String inputHead;
   final String hintText;
   final String type;
-  final VoidCallback onChanged;
 
   @override
   Widget build(BuildContext context) {
