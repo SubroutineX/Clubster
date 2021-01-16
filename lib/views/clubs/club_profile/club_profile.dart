@@ -26,13 +26,12 @@ class CreateProfile extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: AspectRatio(
-                aspectRatio: 2,
+                aspectRatio: 1.7,
                 child: Container(
                   padding: EdgeInsets.symmetric(
                     horizontal: 15,
-                    vertical: 20,
+                    vertical: 15,
                   ),
-                  height: 170,
                   decoration: BoxDecoration(
                     color: white,
                     borderRadius: BorderRadius.circular(15),
@@ -46,71 +45,171 @@ class CreateProfile extends StatelessWidget {
                     ],
                   ),
                   child: Center(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                    child: Column(
                       children: [
-                        Expanded(
-                          flex: 3,
-                          child: AspectRatio(
-                            aspectRatio: 1,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: red,
-                                borderRadius: BorderRadius.circular(13),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              flex: 2,
+                              child: AspectRatio(
+                                aspectRatio: 1,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: red,
+                                    borderRadius: BorderRadius.circular(13),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          flex: 4,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Expanded(
+                              flex: 5,
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
-                                  Container(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Text(
-                                          "Nikhil Shinde",
-                                          style: textStyleSB(
-                                            19,
-                                            fontColor,
+                                  Row(
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          SizedBox(
+                                            height: 5,
                                           ),
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Text(
-                                          "Student",
-                                          style: textStyleR(
-                                            15,
-                                            fontColorLight,
+                                          Text(
+                                            "Nikhil Shinde",
+                                            style: textStyleSB(
+                                              22,
+                                              fontColor,
+                                            ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          Text(
+                                            "Student",
+                                            style: textStyleR(
+                                              16,
+                                              fontColorLight,
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      IconButtonBuilder(
+                                        icon: Icons.edit_rounded,
+                                        buttonText: "Edit",
+                                        height: 30,
+                                        width: 70,
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: blue,
+                                        splashColor: blueSplash,
+                                        textStyle: textStyleR(14, white),
+                                      ),
+                                    ],
                                   )
                                 ],
                               ),
-                              ButtonBuilder(
-                                buttonText: "Follow",
-                                color: violet,
-                                splashColor: violetSplash,
-                                height: 40,
-                                width: double.infinity,
-                                textStyle: textStyleR(16, white),
-                                borderRadius: BorderRadius.circular(5),
-                              )
-                            ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        AspectRatio(
+                          aspectRatio: 4.15,
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 15,
+                              vertical: 15,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Color(0xffebedf2),
+                              borderRadius: BorderRadius.circular(15),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: black.withOpacity(.05),
+                                  blurRadius: 20,
+                                  offset: Offset(0, 7),
+                                  spreadRadius: -5,
+                                ),
+                              ],
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Clubs following",
+                                        style: textStyleSB(13, fontColorLight),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Text(
+                                        "4",
+                                        textAlign: TextAlign.center,
+                                        style: textStyleSB(22, fontColor),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Clubs Created",
+                                        style: textStyleSB(13, fontColorLight),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Text(
+                                        "1",
+                                        textAlign: TextAlign.center,
+                                        style: textStyleSB(22, fontColor),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Club Posts",
+                                        style: textStyleSB(13, fontColorLight),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Text(
+                                        "38",
+                                        textAlign: TextAlign.center,
+                                        style: textStyleSB(22, fontColor),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ],
@@ -118,6 +217,9 @@ class CreateProfile extends StatelessWidget {
                   ),
                 ),
               ),
+            ),
+            SizedBox(
+              height: 10,
             ),
           ],
         ),

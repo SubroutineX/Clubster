@@ -38,7 +38,11 @@ class ButtonBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     var deviceDimension = MediaQuery.of(context).size;
     return Material(
-      shape: StadiumBorder(),
+      shape: borderRadius == null
+          ? StadiumBorder()
+          : RoundedRectangleBorder(
+              borderRadius: borderRadius,
+            ),
       color: color,
       child: InkWell(
         borderRadius:
@@ -66,6 +70,87 @@ class ButtonBuilder extends StatelessWidget {
               buttonText,
               style: textStyle == null ? joinStyle : textStyle,
             ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class IconButtonBuilder extends StatelessWidget {
+  const IconButtonBuilder({
+    Key key,
+    @required this.icon,
+    this.buttonText,
+    this.width,
+    this.height,
+    this.multiple,
+    this.padding,
+    this.onTapCall,
+    this.color,
+    this.splashColor,
+    this.textStyle,
+    this.borderRadius,
+  }) : super(key: key);
+
+  final IconData icon;
+  final String buttonText;
+  final double width;
+  final double height;
+  final double multiple;
+  final double padding;
+  final VoidCallback onTapCall;
+  final Color color;
+  final Color splashColor;
+  final TextStyle textStyle;
+  final BorderRadius borderRadius;
+
+  @override
+  Widget build(BuildContext context) {
+    var deviceDimension = MediaQuery.of(context).size;
+    return Material(
+      shape: borderRadius == null
+          ? StadiumBorder()
+          : RoundedRectangleBorder(
+              borderRadius: borderRadius,
+            ),
+      color: color,
+      child: InkWell(
+        borderRadius:
+            borderRadius != null ? borderRadius : BorderRadius.circular(30),
+        onTap: onTapCall,
+        focusColor: splashColor,
+        highlightColor: splashColor,
+        splashColor: splashColor,
+        hoverColor: splashColor,
+        child: Container(
+          height: height,
+          padding: padding == null
+              ? EdgeInsets.all(0)
+              : EdgeInsets.symmetric(
+                  horizontal: padding * 2,
+                  vertical: padding,
+                ),
+          width: width != null ? width : deviceDimension.width * multiple,
+          decoration: BoxDecoration(
+            borderRadius:
+                borderRadius != null ? borderRadius : BorderRadius.circular(30),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                size: 14,
+                color: white,
+              ),
+              SizedBox(width: 5),
+              Text(
+                buttonText,
+                style: textStyle == null ? joinStyle : textStyle,
+              ),
+            ],
           ),
         ),
       ),
