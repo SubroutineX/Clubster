@@ -97,7 +97,7 @@ class ClubHome extends StatelessWidget {
       elevation: 0,
       title: Text(
         "Clubs",
-        style: appBarHead,
+        style: textStyleSB(18, fontColor),
       ),
     );
   }

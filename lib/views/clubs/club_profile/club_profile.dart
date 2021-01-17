@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 //GETX CONTROLLERS
@@ -26,7 +28,7 @@ class CreateProfile extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: AspectRatio(
-                aspectRatio: 1.7,
+                aspectRatio: 1.65,
                 child: Container(
                   padding: EdgeInsets.symmetric(
                     horizontal: 15,
@@ -59,11 +61,19 @@ class CreateProfile extends StatelessWidget {
                                     color: red,
                                     borderRadius: BorderRadius.circular(13),
                                   ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(13),
+                                    child: Image(
+                                      fit: BoxFit.cover,
+                                      image: AssetImage(
+                                          "assets/images/profile.jpg"),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
                             SizedBox(
-                              width: 10,
+                              width: 15,
                             ),
                             Expanded(
                               flex: 5,
@@ -77,14 +87,16 @@ class CreateProfile extends StatelessWidget {
                                       Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
                                           SizedBox(
-                                            height: 5,
+                                            height: 7,
                                           ),
                                           Text(
                                             "Nikhil Shinde",
                                             style: textStyleSB(
-                                              22,
+                                              18,
                                               fontColor,
                                             ),
                                           ),
@@ -94,13 +106,16 @@ class CreateProfile extends StatelessWidget {
                                           Text(
                                             "Student",
                                             style: textStyleR(
-                                              16,
+                                              15,
                                               fontColorLight,
                                             ),
                                           ),
                                         ],
                                       )
                                     ],
+                                  ),
+                                  SizedBox(
+                                    height: 4,
                                   ),
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -126,8 +141,7 @@ class CreateProfile extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-                        AspectRatio(
-                          aspectRatio: 4.15,
+                        Expanded(
                           child: Container(
                             padding: EdgeInsets.symmetric(
                               horizontal: 15,
@@ -149,13 +163,15 @@ class CreateProfile extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Expanded(
+                                  flex: 3,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
                                         "Clubs following",
-                                        style: textStyleSB(13, fontColorLight),
+                                        style: textStyleSB(12, fontColorLight),
                                       ),
                                       SizedBox(
                                         height: 10,
@@ -163,19 +179,21 @@ class CreateProfile extends StatelessWidget {
                                       Text(
                                         "4",
                                         textAlign: TextAlign.center,
-                                        style: textStyleSB(22, fontColor),
+                                        style: textStyleSB(18, fontColor),
                                       ),
                                     ],
                                   ),
                                 ),
                                 Expanded(
+                                  flex: 3,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
                                         "Clubs Created",
-                                        style: textStyleSB(13, fontColorLight),
+                                        style: textStyleSB(12, fontColorLight),
                                       ),
                                       SizedBox(
                                         height: 10,
@@ -183,19 +201,21 @@ class CreateProfile extends StatelessWidget {
                                       Text(
                                         "1",
                                         textAlign: TextAlign.center,
-                                        style: textStyleSB(22, fontColor),
+                                        style: textStyleSB(18, fontColor),
                                       ),
                                     ],
                                   ),
                                 ),
                                 Expanded(
+                                  flex: 2,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
                                         "Club Posts",
-                                        style: textStyleSB(13, fontColorLight),
+                                        style: textStyleSB(12, fontColorLight),
                                       ),
                                       SizedBox(
                                         height: 10,
@@ -203,7 +223,7 @@ class CreateProfile extends StatelessWidget {
                                       Text(
                                         "38",
                                         textAlign: TextAlign.center,
-                                        style: textStyleSB(22, fontColor),
+                                        style: textStyleSB(18, fontColor),
                                       ),
                                     ],
                                   ),
