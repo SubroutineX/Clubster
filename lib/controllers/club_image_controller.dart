@@ -5,15 +5,16 @@ import 'package:image_picker/image_picker.dart';
 
 class ClubImageController extends GetxController {
   final ImagePicker imagePicker = ImagePicker();
-  File image;
+  File imageClub;
+  File imageWorkshop;
+  File imageSeminar;
   Future getImage() async {
     var imagePicker = await ImagePicker.pickImage(source: ImageSource.gallery);
-    image = imagePicker;
-
+    imageClub = imagePicker;
     // final pickedFile = await imagePicker.getImage(source: ImageSource.gallery);
     //tmpFile = File(pickedFile.path);
     print("helloww file location is ");
-    print(image);
+    print(imageClub);
     update();
   }
 }

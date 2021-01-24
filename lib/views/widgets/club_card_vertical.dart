@@ -72,6 +72,7 @@ class ClubCardVertical extends StatelessWidget {
                             clubInfoCard.clubName +
                             ".jpg",
                         headers: {"Authorization": "Bearer $token"},
+                        fit: BoxFit.cover,
                       ),
                       // child: Image(
                       //   fit: BoxFit.cover,

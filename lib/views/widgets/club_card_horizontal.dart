@@ -5,6 +5,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 
 //GETX CONTROLLERS
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 //PAGES
 import 'package:workflow/views/clubs/club_details/club_details_page.dart';
@@ -18,8 +19,20 @@ import 'package:workflow/views/widgets/buttonBuilder.dart';
 
 class ClubCardHorizontal extends StatelessWidget {
   dynamic clubInfoCard;
-
+  String token;
   ClubCardHorizontal({this.clubInfoCard});
+
+  @override
+  void initState() {
+    getToken();
+  }
+
+  void getToken() async {
+    print("calledddd");
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    token = sharedPreferences.getString('token');
+    print(token);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +66,12 @@ class ClubCardHorizontal extends StatelessWidget {
                     child: Hero(
                         tag: clubInfoCard.id,
                         child: Image.network(
-                            "http://192.168.43.152:8000/fetchClubImage?imageName=" +
-                                clubInfoCard.clubName +
-                                ".jpg")
+                          "http://192.168.43.152:8000/fetchClubImage?imageName=" +
+                              clubInfoCard.clubName +
+                              ".jpg",
+                          headers: {"Authorization": "Bearer $token"},
+                          fit: BoxFit.cover,
+                        )
                         //child: Image(
                         //fit: BoxFit.cover,
                         //image: AssetImage(clubInfoCard.imgUrl),

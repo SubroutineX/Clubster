@@ -100,6 +100,7 @@ class ClubDetailsPage extends StatelessWidget {
                             clubInfoPage.clubName +
                             ".jpg",
                         headers: {"Authorization": "Bearer $token"},
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),

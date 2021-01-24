@@ -29,9 +29,9 @@ class CreateClubController extends GetxController {
     status = getStatus;
   }
 
-  void createClub(File image) async {
+  void createClub(File imageClub) async {
     try {
-      if (image.isNull) {
+      if (imageClub.isNull) {
         Get.snackbar("Error creating Club", "select image for club");
       } else if (name?.isEmpty ?? true) {
         Get.snackbar("Error Creating Club", "name field empty");
@@ -46,7 +46,7 @@ class CreateClubController extends GetxController {
             await SharedPreferences.getInstance();
         final token = sharedPreferences.getString('token');
         D.Dio dio = new D.Dio();
-        String fileName = image.path.split("/").last;
+        String fileName = imageClub.path.split("/").last;
         D.FormData formdata = D.FormData.fromMap({
           'clubName': name,
           'genre': genre,
@@ -54,7 +54,7 @@ class CreateClubController extends GetxController {
           'description': description,
           'status': status,
           "clubImage": await D.MultipartFile.fromFile(
-            image?.path,
+            imageClub?.path,
             filename: fileName,
           )
         });

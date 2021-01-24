@@ -48,9 +48,9 @@ class CreateClub extends StatelessWidget {
                       child: Container(
                         height: 250,
                         width: double.infinity,
-                        child: null != _controller.image
+                        child: null != _controller.imageClub
                             ? Image.file(
-                                _controller.image,
+                                _controller.imageClub,
                                 fit: BoxFit.cover,
                               )
                             : Container(
@@ -278,7 +278,7 @@ class CreateClub extends StatelessWidget {
                     borderRadius: BorderRadius.circular(30),
                     onTap: () {
                       createClubController
-                          .createClub(clubImageController.image);
+                          .createClub(clubImageController.imageClub);
                     },
                     focusColor: violetSplash,
                     highlightColor: violetSplash,

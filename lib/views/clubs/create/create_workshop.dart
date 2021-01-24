@@ -67,9 +67,9 @@ class _CreateWorkshopState extends State<CreateWorkshop> {
                       child: Container(
                         height: 250,
                         width: double.infinity,
-                        child: null != _controller.image
+                        child: null != _controller.imageWorkshop
                             ? Image.file(
-                                _controller.image,
+                                _controller.imageWorkshop,
                                 fit: BoxFit.cover,
                               )
                             : Container(

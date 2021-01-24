@@ -67,9 +67,9 @@ class _CreateSeminarState extends State<CreateSeminar> {
                       child: Container(
                         height: 250,
                         width: double.infinity,
-                        child: null != _controller.image
+                        child: null != _controller.imageSeminar
                             ? Image.file(
-                                _controller.image,
+                                _controller.imageSeminar,
                                 fit: BoxFit.cover,
                               )
                             : Container(
