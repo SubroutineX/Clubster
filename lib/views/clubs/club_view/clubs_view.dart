@@ -61,7 +61,7 @@ class ClubView extends StatelessWidget {
                                   for (int i = 0;
                                       i < controller.clubs.length;
                                       i++)
-                                    if (controller.clubs[i].popular)
+                                    if (controller.clubs[i].elite == "Yes")
                                       ClubCardVertical(
                                         clubInfoCard: controller.clubs[i],
                                       ),
@@ -98,7 +98,7 @@ class ClubView extends StatelessWidget {
                                 for (int j = 0;
                                     j < controller.clubs.length;
                                     j++)
-                                  if (!controller.clubs[j].popular)
+                                  if (controller.clubs[j].elite == "No")
                                     ClubCardHorizontal(
                                       clubInfoCard: controller.clubs[j],
                                     ),

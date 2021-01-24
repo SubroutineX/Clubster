@@ -55,7 +55,7 @@ class ClubDetailSheet extends StatelessWidget {
                   FadeAnimation(
                     20,
                     Text(
-                      page.name,
+                      page.clubName,
                       style: productDetailTitleStyle,
                     ),
                   ),
@@ -63,7 +63,7 @@ class ClubDetailSheet extends StatelessWidget {
                   FadeAnimation(
                     25,
                     Text(
-                      page.id,
+                      "100",
                       style: idDetailStyle,
                       textScaleFactor: 1,
                     ),
@@ -241,7 +241,7 @@ class ClubDetailSheet extends StatelessWidget {
                     FadeAnimation(
                       50,
                       Text(
-                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                        page.description,
                         style: descriptionStyle,
                         textScaleFactor: 1,
                       ),

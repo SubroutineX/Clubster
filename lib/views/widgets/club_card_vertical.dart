@@ -5,6 +5,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 
 //GETX CONTROLLERS
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 //PAGES
 import 'package:workflow/views/clubs/club_details/club_details_page.dart';
@@ -18,8 +19,20 @@ import 'package:workflow/views/widgets/buttonBuilder.dart';
 
 class ClubCardVertical extends StatelessWidget {
   dynamic clubInfoCard;
-
+  String token;
   ClubCardVertical({this.clubInfoCard});
+
+  @override
+  void initState() {
+    getToken();
+  }
+
+  void getToken() async {
+    print("calledddd");
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    token = sharedPreferences.getString('token');
+    print(token);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,10 +67,16 @@ class ClubCardVertical extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                     child: Hero(
                       tag: clubInfoCard.id,
-                      child: Image(
-                        fit: BoxFit.cover,
-                        image: AssetImage(clubInfoCard.imgUrl),
+                      child: Image.network(
+                        "http://192.168.43.152:8000/fetchClubImage?imageName=" +
+                            clubInfoCard.clubName +
+                            ".jpg",
+                        headers: {"Authorization": "Bearer $token"},
                       ),
+                      // child: Image(
+                      //   fit: BoxFit.cover,
+                      //   image: AssetImage(clubInfoCard.imgUrl),
+                      // ),
                     ),
                   ),
                 ),
@@ -78,7 +97,7 @@ class ClubCardVertical extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       AutoSizeText(
-                        clubInfoCard.name,
+                        clubInfoCard.clubName,
                         style: productTitleStyle,
                         minFontSize: 15,
                         stepGranularity: 3,
@@ -106,7 +125,7 @@ class ClubCardVertical extends StatelessWidget {
                             ],
                           ),
                           Text(
-                            clubInfoCard.id,
+                            '100',
                             style: idStyle,
                             textScaleFactor: 1,
                           ),

@@ -51,12 +51,16 @@ class ClubCardHorizontal extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Hero(
-                      tag: clubInfoCard.id,
-                      child: Image(
-                        fit: BoxFit.cover,
-                        image: AssetImage(clubInfoCard.imgUrl),
-                      ),
-                    ),
+                        tag: clubInfoCard.id,
+                        child: Image.network(
+                            "http://192.168.43.152:8000/fetchClubImage?imageName=" +
+                                clubInfoCard.clubName +
+                                ".jpg")
+                        //child: Image(
+                        //fit: BoxFit.cover,
+                        //image: AssetImage(clubInfoCard.imgUrl),
+                        //  ),
+                        ),
                   ),
                 ),
               ),
@@ -83,7 +87,7 @@ class ClubCardHorizontal extends StatelessWidget {
                           Container(
                             width: width63 - 95,
                             child: AutoSizeText(
-                              clubInfoCard.name,
+                              clubInfoCard.clubName,
                               style: productTitleStyle,
                               minFontSize: 15,
                               stepGranularity: 3,
@@ -132,7 +136,7 @@ class ClubCardHorizontal extends StatelessWidget {
                             ],
                           ),
                           Text(
-                            clubInfoCard.id,
+                            '100',
                             style: idStyle,
                           ),
                         ],

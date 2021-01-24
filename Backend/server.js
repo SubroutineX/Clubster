@@ -27,6 +27,8 @@ const authenticateToken = require("./helpers/authenticate_token");
 //controllers:-
 const registerUser = require("./controllers/register_user.js");
 const registerClub = require("./controllers/register_club");
+const fetchClubs = require("./controllers/fetch_clubs");
+const fetchClubImage = require("./controllers/fetch_club_image");
 
 //Routes
 app.get("/", authenticateToken, (req, res) => {
@@ -35,5 +37,7 @@ app.get("/", authenticateToken, (req, res) => {
 });
 app.post("/register", registerUser);
 app.post("/registerClub", authenticateToken, registerClub);
+app.get("/fetchClubs", fetchClubs);
+app.get("/fetchClubImage", fetchClubImage);
 
 app.listen(PORT);

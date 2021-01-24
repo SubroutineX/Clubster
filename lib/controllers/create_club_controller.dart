@@ -4,8 +4,8 @@ import 'package:dio/dio.dart' as D;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CreateClubController extends GetxController {
-  static const IP_SERVER = '192.168.0.13';
-  String name, genre, status, description;
+  static const IP_SERVER = '192.168.43.152';
+  String name, genre, status = "open", description;
   String memberLimit;
 
   void getName(getName) {

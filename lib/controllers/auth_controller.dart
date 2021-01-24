@@ -6,7 +6,7 @@ import 'package:workflow/views/clubs/club_skeleton.dart';
 import 'package:workflow/views/tab_view.dart';
 
 class AuthController extends GetxController {
-  static const IP_SERVER = '192.168.0.13';
+  static const IP_SERVER = '192.168.43.152';
 
   void loginUser(String phone, String password) async {
     try {

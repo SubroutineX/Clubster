@@ -18,6 +18,7 @@ import 'package:workflow/views/widgets/buttonBuilder.dart';
 
 class ClubDetailsPage extends StatelessWidget {
   dynamic clubInfoPage;
+  String token;
   final cController = Get.find<ClubController>();
 
   ClubDetailsPage({Key key, @required this.clubInfoPage});
@@ -94,11 +95,11 @@ class ClubDetailsPage extends StatelessWidget {
                     height: deviceDimensions.height * 0.45,
                     child: Hero(
                       tag: clubInfoPage.id,
-                      child: Image(
-                        fit: BoxFit.cover,
-                        image: AssetImage(
-                          clubInfoPage.imgUrl,
-                        ),
+                      child: Image.network(
+                        "http://192.168.43.152:8000/fetchClubImage?imageName=" +
+                            clubInfoPage.clubName +
+                            ".jpg",
+                        headers: {"Authorization": "Bearer $token"},
                       ),
                     ),
                   ),
