@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 8000;
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const path = require("path");
+global.appRoot = path.resolve(__dirname);
 const cors = require("cors");
 
 app.use(cors());

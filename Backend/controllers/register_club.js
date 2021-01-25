@@ -1,10 +1,12 @@
 const mv = require("mv");
+const path = require("path");
 const mongoose = require("mongoose");
 const clubs = require("../models/clubs_model");
 var formidable = require("formidable");
 const { nextTick } = require("process");
 module.exports = (req, res) => {
     try {
+        console.log("INSIDE try");
         var form = new formidable.IncomingForm();
         form.parse(req, function (err, fields, files) {
             if (err) {
@@ -12,7 +14,8 @@ module.exports = (req, res) => {
             }
             fileName = fields.clubName + ".jpg";
             var oldpath = files.clubImage.path;
-            var newpath = __dirname + "/../uploads/" + fileName;
+            var newpath = appRoot + "/uploads/" + fileName;
+            console.log(newpath);
             mv(oldpath, newpath, function (err) {
                 if (err) throw err;
                 var clubsModel = new clubs({

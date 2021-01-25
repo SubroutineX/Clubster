@@ -3,5 +3,5 @@ module.exports = (req, res) => {
     imageName = req.query.imageName;
     var filePath = __dirname + "\\..\\uploads\\" + imageName;
     console.log(filePath)
-    res.sendFile(path.resolve(filePath));
+    res.sendFile(path.join(appRoot + "/uploads/" + imageName));
 }

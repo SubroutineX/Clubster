@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'dart:io';
 import 'package:dio/dio.dart' as D;
+import 'package:http_parser/http_parser.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CreateClubController extends GetxController {
@@ -56,6 +57,7 @@ class CreateClubController extends GetxController {
           "clubImage": await D.MultipartFile.fromFile(
             imageClub?.path,
             filename: fileName,
+            contentType: new MediaType("image", "jpg"),
           )
         });
         var response =
