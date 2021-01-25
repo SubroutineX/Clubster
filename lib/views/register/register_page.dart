@@ -68,78 +68,190 @@ class _RegisterPageState extends State<RegisterPage> {
       body: Column(
         children: <Widget>[
           Expanded(
-            child: Stepper(
-              physics: BouncingScrollPhysics(),
-              steps: steps,
-              currentStep: currentStep,
-              onStepContinue: next,
-              onStepTapped: (step) => goTo(step),
-              onStepCancel: cancel,
-              controlsBuilder: (BuildContext context,
-                  {VoidCallback onStepContinue, VoidCallback onStepCancel}) {
-                return Column(
-                  children: <Widget>[
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        FlatButton(
-                          color: Colors.blueAccent,
-                          child: currentStep < steps.length - 1
-                              ? Text(
-                                  "Next",
-                                  style: TextStyle(color: Colors.white),
-                                )
-                              : Text(
-                                  "Register",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                          onPressed: () {
-                            setState(
-                              () {
-                                if (currentStep < steps.length - 1) {
-                                  currentStep = currentStep + 1;
-                                } else {
-                                  registerController.registerUser(
-                                      _user, _value, _value2);
-                                  Get.to(ClubHome());
-                                }
-                              },
-                            );
-                          },
-                        ),
-                        SizedBox(width: 20),
-                        FlatButton(
-                          color: currentStep > 0
-                              ? Colors.white
-                              : Color(0xffcccccc),
-                          child: currentStep > 0
-                              ? Text(
-                                  "Back",
-                                  style: TextStyle(color: Colors.blueAccent),
-                                )
-                              : Text(
-                                  "Back",
-                                  style: TextStyle(color: Colors.black38),
-                                ),
-                          onPressed: () {
-                            setState(
-                              () {
-                                if (currentStep > 0) {
-                                  currentStep = currentStep - 1;
-                                }
-                              },
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                  ],
-                );
-              },
+            child: Theme(
+              data: ThemeData(
+                fontFamily: "Sofia_Pro",
+                splashColor: neonBlue,
+                focusColor: neonBlue,
+                hoverColor: neonBlue.withOpacity(.2),
+                highlightColor: neonBlue.withOpacity(.5),
+                accentColor: neonBlue,
+                primaryColor: neonBlue,
+              ),
+              child: Stepper(
+                physics: BouncingScrollPhysics(),
+                steps: steps,
+                currentStep: currentStep,
+                onStepContinue: next,
+                onStepTapped: (step) => goTo(step),
+                onStepCancel: cancel,
+                controlsBuilder: (BuildContext context,
+                    {VoidCallback onStepContinue, VoidCallback onStepCancel}) {
+                  return Column(
+                    children: <Widget>[
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          NextButton(
+                            currentStep: currentStep,
+                            steps: steps,
+                            registerController: registerController,
+                            // user: _user,
+                            // value: _value,
+                            // value2: _value2,
+                            onTapCallBack: () {
+                              setState(
+                                () {
+                                  if (currentStep < steps.length - 1) {
+                                    currentStep = currentStep + 1;
+                                  } else {
+                                    registerController.registerUser(
+                                        _user, _value, _value2);
+                                    Get.to(ClubHome());
+                                  }
+                                },
+                              );
+                            },
+                          ),
+                          SizedBox(width: 20),
+                          BackButton(
+                            currentStep: currentStep,
+                            onTapCallBack: () {
+                              setState(
+                                () {
+                                  if (currentStep > 0) {
+                                    currentStep = currentStep - 1;
+                                  }
+                                },
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Step _firstStep() {
+    return Step(
+      title: Text(
+        'Step 1',
+        style: textStyleR(18, fontColor),
+      ),
+      isActive: currentStep == 0,
+      state: currentStep == 0 ? StepState.editing : StepState.indexed,
+      content: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          SizedBox(
+            height: 10,
+          ),
+          FadeAnimation(
+            1,
+            Text(
+              "Name",
+              style: labelStyle,
+            ),
+          ),
+          SizedBox(height: 10),
+          FadeAnimation(
+            2,
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: TextFormField(
+                style: formFieldStyle,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: "Name",
+                    hintStyle: hintStyle),
+                onChanged: (name) {
+                  print('onchanged called' + name);
+
+                  Get.find<RegisterController>().getName(name);
+                },
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          FadeAnimation(
+            3,
+            Text(
+              "Username",
+              style: labelStyle,
+            ),
+          ),
+          SizedBox(height: 10),
+          FadeAnimation(
+            4,
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: TextFormField(
+                style: formFieldStyle,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "Username",
+                  hintStyle: hintStyle,
+                ),
+                onChanged: (userName) {
+                  Get.find<RegisterController>().getUsername(userName);
+                },
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          FadeAnimation(
+            1,
+            Text(
+              "Mobile Number",
+              style: labelStyle,
+            ),
+          ),
+          SizedBox(height: 10),
+          FadeAnimation(
+            2,
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: TextFormField(
+                style: formFieldStyle,
+                keyboardType: TextInputType.number,
+                maxLength: 10,
+                decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: "Mobile Number",
+                    hintStyle: hintStyle),
+                onChanged: (phone) {
+                  Get.find<RegisterController>().getPhoneNumber(phone);
+                },
+              ),
             ),
           ),
         ],
@@ -150,8 +262,8 @@ class _RegisterPageState extends State<RegisterPage> {
   Step _secondStep() {
     var deviceSize = MediaQuery.of(context).size;
     return Step(
-      isActive: false,
-      state: StepState.indexed,
+      isActive: currentStep == 1,
+      state: currentStep == 1 ? StepState.editing : StepState.indexed,
       title: Text(
         'Step 2',
         style: textStyleR(18, fontColor),
@@ -182,26 +294,27 @@ class _RegisterPageState extends State<RegisterPage> {
               children: [
                 Expanded(
                   child: RadioListTile(
-                      activeColor: violet,
-                      title: Text(
-                        "Student",
-                        style: TextStyle(
-                          fontSize: deviceSize.width < 400 ? 16 : 12,
-                        ),
+                    activeColor: neonBlue,
+                    title: Text(
+                      "Student",
+                      style: TextStyle(
+                        fontSize: deviceSize.width < 400 ? 13 : 16,
                       ),
-                      value: 'student',
-                      groupValue: _user,
-                      onChanged: (val) {
-                        selectRadio(val);
-                      }),
+                    ),
+                    value: 'student',
+                    groupValue: _user,
+                    onChanged: (val) {
+                      selectRadio(val);
+                    },
+                  ),
                 ),
                 Expanded(
                   child: RadioListTile(
-                    activeColor: violet,
+                    activeColor: neonBlue,
                     title: Text(
                       "Teacher",
                       style: TextStyle(
-                        fontSize: deviceSize.width < 400 ? 16 : 12,
+                        fontSize: deviceSize.width < 400 ? 13 : 16,
                       ),
                     ),
                     value: 'teacher',
@@ -328,127 +441,11 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  Step _firstStep() {
-    return Step(
-      title: Text(
-        'Step 1',
-        style: textStyleR(18, fontColor),
-      ),
-      isActive: true,
-      state: StepState.indexed,
-      content: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          SizedBox(
-            height: 10,
-          ),
-          FadeAnimation(
-            1,
-            Text(
-              "Name",
-              style: labelStyle,
-            ),
-          ),
-          SizedBox(height: 10),
-          FadeAnimation(
-            2,
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: TextFormField(
-                style: formFieldStyle,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "Name",
-                    hintStyle: hintStyle),
-                onChanged: (name) {
-                  print('onchanged called' + name);
-
-                  Get.find<RegisterController>().getName(name);
-                },
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          FadeAnimation(
-            3,
-            Text(
-              "Username",
-              style: labelStyle,
-            ),
-          ),
-          SizedBox(height: 10),
-          FadeAnimation(
-            4,
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: TextFormField(
-                style: formFieldStyle,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "Username",
-                  hintStyle: hintStyle,
-                ),
-                onChanged: (userName) {
-                  Get.find<RegisterController>().getUsername(userName);
-                },
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          FadeAnimation(
-            1,
-            Text(
-              "Mobile Number",
-              style: labelStyle,
-            ),
-          ),
-          SizedBox(height: 10),
-          FadeAnimation(
-            2,
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: TextFormField(
-                style: formFieldStyle,
-                keyboardType: TextInputType.number,
-                maxLength: 10,
-                decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "Mobile Number",
-                    hintStyle: hintStyle),
-                onChanged: (phone) {
-                  Get.find<RegisterController>().getPhoneNumber(phone);
-                },
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   Step _thirdStep() {
     final ShowPassController showPassword = Get.put(ShowPassController());
     return Step(
-      isActive: false,
-      state: StepState.indexed,
+      isActive: currentStep == 2,
+      state: currentStep == 2 ? StepState.editing : StepState.indexed,
       title: Text(
         'Step 3',
         style: textStyleR(18, fontColor),
@@ -537,6 +534,109 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class BackButton extends StatelessWidget {
+  const BackButton({
+    Key key,
+    @required this.currentStep,
+    this.onTapCallBack,
+  }) : super(key: key);
+
+  final int currentStep;
+  final VoidCallback onTapCallBack;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: currentStep > 0 ? Colors.white : Color(0xffcccccc),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: InkWell(
+        splashColor: neonBlue,
+        focusColor: neonBlue,
+        hoverColor: neonBlue.withOpacity(.2),
+        highlightColor: neonBlue.withOpacity(.5),
+        borderRadius: BorderRadius.circular(8),
+        onTap: onTapCallBack,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+          child: currentStep > 0
+              ? Text(
+                  "Back",
+                  style: TextStyle(color: neonBlue),
+                )
+              : Text(
+                  "Back",
+                  style: TextStyle(color: Colors.black38),
+                ),
+        ),
+      ),
+    );
+  }
+}
+
+class NextButton extends StatelessWidget {
+  const NextButton({
+    Key key,
+    this.onTapCallBack,
+    @required this.currentStep,
+    @required this.steps,
+    @required this.registerController,
+    // @required String user,
+    // @required String value,
+    // @required String value2,
+  }) :
+        //  _user = user,
+        //       _value = value,
+        //       _value2 = value2,
+        super(key: key);
+
+  final int currentStep;
+  final List<Step> steps;
+  final RegisterController registerController;
+  // final String _user;
+  // final String _value;
+  // final String _value2;
+
+  final VoidCallback onTapCallBack;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: currentStep < steps.length - 1 ? neonBlue : neonBlue,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: InkWell(
+        splashColor: neonBlue,
+        focusColor: neonBlue,
+        hoverColor: neonBlue.withOpacity(.2),
+        highlightColor: neonBlue.withOpacity(.5),
+        borderRadius: BorderRadius.circular(8),
+        onTap: onTapCallBack,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+          child: currentStep < steps.length - 1
+              ? Text(
+                  "Next",
+                  style: TextStyle(color: Colors.white),
+                )
+              : Text(
+                  "Register",
+                  style: TextStyle(color: Colors.white),
+                ),
+        ),
       ),
     );
   }
