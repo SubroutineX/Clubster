@@ -4,7 +4,7 @@ import 'package:dio/dio.dart' as D;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CreateClubController extends GetxController {
-  static const IP_SERVER = '192.168.43.152';
+  static const IP_SERVER = '192.168.0.11';
   String name, genre, status = "open", description;
   String memberLimit;
 
@@ -58,11 +58,12 @@ class CreateClubController extends GetxController {
             filename: fileName,
           )
         });
-        var response = await dio.post("http://$IP_SERVER:8000/registerClub",
-            data: formdata,
-            options: D.Options(
-              headers: {"Authorization": "Bearer $token"},
-            ));
+        var response =
+            await dio.post("https://clubify-node.herokuapp.com/registerClub",
+                data: formdata,
+                options: D.Options(
+                  headers: {"Authorization": "Bearer $token"},
+                ));
         if (response.statusCode == 200) {
           Get.snackbar("Success", response.data);
         } else {

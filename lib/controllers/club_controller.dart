@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 
 class ClubController extends GetxController {
   var clubs = List<Clubs>().obs;
-  static const IP_SERVER = '192.168.43.152';
+  static const IP_SERVER = '192.168.0.11';
 
   @override
   void onInit() {
@@ -21,7 +21,7 @@ class ClubController extends GetxController {
           await SharedPreferences.getInstance();
       final token = sharedPreferences.getString('token');
       var response = await http.get(
-        "http://$IP_SERVER:8000/fetchClubs",
+        "https://clubify-node.herokuapp.com/fetchClubs",
         headers: {"Authorization": "Bearer $token"},
       );
       if (response.statusCode == 200) {

@@ -66,7 +66,7 @@ class ClubCardHorizontal extends StatelessWidget {
                     child: Hero(
                         tag: clubInfoCard.id,
                         child: Image.network(
-                          "http://192.168.43.152:8000/fetchClubImage?imageName=" +
+                          "https://clubify-node.herokuapp.com/fetchClubImage?imageName=" +
                               clubInfoCard.clubName +
                               ".jpg",
                           headers: {"Authorization": "Bearer $token"},
