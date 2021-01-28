@@ -8,7 +8,7 @@ import 'package:workflow/bindings/auth_binding.dart';
 import 'package:get/get.dart';
 
 //PAGES
-import 'package:workflow/views/clubs/club_skeleton.dart';
+import 'package:workflow/views/clubs/page_navigator.dart';
 import 'package:workflow/views/tab_view.dart';
 
 //STYLES
@@ -19,13 +19,14 @@ Future<void> main() async {
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   runApp(
     GetMaterialApp(
-      initialBinding: AuthBinding(),
-      title: 'workflow managment demo',
-      theme: customTheme(),
-      debugShowCheckedModeBanner: false,
-      home: sharedPreferences.getBool("login-stat") == true
-          ? ClubHome()
-          : TabPage(),
-    ),
+        initialBinding: AuthBinding(),
+        title: 'workflow managment demo',
+        theme: customTheme(),
+        debugShowCheckedModeBanner: false,
+        home: PageNavigator()
+        // sharedPreferences.getBool("login-stat") == true
+        //     ? ClubHome()
+        //     : TabPage(),
+        ),
   );
 }

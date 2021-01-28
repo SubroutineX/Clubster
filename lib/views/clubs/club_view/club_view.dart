@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:workflow/views/clubs/club_profile/club_profile_body.dart';
 
 //PAGES
 import 'package:workflow/views/clubs/club_view/clubs_view_body.dart';
@@ -8,17 +7,17 @@ import 'package:workflow/views/clubs/club_view/clubs_view_body.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 
-class ProfilePage extends StatelessWidget {
+class ClubView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: clubsBackground,
-      appBar: profilePageAppBar(),
-      body: ProfilePageBody(),
+      appBar: clubViewAppBar(),
+      body: ClubViewBody(),
     );
   }
 
-  AppBar profilePageAppBar() {
+  AppBar clubViewAppBar() {
     return AppBar(
       leading: IconButton(
         onPressed: () {},
@@ -29,9 +28,9 @@ class ProfilePage extends StatelessWidget {
       ),
       actions: [
         IconButton(
-          tooltip: "Settings",
+          tooltip: "Logout",
           icon: Icon(
-            Icons.settings_outlined,
+            Icons.login_outlined,
             color: fontColor,
           ),
         ),
@@ -41,7 +40,7 @@ class ProfilePage extends StatelessWidget {
       backgroundColor: transparent,
       elevation: 0,
       title: Text(
-        "Profile",
+        "Clubs",
         style: textStyleSB(18, fontColor),
       ),
     );

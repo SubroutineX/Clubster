@@ -8,7 +8,7 @@ import 'package:workflow/controllers/show_password_controller.dart';
 //PAGES
 import 'package:workflow/views/CustomIcons.dart';
 import 'package:workflow/views/animations/FadeAnimation.dart';
-import 'package:workflow/views/clubs/club_skeleton.dart';
+import 'package:workflow/views/clubs/page_navigator.dart';
 
 //STYLES
 import 'package:workflow/views/styles/colors.dart';
@@ -111,7 +111,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   } else {
                                     registerController.registerUser(
                                         _user, _value, _value2);
-                                    Get.to(ClubHome());
+                                    Get.to(PageNavigator());
                                   }
                                 },
                               );

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:workflow/views/clubs/club_skeleton.dart';
+import 'package:workflow/views/clubs/page_navigator.dart';
 
 class RegisterController extends GetxController {
   String password;
@@ -39,7 +39,7 @@ class RegisterController extends GetxController {
       });
       if (response.statusCode == 200) {
         print(response.body);
-        Get.off(ClubHome());
+        Get.off(PageNavigator());
       } else {
         Get.snackbar('error signing up', response.body,
             snackPosition: SnackPosition.TOP);
