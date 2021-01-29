@@ -48,7 +48,7 @@ class _CreateSeminarState extends State<CreateSeminar> {
         scrollSpec: ScrollSpec.overscroll(),
         snapSpec: const SnapSpec(
           snap: true,
-          snappings: [0.65, 1],
+          snappings: [0.6, 1],
           positioning: SnapPositioning.relativeToAvailableSpace,
         ),
         body: Stack(
@@ -89,7 +89,7 @@ class _CreateSeminarState extends State<CreateSeminar> {
             ),
             Container(
               width: double.infinity,
-              height: 10,
+              height: 5,
               decoration: BoxDecoration(
                 color: clubsBackground,
                 borderRadius: BorderRadius.only(
@@ -291,6 +291,9 @@ class _CreateSeminarState extends State<CreateSeminar> {
                       ),
                     ),
                   ),
+                ),
+                SizedBox(
+                  height: 50,
                 ),
               ],
             ),

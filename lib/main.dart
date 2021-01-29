@@ -15,6 +15,7 @@ import 'package:workflow/views/tab_view.dart';
 import 'package:workflow/theme.dart';
 
 Future<void> main() async {
+  Paint.enableDithering = true;
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   runApp(

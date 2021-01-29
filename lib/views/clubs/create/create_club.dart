@@ -25,11 +25,11 @@ class CreateClub extends StatelessWidget {
       height: deviceDimensions.height,
       width: deviceDimensions.width,
       child: SlidingSheet(
-        cornerRadius: 30,
+        cornerRadius: 20,
         scrollSpec: ScrollSpec.overscroll(),
         snapSpec: const SnapSpec(
           snap: true,
-          snappings: [0.65, 1],
+          snappings: [0.6, .96],
           positioning: SnapPositioning.relativeToAvailableSpace,
         ),
         body: Stack(
@@ -70,7 +70,7 @@ class CreateClub extends StatelessWidget {
             ),
             Container(
               width: double.infinity,
-              height: 10,
+              height: 5,
               decoration: BoxDecoration(
                 color: clubsBackground,
                 borderRadius: BorderRadius.only(
@@ -298,6 +298,9 @@ class CreateClub extends StatelessWidget {
                       ),
                     ),
                   ),
+                ),
+                SizedBox(
+                  height: 50,
                 ),
               ],
             ),

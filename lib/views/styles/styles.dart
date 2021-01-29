@@ -39,7 +39,7 @@ TextStyle textStyleL(double size, Color color) {
   );
 }
 
-final TextStyle labelStyle = textStyleB(18, fontColor);
+final TextStyle labelStyle = textStyleR(16, fontColor);
 
 final TextStyle hintStyle = textStyleL(16, fontColorLight);
 
@@ -48,10 +48,11 @@ final TextStyle searchLabelStyle = TextStyle(
   color: fontColor,
   fontFamily: "Sofia_Pro_Bold",
 );
+
 final TextStyle appBarHead = TextStyle(
-  fontSize: 20,
+  fontSize: 18,
   color: fontColor,
-  fontFamily: "Sofia_Pro_Bold",
+  fontFamily: "Sofia_Pro_SemiBold",
 );
 
 final TextStyle headingStyle = TextStyle(
@@ -99,7 +100,7 @@ final TextStyle questionStyleBold = TextStyle(
 //CLUBS STYLE
 
 final TextStyle searchBarStyle = TextStyle(
-  fontSize: 18,
+  fontSize: 16,
   fontFamily: "Sofia_Pro",
   color: fontColor,
 );

@@ -18,6 +18,12 @@ class BottomNavBar extends StatelessWidget {
       width: deviceDimensions.width,
       padding: EdgeInsets.symmetric(vertical: 5),
       decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: fontColor.withOpacity(.05),
+            blurRadius: 8,
+          )
+        ],
         color: white,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),

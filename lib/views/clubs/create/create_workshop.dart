@@ -48,7 +48,7 @@ class _CreateWorkshopState extends State<CreateWorkshop> {
         scrollSpec: ScrollSpec.overscroll(),
         snapSpec: const SnapSpec(
           snap: true,
-          snappings: [0.65, 1],
+          snappings: [0.6, 1],
           positioning: SnapPositioning.relativeToAvailableSpace,
         ),
         body: Stack(
@@ -89,7 +89,7 @@ class _CreateWorkshopState extends State<CreateWorkshop> {
             ),
             Container(
               width: double.infinity,
-              height: 10,
+              height: 5,
               decoration: BoxDecoration(
                 color: clubsBackground,
                 borderRadius: BorderRadius.only(
@@ -292,6 +292,9 @@ class _CreateWorkshopState extends State<CreateWorkshop> {
                       ),
                     ),
                   ),
+                ),
+                SizedBox(
+                  height: 50,
                 ),
               ],
             ),
