@@ -37,6 +37,7 @@ class ClubView extends StatelessWidget {
 
   AppBar clubViewAppBar() {
     return AppBar(
+      automaticallyImplyLeading: false,
       iconTheme: IconThemeData(color: fontColor),
       centerTitle: true,
       backgroundColor: transparent,

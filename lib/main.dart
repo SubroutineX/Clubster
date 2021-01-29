@@ -20,14 +20,13 @@ Future<void> main() async {
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   runApp(
     GetMaterialApp(
-        initialBinding: AuthBinding(),
-        title: 'workflow managment demo',
-        theme: customTheme(),
-        debugShowCheckedModeBanner: false,
-        home: PageNavigator()
-        // sharedPreferences.getBool("login-stat") == true
-        //     ? ClubHome()
-        //     : TabPage(),
-        ),
+      initialBinding: AuthBinding(),
+      title: 'workflow managment demo',
+      theme: customTheme(),
+      debugShowCheckedModeBanner: false,
+      home: sharedPreferences.getBool("login-stat") == true
+          ? PageNavigator()
+          : TabPage(),
+    ),
   );
 }
