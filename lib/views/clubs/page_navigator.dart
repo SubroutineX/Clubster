@@ -29,10 +29,10 @@ class PageNavigator extends StatelessWidget {
       builder: (_) {
         return WillPopScope(
           onWillPop: () async {
-            if (_.currentPage == "Page1") {
+            if (_.currentPage == "Page3") {
               return Future.value(true);
             } else {
-              _.selectTab("Page1", 0);
+              _.selectTab("Page3", 2);
               return Future.value(false);
             }
           },

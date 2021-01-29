@@ -6,9 +6,9 @@ class NavigationController extends GetxController {
 
   // var selectedTab = 0;
 
-  int currentIndex = 0;
+  int currentIndex = 2;
 
-  String currentPage = "Page1";
+  String currentPage = "Page3";
 
   List<String> pageKeys = ["Page1", "Page2", "Page3", "Page4", "Page5"];
 

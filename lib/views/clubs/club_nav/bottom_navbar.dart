@@ -40,28 +40,28 @@ class BottomNavBar extends StatelessWidget {
               },
               items: [
                 CustomBottomBarItem(
-                  icon: Icon(Icons.group_outlined),
-                  title: Text(
-                    "Clubs",
-                    textScaleFactor: 1,
-                  ),
-                  selectedColor: violet,
-                ),
-                CustomBottomBarItem(
-                  icon: Icon(Icons.favorite_border_rounded),
-                  title: Text(
-                    "Favourite",
-                    textScaleFactor: 1,
-                  ),
-                  selectedColor: Colors.pink,
-                ),
-                CustomBottomBarItem(
                   icon: Icon(Icons.add),
                   title: Text(
                     "Create",
                     textScaleFactor: 1,
                   ),
-                  selectedColor: Colors.teal,
+                  selectedColor: teal,
+                ),
+                CustomBottomBarItem(
+                  icon: Icon(Icons.search_rounded),
+                  title: Text(
+                    "Search",
+                    textScaleFactor: 1,
+                  ),
+                  selectedColor: neonBlue,
+                ),
+                CustomBottomBarItem(
+                  icon: Icon(Icons.dynamic_feed_outlined),
+                  title: Text(
+                    "Feed",
+                    textScaleFactor: 1,
+                  ),
+                  selectedColor: Colors.pink,
                 ),
                 CustomBottomBarItem(
                   icon: Icon(Icons.bookmark_outline_rounded),
