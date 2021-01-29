@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:workflow/views/CustomIcons.dart';
 import 'package:workflow/views/clubs/clubs_feed/imageDisplay.dart';
 import 'package:workflow/views/styles/colors.dart';
+import 'package:workflow/views/styles/icons.dart';
 import 'package:workflow/views/styles/styles.dart';
 
 class Timeline extends StatelessWidget {
@@ -186,10 +189,12 @@ class PostCard extends StatelessWidget {
                   width: 25,
                 ),
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Icon(
-                      Icons.messenger_outline_rounded,
-                      color: fontColorLight,
+                    SvgPicture.asset(
+                      commentIcon,
+                      color: fontColor,
+                      fit: BoxFit.cover,
                     ),
                     SizedBox(
                       width: 6,
