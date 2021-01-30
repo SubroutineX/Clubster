@@ -14,6 +14,19 @@ class Timeline extends StatelessWidget {
       physics: BouncingScrollPhysics(),
       child: Column(
         children: [
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: Colors.red,
+                  ),
+                ),
+              ],
+            ),
+          ),
           SizedBox(
             height: 10,
           ),
