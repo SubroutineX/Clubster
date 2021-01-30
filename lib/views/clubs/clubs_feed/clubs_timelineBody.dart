@@ -144,6 +144,8 @@ class PostCard extends StatelessWidget {
               onTap: () {
                 Get.to(ImageView(
                   tag: postImgUrl,
+                  likes: likes,
+                  comments: comments,
                 ));
               },
               child: Container(
