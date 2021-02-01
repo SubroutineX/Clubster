@@ -10,7 +10,7 @@ import 'package:workflow/views/clubs/club_nav/custom_bottomNav.dart';
 //STYLES
 import 'package:workflow/views/styles/colors.dart';
 
-class CustomBottomNav extends StatelessWidget {
+class BottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var deviceDimensions = MediaQuery.of(context).size;
@@ -18,6 +18,12 @@ class CustomBottomNav extends StatelessWidget {
       width: deviceDimensions.width,
       padding: EdgeInsets.symmetric(vertical: 5),
       decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: fontColor.withOpacity(.05),
+            blurRadius: 8,
+          )
+        ],
         color: white,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),
@@ -25,40 +31,37 @@ class CustomBottomNav extends StatelessWidget {
         ),
       ),
       child: GetBuilder(
-          init: Get.find<ClubNavigationController>(),
+          init: Get.find<NavigationController>(),
           builder: (_controller) {
             return CustomBottomBar(
-              currentIndex: _controller.selectedTab,
+              currentIndex: _controller.currentIndex,
               onTap: (index) {
-                _controller.changeIndex(index);
-                _controller.pageController.animateToPage(index,
-                    duration: Duration(milliseconds: 500), curve: Curves.ease);
-                ;
+                _controller.selectTab(_controller.pageKeys[index], index);
               },
               items: [
-                CustomBottomBarItem(
-                  icon: Icon(Icons.group_outlined),
-                  title: Text(
-                    "Clubs",
-                    textScaleFactor: 1,
-                  ),
-                  selectedColor: violet,
-                ),
-                CustomBottomBarItem(
-                  icon: Icon(Icons.favorite_border_rounded),
-                  title: Text(
-                    "Favourite",
-                    textScaleFactor: 1,
-                  ),
-                  selectedColor: Colors.pink,
-                ),
                 CustomBottomBarItem(
                   icon: Icon(Icons.add),
                   title: Text(
                     "Create",
                     textScaleFactor: 1,
                   ),
-                  selectedColor: Colors.teal,
+                  selectedColor: teal,
+                ),
+                CustomBottomBarItem(
+                  icon: Icon(Icons.search_rounded),
+                  title: Text(
+                    "Search",
+                    textScaleFactor: 1,
+                  ),
+                  selectedColor: neonBlue,
+                ),
+                CustomBottomBarItem(
+                  icon: Icon(Icons.dynamic_feed_outlined),
+                  title: Text(
+                    "Feed",
+                    textScaleFactor: 1,
+                  ),
+                  selectedColor: Colors.pink,
                 ),
                 CustomBottomBarItem(
                   icon: Icon(Icons.bookmark_outline_rounded),

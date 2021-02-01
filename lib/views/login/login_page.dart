@@ -16,7 +16,7 @@ import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 
 //PAGES
-import 'package:workflow/views/clubs/club_skeleton.dart';
+import 'package:workflow/views/clubs/page_navigator.dart';
 
 class Loginpage extends GetWidget<AuthController> {
   final TabController loginPageTabController;
@@ -145,7 +145,7 @@ class Loginpage extends GetWidget<AuthController> {
                             TextSpan(
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  Get.to(ClubHome());
+                                  Get.to(PageNavigator());
                                 },
                               text: "Bypass Login",
                               style: textStyleB(15, fontColor),
