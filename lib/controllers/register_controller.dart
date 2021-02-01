@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:workflow/views/clubs/page_navigator.dart';
@@ -27,7 +28,8 @@ class RegisterController extends GetxController {
 
   static const IP_SERVER =
       '192.168.43.152'; //atharva:192.168.0.18 , nuke:192.168.43.217
-  void registerUser(String user, String college, String dept) async {
+  void registerUser(String user, String college, String dept,
+      TabController tabController) async {
     print("inside register user");
     try {
       print(user + college + dept);
@@ -42,7 +44,8 @@ class RegisterController extends GetxController {
       });
       if (response.statusCode == 200) {
         print(response.body);
-        Get.off(PageNavigator());
+        Get.snackbar("Success", "Account created successfully!");
+        tabController.animateTo(0);
       } else {
         Get.snackbar('error signing up', response.body,
             snackPosition: SnackPosition.TOP);

@@ -86,7 +86,7 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
                   controller: _tabController,
                   children: [
                     Loginpage(_tabController),
-                    RegisterPage(),
+                    RegisterPage(controller: _tabController),
                   ],
                 ),
               ),

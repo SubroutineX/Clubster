@@ -15,8 +15,11 @@ import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 
 class RegisterPage extends StatefulWidget {
+  final TabController controller;
+
+  RegisterPage({Key key, @required this.controller}) : super(key: key);
   @override
-  _RegisterPageState createState() => new _RegisterPageState();
+  _RegisterPageState createState() => new _RegisterPageState(controller);
 }
 
 class _RegisterPageState extends State<RegisterPage> {
@@ -25,8 +28,12 @@ class _RegisterPageState extends State<RegisterPage> {
   var _value = 'RSCOE';
   var _value2 = 'CS';
   var _user = 'student';
+  final TabController controller;
 
   RegisterController registerController = Get.put(RegisterController());
+
+  _RegisterPageState(this.controller);
+
   @override
   void initState() {
     super.initState();
@@ -110,7 +117,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     currentStep = currentStep + 1;
                                   } else {
                                     registerController.registerUser(
-                                        _user, _value, _value2);
+                                        _user, _value, _value2, controller);
                                   }
                                 },
                               );
