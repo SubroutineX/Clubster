@@ -96,7 +96,7 @@ class ClubDetailsPage extends StatelessWidget {
                     child: Hero(
                       tag: clubInfoPage.id,
                       child: Image.network(
-                        "https://clubify-node.herokuapp.com/fetchClubImage?imageName=" +
+                        "http://65.1.43.39:8000/fetchClubImage?imageName=" +
                             clubInfoPage.clubName +
                             ".jpg",
                         headers: {"Authorization": "Bearer $token"},

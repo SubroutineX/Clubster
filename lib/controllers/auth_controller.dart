@@ -14,8 +14,7 @@ class AuthController extends GetxController {
       if (phone.isEmpty || password.isEmpty) {
         Get.snackbar('error signing in', 'username or password field empty');
       } else {
-        var response = await http.post(
-            "https://clubify-node.herokuapp.com/login",
+        var response = await http.post("http://65.1.43.39:8000/login",
             body: {'phone': phone, 'password': password});
         print("outside");
         if (response.statusCode == 200) {
@@ -42,8 +41,7 @@ class AuthController extends GetxController {
 
   void logoutUser() async {
     try {
-      var response =
-          await http.delete("https://clubify-node.herokuapp.com/logout");
+      var response = await http.delete("http://65.1.43.39:8000/logout");
       if (response.statusCode == 200) {
         SharedPreferences sharedPreferences =
             await SharedPreferences.getInstance();

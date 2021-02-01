@@ -28,7 +28,7 @@ class RegisterController extends GetxController {
       '192.168.43.152'; //atharva:192.168.0.18 , nuke:192.168.43.217
   void registerUser(String user, String college, String dept) async {
     try {
-      var response = await http.post("http://$IP_SERVER:8000/register", body: {
+      var response = await http.post("http://65.1.43.39:8000/register", body: {
         'name': name,
         'username': userName,
         'user': user,

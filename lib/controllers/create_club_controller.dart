@@ -60,12 +60,11 @@ class CreateClubController extends GetxController {
             contentType: new MediaType("image", "jpg"),
           )
         });
-        var response =
-            await dio.post("https://clubify-node.herokuapp.com/registerClub",
-                data: formdata,
-                options: D.Options(
-                  headers: {"Authorization": "Bearer $token"},
-                ));
+        var response = await dio.post("http://65.1.43.39:8000/registerClub",
+            data: formdata,
+            options: D.Options(
+              headers: {"Authorization": "Bearer $token"},
+            ));
         if (response.statusCode == 200) {
           Get.snackbar("Success", response.data);
         } else {

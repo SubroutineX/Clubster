@@ -21,7 +21,7 @@ class ClubController extends GetxController {
           await SharedPreferences.getInstance();
       final token = sharedPreferences.getString('token');
       var response = await http.get(
-        "https://clubify-node.herokuapp.com/fetchClubs",
+        "http://65.1.43.39:8000/fetchClubs",
         headers: {"Authorization": "Bearer $token"},
       );
       if (response.statusCode == 200) {
