@@ -7,6 +7,7 @@ const { nextTick } = require("process");
 module.exports = (req, res) => {
     try {
         console.log("INSIDE try");
+        var college = req.user.college;
         var form = new formidable.IncomingForm();
         form.parse(req, function (err, fields, files) {
             if (err) {
@@ -26,7 +27,7 @@ module.exports = (req, res) => {
                     status: fields.status,
                     memberLimit: fields.memberLimit,
                     elite: "No",
-                    college: req.user.college,
+                    college: college,
                     members: [],
                 });
                 clubsModel.save();
