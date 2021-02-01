@@ -27,16 +27,11 @@ class RegisterController extends GetxController {
   static const IP_SERVER =
       '192.168.43.152'; //atharva:192.168.0.18 , nuke:192.168.43.217
   void registerUser(String user, String college, String dept) async {
+    print("inside register user");
     try {
-      var response = await http.post("http://65.1.43.39:8000/register", body: {
-        'name': name,
-        'username': userName,
-        'user': user,
-        'phone': phone,
-        'password': password,
-        'college': college,
-        'dept': dept
-      });
+      print(user + college + dept);
+      var response =
+          await http.post("http://65.1.43.39:8000/register", body: {});
       if (response.statusCode == 200) {
         print(response.body);
         Get.off(PageNavigator());
@@ -45,7 +40,7 @@ class RegisterController extends GetxController {
             snackPosition: SnackPosition.TOP);
       }
     } catch (error) {
-      Get.snackbar('error creating account', error.message);
+      Get.snackbar('error creating account', error);
     }
   }
 }

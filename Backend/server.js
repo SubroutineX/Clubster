@@ -83,7 +83,7 @@ app.get("/", (req, res) => {
     // res.render("index.ejs");
     res.status(200).send("hellowww");
 });
-app.post("/register", authenticateToken, registerUser);
+app.post("/register", registerUser);
 app.post("/registerClub", authenticateToken, registerClub);
 app.get("/fetchClubs", authenticateToken, fetchClubs);
 app.get("/fetchClubImage", fetchClubImage);
