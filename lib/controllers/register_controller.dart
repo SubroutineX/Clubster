@@ -20,8 +20,9 @@ class RegisterController extends GetxController {
     phone = number;
   }
 
-  void getPassword(password) {
-    password = password;
+  void getPassword(passedPassword) {
+    password = passedPassword;
+    print(password);
   }
 
   static const IP_SERVER =
@@ -30,8 +31,15 @@ class RegisterController extends GetxController {
     print("inside register user");
     try {
       print(user + college + dept);
-      var response =
-          await http.post("http://65.1.43.39:8000/register", body: {});
+      var response = await http.post("http://65.1.43.39:8000/register", body: {
+        'name': name,
+        'userName': userName,
+        'user': user,
+        'phone': phone,
+        'password': password,
+        'college': college,
+        'dept': dept
+      });
       if (response.statusCode == 200) {
         print(response.body);
         Get.off(PageNavigator());
