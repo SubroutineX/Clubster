@@ -29,7 +29,7 @@ class Timeline extends StatelessWidget {
                 Story(
                   onTapCall: () {
                     Get.to(
-                      Uploadimg(),
+                      UploadImage(),
                     );
                   },
                   storyName: "Upload",

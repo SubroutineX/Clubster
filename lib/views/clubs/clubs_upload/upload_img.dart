@@ -5,38 +5,19 @@ import 'package:get/get.dart';
 import 'package:workflow/models/file_model.dart';
 import 'package:storage_path/storage_path.dart';
 import 'package:workflow/views/clubs/clubs_feed/clubs_timeline.dart';
+import 'package:workflow/views/clubs/clubs_upload/upload_crop.dart';
 import 'package:workflow/views/clubs/page_navigator.dart';
 
-void main() {
-  runApp(
-    Uploadimg(),
-  );
-}
-
-class Uploadimg extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Instagrm picker demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+class UploadImage extends StatefulWidget {
+  UploadImage({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _UploadImageState createState() => _UploadImageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _UploadImageState extends State<UploadImage> {
   List<FileModel> files;
   FileModel selectedModel;
   String image;
@@ -71,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     IconButton(
                       icon: Icon(Icons.clear),
                       onPressed: () => {
-                        Get.to(PageNavigator()),
+                        Get.back(),
                       },
                     ),
                     SizedBox(width: 10),
@@ -91,9 +72,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'Next',
-                    style: TextStyle(color: Colors.blue),
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.to(MyApp());
+                    },
+                    child: Text(
+                      'Next',
+                      style: TextStyle(color: Colors.blue),
+                    ),
                   ),
                 )
               ],

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart' as D;
 import 'package:http_parser/http_parser.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:workflow/controllers/club_controller.dart';
 
 class CreateClubController extends GetxController {
   static const IP_SERVER = '192.168.0.11';
@@ -66,6 +67,7 @@ class CreateClubController extends GetxController {
               headers: {"Authorization": "Bearer $token"},
             ));
         if (response.statusCode == 200) {
+          Get.find<ClubController>().fetchClubs();
           Get.snackbar("Success", response.data);
         } else {
           Get.snackbar("Error creating Club", response.data);
