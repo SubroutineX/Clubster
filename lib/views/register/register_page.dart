@@ -111,7 +111,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                   } else {
                                     registerController.registerUser(
                                         _user, _value, _value2);
-                                    Get.to(PageNavigator());
                                   }
                                 },
                               );

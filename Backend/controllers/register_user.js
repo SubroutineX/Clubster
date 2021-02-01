@@ -18,6 +18,7 @@ module.exports = async (req, res) => {
             college: req.body.college,
             dept: req.body.dept
         });
+        console.log(usersModel);
         usersModel.save();
         res.status(200).json({ success: 'True' });
 
