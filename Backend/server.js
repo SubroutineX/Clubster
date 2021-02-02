@@ -81,7 +81,7 @@ app.post("/login", async (req, res) => {
 
 app.get("/", (req, res) => {
     // res.render("index.ejs");
-    res.status(200).send("hellowww");
+    res.status(200).send("hello");
 });
 app.post("/register", registerUser);
 app.post("/registerClub", authenticateToken, registerClub);
