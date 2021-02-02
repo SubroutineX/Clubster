@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:flutter_native_image/flutter_native_image.dart';
 import 'package:get/get.dart';
 import 'package:workflow/models/file_model.dart';
 import 'package:storage_path/storage_path.dart';
-import 'package:workflow/views/clubs/clubs_feed/clubs_timeline.dart';
-import 'package:workflow/views/clubs/clubs_upload/upload_crop.dart';
 import 'package:workflow/views/clubs/page_navigator.dart';
 
 class UploadImage extends StatefulWidget {
@@ -21,6 +21,12 @@ class _UploadImageState extends State<UploadImage> {
   List<FileModel> files;
   FileModel selectedModel;
   String image;
+
+  @override
+  void initState() {
+    super.initState();
+    getImagesPath();
+  }
 
   getImagesPath() async {
     var imagePath = await StoragePath.imagesPath;
@@ -38,78 +44,68 @@ class _UploadImageState extends State<UploadImage> {
     return Scaffold(
       body: SafeArea(
         child: Column(
-          children: files?.isEmpty ?? true
-              ? [
-                  Text("helllo"),
-                  FlatButton(
-                    onPressed: () {
-                      setState(() {
-                        getImagesPath();
-                      });
-                    },
-                    child: Text("press here"),
-                  )
-                ]
-              : <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          IconButton(
-                            icon: Icon(Icons.clear),
-                            onPressed: () => {
-                              Get.to(PageNavigator()),
-                            },
-                          ),
-                          SizedBox(width: 10),
-                          DropdownButtonHideUnderline(
-                              child: DropdownButton<FileModel>(
-                            items: getItems(),
-                            onChanged: (FileModel d) {
-                              assert(d.files.length > 0);
-                              image = d.files[0];
-                              setState(() {
-                                selectedModel = d;
-                              });
-                            },
-                            value: selectedModel,
-                          ))
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          'Next',
-                          style: TextStyle(color: Colors.blue),
-                        ),
-                      )
-                    ],
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    IconButton(
+                      icon: Icon(Icons.clear),
+                      onPressed: () => {
+                        Get.to(PageNavigator()),
+                      },
+                    ),
+                    SizedBox(width: 10),
+                    DropdownButtonHideUnderline(
+                        child: DropdownButton<FileModel>(
+                      items: getItems(),
+                      onChanged: (FileModel d) {
+                        assert(d.files.length > 0);
+                        image = d.files[0];
+                        setState(() {
+                          selectedModel = d;
+                        });
+                      },
+                      value: selectedModel,
+                    ))
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'Next',
+                    style: TextStyle(color: Colors.blue),
                   ),
-                  Divider(),
-                  Container(
-                      height: MediaQuery.of(context).size.height * 0.45,
-                      child: image != null
-                          ? Image.file(File(image),
-                              height: MediaQuery.of(context).size.height * 0.45,
-                              width: MediaQuery.of(context).size.width)
-                          : Container()),
-                  Divider(),
-                  selectedModel == null && selectedModel.files.length < 1
-                      ? Container()
-                      : Container(
-                          height: MediaQuery.of(context).size.height * 0.38,
-                          child: GridView.builder(
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 4,
-                                      crossAxisSpacing: 4,
-                                      mainAxisSpacing: 4),
-                              itemBuilder: (_, i) {
-                                var file = selectedModel.files[i];
+                )
+              ],
+            ),
+            Divider(),
+            Container(
+                height: MediaQuery.of(context).size.height * 0.45,
+                child: image != null
+                    ? Image.file(File(image),
+                        height: MediaQuery.of(context).size.height * 0.45,
+                        width: MediaQuery.of(context).size.width)
+                    : Container()),
+            Divider(),
+            selectedModel == null && selectedModel.files.length < 1
+                ? Container()
+                : Container(
+                    height: MediaQuery.of(context).size.height * 0.38,
+                    child: GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 4,
+                            crossAxisSpacing: 4,
+                            mainAxisSpacing: 4),
+                        itemBuilder: (_, i) {
+                          var file = selectedModel.files[i];
+                          return FutureBuilder(
+                              future: getThumbnailFile(File(file)),
+                              builder: (BuildContext context, snapshot) {
                                 return GestureDetector(
                                   child: Image.file(
-                                    File(file),
+                                    File(selectedModel.files[0]),
                                     fit: BoxFit.cover,
                                   ),
                                   onTap: () {
@@ -118,13 +114,22 @@ class _UploadImageState extends State<UploadImage> {
                                     });
                                   },
                                 );
-                              },
-                              itemCount: selectedModel.files.length),
-                        )
-                ],
+                              });
+                        },
+                        itemCount: selectedModel.files.length),
+                  )
+          ],
         ),
       ),
     );
+  }
+
+  Future<File> getThumbnailFile(File file) async {
+    File compressedFile = await FlutterNativeImage.compressImage(
+      file.path,
+      quality: 5,
+    );
+    return compressedFile;
   }
 
   List<DropdownMenuItem> getItems() {
