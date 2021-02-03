@@ -1,208 +1,142 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'dart:async';
-import 'package:flutter/services.dart';
+import 'package:image/image.dart' as img;
+
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:flutter_native_image/flutter_native_image.dart';
-import 'package:storage_path/storage_path.dart';
+import 'package:get/get.dart';
+import 'package:photo_manager/photo_manager.dart';
+import 'package:workflow/controllers/upload_page_controller.dart';
 import 'package:workflow/models/file_model.dart';
+import 'package:storage_path/storage_path.dart';
+import 'package:workflow/views/clubs/page_navigator.dart';
 
-class UploadImage extends StatefulWidget {
+class UStateful extends StatefulWidget {
+  UStateful({Key key, this.title}) : super(key: key);
+
+  final String title;
+
   @override
-  _UploadImageState createState() => _UploadImageState();
+  _UStatefulState createState() => _UStatefulState();
 }
 
-class _UploadImageState extends State<UploadImage> {
-  List<FileModel> data;
-  FileModel selectedModel;
-  File compressedFile;
-  ScrollController controller;
-  List<String> items = new List.generate(100, (index) => 'Hello $index');
+class _UStatefulState extends State<UStateful> {
+  Future<File> currentImage;
 
-  String image = "";
+  List<AssetEntity> assets = [];
+
   @override
   void initState() {
     super.initState();
-    getImagesPath();
-    controller = new ScrollController()..addListener(_scrollListener);
-    var file = File(image);
-    compressFile(file);
+    _fetchAssets();
   }
 
-  List<DropdownMenuItem> getFolders() {
-    return data
-            .map((e) => DropdownMenuItem(
-                  child: Text(
-                    e.folder,
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  value: e,
-                ))
-            .toList() ??
-        [];
-  }
+  _fetchAssets() async {
+    // Set onlyAll to true, to fetch only the 'Recent' album
+    // which contains all the photos/videos in the storage
+    final albums = await PhotoManager.getAssetPathList(hasAll: true);
+    final recentAlbum = albums.first;
 
-  Future<File> compressFile(File file) async {
-    final filePath = file.absolute.path; // Create output file path
-    // eg:- "Volume/VM/abcd_out.jpeg"
-    final lastIndex = filePath.lastIndexOf(new RegExp(r'.jp'));
-    final splitted = filePath.substring(0, (lastIndex));
-    final outPath = "${splitted}_out${filePath.substring(lastIndex)}";
-    var newcompressedFile = await FlutterImageCompress.compressAndGetFile(
-      file.absolute.path,
-      outPath,
-      quality: 1,
+    // Now that we got the album, fetch all the assets it contains
+    final recentAssets = await recentAlbum.getAssetListRange(
+      start: 0, // start at index 0
+      end: 1000000, // end at a very big index (to get all the assets)
     );
 
-    setState(() {
-      compressedFile = newcompressedFile;
-    });
-    print(file.lengthSync());
-    print(compressedFile.lengthSync());
-    return compressedFile;
-  }
-
-  Future<void> getImagesPath() async {
-    String imagespath = "";
-    try {
-      imagespath = await StoragePath.imagesPath;
-      var response = jsonDecode(imagespath);
-      var imageList = response as List;
-      data =
-          imageList.map<FileModel>((json) => FileModel.fromJson(json)).toList();
-      print(data[1].folder);
-      if (data != null && data.length > 0)
-        setState(() {
-          selectedModel = data[2];
-          image = data[2].files[0];
-          compressFile(File(image));
-        });
-    } on PlatformException {
-      imagespath = 'Failed to get path';
-    }
-    return imagespath;
-  }
-
-  void _scrollListener() {
-    print(controller.position.extentAfter);
-    if (controller.position.extentAfter < 500) {
-      setState(() {
-        items.addAll(new List.generate(42, (index) => 'Inserted $index'));
-      });
-    }
+    // Update the state and notify UI
+    setState(() => assets = recentAssets);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Icon(Icons.clear),
-                    SizedBox(width: 10),
-                    DropdownButtonHideUnderline(
-                      child: DropdownButton<FileModel>(
-                        items: getFolders(),
-                        onChanged: (FileModel fileModel) {
-                          setState(() {
-                            selectedModel = fileModel;
-                            image = fileModel.files[0];
-                            var file = File(image);
-                            compressFile(file);
-                            print(File(image).lengthSync());
-                          });
-                        },
-                        value: selectedModel,
-                      ),
-                    )
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'Next',
-                    style: TextStyle(color: Colors.blue),
-                  ),
-                )
-              ],
+      body: Container(
+          child: Column(
+        children: [
+          Expanded(
+            child: Container(
+              child: Center(
+                child: GetX<UploadImageController>(builder: (controller) {
+                  return FutureBuilder(
+                    future: currentImage,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return Image.file(
+                          snapshot.data,
+                          fit: BoxFit.contain,
+                        );
+                      } else {
+                        return CircularProgressIndicator();
+                      }
+                    },
+                  );
+                }),
+              ),
             ),
-            Divider(),
-            Container(
-                height: MediaQuery.of(context).size.height * 0.45,
-                child: image != null
-                    ? Image.file(compressedFile,
-                        height: MediaQuery.of(context).size.height * 0.45,
-                        width: MediaQuery.of(context).size.width)
-                    : Container()),
-            Divider(),
-            selectedModel == null && selectedModel.files.length < 1
-                ? Container()
-                : Container(
-                    height: MediaQuery.of(context).size.height * 0.38,
-                    child: GridView.builder(
-                        controller: controller,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 4,
-                            crossAxisSpacing: 4,
-                            mainAxisSpacing: 4),
-                        itemBuilder: (_, i) {
-                          var file = selectedModel.files[i];
-                          return GestureDetector(
-                            child: Image.file(
-                              File(file),
-                              fit: BoxFit.cover,
-                            ),
-                            onTap: () {
-                              setState(() {
-                                image = file;
-                              });
-                            },
-                          );
-                        },
-                        itemCount: selectedModel.files.length),
-                  )
-          ],
-        ),
-      ),
+          ),
+          Container(
+            height: 300,
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                // A grid view with 3 items per row
+                crossAxisCount: 3,
+                mainAxisSpacing: 5,
+                crossAxisSpacing: 5,
+              ),
+              itemCount: assets.length,
+              itemBuilder: (_, index) {
+                return buildAssetThumb(
+                  assets[index],
+                );
+              },
+            ),
+          ),
+        ],
+      )),
     );
-    // MaterialApp(
-    //   home: Scaffold(
-    //     appBar: AppBar(
-    //       title: const Text('Plugin example app'),
-    //     ),
-    //     body: Column(
-    //       children: [
-    //         DropdownButton<FileModel>(
-    //           items: getFolders(),
-    //           onChanged: (FileModel fileModel) {
-    //             setState(() {
-    //               selectedModel = fileModel;
-    //               image = fileModel.files[0];
-    //               var file = File(image);
-    //               compressFile(file);
-    //               print(File(image).lengthSync());
-    //             });
-    //           },
-    //           value: selectedModel,
-    //         ),
-    //         Divider(),
-    //         Container(
-    //             height: MediaQuery.of(context).size.height * 0.45,
-    //             child: image != null
-    //                 ? Image.file(compressedFile,
-    //                     height: MediaQuery.of(context).size.height * 0.45,
-    //                     width: MediaQuery.of(context).size.width)
-    //                 : Container()),
-    //         Divider(),
-    //       ],
-    //     ),
-    //   ),
-    // );
+  }
+
+  Future<File> getImage(Future<File> asset) {
+    return asset;
+  }
+
+  buildAssetThumb(AssetEntity asset) {
+    return FutureBuilder<Uint8List>(
+      future: asset.thumbData,
+      builder: (_, snapshot) {
+        final bytes = snapshot.data;
+        // If we have no data, display a spinner
+        if (bytes == null) return CircularProgressIndicator();
+        // If there's data, display it as an image
+        return InkWell(
+          onTap: () {
+            setState(() {
+              currentImage = asset.file;
+            });
+          },
+          child: Stack(
+            children: [
+              // Wrap the image in a Positioned.fill to fill the space
+              Positioned.fill(
+                child: Image.memory(bytes, fit: BoxFit.cover),
+              ),
+              // Display a Play icon if the asset is a video
+              if (asset.type == AssetType.video)
+                Center(
+                  child: Container(
+                    color: Colors.blue,
+                    child: Icon(
+                      Icons.play_arrow,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }

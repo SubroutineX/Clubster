@@ -16,3 +16,14 @@ class FileModel {
     return data;
   }
 }
+
+class AssetPathEntity {
+  // The albums' ID
+  String id;
+  // The albums name
+  String name;
+  // How many assets the album holds
+  int assetCount;
+  // The album's type
+  int albumType;
+}
