@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:workflow/views/CustomIcons.dart';
 import 'package:workflow/views/clubs/clubs_feed/imageDisplay.dart';
-import 'package:workflow/views/clubs/clubs_upload/newUploadPage.dart';
-import 'package:workflow/views/clubs/clubs_upload/upload_img.dart';
-import 'package:workflow/views/clubs/clubs_upload/upload_img1.dart';
+import 'package:workflow/views/clubs/clubs_upload/select_image.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/icons.dart';
 import 'package:workflow/views/styles/styles.dart';
@@ -31,7 +28,7 @@ class Timeline extends StatelessWidget {
                 Story(
                   onTapCall: () {
                     Get.to(
-                      UploadNew(),
+                      SelectImagePage(),
                     );
                   },
                   storyName: "Upload",

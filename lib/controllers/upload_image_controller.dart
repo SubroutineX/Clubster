@@ -16,17 +16,12 @@ class UploadImageController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetchAlbums();
-    fetchAlbumImages();
-    selectCurrentImage(selectedAssets[0].file);
+    fetchAlbumswithImages();
   }
 
   Future<File> selectCurrentImage(Future<File> asset) {
-    Future<File> img = currentImage;
     currentImage = getThumbnailFile(asset);
-    if (img != currentImage) {
-      update(["mainImg"]);
-    }
+    update(["mainImg"]);
   }
 
   Future<File> getThumbnailFile(Future<File> asset) async {
@@ -38,23 +33,33 @@ class UploadImageController extends GetxController {
     return compressedFile;
   }
 
-  void fetchAlbums() async {
+  Future<Widget> fetchAlbumswithImages() async {
     try {
       final fetchedAlbums = await PhotoManager.getAssetPathList();
       albums = fetchedAlbums;
       print(fetchedAlbums[2].name);
+
+      selectedAlbum = albums[0];
+      selectedAssets =
+          await selectedAlbum.getAssetListRange(start: 0, end: 10000);
+      selectCurrentImage(selectedAssets[0].file);
+      print(selectedAssets[0]);
+      Widget gridView = await GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          mainAxisSpacing: 5,
+          crossAxisSpacing: 5,
+        ),
+        itemCount: selectedAssets.length,
+        itemBuilder: (_, index) {
+          return buildAssetThumb(
+            selectedAssets[index],
+          );
+        },
+      );
+      return gridView;
     } catch (err) {
       print(err);
-    }
-  }
-
-  void fetchAlbumImages() async {
-    try {
-      selectedAlbum = albums[0];
-      selectedAssets = await selectedAlbum.getAssetListRange(start: 0, end: 10);
-      print(selectedAssets[0]);
-    } catch (error) {
-      print(error);
     }
   }
 
