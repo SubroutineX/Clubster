@@ -1,28 +1,47 @@
-import 'package:flutter/material.dart';
 import 'dart:io';
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:image_crop/image_crop.dart';
+import 'package:image_picker/image_picker.dart';
 
 class CropPage extends StatefulWidget {
-  final File image;
+  final File file;
 
-  const CropPage({Key key, this.image}) : super(key: key);
+  const CropPage({Key key, this.file}) : super(key: key);
+
   @override
-  _CropPageState createState() => _CropPageState(image);
+  CropPageState createState() => new CropPageState(file);
 }
 
-class _CropPageState extends State<CropPage> {
-  final File image;
-  _CropPageState(this.image);
+class CropPageState extends State<CropPage> {
+  final cropKey = GlobalKey<CropState>();
+
+  final File file;
+
+  CropPageState(this.file);
 
   @override
-  void initState() {
-    super.initState();
+  void dispose() {
+    super.dispose();
+    widget.file?.delete();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: image != null ? Image.file(image) : Container(),
+    return SafeArea(
+      child: Container(
+        child: Center(child: _buildCropimg()),
+      ),
+    );
+  }
+
+  Widget _buildCropimg() {
+    return Container(
+      color: Colors.black,
+      child: Crop(
+        key: cropKey,
+        image: FileImage(file),
+        aspectRatio: 4 / 3,
       ),
     );
   }

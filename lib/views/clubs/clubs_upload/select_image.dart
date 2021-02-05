@@ -49,7 +49,7 @@ class SelectImagePage extends StatelessWidget {
                     File image = await controller.currentImage;
                     Get.to(
                       CropPage(
-                        image: image,
+                        file: image,
                       ),
                     );
                   },
