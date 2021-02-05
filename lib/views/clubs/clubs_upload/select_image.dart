@@ -55,20 +55,26 @@ class SelectImagePage extends StatelessWidget {
                       ),
                     );
                   },
-                  child: Row(
-                    children: [
-                      Text(
-                        "Next",
-                        style: textStyleR(
-                          18,
-                          violet,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 5,
+                      vertical: 5,
+                    ),
+                    child: Row(
+                      children: [
+                        Text(
+                          "Next",
+                          style: textStyleR(
+                            18,
+                            violet,
+                          ),
                         ),
-                      ),
-                      Icon(
-                        Icons.chevron_right,
-                        color: violet,
-                      ),
-                    ],
+                        Icon(
+                          Icons.chevron_right,
+                          color: violet,
+                        ),
+                      ],
+                    ),
                   ),
                 );
               }),
@@ -96,7 +102,7 @@ class SelectImagePage extends StatelessWidget {
                   if (snapshot.hasData) {
                     return Center(
                       child: Crop(
-                        maximumScale: 1,
+                        maximumScale: 2,
                         key: controller.cropKey,
                         image: FileImage(
                           snapshot.data,
@@ -104,8 +110,10 @@ class SelectImagePage extends StatelessWidget {
                       ),
                     );
                   } else {
-                    return Center(
-                      child: CircularProgressIndicator(),
+                    return Container(
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
                     );
                   }
                 },
@@ -115,10 +123,10 @@ class SelectImagePage extends StatelessWidget {
         ),
         builder: (context, state) {
           return Container(
-            height: deviceDimensions.height * .50,
+            height: deviceDimensions.height * .65,
             color: white,
             padding: EdgeInsets.only(
-              top: 20,
+              top: 25,
               left: 10,
               right: 10,
             ),
@@ -133,7 +141,7 @@ class SelectImagePage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 25,
                 ),
                 Expanded(
                   child: GetBuilder<UploadImageController>(

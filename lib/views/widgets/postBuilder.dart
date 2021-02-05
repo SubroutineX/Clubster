@@ -88,7 +88,7 @@ class PostCard extends StatelessWidget {
           ),
           SizedBox(height: 10),
           AspectRatio(
-            aspectRatio: 16 / 9,
+            aspectRatio: 1,
             child: GestureDetector(
               onTap: () {
                 Get.to(ImageView(
@@ -266,7 +266,7 @@ class ImageUploadBuilder extends StatelessWidget {
           ),
           SizedBox(height: 10),
           AspectRatio(
-            aspectRatio: 16 / 9,
+            aspectRatio: 1,
             child: Container(
               decoration: BoxDecoration(
                 color: transparent,

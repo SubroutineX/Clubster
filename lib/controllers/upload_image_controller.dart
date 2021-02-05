@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_native_image/flutter_native_image.dart';
 import 'package:get/get.dart';
 import 'package:image_crop/image_crop.dart';
 import 'package:photo_manager/photo_manager.dart';
@@ -25,14 +26,15 @@ class UploadImageController extends GetxController {
     update(["mainImg"]);
   }
 
-  // Future<File> getThumbnailFile(Future<File> asset) async {
-  //   final file = await asset;
-  //   File compressedFile = await FlutterNativeImage.compressImage(
-  //     file.path,
-  //     quality: 50,
-  //   );
-  //   return compressedFile;
-  // }
+  Future<File> getCompressedFile(Future<File> asset) async {
+    final file = await asset;
+    // print(file.path);
+    File compressedFile = await FlutterNativeImage.compressImage(
+      file.path,
+      quality: 65,
+    );
+    return compressedFile;
+  }
 
   fetchAlbumswithImages() async {
     try {
@@ -69,7 +71,6 @@ class UploadImageController extends GetxController {
   }
 
   buildImageThumbnail(AssetEntity asset) {
-    Future<File> originalImage = asset.originFile;
     return FutureBuilder<Uint8List>(
       future: asset.thumbDataWithSize(
         256,
@@ -78,12 +79,11 @@ class UploadImageController extends GetxController {
       ),
       builder: (_, snapshot) {
         final bytes = snapshot.data;
-        if (bytes == null) return CircularProgressIndicator();
+        if (bytes == null)
+          return Container(child: Center(child: CircularProgressIndicator()));
         return InkWell(
           onTap: () {
-            setCurrentImage(
-              originalImage,
-            );
+            setCurrentImage(getCompressedFile(asset.originFile));
           },
           child: Container(
             child: Image.memory(bytes, fit: BoxFit.cover),

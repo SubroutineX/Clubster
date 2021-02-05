@@ -20,9 +20,9 @@ class BottomNavBar extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: fontColor.withOpacity(.25),
-            blurRadius: 10,
-            offset: Offset(0, 2.5),
+            color: fontColor.withOpacity(.40),
+            blurRadius: 15,
+            offset: Offset(0, 1.8),
             spreadRadius: -7,
           )
         ],
@@ -33,7 +33,7 @@ class BottomNavBar extends StatelessWidget {
           init: Get.find<NavigationController>(),
           builder: (_controller) {
             return CustomBottomBar(
-              curve: Curves.bounceInOut,
+              curve: Curves.bounceOut,
               duration: Duration(seconds: 1),
               currentIndex: _controller.currentIndex,
               onTap: (index) {
