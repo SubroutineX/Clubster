@@ -164,22 +164,31 @@ class GradientButtonBuilder extends StatelessWidget {
     this.onTap,
     @required this.buttonText,
     this.colors,
+    this.borderRadius,
   }) : super(key: key);
 
   final String buttonText;
   final VoidCallback onTap;
   final List<Color> colors;
+  final BorderRadius borderRadius;
 
   @override
   Widget build(BuildContext context) {
     return Material(
+      shape: borderRadius == null
+          ? StadiumBorder()
+          : RoundedRectangleBorder(
+              borderRadius: borderRadius,
+            ),
       child: InkWell(
         onTap: onTap,
         child: Container(
           height: 50,
           padding: EdgeInsets.symmetric(horizontal: 20),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: borderRadius == null
+                  ? BorderRadius.circular(15)
+                  : borderRadius,
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: AlignmentDirectional.bottomEnd,

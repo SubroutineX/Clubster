@@ -2,14 +2,13 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_native_image/flutter_native_image.dart';
 import 'package:get/get.dart';
 import 'package:image_crop/image_crop.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 class UploadImageController extends GetxController {
   Future<File> currentImage;
-  List<AssetEntity> selectedAssets = [];
+  List<AssetEntity> selectedImages = [];
   List<AssetPathEntity> albums = [];
   AssetPathEntity selectedAlbum;
 
@@ -21,7 +20,7 @@ class UploadImageController extends GetxController {
     fetchAlbumswithImages();
   }
 
-  Future<File> selectCurrentImage(Future<File> asset) {
+  setCurrentImage(Future<File> asset) {
     currentImage = asset;
     update(["mainImg"]);
   }
@@ -35,29 +34,31 @@ class UploadImageController extends GetxController {
   //   return compressedFile;
   // }
 
-  Future<Widget> fetchAlbumswithImages() async {
+  fetchAlbumswithImages() async {
     try {
       final fetchedAlbums = await PhotoManager.getAssetPathList(
         type: RequestType.image,
       );
       albums = fetchedAlbums;
-      print(fetchedAlbums[2].name);
+      // print(fetchedAlbums[2].name);
 
       selectedAlbum = albums[0];
-      selectedAssets =
+      selectedImages =
           await selectedAlbum.getAssetListRange(start: 0, end: 10000);
-      selectCurrentImage(selectedAssets[0].file);
-      print(selectedAssets[0]);
+      if (currentImage == null) {
+        setCurrentImage(selectedImages[0].file);
+      }
+      // print(selectedAssets[0]);
       Widget gridView = await GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
           mainAxisSpacing: 5,
           crossAxisSpacing: 5,
         ),
-        itemCount: selectedAssets.length,
+        itemCount: selectedImages.length,
         itemBuilder: (_, index) {
-          return buildAssetThumb(
-            selectedAssets[index],
+          return buildImageThumbnail(
+            selectedImages[index],
           );
         },
       );
@@ -67,7 +68,7 @@ class UploadImageController extends GetxController {
     }
   }
 
-  buildAssetThumb(AssetEntity asset) {
+  buildImageThumbnail(AssetEntity asset) {
     Future<File> originalImage = asset.originFile;
     return FutureBuilder<Uint8List>(
       future: asset.thumbDataWithSize(
@@ -80,7 +81,7 @@ class UploadImageController extends GetxController {
         if (bytes == null) return CircularProgressIndicator();
         return InkWell(
           onTap: () {
-            selectCurrentImage(
+            setCurrentImage(
               originalImage,
             );
           },
@@ -92,12 +93,12 @@ class UploadImageController extends GetxController {
     );
   }
 
-  Future<File> cropImage(File inputFile) async {
+  Future<File> cropImage(File selectedFile) async {
     final scale = cropKey.currentState.scale;
     final area = cropKey.currentState.area;
 
     final sample = await ImageCrop.sampleImage(
-      file: inputFile,
+      file: selectedFile,
       preferredSize: (3000 / scale).round(),
     );
 
@@ -107,8 +108,8 @@ class UploadImageController extends GetxController {
     );
 
     sample.delete();
+    // debugPrint('$file');
 
-    debugPrint('$file');
     return file;
   }
 }

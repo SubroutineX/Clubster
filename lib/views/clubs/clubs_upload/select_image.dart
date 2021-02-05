@@ -31,6 +31,7 @@ class SelectImagePage extends StatelessWidget {
         leading: IconButton(
           onPressed: () {
             Get.back();
+            Get.find<UploadImageController>().currentImage = null;
           },
           icon: Icon(
             Icons.chevron_left,
@@ -95,9 +96,8 @@ class SelectImagePage extends StatelessWidget {
                   if (snapshot.hasData) {
                     return Center(
                       child: Crop(
-                        maximumScale: 1.5,
+                        maximumScale: 1,
                         key: controller.cropKey,
-                        aspectRatio: 1,
                         image: FileImage(
                           snapshot.data,
                         ),

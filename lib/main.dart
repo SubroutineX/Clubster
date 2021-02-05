@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 //PACKAGES
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,6 +19,7 @@ Future<void> main() async {
   Paint.enableDithering = true;
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(
     GetMaterialApp(
       initialBinding: AuthBinding(),
