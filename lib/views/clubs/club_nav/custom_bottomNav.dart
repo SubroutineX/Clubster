@@ -8,8 +8,8 @@ class CustomBottomBar extends StatelessWidget {
     this.onTap,
     this.selectedItemColor,
     this.unselectedItemColor,
-    this.margin = const EdgeInsets.all(8),
-    this.itemPadding = const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+    this.margin = const EdgeInsets.all(5),
+    this.itemPadding = const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
     this.duration = const Duration(milliseconds: 500),
     this.curve = Curves.easeOutQuint,
   }) : super(key: key);

@@ -26,6 +26,7 @@ class Timeline extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             physics: BouncingScrollPhysics(),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
                   width: 10,
@@ -68,7 +69,7 @@ class Timeline extends StatelessWidget {
                       );
                     }
                   },
-                  storyName: "Upload",
+                  storyName: "",
                   localUrl: "assets/images/profile.jpg",
                 ),
                 SizedBox(

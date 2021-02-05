@@ -30,8 +30,8 @@ class StoryBuilder extends StatelessWidget {
                     color: transparent,
                   )
                 : Border.all(
-                    width: 1.5,
-                    color: Color(0xff7f00ff),
+                    width: 1.8,
+                    color: orange,
                   ),
             // gradient: LinearGradient(
             //   begin: Alignment.bottomRight,
@@ -106,41 +106,61 @@ class UploadBuilder extends StatelessWidget {
           height: 68,
           width: 68,
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.bottomRight,
-              colors: [
-                Color(0xff7f00ff),
-                Color(0xffe100ff),
-              ],
-            ),
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(50),
-              topRight: Radius.circular(50),
-              bottomLeft: Radius.circular(50),
-              bottomRight: Radius.circular(15),
-            ),
+            color: transparent,
           ),
           child: Center(
             child: GestureDetector(
               onTap: onTapCall,
-              child: Container(
-                height: 63,
-                width: 63,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: localUrl == null
-                      ? Image.network(
-                          storyUrl,
-                          fit: BoxFit.cover,
-                        )
-                      : Image(
-                          fit: BoxFit.cover,
-                          image: AssetImage(localUrl),
+              child: Stack(
+                children: [
+                  Container(
+                    height: 63,
+                    width: 63,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: localUrl == null
+                          ? Image.network(
+                              storyUrl,
+                              fit: BoxFit.cover,
+                            )
+                          : Image(
+                              fit: BoxFit.cover,
+                              image: AssetImage(localUrl),
+                            ),
+                    ),
+                  ),
+                  Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: Container(
+                        height: 20,
+                        width: 20,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: white,
                         ),
-                ),
+                        child: Center(
+                          child: Container(
+                            width: 16,
+                            height: 16,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: orange,
+                            ),
+                            child: Center(
+                              child: Icon(
+                                Icons.add,
+                                color: white,
+                                size: 12,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ))
+                ],
               ),
             ),
           ),

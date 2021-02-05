@@ -9,6 +9,7 @@ Color loginSignup = Color(0xffF1F6FF);
 Color passwordColor = Color(0xffDDE8FC);
 Color fontColor = Color(0xff131a31);
 Color fontColorLight = Color(0x80131a31);
+Color lightred = Color(0xffFFDCde);
 Color red = Color(0xffFF5E5E);
 Color sizzlingRed = Color(0xffE63946);
 Color blue = Color(0xff60A2FF);

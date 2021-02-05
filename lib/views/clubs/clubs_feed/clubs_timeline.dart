@@ -50,7 +50,7 @@ class Clubtimeline extends StatelessWidget {
         gradient: RadialGradient(
           center: Alignment(1, -1),
           colors: [
-            Colors.pink,
+            lightred,
             Color(0xffffffff),
           ],
           radius: .80,

@@ -37,6 +37,7 @@ class PageNavigator extends StatelessWidget {
             }
           },
           child: Stack(
+            alignment: Alignment.center,
             children: [
               Stack(
                 children: [
@@ -48,8 +49,7 @@ class PageNavigator extends StatelessWidget {
                 ],
               ),
               Positioned(
-                bottom: 0,
-                left: 0,
+                bottom: 10,
                 child: BottomNavBar(),
               )
             ],

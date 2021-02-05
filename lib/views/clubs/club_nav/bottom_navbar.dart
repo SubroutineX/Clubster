@@ -15,29 +15,31 @@ class BottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     var deviceDimensions = MediaQuery.of(context).size;
     return Container(
-      width: deviceDimensions.width,
-      padding: EdgeInsets.symmetric(vertical: 5),
+      width: deviceDimensions.width - 30,
+      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: fontColor.withOpacity(.05),
-            blurRadius: 8,
+            color: fontColor.withOpacity(.25),
+            blurRadius: 10,
+            offset: Offset(0, 2.5),
+            spreadRadius: -7,
           )
         ],
         color: white,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
-        ),
+        borderRadius: BorderRadius.circular(60),
       ),
       child: GetBuilder(
           init: Get.find<NavigationController>(),
           builder: (_controller) {
             return CustomBottomBar(
+              curve: Curves.bounceInOut,
+              duration: Duration(seconds: 1),
               currentIndex: _controller.currentIndex,
               onTap: (index) {
                 _controller.selectTab(_controller.pageKeys[index], index);
               },
+              unselectedItemColor: fontColorLight,
               items: [
                 CustomBottomBarItem(
                   icon: Icon(Icons.add),
