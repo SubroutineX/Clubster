@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:workflow/views/clubs/clubs_feed/imageDisplay.dart';
 import 'package:workflow/views/clubs/clubs_upload/select_image.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/icons.dart';
 import 'package:workflow/views/styles/styles.dart';
+import 'package:workflow/views/widgets/postBuilder.dart';
+import 'package:workflow/views/widgets/storyBuilder.dart';
 
 class Timeline extends StatelessWidget {
+  PermissionStatus _permissionStatus;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -25,20 +30,52 @@ class Timeline extends StatelessWidget {
                 SizedBox(
                   width: 10,
                 ),
-                Story(
-                  onTapCall: () {
-                    Get.to(
-                      SelectImagePage(),
-                    );
+                Upload(
+                  onTapCall: () async {
+                    _permissionStatus = await getPermissions();
+
+                    if (_permissionStatus.isGranted) {
+                      Get.to(
+                        SelectImagePage(),
+                      );
+                    } else if (_permissionStatus.isDenied) {
+                      Get.snackbar(
+                        "Permission Denied",
+                        "Cannot access images !",
+                        borderColor: yellow,
+                        borderWidth: .5,
+                        isDismissible: true,
+                        dismissDirection: SnackDismissDirection.HORIZONTAL,
+                        barBlur: 50,
+                        icon: Icon(
+                          FontAwesomeIcons.exclamationCircle,
+                          color: yellow,
+                        ),
+                      );
+                    } else if (_permissionStatus.isPermanentlyDenied) {
+                      Get.snackbar(
+                        "Permission Denied Permanently",
+                        "Please give storage permissions from your system settings",
+                        borderColor: yellow,
+                        borderWidth: .5,
+                        isDismissible: true,
+                        dismissDirection: SnackDismissDirection.HORIZONTAL,
+                        barBlur: 50,
+                        icon: Icon(
+                          FontAwesomeIcons.exclamationCircle,
+                          color: yellow,
+                        ),
+                      );
+                    }
                   },
                   storyName: "Upload",
                   localUrl: "assets/images/profile.jpg",
-                  upload: true,
                 ),
                 SizedBox(
-                  width: 30,
+                  width: 10,
                 ),
                 Story(
+                  seen: false,
                   storyName: "Python",
                   localUrl: "assets/images/python.jpg",
                 ),
@@ -46,6 +83,7 @@ class Timeline extends StatelessWidget {
                   width: 10,
                 ),
                 Story(
+                  seen: false,
                   storyName: "Dance workshop",
                   localUrl: "assets/images/dance.jpg",
                 ),
@@ -53,6 +91,7 @@ class Timeline extends StatelessWidget {
                   width: 10,
                 ),
                 Story(
+                  seen: false,
                   storyName: "TATA motors",
                   localUrl: "assets/images/tata.jpg",
                 ),
@@ -60,6 +99,7 @@ class Timeline extends StatelessWidget {
                   width: 10,
                 ),
                 Story(
+                  seen: true,
                   storyName: "HTML/CSS",
                   localUrl: "assets/images/css.jpg",
                 ),
@@ -67,6 +107,7 @@ class Timeline extends StatelessWidget {
                   width: 10,
                 ),
                 Story(
+                  seen: true,
                   storyName: "Guest Lecture",
                   localUrl: "assets/images/guest.jpg",
                 ),
@@ -74,6 +115,7 @@ class Timeline extends StatelessWidget {
                   width: 10,
                 ),
                 Story(
+                  seen: true,
                   storyName: "Sing along",
                   localUrl: "assets/images/sing.jpg",
                 ),
@@ -126,252 +168,12 @@ class Timeline extends StatelessWidget {
       ),
     );
   }
-}
 
-class Story extends StatelessWidget {
-  const Story({
-    Key key,
-    this.storyName,
-    this.storyUrl,
-    this.onTapCall,
-    this.localUrl,
-    this.upload,
-  }) : super(key: key);
-  final String storyUrl;
-  final String storyName;
-  final String localUrl;
-  final VoidCallback onTapCall;
-  final bool upload;
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Stack(
-          children: [
-            GestureDetector(
-              onTap: onTapCall,
-              child: Container(
-                height: 65,
-                width: 65,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: localUrl == null
-                      ? Image.network(
-                          storyUrl,
-                          fit: BoxFit.cover,
-                        )
-                      : Image(
-                          fit: BoxFit.cover,
-                          image: AssetImage(localUrl),
-                        ),
-                ),
-              ),
-            ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: upload != null
-                  ? Icon(
-                      Icons.add,
-                      size: 12,
-                    )
-                  : Container(),
-            ),
-          ],
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Text(
-          storyName.length > 8
-              ? storyName.toString().substring(0, 8) + "..."
-              : storyName,
-          style: textStyleR(12, fontColor),
-        ),
-      ],
-    );
-  }
-}
-
-class PostCard extends StatelessWidget {
-  const PostCard({
-    Key key,
-    this.name,
-    this.college,
-    this.likes,
-    this.comments,
-    this.bookmark,
-    this.postDay,
-    this.profileImgUrl,
-    this.postImgUrl,
-  }) : super(key: key);
-
-  final String profileImgUrl;
-  final String postImgUrl;
-
-  final String name;
-  final String college;
-  final int likes;
-  final int comments;
-  final bool bookmark;
-  final String postDay;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(left: 10, right: 10),
-      child: Column(
-        children: [
-          Container(
-            child: Row(
-              children: [
-                CircleAvatar(
-                  backgroundImage: AssetImage(
-                    profileImgUrl,
-                  ),
-                  backgroundColor: transparent,
-                ),
-                SizedBox(
-                  width: 15,
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        name,
-                        style: textStyleSB(15, fontColor),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        college,
-                        style: textStyleL(12, fontColor),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        postDay,
-                        style: textStyleL(12, fontColor),
-                      ),
-                      SizedBox(width: 10),
-                      Icon(
-                        Icons.more_vert,
-                        color: fontColor,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: 10),
-          AspectRatio(
-            aspectRatio: 16 / 9,
-            child: GestureDetector(
-              onTap: () {
-                Get.to(ImageView(
-                  tag: postImgUrl,
-                  likes: likes,
-                  comments: comments,
-                ));
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  color: transparent,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Hero(
-                    tag: postImgUrl,
-                    child: Image.asset(
-                      postImgUrl,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Row(
-                  children: [
-                    Icon(
-                      Icons.favorite,
-                      color: sizzlingRed,
-                    ),
-                    SizedBox(
-                      width: 6,
-                    ),
-                    Text(
-                      likes.toString(),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  width: 25,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      commentIcon,
-                      color: fontColor,
-                      fit: BoxFit.cover,
-                    ),
-                    SizedBox(
-                      width: 6,
-                    ),
-                    Text(
-                      comments.toString(),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  width: 25,
-                ),
-                Icon(
-                  Icons.send_rounded,
-                  color: fontColorLight,
-                ),
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                        child: Icon(
-                          Icons.bookmark_outline_rounded,
-                          color: fontColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Divider(thickness: 1, color: fontColorLight.withOpacity(.05))
-        ],
-      ),
-    );
+  Future<PermissionStatus> getPermissions() async {
+    PermissionStatus status = PermissionStatus.undetermined;
+    if (status.isUndetermined) {
+      status = await Permission.storage.request();
+    }
+    return status;
   }
 }
