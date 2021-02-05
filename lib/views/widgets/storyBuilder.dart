@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 
-class Story extends StatelessWidget {
-  const Story({
+class StoryBuilder extends StatelessWidget {
+  const StoryBuilder({
     Key key,
     this.storyName,
     this.storyUrl,
@@ -86,8 +86,8 @@ class Story extends StatelessWidget {
   }
 }
 
-class Upload extends StatelessWidget {
-  const Upload({
+class UploadBuilder extends StatelessWidget {
+  const UploadBuilder({
     Key key,
     this.storyName,
     this.storyUrl,

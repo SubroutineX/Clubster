@@ -3,7 +3,6 @@ import 'package:workflow/views/clubs/club_view/club_view.dart';
 import 'package:workflow/views/clubs/club_profile/club_profile.dart';
 import 'package:workflow/views/clubs/clubs_feed/clubs_timeline.dart';
 import 'package:workflow/views/clubs/clubs_upload/demo_crop.dart';
-import 'package:workflow/views/clubs/clubs_upload/upload_crop.dart';
 import 'package:workflow/views/clubs/create/createTabs.dart';
 
 class TabNavigator extends StatelessWidget {

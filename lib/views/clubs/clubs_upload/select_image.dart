@@ -1,11 +1,11 @@
+import 'package:flutter/material.dart';
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
+import 'package:image_crop/image_crop.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 import 'package:workflow/controllers/upload_image_controller.dart';
-import 'package:workflow/views/clubs/clubs_upload/upload_crop.dart';
+import 'package:workflow/views/clubs/clubs_upload/finish_post.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 
@@ -47,9 +47,10 @@ class SelectImagePage extends StatelessWidget {
                 return GestureDetector(
                   onTap: () async {
                     File image = await controller.currentImage;
+                    File croppedImage = await controller.cropImage(image);
                     Get.to(
-                      CropPage(
-                        file: image,
+                      FinishPost(
+                        file: croppedImage,
                       ),
                     );
                   },
@@ -82,7 +83,8 @@ class SelectImagePage extends StatelessWidget {
           positioning: SnapPositioning.relativeToAvailableSpace,
         ),
         body: Container(
-          height: deviceDimensions.height * 0.675,
+          height: deviceDimensions.height * 0.60,
+          width: double.infinity,
           child: GetBuilder<UploadImageController>(
             id: "mainImg",
             init: UploadImageController(),
@@ -91,9 +93,15 @@ class SelectImagePage extends StatelessWidget {
                 future: controller.currentImage,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    return Image.file(
-                      snapshot.data,
-                      fit: BoxFit.contain,
+                    return Center(
+                      child: Crop(
+                        maximumScale: 1.5,
+                        key: controller.cropKey,
+                        aspectRatio: 1,
+                        image: FileImage(
+                          snapshot.data,
+                        ),
+                      ),
                     );
                   } else {
                     return Center(

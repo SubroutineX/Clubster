@@ -30,7 +30,7 @@ class Timeline extends StatelessWidget {
                 SizedBox(
                   width: 10,
                 ),
-                Upload(
+                UploadBuilder(
                   onTapCall: () async {
                     _permissionStatus = await getPermissions();
 
@@ -74,7 +74,7 @@ class Timeline extends StatelessWidget {
                 SizedBox(
                   width: 10,
                 ),
-                Story(
+                StoryBuilder(
                   seen: false,
                   storyName: "Python",
                   localUrl: "assets/images/python.jpg",
@@ -82,7 +82,7 @@ class Timeline extends StatelessWidget {
                 SizedBox(
                   width: 10,
                 ),
-                Story(
+                StoryBuilder(
                   seen: false,
                   storyName: "Dance workshop",
                   localUrl: "assets/images/dance.jpg",
@@ -90,7 +90,7 @@ class Timeline extends StatelessWidget {
                 SizedBox(
                   width: 10,
                 ),
-                Story(
+                StoryBuilder(
                   seen: false,
                   storyName: "TATA motors",
                   localUrl: "assets/images/tata.jpg",
@@ -98,7 +98,7 @@ class Timeline extends StatelessWidget {
                 SizedBox(
                   width: 10,
                 ),
-                Story(
+                StoryBuilder(
                   seen: true,
                   storyName: "HTML/CSS",
                   localUrl: "assets/images/css.jpg",
@@ -106,7 +106,7 @@ class Timeline extends StatelessWidget {
                 SizedBox(
                   width: 10,
                 ),
-                Story(
+                StoryBuilder(
                   seen: true,
                   storyName: "Guest Lecture",
                   localUrl: "assets/images/guest.jpg",
@@ -114,7 +114,7 @@ class Timeline extends StatelessWidget {
                 SizedBox(
                   width: 10,
                 ),
-                Story(
+                StoryBuilder(
                   seen: true,
                   storyName: "Sing along",
                   localUrl: "assets/images/sing.jpg",
