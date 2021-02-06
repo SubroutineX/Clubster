@@ -36,6 +36,7 @@ const registerUser = require("./controllers/register_user.js");
 const registerClub = require("./controllers/register_club");
 const fetchClubs = require("./controllers/fetch_clubs");
 const fetchClubImage = require("./controllers/fetch_club_image");
+const createPost = require("./controllers/createPost");
 
 //Routes
 
@@ -87,5 +88,6 @@ app.post("/register", registerUser);
 app.post("/registerClub", authenticateToken, registerClub);
 app.get("/fetchClubs", authenticateToken, fetchClubs);
 app.get("/fetchClubImage", fetchClubImage);
+app.post("/createPost", createPost);
 
 app.listen(PORT);

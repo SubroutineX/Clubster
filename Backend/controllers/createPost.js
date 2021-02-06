@@ -11,7 +11,8 @@ module.exports = (req, res) => {
             if (err) {
                 console.log(err);
             }
-            var fileName = fields.caption + new Date().getTime + ".jpg";
+            timestamp = new Date().getTime().toString();
+            var fileName = fields.caption + timestamp + ".jpg";
             var oldpath = files.postImage.path;
             var newpath = appRoot + "/uploads/posts/" + fileName;
             mv(oldpath, newpath, function (err) {
@@ -23,8 +24,8 @@ module.exports = (req, res) => {
                     fileName: fileName,
                     caption: fields.caption,
                     createdAt: curdate,
-                    user: req.user.userName,
-                    college: req.user.college
+                    user: "niku dada",
+                    college: "jspm"
                 });
                 postsModel.save();
                 res.status(200).json("post created");
