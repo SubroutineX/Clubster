@@ -24,7 +24,7 @@ module.exports = (req, res) => {
                     fileName: fileName,
                     caption: fields.caption,
                     createdAt: curdate,
-                    user: req.user.userName,
+                    user: req.user.username,
                     college: req.user.college
                 });
                 postsModel.save();
