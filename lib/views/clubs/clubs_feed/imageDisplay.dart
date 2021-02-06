@@ -96,13 +96,10 @@ class ImageView extends StatelessWidget {
           child: InteractiveViewer(
             panEnabled: true,
             child: AspectRatio(
-              aspectRatio: 16 / 9,
-              child: Hero(
-                tag: tag,
-                child: Image.asset(
-                  tag,
-                  fit: BoxFit.cover,
-                ),
+              aspectRatio: 1,
+              child: Image.asset(
+                tag,
+                fit: BoxFit.cover,
               ),
             ),
           ),

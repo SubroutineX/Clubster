@@ -66,7 +66,7 @@ class UploadImageController extends GetxController {
       );
       return gridView;
     } catch (err) {
-      print(err);
+      // print(err);
     }
   }
 

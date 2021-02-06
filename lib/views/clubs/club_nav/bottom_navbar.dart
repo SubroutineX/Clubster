@@ -34,7 +34,7 @@ class BottomNavBar extends StatelessWidget {
           builder: (_controller) {
             return CustomBottomBar(
               curve: Curves.bounceOut,
-              duration: Duration(seconds: 1),
+              duration: Duration(milliseconds: 500),
               currentIndex: _controller.currentIndex,
               onTap: (index) {
                 _controller.selectTab(_controller.pageKeys[index], index);
