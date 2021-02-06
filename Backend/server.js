@@ -88,6 +88,6 @@ app.post("/register", registerUser);
 app.post("/registerClub", authenticateToken, registerClub);
 app.get("/fetchClubs", authenticateToken, fetchClubs);
 app.get("/fetchClubImage", fetchClubImage);
-app.post("/createPost", createPost);
+app.post("/createPost", authenticateToken, createPost);
 
 app.listen(PORT);

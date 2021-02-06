@@ -24,8 +24,8 @@ module.exports = (req, res) => {
                     fileName: fileName,
                     caption: fields.caption,
                     createdAt: curdate,
-                    user: "niku dada",
-                    college: "jspm"
+                    user: req.user.userName,
+                    college: req.user.college
                 });
                 postsModel.save();
                 res.status(200).json("post created");
