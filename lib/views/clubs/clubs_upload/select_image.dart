@@ -102,7 +102,7 @@ class SelectImagePage extends StatelessWidget {
                   if (snapshot.hasData) {
                     return Center(
                       child: Crop(
-                        maximumScale: 2,
+                        maximumScale: 3,
                         key: controller.cropKey,
                         image: FileImage(
                           snapshot.data,

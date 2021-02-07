@@ -33,18 +33,6 @@ class StoryBuilder extends StatelessWidget {
                     width: 1.8,
                     color: orange,
                   ),
-            // gradient: LinearGradient(
-            //   begin: Alignment.bottomRight,
-            //   colors: seen?.isNull ?? true
-            //       ? [
-            //           Color(0xff7f00ff),
-            //           Color(0xffe100ff),
-            //         ]
-            //       : [
-            //           transparent,
-            //           transparent,
-            //         ],
-            // ),
             borderRadius: BorderRadius.circular(50),
           ),
           child: Center(

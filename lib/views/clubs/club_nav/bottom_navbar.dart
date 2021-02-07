@@ -15,7 +15,7 @@ class BottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     var deviceDimensions = MediaQuery.of(context).size;
     return Container(
-      width: deviceDimensions.width - 30,
+      width: deviceDimensions.width - deviceDimensions.width * 0.1,
       padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
       decoration: BoxDecoration(
         boxShadow: [
@@ -34,7 +34,7 @@ class BottomNavBar extends StatelessWidget {
           builder: (_controller) {
             return CustomBottomBar(
               curve: Curves.bounceOut,
-              duration: Duration(seconds: 1),
+              duration: Duration(milliseconds: 500),
               currentIndex: _controller.currentIndex,
               onTap: (index) {
                 _controller.selectTab(_controller.pageKeys[index], index);

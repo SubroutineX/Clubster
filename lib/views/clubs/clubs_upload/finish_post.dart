@@ -126,12 +126,9 @@ class FinishPost extends StatelessWidget {
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20),
-                        child: Hero(
-                          tag: file.absolute.path,
-                          child: Image.file(
-                            file,
-                            fit: BoxFit.cover,
-                          ),
+                        child: Image.file(
+                          file,
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),

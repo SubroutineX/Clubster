@@ -104,12 +104,9 @@ class PostCard extends StatelessWidget {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
-                  child: Hero(
-                    tag: postImgUrl,
-                    child: Image.asset(
-                      postImgUrl,
-                      fit: BoxFit.cover,
-                    ),
+                  child: Image.asset(
+                    postImgUrl,
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
@@ -274,12 +271,9 @@ class ImageUploadBuilder extends StatelessWidget {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
-                child: Hero(
-                  tag: postImg.absolute.path,
-                  child: Image.file(
-                    postImg,
-                    fit: BoxFit.cover,
-                  ),
+                child: Image.file(
+                  postImg,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
