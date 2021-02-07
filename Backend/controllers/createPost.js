@@ -3,6 +3,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const formidable = require("formidable");
 const posts = require("../models/posts_model");
+const users = require("../models/users_model");
 
 module.exports = (req, res) => {
     try {
@@ -28,6 +29,24 @@ module.exports = (req, res) => {
                     college: req.user.college
                 });
                 postsModel.save();
+                users.updateOne({ userName: req.user.username }, {
+                    $push: {
+                        posts: {
+                            fileName: fileName,
+                            caption: fields.caption,
+                            createdAt: curdate,
+                            user: req.user.username,
+                            college: req.user.college
+                        }
+                    }
+                }, function (err, docs) {
+                    if (err) {
+                        console.log(err)
+                    }
+                    else {
+                        console.log("Updated Docs : ", docs);
+                    }
+                });
                 res.status(200).json("post created");
             });
         });

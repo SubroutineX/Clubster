@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
         var usersModel = new users({
             _id: mongoose.Types.ObjectId(),
             name: req.body.name,
-            userName: req.body.username,
+            userName: req.body.userName,
             user: req.body.user,
             phone: req.body.phone,
             hashedPassword: hashedPassword,
