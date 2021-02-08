@@ -2,13 +2,11 @@ const mongoose = require("mongoose");
 
 var Schema = mongoose.Schema;
 
-var PostsSchema = new Schema({
+var CommentsSchema = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    fileName: String,
-    caption: String,
+    text: String,
     user: String,
-    college: String,
+    parentId: String,
     timeStamp: String
 });
-
-module.exports = mongoose.model("posts", PostsSchema);
+module.exports = mongoose.model("comments", CommentsSchema);

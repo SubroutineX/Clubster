@@ -3,7 +3,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const formidable = require("formidable");
 const posts = require("../models/posts_model");
-const users = require("../models/users_model");
+
 
 module.exports = (req, res) => {
     try {
@@ -13,40 +13,21 @@ module.exports = (req, res) => {
                 console.log(err);
             }
             timestamp = new Date().getTime().toString();
+            var TS = Date().toString();
             var fileName = fields.caption + timestamp + ".jpg";
             var oldpath = files.postImage.path;
             var newpath = appRoot + "/uploads/posts/" + fileName;
             mv(oldpath, newpath, function (err) {
                 if (err) throw err;
-                var datetime = new Date();
-                var curdate = datetime.toISOString().slice(0, 10);
                 var postsModel = new posts({
                     _id: mongoose.Types.ObjectId(),
                     fileName: fileName,
                     caption: fields.caption,
-                    createdAt: curdate,
-                    user: req.user.username,
-                    college: req.user.college
+                    user: req.user.userName,
+                    college: req.user.college,
+                    timeStamp: TS
                 });
                 postsModel.save();
-                users.updateOne({ userName: req.user.username }, {
-                    $push: {
-                        posts: {
-                            fileName: fileName,
-                            caption: fields.caption,
-                            createdAt: curdate,
-                            user: req.user.username,
-                            college: req.user.college
-                        }
-                    }
-                }, function (err, docs) {
-                    if (err) {
-                        console.log(err)
-                    }
-                    else {
-                        console.log("Updated Docs : ", docs);
-                    }
-                });
                 res.status(200).json("post created");
             });
         });
