@@ -33,9 +33,8 @@ class AuthController extends GetxController {
         }
       }
     } catch (error) {
-      print(error.message);
-      Get.snackbar('Error signing In', error.message,
-          snackPosition: SnackPosition.TOP);
+      print(error);
+      Get.snackbar('Error signing In', error, snackPosition: SnackPosition.TOP);
     }
   }
 

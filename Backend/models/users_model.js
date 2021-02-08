@@ -14,7 +14,6 @@ var UsersSchema = new Schema({
     profileImage: String,
     aboutMe: String,
     friends: Array,
-    followingClubs: Array,
     notifications: Array,
     posts: Array
 });

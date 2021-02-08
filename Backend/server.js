@@ -62,7 +62,7 @@ app.post("/login", async (req, res) => {
         }
         if (await bcrypt.compare(password, user.hashedPassword)) {
             key = {
-                username: user.userName,
+                userName: user.userName,
                 college: user.college,
                 dept: user.dept,
             };
