@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'dart:io';
 
 import 'package:get/get.dart';
@@ -8,6 +9,7 @@ import 'package:workflow/controllers/upload_image_controller.dart';
 import 'package:workflow/views/clubs/clubs_upload/finish_post.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
+import 'package:workflow/views/widgets/buttonBuilder.dart';
 
 class SelectImagePage extends StatelessWidget {
   final uploadController = Get.put(UploadImageController());
@@ -30,6 +32,7 @@ class SelectImagePage extends StatelessWidget {
         centerTitle: true,
         leading: IconButton(
           onPressed: () {
+            HapticFeedback.lightImpact();
             Get.back();
             Get.find<UploadImageController>().currentImage = null;
           },
@@ -47,6 +50,7 @@ class SelectImagePage extends StatelessWidget {
               child: GetBuilder<UploadImageController>(builder: (controller) {
                 return GestureDetector(
                   onTap: () async {
+                    HapticFeedback.lightImpact();
                     File image = await controller.currentImage;
                     File croppedImage = await controller.cropImage(image);
                     Get.to(
@@ -56,23 +60,26 @@ class SelectImagePage extends StatelessWidget {
                     );
                   },
                   child: Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 5,
-                      vertical: 5,
+                    padding: EdgeInsets.only(
+                      left: 12,
+                      top: 8,
+                      bottom: 8,
+                      right: 8,
+                    ),
+                    decoration: BoxDecoration(
+                      color: neonBlue,
+                      borderRadius: BorderRadius.circular(
+                        50,
+                      ),
                     ),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          "Next",
-                          style: textStyleR(
-                            18,
-                            violet,
-                          ),
-                        ),
+                        Text("Next"),
                         Icon(
-                          Icons.chevron_right,
-                          color: violet,
-                        ),
+                          Icons.chevron_right_rounded,
+                          size: 15,
+                        )
                       ],
                     ),
                   ),

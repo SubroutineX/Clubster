@@ -41,6 +41,7 @@ dependencies:
     image: ^2.1.19
     photo_manager: ^0.5.8
     image_crop: ^0.3.4
+    # Vibration
 
 dev_dependencies:
     flutter_test:

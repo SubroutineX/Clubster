@@ -9,8 +9,6 @@ import 'package:workflow/views/styles/icons.dart';
 import 'package:workflow/views/styles/styles.dart';
 
 class Clubtimeline extends StatelessWidget {
-  final authController = Get.put(AuthController());
-
   @override
   Widget build(BuildContext context) {
     return Container(
