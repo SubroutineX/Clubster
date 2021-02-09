@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 Color transparent = Colors.transparent;
 Color white = Colors.white;
 Color black = Colors.black;
+Color cardDark = Color(0xff58555e);
+Color grey = Color(0xffa49ba0);
 Color clubsBackground = Color(0xffF5F7FF);
 Color clubsBackground2 = Color(0xffdde4ff);
 Color loginSignup = Color(0xffF1F6FF);

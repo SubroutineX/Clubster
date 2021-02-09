@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:workflow/views/clubs/club_view/club_view.dart';
 import 'package:workflow/views/clubs/club_profile/club_profile.dart';
 import 'package:workflow/views/clubs/clubs_feed/clubs_timeline.dart';
@@ -71,6 +72,13 @@ class Page4 extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text("Page4"),
+      ),
+      body: FloatingActionButton(
+        onPressed: () {
+          Get.isDarkMode
+              ? Get.changeTheme(ThemeData.light())
+              : Get.changeTheme(ThemeData.dark());
+        },
       ),
     );
   }

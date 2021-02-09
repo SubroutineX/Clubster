@@ -9,7 +9,6 @@ import 'package:workflow/controllers/upload_image_controller.dart';
 import 'package:workflow/views/clubs/clubs_upload/finish_post.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
-import 'package:workflow/views/widgets/buttonBuilder.dart';
 
 class SelectImagePage extends StatelessWidget {
   final uploadController = Get.put(UploadImageController());

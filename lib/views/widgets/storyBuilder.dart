@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
+import 'package:workflow/views/styles/themeData.dart';
 
 class StoryBuilder extends StatelessWidget {
   const StoryBuilder({
@@ -67,7 +68,10 @@ class StoryBuilder extends StatelessWidget {
           storyName.length > 8
               ? storyName.toString().substring(0, 8) + "..."
               : storyName,
-          style: textStyleR(12, fontColor),
+          style: textStyleR(
+            12,
+            colorFont(),
+          ),
         ),
       ],
     );
@@ -128,7 +132,7 @@ class UploadBuilder extends StatelessWidget {
                         width: 20,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: white,
+                          color: bw(),
                         ),
                         child: Center(
                           child: Container(
@@ -160,7 +164,7 @@ class UploadBuilder extends StatelessWidget {
           storyName.length > 8
               ? storyName.toString().substring(0, 8) + "..."
               : storyName,
-          style: textStyleR(12, fontColor),
+          style: textStyleR(12, colorFont()),
         ),
       ],
     );

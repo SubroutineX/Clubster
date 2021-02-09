@@ -6,6 +6,7 @@ import 'package:workflow/views/clubs/clubs_feed/imageDisplay.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/icons.dart';
 import 'package:workflow/views/styles/styles.dart';
+import 'package:workflow/views/styles/themeData.dart';
 import 'package:workflow/views/widgets/inputField.dart';
 
 class PostCard extends StatelessWidget {
@@ -41,13 +42,14 @@ class PostCard extends StatelessWidget {
             child: Row(
               children: [
                 CircleAvatar(
+                  radius: 15,
                   backgroundImage: AssetImage(
                     profileImgUrl,
                   ),
                   backgroundColor: transparent,
                 ),
                 SizedBox(
-                  width: 15,
+                  width: 10,
                 ),
                 Expanded(
                   child: Column(
@@ -55,14 +57,14 @@ class PostCard extends StatelessWidget {
                     children: [
                       Text(
                         name,
-                        style: textStyleSB(15, fontColor),
+                        style: textStyleSB(15, colorFont()),
                       ),
                       SizedBox(
                         height: 5,
                       ),
                       Text(
                         college,
-                        style: textStyleL(12, fontColor),
+                        style: textStyleL(12, colorFont()),
                       ),
                     ],
                   ),
@@ -73,12 +75,12 @@ class PostCard extends StatelessWidget {
                     children: [
                       Text(
                         postDay,
-                        style: textStyleL(12, fontColor),
+                        style: textStyleL(12, colorFont()),
                       ),
                       SizedBox(width: 10),
                       Icon(
                         Icons.more_vert,
-                        color: fontColor,
+                        color: colorFont(),
                       ),
                     ],
                   ),
@@ -141,7 +143,7 @@ class PostCard extends StatelessWidget {
                   children: [
                     SvgPicture.asset(
                       commentIcon,
-                      color: fontColor,
+                      color: colorFont(),
                       fit: BoxFit.cover,
                     ),
                     SizedBox(
@@ -157,7 +159,7 @@ class PostCard extends StatelessWidget {
                 ),
                 Icon(
                   Icons.send_rounded,
-                  color: fontColorLight,
+                  color: colorFontLight(),
                 ),
                 Expanded(
                   child: Row(
@@ -166,7 +168,7 @@ class PostCard extends StatelessWidget {
                       Container(
                         child: Icon(
                           Icons.bookmark_outline_rounded,
-                          color: fontColor,
+                          color: colorFont(),
                         ),
                       ),
                     ],
@@ -178,7 +180,7 @@ class PostCard extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          Divider(thickness: 1, color: fontColorLight.withOpacity(.05))
+          Divider(thickness: 1, color: colorFontLight().withOpacity(.35))
         ],
       ),
     );
@@ -230,14 +232,14 @@ class ImageUploadBuilder extends StatelessWidget {
                     children: [
                       Text(
                         name,
-                        style: textStyleSB(15, fontColor),
+                        style: textStyleSB(15, colorFont()),
                       ),
                       SizedBox(
                         height: 5,
                       ),
                       Text(
                         college,
-                        style: textStyleL(12, fontColor),
+                        style: textStyleL(12, colorFont()),
                       ),
                     ],
                   ),
@@ -248,12 +250,12 @@ class ImageUploadBuilder extends StatelessWidget {
                     children: [
                       Text(
                         postDay,
-                        style: textStyleL(12, fontColor),
+                        style: textStyleL(12, colorFont()),
                       ),
                       SizedBox(width: 10),
                       Icon(
                         Icons.more_vert,
-                        color: fontColor,
+                        color: colorFont(),
                       ),
                     ],
                   ),

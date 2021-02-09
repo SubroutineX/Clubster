@@ -13,6 +13,7 @@ import 'package:workflow/views/clubs/club_details/club_details_page.dart';
 //STYLES
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
+import 'package:workflow/views/styles/themeData.dart';
 
 //WIDGETS
 import 'package:workflow/views/widgets/buttonBuilder.dart';
@@ -58,7 +59,7 @@ class ClubCardHorizontal extends StatelessWidget {
                   width: deviceDimensions.width * 0.34,
                   height: 115,
                   decoration: BoxDecoration(
-                    color: white,
+                    color: cardColor(),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: ClipRRect(
@@ -89,7 +90,7 @@ class ClubCardHorizontal extends StatelessWidget {
                   padding:
                       EdgeInsets.only(top: 12, left: 10, right: 10, bottom: 10),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: cardColor(),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Column(
@@ -142,12 +143,18 @@ class ClubCardHorizontal extends StatelessWidget {
                             children: [
                               Text(
                                 "Status",
-                                style: catHeadStyle,
+                                style: textStyleR(
+                                  13,
+                                  colorFontLight(),
+                                ),
                               ),
                               SizedBox(height: 5),
                               Text(
                                 clubInfoCard.status,
-                                style: catStyle,
+                                style: textStyleR(
+                                  16,
+                                  colorFont(),
+                                ),
                               ),
                             ],
                           ),
