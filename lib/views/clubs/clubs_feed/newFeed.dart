@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -14,6 +15,7 @@ import 'package:workflow/views/widgets/storyBuilder.dart';
 
 class Feed extends StatelessWidget {
   PermissionStatus _permissionStatus;
+
   final authController = Get.find<AuthController>();
 
   @override
@@ -36,7 +38,10 @@ class Feed extends StatelessWidget {
           SliverAppBar(
             backgroundColor: transparent,
             leading: IconButton(
-              onPressed: () => print("svg"),
+              onPressed: () {
+                print("svg");
+                HapticFeedback.lightImpact();
+              },
               icon: SvgPicture.asset(
                 menuIcon,
                 color: fontColor,
@@ -82,8 +87,9 @@ class Feed extends StatelessWidget {
                           ),
                           UploadBuilder(
                             onTapCall: () async {
-                              _permissionStatus = await getPermissions();
+                              HapticFeedback.lightImpact();
 
+                              _permissionStatus = await getPermissions();
                               if (_permissionStatus.isGranted) {
                                 Get.to(
                                   SelectImagePage(),

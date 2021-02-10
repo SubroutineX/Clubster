@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:flutter/services.dart';
 
 //GETX CONTROLLERS
 import 'package:get/get.dart';
@@ -37,6 +38,7 @@ class BottomNavBar extends StatelessWidget {
               duration: Duration(milliseconds: 500),
               currentIndex: _controller.currentIndex,
               onTap: (index) {
+                HapticFeedback.lightImpact();
                 _controller.selectTab(_controller.pageKeys[index], index);
               },
               unselectedItemColor: fontColorLight,
