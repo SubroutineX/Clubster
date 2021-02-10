@@ -1,6 +1,9 @@
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 const users = require("../models/users_model");
+const follows = require("../models/follows_model");
+const newsFeed = require("../models/news_feed_model");
+
 
 
 module.exports = async (req, res) => {
@@ -21,6 +24,10 @@ module.exports = async (req, res) => {
         console.log(usersModel);
         usersModel.save();
         res.status(200).json({ success: 'True' });
+        var newsFeedModel = new newsFeed({ _id: mongoose.Types.ObjectId(), user: req.body.userName });
+        newsFeedModel.save();
+        var followsModel = new follows({ _id: mongoose.Types.ObjectId(), follower: req.body.userName, followee: req.body.userName, type: "endUser" });
+        followsModel.save();
 
     } catch (err) {
         console.log(err);

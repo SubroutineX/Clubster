@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:workflow/controllers/auth_controller.dart';
 import 'package:workflow/views/clubs/clubs_upload/select_image.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/icons.dart';
@@ -13,6 +14,7 @@ import 'package:workflow/views/widgets/storyBuilder.dart';
 
 class Feed extends StatelessWidget {
   PermissionStatus _permissionStatus;
+  final authController = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +56,7 @@ class Feed extends StatelessWidget {
                   color: fontColor,
                 ),
                 onPressed: () {
-                  // authController.logoutUser();
+                  authController.logoutUser();
                 },
               ),
             ],
