@@ -40,7 +40,7 @@ class ClubViewBody extends StatelessWidget {
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: "Search...",
-                    hintStyle: textStyleR(
+                    hintStyle: textStyleSofiaR(
                       16,
                       colorFont(),
                     ),
