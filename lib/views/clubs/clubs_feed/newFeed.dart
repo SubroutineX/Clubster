@@ -23,7 +23,6 @@ class Feed extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return CustomScrollView(
       physics: ClampingScrollPhysics(),
       slivers: [
@@ -34,7 +33,6 @@ class Feed extends StatelessWidget {
           expandedHeight: 200,
           elevation: 0,
           flexibleSpace: FlexibleSpaceBar(
-            
             background: Container(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -194,27 +192,29 @@ class Feed extends StatelessWidget {
             ),
           ),
         ),
-          SliverToBoxAdapter(
-            child: Obx(
-              () => Column(
-                children: [
-                  for (int i = newsFeedCOntroller.newsFeed.length - 1;
-                      i >= 0;
-                      i--)
-                    PostCard(
-                      name: newsFeedCOntroller.newsFeed[i].user,
-                      college: newsFeedCOntroller.newsFeed[i].college,
-                      postDay: "today",
-                      postImgUrl:
-                          "http://65.1.43.39:8000/fetchNewsImage?imageName=" +
-                              newsFeedCOntroller.newsFeed[i].fileName,
-                      likes: 20,
-                      comments: 2,
-                      bookmark: false,
-                      profileImgUrl: "assets/images/cricket.jpg",
-                    )
-                ],
-              ),
+        SliverToBoxAdapter(
+          child: Obx(
+            () => Column(
+              children: [
+                for (int i = newsFeedCOntroller.newsFeed.length - 1;
+                    i >= 0;
+                    i--)
+                  PostCard(
+                    name: newsFeedCOntroller.newsFeed[i].user,
+                    college: newsFeedCOntroller.newsFeed[i].college,
+                    postDay: "today",
+                    postImgUrl:
+                        "http://65.1.43.39:8000/fetchNewsImage?imageName=" +
+                            newsFeedCOntroller.newsFeed[i].fileName,
+                    likes: 20,
+                    comments: 2,
+                    bookmark: false,
+                    profileImgUrl: "assets/images/cricket.jpg",
+                  ),
+                SizedBox(
+                  height: 80,
+                ),
+              ],
             ),
           ),
         ),

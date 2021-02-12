@@ -23,7 +23,7 @@ class ClubViewBody extends StatelessWidget {
       slivers: [
         SliverAppBar(
           floating: true,
-          backgroundColor: transparent,
+          backgroundColor: bw(),
           elevation: 0,
           expandedHeight: 50,
           title: Container(
