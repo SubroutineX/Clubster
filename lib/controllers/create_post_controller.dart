@@ -3,9 +3,12 @@ import 'dart:io';
 import 'package:dio/dio.dart' as D;
 import 'package:http_parser/http_parser.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:workflow/controllers/fetch_news_feed_controller.dart';
+import 'package:workflow/views/clubs/clubs_feed/clubs_timeline.dart';
 
 class CreatePostController extends GetxController {
   static var captionChecker = 0;
+  final newsFeedController = Get.find<FetchNewsFeedController>();
   void createPost(File postImage, String caption) async {
     try {
       print(caption + postImage.path);
@@ -40,8 +43,10 @@ class CreatePostController extends GetxController {
             ));
         if (response.statusCode == 200) {
           Get.snackbar("Success", response.data);
+          newsFeedController.fetchFeed();
+          Get.to(Clubtimeline());
         } else {
-          Get.snackbar("Error creating Club", response.data);
+          Get.snackbar("Error creating post", response.data);
         }
       }
     } catch (error) {

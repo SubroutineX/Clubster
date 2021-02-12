@@ -39,6 +39,7 @@ const fetchClubImage = require("./controllers/fetch_club_image");
 const createPost = require("./controllers/create_post");
 const fetchNewsFeed = require("./controllers/fetch_news_feed");
 const fetchFeedImage = require("./controllers/fetch_feed_image");
+const like = require("./controllers/like");
 
 //Routes
 
@@ -93,5 +94,6 @@ app.get("/fetchClubImage", fetchClubImage);
 app.post("/createPost", authenticateToken, createPost);
 app.get("/fetchNewsFeed", authenticateToken, fetchNewsFeed);
 app.get("/fetchNewsImage", fetchFeedImage);
+app.post("/like", authenticateToken, like);
 
 app.listen(PORT);

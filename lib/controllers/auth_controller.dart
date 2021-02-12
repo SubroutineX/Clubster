@@ -16,10 +16,10 @@ class AuthController extends GetxController {
       } else {
         var response = await http.post("http://65.1.43.39:8000/login",
             body: {'phone': phone, 'password': password});
-        print("outside");
+
         if (response.statusCode == 200) {
           final body = jsonDecode(response.body);
-          print(body);
+
           SharedPreferences sharedPreferences =
               await SharedPreferences.getInstance();
           sharedPreferences.setString('token', body['accessToken']);
@@ -46,6 +46,7 @@ class AuthController extends GetxController {
             await SharedPreferences.getInstance();
         sharedPreferences.clear();
         // sharedPreferences.commit();
+
         Get.offAll(TabPage());
       } else {
         Get.snackbar('error Logging Out', response.body);
