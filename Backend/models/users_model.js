@@ -13,9 +13,8 @@ var UsersSchema = new Schema({
     dept: String,
     profileImage: String,
     aboutMe: String,
-    friends: Array,
     notifications: Array,
-    posts: Array
+    createdAt: String
 });
 
 module.exports = mongoose.model("users", UsersSchema);

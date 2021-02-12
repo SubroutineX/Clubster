@@ -36,7 +36,10 @@ const registerUser = require("./controllers/register_user.js");
 const registerClub = require("./controllers/register_club");
 const fetchClubs = require("./controllers/fetch_clubs");
 const fetchClubImage = require("./controllers/fetch_club_image");
-const createPost = require("./controllers/createPost");
+const createPost = require("./controllers/create_post");
+const fetchNewsFeed = require("./controllers/fetch_news_feed");
+const fetchFeedImage = require("./controllers/fetch_feed_image");
+const like = require("./controllers/like");
 
 //Routes
 
@@ -88,6 +91,9 @@ app.post("/register", registerUser);
 app.post("/registerClub", authenticateToken, registerClub);
 app.get("/fetchClubs", authenticateToken, fetchClubs);
 app.get("/fetchClubImage", fetchClubImage);
-app.post("/createPost",authenticateToken, createPost);
+app.post("/createPost", authenticateToken, createPost);
+app.get("/fetchNewsFeed", authenticateToken, fetchNewsFeed);
+app.get("/fetchNewsImage", fetchFeedImage);
+app.post("/like", authenticateToken, like);
 
 app.listen(PORT);

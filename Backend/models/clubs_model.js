@@ -12,6 +12,7 @@ var ClubsSchema = new Schema({
     elite: String,
     college: String,
     members: [],
+    timeStamp: String
 });
 
 module.exports = mongoose.model("clubs", ClubsSchema);

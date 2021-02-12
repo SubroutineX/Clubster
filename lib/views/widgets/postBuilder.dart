@@ -115,13 +115,13 @@ class PostCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(
                   20,
                 ),
-                child: Image.asset(
-                  postImgUrl,
-                  fit: BoxFit.cover,
-                ),
-              ),
+
+                child: Image.network(
+                    postImgUrl,
+                    fit: BoxFit.cover,
+                  ),
             ),
-          ),
+          ),),
           SizedBox(
             height: 10,
           ),

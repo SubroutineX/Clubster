@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:workflow/controllers/auth_controller.dart';
+import 'package:workflow/controllers/fetch_news_feed_controller.dart';
 import 'package:workflow/views/clubs/clubs_upload/select_image.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/icons.dart';
@@ -16,10 +17,13 @@ import 'package:workflow/views/widgets/storyBuilder.dart';
 
 class Feed extends StatelessWidget {
   PermissionStatus _permissionStatus;
-  final authController = Get.put(AuthController());
+
+  final authController = Get.find<AuthController>();
+  final newsFeedCOntroller = Get.put(FetchNewsFeedController());
 
   @override
   Widget build(BuildContext context) {
+
     return CustomScrollView(
       physics: ClampingScrollPhysics(),
       slivers: [
@@ -30,9 +34,7 @@ class Feed extends StatelessWidget {
           expandedHeight: 200,
           elevation: 0,
           flexibleSpace: FlexibleSpaceBar(
-            stretchModes: [
-              StretchMode.blurBackground,
-            ],
+            
             background: Container(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -192,40 +194,28 @@ class Feed extends StatelessWidget {
             ),
           ),
         ),
-        SliverToBoxAdapter(
-          child: Column(
-            children: [
-              PostCard(
-                profileImgUrl: "assets/images/cricket.jpg",
-                postImgUrl: "assets/images/dance.jpg",
-                name: "Nikhil Shinde",
-                college: "D.Y.Patil",
-                postDay: "today",
-                likes: 50,
-                comments: 43,
+          SliverToBoxAdapter(
+            child: Obx(
+              () => Column(
+                children: [
+                  for (int i = newsFeedCOntroller.newsFeed.length - 1;
+                      i >= 0;
+                      i--)
+                    PostCard(
+                      name: newsFeedCOntroller.newsFeed[i].user,
+                      college: newsFeedCOntroller.newsFeed[i].college,
+                      postDay: "today",
+                      postImgUrl:
+                          "http://65.1.43.39:8000/fetchNewsImage?imageName=" +
+                              newsFeedCOntroller.newsFeed[i].fileName,
+                      likes: 20,
+                      comments: 2,
+                      bookmark: false,
+                      profileImgUrl: "assets/images/cricket.jpg",
+                    )
+                ],
               ),
-              PostCard(
-                profileImgUrl: "assets/images/inventors.jpg",
-                postImgUrl: "assets/images/dancers.jpg",
-                name: "Atharva Kulkarni",
-                college: "R.S.C.O.E",
-                postDay: "1d",
-                likes: 50,
-                comments: 43,
-              ),
-              PostCard(
-                profileImgUrl: "assets/images/inventors.jpg",
-                postImgUrl: "assets/images/redline.jpg",
-                name: "Atharva Kulkarni",
-                college: "R.S.C.O.E",
-                postDay: "1d",
-                likes: 50,
-                comments: 43,
-              ),
-              SizedBox(
-                height: 60,
-              ),
-            ],
+            ),
           ),
         ),
       ],
