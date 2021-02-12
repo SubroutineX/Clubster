@@ -11,6 +11,22 @@ Color cardColor() {
   }
 }
 
+Color dividerColor() {
+  if (Get.isDarkMode) {
+    return backgroundLightDark;
+  } else {
+    return Color(0xFFECF8FF);
+  }
+}
+
+Color inputFieldColor() {
+  if (Get.isDarkMode) {
+    return inputBackgroundDark;
+  } else {
+    return inputBackgroundLight;
+  }
+}
+
 Color bw() {
   if (Get.isDarkMode) {
     return black;
@@ -29,7 +45,7 @@ Color colorFont() {
 
 Color colorFontLight() {
   if (Get.isDarkMode) {
-    return grey;
+    return fontColorDark;
   } else {
     return fontColorLight;
   }

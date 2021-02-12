@@ -20,7 +20,8 @@ class DefaultGradientScaffold extends StatelessWidget {
           colors: Get.isDarkMode
               ? [black, black]
               : [
-                  lightred,
+                  // lightred,
+                  white,
                   Color(0xffffffff),
                 ],
           radius: .80,

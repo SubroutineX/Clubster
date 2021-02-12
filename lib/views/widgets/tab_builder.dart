@@ -24,7 +24,7 @@ class TabBuilder extends StatelessWidget {
           alignment: Alignment.center,
           child: Text(
             tabName,
-            style: textStyleR(16, color),
+            style: textStyleSofiaR(16, color),
           ),
         ),
       ),

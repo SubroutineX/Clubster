@@ -143,7 +143,7 @@ class ClubCardHorizontal extends StatelessWidget {
                             children: [
                               Text(
                                 "Status",
-                                style: textStyleR(
+                                style: textStyleSofiaR(
                                   13,
                                   colorFontLight(),
                                 ),
@@ -151,7 +151,7 @@ class ClubCardHorizontal extends StatelessWidget {
                               SizedBox(height: 5),
                               Text(
                                 clubInfoCard.status,
-                                style: textStyleR(
+                                style: textStyleSofiaR(
                                   16,
                                   colorFont(),
                                 ),

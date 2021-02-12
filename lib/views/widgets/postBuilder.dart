@@ -1,13 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-import 'package:workflow/views/clubs/clubs_feed/imageDisplay.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/icons.dart';
 import 'package:workflow/views/styles/styles.dart';
 import 'package:workflow/views/styles/themeData.dart';
-import 'package:workflow/views/widgets/inputField.dart';
 
 class PostCard extends StatelessWidget {
   const PostCard({
@@ -35,18 +32,26 @@ class PostCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 10, right: 10),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(
+            height: 15,
+          ),
           Container(
+            padding: EdgeInsets.only(left: 20, right: 20),
+            height: 40,
             child: Row(
               children: [
-                CircleAvatar(
-                  radius: 15,
-                  backgroundImage: AssetImage(
-                    profileImgUrl,
+                AspectRatio(
+                  aspectRatio: 1,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image(
+                      image: AssetImage(profileImgUrl),
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                  backgroundColor: transparent,
                 ),
                 SizedBox(
                   width: 10,
@@ -54,33 +59,44 @@ class PostCard extends StatelessWidget {
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         name,
-                        style: textStyleSB(15, colorFont()),
+                        style: textStyleGilroySB(
+                          15,
+                          colorFont(),
+                        ),
                       ),
                       SizedBox(
-                        height: 5,
+                        height: 3,
                       ),
                       Text(
                         college,
-                        style: textStyleL(12, colorFont()),
+                        style: textStyleGilroyR(
+                          11,
+                          colorFontLight(),
+                        ),
                       ),
                     ],
                   ),
                 ),
                 Container(
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
                         postDay,
-                        style: textStyleL(12, colorFont()),
+                        style: textStyleGilroyR(
+                          12,
+                          colorFontLight(),
+                        ),
                       ),
-                      SizedBox(width: 10),
+                      SizedBox(
+                        width: 10,
+                      ),
                       Icon(
-                        Icons.more_vert,
-                        color: colorFont(),
+                        Icons.more_horiz_rounded,
                       ),
                     ],
                   ),
@@ -88,28 +104,20 @@ class PostCard extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 10),
-          AspectRatio(
-            aspectRatio: 1,
-            child: GestureDetector(
-              onTap: () {
-                Get.to(ImageView(
-                  tag: postImgUrl,
-                  likes: likes,
-                  comments: comments,
-                ));
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  color: transparent,
-                  borderRadius: BorderRadius.circular(20),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 5, right: 5),
+            child: AspectRatio(
+              aspectRatio: 1.2,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(
+                  20,
                 ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Image.asset(
-                    postImgUrl,
-                    fit: BoxFit.cover,
-                  ),
+                child: Image.asset(
+                  postImgUrl,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
@@ -117,70 +125,64 @@ class PostCard extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          Container(
+          Padding(
+            padding: EdgeInsets.only(left: 20, right: 20),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Row(
-                  children: [
-                    Icon(
-                      Icons.favorite,
-                      color: sizzlingRed,
-                    ),
-                    SizedBox(
-                      width: 6,
-                    ),
-                    Text(
-                      likes.toString(),
-                    ),
-                  ],
+                Icon(
+                  Icons.favorite,
+                  color: red,
+                  size: 22,
+                  semanticLabel: "Like",
                 ),
                 SizedBox(
-                  width: 25,
+                  width: 15,
                 ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      commentIcon,
-                      color: colorFont(),
-                      fit: BoxFit.cover,
-                    ),
-                    SizedBox(
-                      width: 6,
-                    ),
-                    Text(
-                      comments.toString(),
-                    ),
-                  ],
+                SvgPicture.asset(
+                  commentIcon,
+                  color: blue,
+                  height: 22,
                 ),
                 SizedBox(
-                  width: 25,
+                  width: 15,
                 ),
                 Icon(
-                  Icons.send_rounded,
-                  color: colorFontLight(),
+                  Icons.share_rounded,
+                  size: 18,
+                  color: colorFont(),
                 ),
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                        child: Icon(
-                          Icons.bookmark_outline_rounded,
-                          color: colorFont(),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                Spacer(),
+                Icon(
+                  Icons.bookmark_border_outlined,
+                  size: 22,
+                  color: colorFont(),
+                )
               ],
             ),
           ),
           SizedBox(
-            height: 10,
+            height: 18,
           ),
-          Divider(thickness: 1, color: colorFontLight().withOpacity(.35))
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Container(
+              child: Text(
+                "This is my dance club !!!!",
+                style: textStyleGilroySB(
+                  15,
+                  colorFont(),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 25,
+          ),
+          Container(
+            height: 3,
+            color: dividerColor(),
+          ),
         ],
       ),
     );
@@ -232,14 +234,14 @@ class ImageUploadBuilder extends StatelessWidget {
                     children: [
                       Text(
                         name,
-                        style: textStyleSB(15, colorFont()),
+                        style: textStyleGilroySB(15, colorFont()),
                       ),
                       SizedBox(
                         height: 5,
                       ),
                       Text(
                         college,
-                        style: textStyleL(12, colorFont()),
+                        style: textStyleGilroyL(12, colorFont()),
                       ),
                     ],
                   ),
@@ -250,7 +252,7 @@ class ImageUploadBuilder extends StatelessWidget {
                     children: [
                       Text(
                         postDay,
-                        style: textStyleL(12, colorFont()),
+                        style: textStyleGilroyL(12, colorFont()),
                       ),
                       SizedBox(width: 10),
                       Icon(
@@ -296,7 +298,7 @@ class ImageUploadBuilder extends StatelessWidget {
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: "Add caption...",
-                hintStyle: textStyleR(
+                hintStyle: textStyleGilroyR(
                   16,
                   fontColorLight,
                 ),

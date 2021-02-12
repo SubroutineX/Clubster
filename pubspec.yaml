@@ -89,6 +89,25 @@ flutter:
         - family: CustomIcons
           fonts:
               - asset: fonts/CustomIcons.ttf
+        #
+        - family: Gilroy
+          fonts:
+              - asset: fonts/Gilroy_Regular.ttf
+        - family: Gilroy_Medium
+          fonts:
+              - asset: fonts/Gilroy_Medium.ttf
+        - family: Gilroy_SemiBold
+          fonts:
+              - asset: fonts/Gilroy_SemiBold.ttf
+        - family: Gilroy_Bold
+          fonts:
+              - asset: fonts/Gilroy_Bold.ttf
+        - family: Gilroy_Light
+          fonts:
+              - asset: fonts/Gilroy_Light.ttf
+        - family: Gilroy_Thin
+          fonts:
+              - asset: fonts/Gilroy_Thin.ttf
     # fonts:
     #   - family: Schyler
     #     fonts:

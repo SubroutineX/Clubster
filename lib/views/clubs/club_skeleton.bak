@@ -97,7 +97,7 @@
 //       elevation: 0,
 //       title: Text(
 //         "Clubs",
-//         style: textStyleSB(18, fontColor),
+//         style: textStyleSofiaSB(18, fontColor),
 //       ),
 //     );
 //   }

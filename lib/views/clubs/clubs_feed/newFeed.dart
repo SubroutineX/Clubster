@@ -21,51 +21,59 @@ class Feed extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
-      physics: BouncingScrollPhysics(),
+      physics: ClampingScrollPhysics(),
       slivers: [
         SliverAppBar(
-          backgroundColor: transparent,
-          leading: IconButton(
-            onPressed: () {
-              HapticFeedback.lightImpact();
-            },
-            icon: SvgPicture.asset(
-              menuIcon,
-              color: colorFont(),
-              fit: BoxFit.cover,
-            ),
-          ),
-          title: Text(
-            "Clubster",
-            style: textStyleL(
-              18,
-              colorFont(),
-            ),
-          ),
-          centerTitle: true,
-          actions: [
-            IconButton(
-              tooltip: "Logout",
-              icon: Icon(
-                Icons.login_outlined,
-                color: colorFont(),
-              ),
-              onPressed: () {
-                HapticFeedback.lightImpact();
-                authController.logoutUser();
-              },
-            ),
-          ],
-          expandedHeight: 175,
+          automaticallyImplyLeading: false,
+          floating: true,
+          backgroundColor: bw(),
+          expandedHeight: 200,
+          elevation: 0,
           flexibleSpace: FlexibleSpaceBar(
             stretchModes: [
               StretchMode.blurBackground,
             ],
             background: Container(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 90,
+                    height: 40,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Hi, Nikhil!",
+                              style: textStyleGilroyR(
+                                16,
+                                colorFontLight(),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "Explore today",
+                              style: textStyleGilroySB(
+                                20,
+                                colorFont(),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
                   ),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
@@ -74,7 +82,7 @@ class Feed extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(
-                          width: 10,
+                          width: 20,
                         ),
                         UploadBuilder(
                           onTapCall: () async {
@@ -169,10 +177,15 @@ class Feed extends StatelessWidget {
                           localUrl: "assets/images/sing.jpg",
                         ),
                         SizedBox(
-                          width: 10,
+                          width: 20,
                         ),
                       ],
                     ),
+                  ),
+                  Spacer(),
+                  Container(
+                    height: 3,
+                    color: dividerColor(),
                   ),
                 ],
               ),
@@ -182,9 +195,6 @@ class Feed extends StatelessWidget {
         SliverToBoxAdapter(
           child: Column(
             children: [
-              SizedBox(
-                height: 15,
-              ),
               PostCard(
                 profileImgUrl: "assets/images/cricket.jpg",
                 postImgUrl: "assets/images/dance.jpg",
@@ -194,9 +204,6 @@ class Feed extends StatelessWidget {
                 likes: 50,
                 comments: 43,
               ),
-              SizedBox(
-                height: 30,
-              ),
               PostCard(
                 profileImgUrl: "assets/images/inventors.jpg",
                 postImgUrl: "assets/images/dancers.jpg",
@@ -205,9 +212,6 @@ class Feed extends StatelessWidget {
                 postDay: "1d",
                 likes: 50,
                 comments: 43,
-              ),
-              SizedBox(
-                height: 30,
               ),
               PostCard(
                 profileImgUrl: "assets/images/inventors.jpg",

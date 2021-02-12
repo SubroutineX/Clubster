@@ -41,7 +41,7 @@ class CreatePage extends StatelessWidget {
         elevation: 0,
         title: Text(
           "Create",
-          style: textStyleSB(18, fontColor),
+          style: textStyleSofiaSB(18, fontColor),
         ),
       ),
       body: Container(

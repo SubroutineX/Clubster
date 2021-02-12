@@ -7,7 +7,7 @@ final TextStyle tabLabelStyle = TextStyle(
   color: fontColor,
 );
 
-TextStyle textStyleSB(double size, Color color) {
+TextStyle textStyleSofiaSB(double size, Color color) {
   return TextStyle(
     fontSize: size,
     fontFamily: "Sofia_Pro_SemiBold",
@@ -15,7 +15,7 @@ TextStyle textStyleSB(double size, Color color) {
   );
 }
 
-TextStyle textStyleB(double size, Color color) {
+TextStyle textStyleSofiaB(double size, Color color) {
   return TextStyle(
     fontSize: size,
     fontFamily: "Sofia_Pro_Bold",
@@ -23,7 +23,7 @@ TextStyle textStyleB(double size, Color color) {
   );
 }
 
-TextStyle textStyleR(double size, Color color) {
+TextStyle textStyleSofiaR(double size, Color color) {
   return TextStyle(
     fontSize: size,
     fontFamily: "Sofia_Pro",
@@ -31,7 +31,7 @@ TextStyle textStyleR(double size, Color color) {
   );
 }
 
-TextStyle textStyleL(double size, Color color) {
+TextStyle textStyleSofiaL(double size, Color color) {
   return TextStyle(
     fontSize: size,
     fontFamily: "Sofia_Pro_Light",
@@ -39,9 +39,49 @@ TextStyle textStyleL(double size, Color color) {
   );
 }
 
-final TextStyle labelStyle = textStyleR(16, fontColor);
+TextStyle textStyleGilroyM(double size, Color color) {
+  return TextStyle(
+    fontSize: size,
+    fontFamily: "Gilroy_Medium",
+    color: color,
+  );
+}
 
-final TextStyle hintStyle = textStyleL(16, fontColorLight);
+TextStyle textStyleGilroySB(double size, Color color) {
+  return TextStyle(
+    fontSize: size,
+    fontFamily: "Gilroy_SemiBold",
+    color: color,
+  );
+}
+
+TextStyle textStyleGilroyB(double size, Color color) {
+  return TextStyle(
+    fontSize: size,
+    fontFamily: "Gilroy_Bold",
+    color: color,
+  );
+}
+
+TextStyle textStyleGilroyR(double size, Color color) {
+  return TextStyle(
+    fontSize: size,
+    fontFamily: "Gilroy",
+    color: color,
+  );
+}
+
+TextStyle textStyleGilroyL(double size, Color color) {
+  return TextStyle(
+    fontSize: size,
+    fontFamily: "Gilroy_Light",
+    color: color,
+  );
+}
+
+final TextStyle labelStyle = textStyleSofiaR(16, fontColor);
+
+final TextStyle hintStyle = textStyleSofiaL(16, fontColorLight);
 
 final TextStyle searchLabelStyle = TextStyle(
   fontSize: 16,

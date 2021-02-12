@@ -23,7 +23,7 @@ class SelectImagePage extends StatelessWidget {
         elevation: 0,
         title: Text(
           "Post Image",
-          style: textStyleL(
+          style: textStyleSofiaL(
             18,
             fontColor,
           ),
@@ -141,7 +141,7 @@ class SelectImagePage extends StatelessWidget {
               children: [
                 Text(
                   "Browse images",
-                  style: textStyleB(
+                  style: textStyleSofiaB(
                     18,
                     fontColor,
                   ),
