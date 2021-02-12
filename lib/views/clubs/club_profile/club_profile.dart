@@ -42,7 +42,7 @@ class ProfilePage extends StatelessWidget {
       elevation: 0,
       title: Text(
         "Profile",
-        style: textStyleSB(18, fontColor),
+        style: textStyleSofiaSB(18, fontColor),
       ),
     );
   }

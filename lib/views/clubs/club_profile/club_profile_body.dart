@@ -93,7 +93,7 @@ class ProfilePageBody extends StatelessWidget {
                                           ),
                                           Text(
                                             "Nikhil Shinde",
-                                            style: textStyleSB(
+                                            style: textStyleSofiaSB(
                                               18,
                                               fontColor,
                                             ),
@@ -103,7 +103,7 @@ class ProfilePageBody extends StatelessWidget {
                                           ),
                                           Text(
                                             "Student",
-                                            style: textStyleR(
+                                            style: textStyleSofiaR(
                                               15,
                                               fontColorLight,
                                             ),
@@ -127,7 +127,7 @@ class ProfilePageBody extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(10),
                                         color: blue,
                                         splashColor: blueSplash,
-                                        textStyle: textStyleR(14, white),
+                                        textStyle: textStyleSofiaR(14, white),
                                       ),
                                     ],
                                   )
@@ -169,7 +169,8 @@ class ProfilePageBody extends StatelessWidget {
                                     children: [
                                       Text(
                                         "Clubs following",
-                                        style: textStyleSB(12, fontColorLight),
+                                        style: textStyleSofiaSB(
+                                            12, fontColorLight),
                                       ),
                                       SizedBox(
                                         height: 10,
@@ -177,7 +178,7 @@ class ProfilePageBody extends StatelessWidget {
                                       Text(
                                         "4",
                                         textAlign: TextAlign.center,
-                                        style: textStyleSB(18, fontColor),
+                                        style: textStyleSofiaSB(18, fontColor),
                                       ),
                                     ],
                                   ),
@@ -191,7 +192,8 @@ class ProfilePageBody extends StatelessWidget {
                                     children: [
                                       Text(
                                         "Clubs Created",
-                                        style: textStyleSB(12, fontColorLight),
+                                        style: textStyleSofiaSB(
+                                            12, fontColorLight),
                                       ),
                                       SizedBox(
                                         height: 10,
@@ -199,7 +201,7 @@ class ProfilePageBody extends StatelessWidget {
                                       Text(
                                         "1",
                                         textAlign: TextAlign.center,
-                                        style: textStyleSB(18, fontColor),
+                                        style: textStyleSofiaSB(18, fontColor),
                                       ),
                                     ],
                                   ),
@@ -213,7 +215,8 @@ class ProfilePageBody extends StatelessWidget {
                                     children: [
                                       Text(
                                         "Club Posts",
-                                        style: textStyleSB(12, fontColorLight),
+                                        style: textStyleSofiaSB(
+                                            12, fontColorLight),
                                       ),
                                       SizedBox(
                                         height: 10,
@@ -221,7 +224,7 @@ class ProfilePageBody extends StatelessWidget {
                                       Text(
                                         "38",
                                         textAlign: TextAlign.center,
-                                        style: textStyleSB(18, fontColor),
+                                        style: textStyleSofiaSB(18, fontColor),
                                       ),
                                     ],
                                   ),

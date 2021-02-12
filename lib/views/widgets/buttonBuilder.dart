@@ -197,7 +197,7 @@ class GradientButtonBuilder extends StatelessWidget {
           child: Center(
             child: Text(
               buttonText,
-              style: textStyleB(20, white),
+              style: textStyleSofiaB(20, white),
             ),
           ),
         ),

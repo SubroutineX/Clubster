@@ -153,7 +153,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return Step(
       title: Text(
         'Step 1',
-        style: textStyleR(18, fontColor),
+        style: textStyleSofiaR(18, fontColor),
       ),
       isActive: currentStep == 0,
       state: currentStep == 0 ? StepState.editing : StepState.indexed,
@@ -272,7 +272,7 @@ class _RegisterPageState extends State<RegisterPage> {
       state: currentStep == 1 ? StepState.editing : StepState.indexed,
       title: Text(
         'Step 2',
-        style: textStyleR(18, fontColor),
+        style: textStyleSofiaR(18, fontColor),
       ),
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -454,7 +454,7 @@ class _RegisterPageState extends State<RegisterPage> {
       state: currentStep == 2 ? StepState.editing : StepState.indexed,
       title: Text(
         'Step 3',
-        style: textStyleR(18, fontColor),
+        style: textStyleSofiaR(18, fontColor),
       ),
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

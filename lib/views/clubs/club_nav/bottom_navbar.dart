@@ -10,6 +10,7 @@ import 'package:workflow/views/clubs/club_nav/custom_bottomNav.dart';
 
 //STYLES
 import 'package:workflow/views/styles/colors.dart';
+import 'package:workflow/views/styles/themeData.dart';
 
 class BottomNavBar extends StatelessWidget {
   @override
@@ -27,7 +28,7 @@ class BottomNavBar extends StatelessWidget {
             spreadRadius: -7,
           )
         ],
-        color: white,
+        color: bw(),
         borderRadius: BorderRadius.circular(60),
       ),
       child: GetBuilder(
@@ -41,7 +42,7 @@ class BottomNavBar extends StatelessWidget {
                 HapticFeedback.lightImpact();
                 _controller.selectTab(_controller.pageKeys[index], index);
               },
-              unselectedItemColor: fontColorLight,
+              unselectedItemColor: colorFont(),
               items: [
                 CustomBottomBarItem(
                   icon: Icon(Icons.add),

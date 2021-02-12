@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
+import 'package:workflow/views/styles/themeData.dart';
 
 class StoryBuilder extends StatelessWidget {
   const StoryBuilder({
@@ -33,7 +34,7 @@ class StoryBuilder extends StatelessWidget {
                     width: 1.8,
                     color: orange,
                   ),
-            borderRadius: BorderRadius.circular(50),
+            borderRadius: BorderRadius.circular(25),
           ),
           child: Center(
             child: GestureDetector(
@@ -42,10 +43,10 @@ class StoryBuilder extends StatelessWidget {
                 height: 60,
                 width: 60,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
+                  borderRadius: BorderRadius.circular(21),
                 ),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
+                  borderRadius: BorderRadius.circular(21),
                   child: localUrl == null
                       ? Image.network(
                           storyUrl,
@@ -67,7 +68,10 @@ class StoryBuilder extends StatelessWidget {
           storyName.length > 8
               ? storyName.toString().substring(0, 8) + "..."
               : storyName,
-          style: textStyleR(12, fontColor),
+          style: textStyleGilroyM(
+            12,
+            colorFont(),
+          ),
         ),
       ],
     );
@@ -105,10 +109,10 @@ class UploadBuilder extends StatelessWidget {
                     height: 63,
                     width: 63,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
+                      borderRadius: BorderRadius.circular(21),
                     ),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(50),
+                      borderRadius: BorderRadius.circular(21),
                       child: localUrl == null
                           ? Image.network(
                               storyUrl,
@@ -128,7 +132,7 @@ class UploadBuilder extends StatelessWidget {
                         width: 20,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: white,
+                          color: bw(),
                         ),
                         child: Center(
                           child: Container(
@@ -160,7 +164,7 @@ class UploadBuilder extends StatelessWidget {
           storyName.length > 8
               ? storyName.toString().substring(0, 8) + "..."
               : storyName,
-          style: textStyleR(12, fontColor),
+          style: textStyleGilroyM(12, colorFont()),
         ),
       ],
     );

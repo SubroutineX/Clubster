@@ -1,12 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-import 'package:workflow/views/clubs/clubs_feed/imageDisplay.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/icons.dart';
 import 'package:workflow/views/styles/styles.dart';
-import 'package:workflow/views/widgets/inputField.dart';
+import 'package:workflow/views/styles/themeData.dart';
 
 class PostCard extends StatelessWidget {
   const PostCard({
@@ -34,51 +32,71 @@ class PostCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 10, right: 10),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(
+            height: 15,
+          ),
           Container(
+            padding: EdgeInsets.only(left: 20, right: 20),
+            height: 40,
             child: Row(
               children: [
-                CircleAvatar(
-                  backgroundImage: AssetImage(
-                    profileImgUrl,
+                AspectRatio(
+                  aspectRatio: 1,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image(
+                      image: AssetImage(profileImgUrl),
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                  backgroundColor: transparent,
                 ),
                 SizedBox(
-                  width: 15,
+                  width: 10,
                 ),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         name,
-                        style: textStyleSB(15, fontColor),
+                        style: textStyleGilroySB(
+                          15,
+                          colorFont(),
+                        ),
                       ),
                       SizedBox(
-                        height: 5,
+                        height: 3,
                       ),
                       Text(
                         college,
-                        style: textStyleL(12, fontColor),
+                        style: textStyleGilroyR(
+                          11,
+                          colorFontLight(),
+                        ),
                       ),
                     ],
                   ),
                 ),
                 Container(
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
                         postDay,
-                        style: textStyleL(12, fontColor),
+                        style: textStyleGilroyR(
+                          12,
+                          colorFontLight(),
+                        ),
                       ),
-                      SizedBox(width: 10),
+                      SizedBox(
+                        width: 10,
+                      ),
                       Icon(
-                        Icons.more_vert,
-                        color: fontColor,
+                        Icons.more_horiz_rounded,
                       ),
                     ],
                   ),
@@ -86,99 +104,85 @@ class PostCard extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 10),
-          AspectRatio(
-            aspectRatio: 1,
-            child: GestureDetector(
-              onTap: () {
-                Get.to(ImageView(
-                  tag: postImgUrl,
-                  likes: likes,
-                  comments: comments,
-                ));
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  color: transparent,
-                  borderRadius: BorderRadius.circular(20),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 5, right: 5),
+            child: AspectRatio(
+              aspectRatio: 1.2,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(
+                  20,
                 ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Image.network(
+
+                child: Image.network(
                     postImgUrl,
                     fit: BoxFit.cover,
                   ),
+            ),
+          ),),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 20, right: 20),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.favorite,
+                  color: red,
+                  size: 22,
+                  semanticLabel: "Like",
+                ),
+                SizedBox(
+                  width: 15,
+                ),
+                SvgPicture.asset(
+                  commentIcon,
+                  color: blue,
+                  height: 22,
+                ),
+                SizedBox(
+                  width: 15,
+                ),
+                Icon(
+                  Icons.share_rounded,
+                  size: 18,
+                  color: colorFont(),
+                ),
+                Spacer(),
+                Icon(
+                  Icons.bookmark_border_outlined,
+                  size: 22,
+                  color: colorFont(),
+                )
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 18,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Container(
+              child: Text(
+                "This is my dance club !!!!",
+                style: textStyleGilroySB(
+                  15,
+                  colorFont(),
                 ),
               ),
             ),
           ),
           SizedBox(
-            height: 10,
+            height: 25,
           ),
           Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Row(
-                  children: [
-                    Icon(
-                      Icons.favorite,
-                      color: sizzlingRed,
-                    ),
-                    SizedBox(
-                      width: 6,
-                    ),
-                    Text(
-                      likes.toString(),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  width: 25,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      commentIcon,
-                      color: fontColor,
-                      fit: BoxFit.cover,
-                    ),
-                    SizedBox(
-                      width: 6,
-                    ),
-                    Text(
-                      comments.toString(),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  width: 25,
-                ),
-                Icon(
-                  Icons.send_rounded,
-                  color: fontColorLight,
-                ),
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                        child: Icon(
-                          Icons.bookmark_outline_rounded,
-                          color: fontColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+            height: 3,
+            color: dividerColor(),
           ),
-          SizedBox(
-            height: 10,
-          ),
-          Divider(thickness: 1, color: fontColorLight.withOpacity(.05))
         ],
       ),
     );
@@ -230,14 +234,14 @@ class ImageUploadBuilder extends StatelessWidget {
                     children: [
                       Text(
                         name,
-                        style: textStyleSB(15, fontColor),
+                        style: textStyleGilroySB(15, colorFont()),
                       ),
                       SizedBox(
                         height: 5,
                       ),
                       Text(
                         college,
-                        style: textStyleL(12, fontColor),
+                        style: textStyleGilroyL(12, colorFont()),
                       ),
                     ],
                   ),
@@ -248,12 +252,12 @@ class ImageUploadBuilder extends StatelessWidget {
                     children: [
                       Text(
                         postDay,
-                        style: textStyleL(12, fontColor),
+                        style: textStyleGilroyL(12, colorFont()),
                       ),
                       SizedBox(width: 10),
                       Icon(
                         Icons.more_vert,
-                        color: fontColor,
+                        color: colorFont(),
                       ),
                     ],
                   ),
@@ -294,7 +298,7 @@ class ImageUploadBuilder extends StatelessWidget {
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: "Add caption...",
-                hintStyle: textStyleR(
+                hintStyle: textStyleGilroyR(
                   16,
                   fontColorLight,
                 ),

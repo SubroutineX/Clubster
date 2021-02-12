@@ -41,7 +41,7 @@ class FinishPost extends StatelessWidget {
         elevation: 0,
         title: Text(
           "Post preview",
-          style: textStyleL(
+          style: textStyleSofiaL(
             18,
             fontColor,
           ),
@@ -85,14 +85,14 @@ class FinishPost extends StatelessWidget {
                             children: [
                               Text(
                                 "Nikhil",
-                                style: textStyleSB(15, fontColor),
+                                style: textStyleSofiaSB(15, fontColor),
                               ),
                               SizedBox(
                                 height: 5,
                               ),
                               Text(
                                 "D.Y.Patil",
-                                style: textStyleL(12, fontColor),
+                                style: textStyleSofiaL(12, fontColor),
                               ),
                             ],
                           ),
@@ -103,7 +103,7 @@ class FinishPost extends StatelessWidget {
                             children: [
                               Text(
                                 "today",
-                                style: textStyleL(12, fontColor),
+                                style: textStyleSofiaL(12, fontColor),
                               ),
                               SizedBox(width: 10),
                               Icon(
@@ -149,7 +149,7 @@ class FinishPost extends StatelessWidget {
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: "Add caption...",
-                        hintStyle: textStyleR(
+                        hintStyle: textStyleSofiaR(
                           16,
                           fontColorLight,
                         ),

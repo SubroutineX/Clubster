@@ -46,12 +46,12 @@ class Loginpage extends GetWidget<AuthController> {
                         SizedBox(height: 50),
                         Text(
                           "Login",
-                          style: textStyleB(30, fontColor),
+                          style: textStyleSofiaB(30, fontColor),
                         ),
                         SizedBox(height: 15),
                         Text(
                           "Access account",
-                          style: textStyleL(18, fontColorLight),
+                          style: textStyleSofiaL(18, fontColorLight),
                         ),
                       ],
                     ),
@@ -88,7 +88,7 @@ class Loginpage extends GetWidget<AuthController> {
                                     print("Forgot pass");
                                   },
                                 text: "Forgot Password?",
-                                style: textStyleR(15, fontColorLight),
+                                style: textStyleSofiaR(15, fontColorLight),
                               ),
                             ),
                           ],
@@ -120,7 +120,7 @@ class Loginpage extends GetWidget<AuthController> {
                           children: [
                             TextSpan(
                               text: "Don't have an account? ",
-                              style: textStyleR(15, fontColorLight),
+                              style: textStyleSofiaR(15, fontColorLight),
                             ),
                             TextSpan(
                               recognizer: TapGestureRecognizer()
@@ -128,7 +128,7 @@ class Loginpage extends GetWidget<AuthController> {
                                   loginPageTabController.animateTo(1);
                                 },
                               text: "Register.",
-                              style: textStyleB(15, fontColor),
+                              style: textStyleSofiaB(15, fontColor),
                             ),
                           ],
                         ),
@@ -148,7 +148,7 @@ class Loginpage extends GetWidget<AuthController> {
                                   Get.to(PageNavigator());
                                 },
                               text: "Bypass Login",
-                              style: textStyleB(15, fontColor),
+                              style: textStyleSofiaB(15, fontColor),
                             ),
                           ],
                         ),

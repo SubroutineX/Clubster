@@ -9,7 +9,6 @@ import 'package:workflow/controllers/upload_image_controller.dart';
 import 'package:workflow/views/clubs/clubs_upload/finish_post.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
-import 'package:workflow/views/widgets/buttonBuilder.dart';
 
 class SelectImagePage extends StatelessWidget {
   final uploadController = Get.put(UploadImageController());
@@ -24,7 +23,7 @@ class SelectImagePage extends StatelessWidget {
         elevation: 0,
         title: Text(
           "Post Image",
-          style: textStyleL(
+          style: textStyleSofiaL(
             18,
             fontColor,
           ),
@@ -142,7 +141,7 @@ class SelectImagePage extends StatelessWidget {
               children: [
                 Text(
                   "Browse images",
-                  style: textStyleB(
+                  style: textStyleSofiaB(
                     18,
                     fontColor,
                   ),
