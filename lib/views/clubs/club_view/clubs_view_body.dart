@@ -29,7 +29,7 @@ class ClubViewBody extends StatelessWidget {
           title: Container(
             height: 48,
             decoration: BoxDecoration(
-              color: cardColor(),
+              color: inputFieldColor(),
               borderRadius: BorderRadius.circular(50),
             ),
             child: Center(
@@ -42,12 +42,12 @@ class ClubViewBody extends StatelessWidget {
                     hintText: "Search...",
                     hintStyle: textStyleSofiaR(
                       16,
-                      colorFont(),
+                      inputFontColor(),
                     ),
                     contentPadding: EdgeInsets.zero,
                     prefixIcon: Icon(
                       Icons.search,
-                      color: colorFont(),
+                      color: inputFontColor(),
                     ),
                   ),
                 ),
@@ -73,14 +73,17 @@ class ClubViewBody extends StatelessWidget {
                         padding: EdgeInsets.symmetric(horizontal: 20),
                         child: Text(
                           "Popular",
-                          style: appBarHead,
+                          style: textStyleSofiaSB(
+                            18,
+                            colorFont(),
+                          ),
                         ),
                       ),
                       SizedBox(
                         height: 10,
                       ),
                       Container(
-                        height: 220,
+                        height: 260,
                         width: deviceDimensions.width,
                         padding: EdgeInsets.symmetric(vertical: 10),
                         child: GetX<ClubController>(
@@ -109,7 +112,7 @@ class ClubViewBody extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 20),
@@ -118,7 +121,10 @@ class ClubViewBody extends StatelessWidget {
                     children: [
                       Text(
                         "Other",
-                        style: appBarHead,
+                        style: textStyleSofiaSB(
+                          18,
+                          colorFont(),
+                        ),
                       ),
                       SizedBox(height: 20),
                       GetX<ClubController>(
@@ -142,6 +148,9 @@ class ClubViewBody extends StatelessWidget {
                       ),
                     ],
                   ),
+                ),
+                SizedBox(
+                  height: 60,
                 ),
               ],
             ),

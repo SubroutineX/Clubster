@@ -4,7 +4,8 @@ Color transparent = Colors.transparent;
 Color white = Colors.white;
 Color black = Colors.black;
 Color cardDark = Color(0xff5f6065);
-Color grey = Color(0xffa49ba0);
+Color shadowDark = Color(0xFF1E2128);
+Color shadowLight = Color(0xFFf1f1f1);
 Color clubsBackground = Color(0xffF5F7FF);
 Color clubsBackground2 = Color(0xffdde4ff);
 Color loginSignup = Color(0xffF1F6FF);
@@ -39,7 +40,7 @@ Color fontColorLight = Color(0xFF1A1922);
 
 //Dark Theme colors
 Color backgroundDark = Color(0xFF000000);
-Color backgroundLightDark = Color(0xFF1E2128);
+Color backgroundDarkLight = Color(0xFF1E2128);
 Color inputBackgroundDark = Color(0xFF24272E);
 Color inputFontDark = Color(0xFF5A5D66);
 Color fontColorDarkSub = Color(0xFF5D5F6B);

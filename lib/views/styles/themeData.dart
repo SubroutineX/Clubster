@@ -3,17 +3,33 @@ import 'package:get/get.dart';
 
 import 'colors.dart';
 
-Color cardColor() {
+Color bw() {
   if (Get.isDarkMode) {
-    return cardDark;
+    return black;
   } else {
     return white;
   }
 }
 
+Color shadowColor() {
+  if (Get.isDarkMode) {
+    return shadowDark;
+  } else {
+    return shadowLight;
+  }
+}
+
+Color cardColor() {
+  if (Get.isDarkMode) {
+    return backgroundDarkLight;
+  } else {
+    return backgroundLight;
+  }
+}
+
 Color dividerColor() {
   if (Get.isDarkMode) {
-    return backgroundLightDark;
+    return backgroundDarkLight;
   } else {
     return Color(0xFFECF8FF);
   }
@@ -27,26 +43,26 @@ Color inputFieldColor() {
   }
 }
 
-Color bw() {
+Color inputFontColor() {
   if (Get.isDarkMode) {
-    return black;
+    return inputFontDark;
   } else {
-    return white;
+    return fontColorLightSub;
   }
 }
 
 Color colorFont() {
   if (Get.isDarkMode) {
-    return white;
+    return fontColorDark;
   } else {
-    return fontColor;
+    return fontColorLight;
   }
 }
 
 Color colorFontLight() {
   if (Get.isDarkMode) {
-    return fontColorDark;
+    return fontColorDarkSub;
   } else {
-    return fontColorLight;
+    return fontColorLightSub;
   }
 }

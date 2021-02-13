@@ -13,6 +13,7 @@ import 'package:workflow/views/clubs/club_details/club_details_page.dart';
 //STYLES
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
+import 'package:workflow/views/styles/themeData.dart';
 
 //WIDGETS
 import 'package:workflow/views/widgets/buttonBuilder.dart';
@@ -48,8 +49,18 @@ class ClubCardVertical extends StatelessWidget {
           );
         },
         child: Container(
-          width: 155,
-          height: 220,
+          width: 170,
+          height: 250,
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: shadowColor(),
+                blurRadius: 10,
+                spreadRadius: -10,
+                offset: Offset(0, -3),
+              ),
+            ],
+          ),
           child: Stack(
             fit: StackFit.expand,
             children: [
@@ -57,10 +68,9 @@ class ClubCardVertical extends StatelessWidget {
                 top: 0,
                 left: 0,
                 child: Container(
-                  width: 150,
-                  height: 130,
+                  width: 165,
+                  height: 150,
                   decoration: BoxDecoration(
-                    color: clubsBackground,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: ClipRRect(
@@ -83,14 +93,14 @@ class ClubCardVertical extends StatelessWidget {
                 ),
               ),
               Positioned(
-                top: 100,
+                top: 120,
                 left: 0,
                 child: Container(
-                  width: 150,
+                  width: 165,
                   height: 100,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: white,
+                    color: cardColor(),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Column(
@@ -99,7 +109,10 @@ class ClubCardVertical extends StatelessWidget {
                     children: [
                       AutoSizeText(
                         clubInfoCard.clubName,
-                        style: productTitleStyle,
+                        style: textStyleSofiaSB(
+                          16,
+                          colorFont(),
+                        ),
                         minFontSize: 15,
                         stepGranularity: 3,
                         maxLines: 2,
@@ -114,20 +127,29 @@ class ClubCardVertical extends StatelessWidget {
                             children: [
                               Text(
                                 "Status",
-                                style: catHeadStyle,
+                                style: textStyleSofiaR(
+                                  12,
+                                  colorFontLight(),
+                                ),
                                 textScaleFactor: 1,
                               ),
-                              SizedBox(height: 5),
+                              SizedBox(height: 3),
                               Text(
                                 clubInfoCard.status,
-                                style: catStyle,
+                                style: textStyleSofiaR(
+                                  15,
+                                  colorFont(),
+                                ),
                                 textScaleFactor: 1,
                               ),
                             ],
                           ),
                           Text(
-                            '100',
-                            style: idStyle,
+                            '#100',
+                            style: textStyleSofiaR(
+                              12,
+                              colorFont(),
+                            ),
                             textScaleFactor: 1,
                           ),
                         ],
@@ -136,31 +158,31 @@ class ClubCardVertical extends StatelessWidget {
                   ),
                 ),
               ),
-              Positioned(
-                right: 15,
-                top: 10,
-                child: Container(
-                  width: 65,
-                  height: 28,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      BookmarkButtonBuilder(
-                        pageInfo: clubInfoCard,
-                        size: 28,
-                        iconSize: 18,
-                        shadowColor: fontColor.withOpacity(.1),
-                      ),
-                      LikeButtonBuilder(
-                        pageInfo: clubInfoCard,
-                        size: 28,
-                        iconSize: 18,
-                        shadowColor: fontColor.withOpacity(.1),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              // Positioned(
+              //   right: 15,
+              //   top: 10,
+              //   child: Container(
+              //     width: 65,
+              //     height: 28,
+              //     child: Row(
+              //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //       children: [
+              //         BookmarkButtonBuilder(
+              //           pageInfo: clubInfoCard,
+              //           size: 28,
+              //           iconSize: 18,
+              //           shadowColor: fontColor.withOpacity(.1),
+              //         ),
+              //         LikeButtonBuilder(
+              //           pageInfo: clubInfoCard,
+              //           size: 28,
+              //           iconSize: 18,
+              //           shadowColor: fontColor.withOpacity(.1),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),

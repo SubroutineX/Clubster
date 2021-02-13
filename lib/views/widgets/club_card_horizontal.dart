@@ -48,7 +48,17 @@ class ClubCardHorizontal extends StatelessWidget {
           ClubDetailsPage(clubInfoPage: clubInfoCard),
         ),
         child: Container(
-          height: 115,
+          height: 135,
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: shadowColor(),
+                blurRadius: 20,
+                spreadRadius: -10,
+                offset: Offset(0, 10),
+              ),
+            ],
+          ),
           child: Stack(
             fit: StackFit.expand,
             children: [
@@ -56,10 +66,9 @@ class ClubCardHorizontal extends StatelessWidget {
                 top: 0,
                 left: 0,
                 child: Container(
-                  width: deviceDimensions.width * 0.34,
-                  height: 115,
+                  width: deviceDimensions.width * 0.42,
+                  height: 135,
                   decoration: BoxDecoration(
-                    color: cardColor(),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: ClipRRect(
@@ -85,8 +94,8 @@ class ClubCardHorizontal extends StatelessWidget {
                 top: 0,
                 right: 0,
                 child: Container(
-                  width: deviceDimensions.width * 0.63,
-                  height: 115,
+                  width: deviceDimensions.width * 0.56,
+                  height: 135,
                   padding:
                       EdgeInsets.only(top: 12, left: 10, right: 10, bottom: 10),
                   decoration: BoxDecoration(
@@ -105,33 +114,36 @@ class ClubCardHorizontal extends StatelessWidget {
                             width: width63 - 95,
                             child: AutoSizeText(
                               clubInfoCard.clubName,
-                              style: productTitleStyle,
+                              style: textStyleSofiaSB(
+                                16,
+                                colorFont(),
+                              ),
                               minFontSize: 15,
                               stepGranularity: 3,
                               maxLines: 2,
                             ),
                           ),
-                          Container(
-                            width: 65,
-                            height: 28,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                BookmarkButtonBuilder(
-                                  pageInfo: clubInfoCard,
-                                  size: 28,
-                                  iconSize: 18,
-                                  shadowColor: fontColor.withOpacity(.1),
-                                ),
-                                LikeButtonBuilder(
-                                  pageInfo: clubInfoCard,
-                                  size: 28,
-                                  iconSize: 18,
-                                  shadowColor: fontColor.withOpacity(.1),
-                                ),
-                              ],
-                            ),
-                          ),
+                          // Container(
+                          //   width: 65,
+                          //   height: 28,
+                          //   child: Row(
+                          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //     children: [
+                          //       BookmarkButtonBuilder(
+                          //         pageInfo: clubInfoCard,
+                          //         size: 28,
+                          //         iconSize: 18,
+                          //         shadowColor: fontColor.withOpacity(.1),
+                          //       ),
+                          //       LikeButtonBuilder(
+                          //         pageInfo: clubInfoCard,
+                          //         size: 28,
+                          //         iconSize: 18,
+                          //         shadowColor: fontColor.withOpacity(.1),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
                         ],
                       ),
                       Row(
@@ -144,23 +156,26 @@ class ClubCardHorizontal extends StatelessWidget {
                               Text(
                                 "Status",
                                 style: textStyleSofiaR(
-                                  13,
+                                  12,
                                   colorFontLight(),
                                 ),
                               ),
-                              SizedBox(height: 5),
+                              SizedBox(height: 3),
                               Text(
                                 clubInfoCard.status,
                                 style: textStyleSofiaR(
-                                  16,
+                                  15,
                                   colorFont(),
                                 ),
                               ),
                             ],
                           ),
                           Text(
-                            '100',
-                            style: idStyle,
+                            '#100',
+                            style: textStyleSofiaR(
+                              12,
+                              colorFont(),
+                            ),
                           ),
                         ],
                       )
