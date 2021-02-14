@@ -1,33 +1,21 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:workflow/controllers/fetch_news_feed_controller.dart';
+import 'package:workflow/models/news_feed.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/icons.dart';
 import 'package:workflow/views/styles/styles.dart';
 import 'package:workflow/views/styles/themeData.dart';
 
 class PostCard extends StatelessWidget {
-  const PostCard({
+  PostCard({
     Key key,
-    this.name,
-    this.college,
-    this.likes,
-    this.comments,
-    this.bookmark,
-    this.postDay,
-    this.profileImgUrl,
-    this.postImgUrl,
+    @required this.postInfo,
   }) : super(key: key);
 
-  final String profileImgUrl;
-  final String postImgUrl;
-
-  final String name;
-  final String college;
-  final int likes;
-  final int comments;
-  final bool bookmark;
-  final String postDay;
+  final NewsFeed postInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +35,12 @@ class PostCard extends StatelessWidget {
                   aspectRatio: 1,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12),
-                    child: Image(
-                      image: AssetImage(profileImgUrl),
-                      fit: BoxFit.cover,
+                    child: Container(
+                      color: white,
+                      child: Image(
+                        image: AssetImage("assets/images/cricket.jpg"),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
@@ -62,7 +53,7 @@ class PostCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        name,
+                        postInfo.user,
                         style: textStyleGilroySB(
                           15,
                           colorFont(),
@@ -72,8 +63,8 @@ class PostCard extends StatelessWidget {
                         height: 3,
                       ),
                       Text(
-                        college,
-                        style: textStyleGilroyR(
+                        postInfo.college,
+                        style: textStyleGilroyM(
                           11,
                           colorFontLight(),
                         ),
@@ -86,8 +77,8 @@ class PostCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        postDay,
-                        style: textStyleGilroyR(
+                        "today",
+                        style: textStyleGilroyM(
                           12,
                           colorFontLight(),
                         ),
@@ -111,17 +102,16 @@ class PostCard extends StatelessWidget {
             padding: EdgeInsets.only(left: 5, right: 5),
             child: AspectRatio(
               aspectRatio: 1.2,
-              child: Container(
-                color: white,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(
-                    20,
-                  ),
-                  child: Container(
-                    child: Image.network(
-                      postImgUrl,
-                      fit: BoxFit.cover,
-                    ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(
+                  20,
+                ),
+                child: Container(
+                  color: bw(),
+                  child: Image.network(
+                    "http://65.1.43.39:8000/fetchNewsImage?imageName=" +
+                        postInfo.fileName,
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
@@ -135,19 +125,116 @@ class PostCard extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Icon(
-                  Icons.favorite,
-                  color: red,
-                  size: 22,
-                  semanticLabel: "Like",
-                ),
+                GetX<FetchNewsFeedController>(builder: (controller) {
+                  return InkWell(
+                    borderRadius: BorderRadius.circular(30),
+                    onTap: () {
+                      if (postInfo.like.value) {
+                        postInfo.like.value = !postInfo.like.value;
+                        postInfo.likes -= 1;
+                      } else {
+                        postInfo.like.value = !postInfo.like.value;
+                        postInfo.likes += 1;
+                      }
+                    },
+                    child: Container(
+                      height: 25,
+                      width: 56,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 5,
+                      ),
+                      decoration: BoxDecoration(
+                        color: postInfo.like.value ? red : transparent,
+                        border: postInfo.like.value
+                            ? Border.all(
+                                width: 0,
+                                color: red,
+                              )
+                            : Border.all(
+                                width: 1.5,
+                                color: red,
+                              ),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.favorite,
+                            color: postInfo.like.value ? white : red,
+                            size: 16,
+                            semanticLabel: "Like",
+                          ),
+                          SizedBox(
+                            width: 3,
+                          ),
+                          Expanded(
+                            child: Container(
+                              child: Center(
+                                child: Text(
+                                  postInfo.likes != null
+                                      ? postInfo.likes.toString()
+                                      : "0",
+                                  style: textStyleSofiaSB(
+                                    13,
+                                    postInfo.like.value ? white : colorFont(),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                }),
                 SizedBox(
                   width: 15,
                 ),
-                SvgPicture.asset(
-                  commentIcon,
-                  color: blue,
-                  height: 22,
+                Container(
+                  height: 25,
+                  width: 56,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 5,
+                  ),
+                  decoration: BoxDecoration(
+                    color: transparent,
+                    border: Border.all(
+                      width: 1.5,
+                      color: blue,
+                    ),
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        commentIcon,
+                        color: blue,
+                        height: 18,
+                      ),
+                      SizedBox(
+                        width: 3,
+                      ),
+                      Expanded(
+                        child: Container(
+                          child: Center(
+                            child: Text(
+                              postInfo.comments != null
+                                  ? postInfo.comments.toString()
+                                  : "0",
+                              style: textStyleSofiaSB(
+                                13,
+                                colorFont(),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(
                   width: 15,
@@ -158,11 +245,21 @@ class PostCard extends StatelessWidget {
                   color: colorFont(),
                 ),
                 Spacer(),
-                Icon(
-                  Icons.bookmark_border_outlined,
-                  size: 22,
-                  color: colorFont(),
-                )
+                GetX<FetchNewsFeedController>(builder: (controller) {
+                  return InkWell(
+                    borderRadius: BorderRadius.circular(50),
+                    onTap: () {
+                      postInfo.bookmark.value = !postInfo.bookmark.value;
+                    },
+                    child: Icon(
+                      postInfo.bookmark.value
+                          ? Icons.bookmark_rounded
+                          : Icons.bookmark_border_outlined,
+                      size: 22,
+                      color: postInfo.bookmark.value ? mango : colorFont(),
+                    ),
+                  );
+                })
               ],
             ),
           ),
@@ -173,7 +270,7 @@ class PostCard extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Container(
               child: Text(
-                "This is my dance club !!!!",
+                postInfo.caption != null ? postInfo.caption : "",
                 style: textStyleGilroySB(
                   15,
                   colorFont(),

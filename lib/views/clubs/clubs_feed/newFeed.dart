@@ -199,16 +199,7 @@ class Feed extends StatelessWidget {
                     i >= 0;
                     i--)
                   PostCard(
-                    name: newsFeedCOntroller.newsFeed[i].user,
-                    college: newsFeedCOntroller.newsFeed[i].college,
-                    postDay: "today",
-                    postImgUrl:
-                        "http://65.1.43.39:8000/fetchNewsImage?imageName=" +
-                            newsFeedCOntroller.newsFeed[i].fileName,
-                    likes: 20,
-                    comments: 2,
-                    bookmark: false,
-                    profileImgUrl: "assets/images/cricket.jpg",
+                    postInfo: newsFeedCOntroller.newsFeed[i],
                   ),
                 SizedBox(
                   height: 80,

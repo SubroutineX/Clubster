@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workflow/controllers/auth_controller.dart';
+import 'package:workflow/views/clubs/club_settings/settings.dart';
 import 'package:workflow/views/clubs/club_view/club_view.dart';
 import 'package:workflow/views/clubs/club_profile/club_profile.dart';
 import 'package:workflow/views/clubs/club_view/pageview.dart';
 import 'package:workflow/views/clubs/clubs_feed/clubs_timeline.dart';
 import 'package:workflow/views/clubs/create/createTabs.dart';
+import 'package:workflow/views/styles/colors.dart';
 
 class TabNavigator extends StatelessWidget {
   final GlobalKey<NavigatorState> navigatorKey;
@@ -72,15 +74,20 @@ class Page4 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
+        backgroundColor: blue,
         automaticallyImplyLeading: false,
-        title: Text("Page4"),
+        title: Text("Dark mode switch"),
       ),
-      body: FloatingActionButton(
-        onPressed: () {
-          Get.isDarkMode
-              ? Get.changeTheme(ThemeData.light())
-              : Get.changeTheme(ThemeData.dark());
-        },
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 60.0),
+        child: FloatingActionButton(
+          onPressed: () {
+            Get.isDarkMode
+                ? Get.changeTheme(ThemeData.light())
+                : Get.changeTheme(ThemeData.dark());
+          },
+        ),
       ),
     );
   }

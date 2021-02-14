@@ -20,6 +20,8 @@ class NewsFeed extends GetxController {
     this.user,
     this.college,
     this.timeStamp,
+    this.likes,
+    this.comments,
   });
 
   String id;
@@ -28,6 +30,11 @@ class NewsFeed extends GetxController {
   String user;
   String college;
   String timeStamp;
+  int likes;
+  int comments;
+
+  final bookmark = false.obs;
+  final like = false.obs;
 
   factory NewsFeed.fromJson(Map<String, dynamic> json) => NewsFeed(
         id: json["_id"],
@@ -36,6 +43,8 @@ class NewsFeed extends GetxController {
         user: json["user"],
         college: json["college"],
         timeStamp: json["timeStamp"],
+        likes: 0,
+        comments: 0,
       );
 
   Map<String, dynamic> toJson() => {
@@ -45,5 +54,7 @@ class NewsFeed extends GetxController {
         "user": user,
         "college": college,
         "timeStamp": timeStamp,
+        "likes": likes,
+        "comments": comments,
       };
 }
