@@ -18,7 +18,6 @@ import 'package:workflow/views/widgets/storyBuilder.dart';
 class Feed extends StatelessWidget {
   PermissionStatus _permissionStatus;
 
-  final authController = Get.find<AuthController>();
   final newsFeedCOntroller = Get.put(FetchNewsFeedController());
 
   @override
