@@ -7,107 +7,121 @@ import 'package:workflow/views/styles/themeData.dart';
 class Cmt extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: Colors.white,
-        child: Container(
-          color: Colors.white,
-          child: Column(
+    return CustomScrollView(
+      physics: ClampingScrollPhysics(),
+      slivers: [
+        SliverAppBar(
+          automaticallyImplyLeading: false,
+          floating: true,
+          backgroundColor: bw(),
+          expandedHeight: 200,
+          elevation: 0,
+          flexibleSpace: FlexibleSpaceBar(
+            background: Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Comments",
+                              style: textStyleGilroySB(
+                                20,
+                                colorFont(),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Postcomment(),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class Postcomment extends StatelessWidget {
+  const Postcomment({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: 20.0,
+        vertical: 15,
+      ),
+      child: Row(
+        children: [
+          Container(
+            height: 70,
+            width: 70,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              image: DecorationImage(
+                image: NetworkImage(
+                    "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80"),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 15,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    "Comments (21)",
+                    "Nikhil Shinde",
+                    style: textStyleGilroySB(
+                      16,
+                      colorFont(),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  Text(
+                    "Check out my new dribble shot!",
                     style: TextStyle(
                         fontFamily: "Roboto",
-                        fontSize: 20,
+                        fontSize: 12,
                         fontWeight: FontWeight.bold,
                         decoration: TextDecoration.none,
                         color: Colors.black),
                   ),
                 ],
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 20.0,
-                  vertical: 15,
-                ),
-                child: Row(
-                  children: [
-                    Container(
-                      height: 70,
-                      width: 70,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        image: DecorationImage(
-                          image: NetworkImage(
-                              "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80"),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Text(
-                              "Nikhil Shinde",
-                              style: textStyleGilroySB(
-                                16,
-                                colorFont(),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              "Check out my new dribble shot!",
-                              style: TextStyle(
-                                  fontFamily: "Roboto",
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
-                                  decoration: TextDecoration.none,
-                                  color: Colors.black),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Comment(
-                name: "Abhijeet Takale",
-                time: "2hrs ago",
-                comment: "Nice bruh!",
-                likes: 12,
-                profileImgUrl:
-                    "https://images.unsplash.com/photo-1577933679437-f3171f9b963a?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8YmFsZCUyMG1lbiUyMHBob3RvfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
-              ),
-              Comment(
-                name: "Atharva Kulkarni",
-                time: "2hrs ago",
-                comment:
-                    "https://images.unsplash.com/photo-1577933679437-f3171f9b963a?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8YmFsZCUyMG1lbiUyMHBob3RvfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
-                likes: 12,
-                profileImgUrl:
-                    "https://images.unsplash.com/photo-1577933679437-f3171f9b963a?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8YmFsZCUyMG1lbiUyMHBob3RvfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
-              ),
             ],
           ),
-        ),
+        ],
       ),
     );
   }
