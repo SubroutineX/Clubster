@@ -6,6 +6,7 @@ import 'package:workflow/views/clubs/club_view/club_view.dart';
 import 'package:workflow/views/clubs/club_profile/club_profile.dart';
 import 'package:workflow/views/clubs/club_view/pageview.dart';
 import 'package:workflow/views/clubs/clubs_feed/clubs_timeline.dart';
+import 'package:workflow/views/clubs/clubs_upload/comment_Upload.dart';
 import 'package:workflow/views/clubs/create/createTabs.dart';
 import 'package:workflow/views/styles/colors.dart';
 
@@ -27,7 +28,7 @@ class TabNavigator extends StatelessWidget {
     } else if (tabItem == "Page3") {
       child = Clubtimeline();
     } else if (tabItem == "Page4") {
-      child = Page4();
+      child = Cmt();
     } else if (tabItem == "Page5") {
       child = ProfilePage();
     }
