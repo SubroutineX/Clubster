@@ -8,6 +8,7 @@ import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/icons.dart';
 import 'package:workflow/views/styles/styles.dart';
 import 'package:workflow/views/styles/themeData.dart';
+import 'package:share/share.dart';
 
 class PostCard extends StatelessWidget {
   PostCard({
@@ -239,10 +240,14 @@ class PostCard extends StatelessWidget {
                 SizedBox(
                   width: 15,
                 ),
-                Icon(
-                  Icons.share_rounded,
-                  size: 18,
-                  color: colorFont(),
+                InkWell(
+                  onTap: () =>
+                      Share.share('check out my website https://example.com'),
+                  child: Icon(
+                    Icons.share_rounded,
+                    size: 18,
+                    color: colorFont(),
+                  ),
                 ),
                 Spacer(),
                 GetX<FetchNewsFeedController>(builder: (controller) {
