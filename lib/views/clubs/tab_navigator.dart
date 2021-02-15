@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:workflow/controllers/auth_controller.dart';
-import 'package:workflow/views/clubs/club_settings/settings.dart';
 import 'package:workflow/views/clubs/club_view/club_view.dart';
 import 'package:workflow/views/clubs/club_profile/club_profile.dart';
-import 'package:workflow/views/clubs/club_view/pageview.dart';
 import 'package:workflow/views/clubs/clubs_feed/clubs_timeline.dart';
-import 'package:workflow/views/clubs/clubs_upload/comment_Upload.dart';
 import 'package:workflow/views/clubs/create/createTabs.dart';
 import 'package:workflow/views/styles/colors.dart';
 
@@ -28,7 +24,7 @@ class TabNavigator extends StatelessWidget {
     } else if (tabItem == "Page3") {
       child = Clubtimeline();
     } else if (tabItem == "Page4") {
-      child = Cmt();
+      child = Page4();
     } else if (tabItem == "Page5") {
       child = ProfilePage();
     }

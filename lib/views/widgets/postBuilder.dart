@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:workflow/controllers/fetch_news_feed_controller.dart';
 import 'package:workflow/models/news_feed.dart';
-import 'package:workflow/views/clubs/clubs_upload/comment_Upload.dart';
+import 'package:workflow/views/clubs/clubs_upload/comment_page.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/icons.dart';
 import 'package:workflow/views/styles/styles.dart';
@@ -197,7 +197,9 @@ class PostCard extends StatelessWidget {
                 InkWell(
                   borderRadius: BorderRadius.circular(30),
                   onTap: () => Get.to(
-                    Cmt(),
+                    CommentPage(
+                      postInfo: postInfo,
+                    ),
                   ),
                   child: Container(
                     height: 25,
@@ -248,11 +250,21 @@ class PostCard extends StatelessWidget {
                   width: 15,
                 ),
                 InkWell(
+                  borderRadius: BorderRadius.circular(30),
                   onTap: () => share(context, "hellllllo"),
-                  child: Icon(
-                    Icons.share_rounded,
-                    size: 18,
-                    color: colorFont(),
+                  child: Container(
+                    height: 25,
+                    width: 25,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Center(
+                      child: Icon(
+                        Icons.share_rounded,
+                        size: 18,
+                        color: colorFont(),
+                      ),
+                    ),
                   ),
                 ),
                 Spacer(),
