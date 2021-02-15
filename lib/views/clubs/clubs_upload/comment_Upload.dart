@@ -7,55 +7,68 @@ import 'package:workflow/views/styles/themeData.dart';
 class Cmt extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      physics: ClampingScrollPhysics(),
-      slivers: [
-        SliverAppBar(
-          automaticallyImplyLeading: false,
-          floating: true,
-          backgroundColor: bw(),
-          expandedHeight: 200,
-          elevation: 0,
-          flexibleSpace: FlexibleSpaceBar(
-            background: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 40,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
+    return Scaffold(
+      body: CustomScrollView(
+        physics: ClampingScrollPhysics(),
+        slivers: [
+          SliverAppBar(
+            automaticallyImplyLeading: false,
+            floating: true,
+            backgroundColor: bw(),
+            expandedHeight: 160,
+            elevation: 0,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 40,
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Comments",
-                              style: textStyleGilroySB(
-                                20,
-                                colorFont(),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Comments",
+                                style: textStyleGilroySB(
+                                  20,
+                                  colorFont(),
+                                ),
                               ),
-                            ),
-                          ],
-                        )
-                      ],
+                            ],
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Postcomment(),
-                ],
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Postcomment(),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-      ],
+          SliverToBoxAdapter(
+            child: Column(
+              children: [
+                Comment(
+                  name: "Abhijeet Takale",
+                  time: "2hrs ago",
+                  comment: "Euuuuuu",
+                )
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }
