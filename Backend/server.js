@@ -40,6 +40,7 @@ const createPost = require("./controllers/create_post");
 const fetchNewsFeed = require("./controllers/fetch_news_feed");
 const fetchFeedImage = require("./controllers/fetch_feed_image");
 const like = require("./controllers/like");
+const likesData = require("./controllers/likes_data");
 
 //Routes
 
@@ -95,5 +96,5 @@ app.post("/createPost", authenticateToken, createPost);
 app.get("/fetchNewsFeed", authenticateToken, fetchNewsFeed);
 app.get("/fetchNewsImage", fetchFeedImage);
 app.post("/like", authenticateToken, like);
-
+app.post("/likesData", authenticateToken, likesData);
 app.listen(PORT);

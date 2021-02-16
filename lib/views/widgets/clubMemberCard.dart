@@ -46,7 +46,7 @@ class ClubMemberCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Nupsi (male)",
+                        "user ",
                         style: memberName,
                       ),
                       Row(
@@ -57,7 +57,7 @@ class ClubMemberCard extends StatelessWidget {
                             style: memberInfo,
                           ),
                           Text(
-                            "husband",
+                            "student",
                             style: memberInfo,
                           ),
                         ],
