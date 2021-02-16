@@ -35,6 +35,14 @@ Color dividerColor() {
   }
 }
 
+Color commentDividerColor() {
+  if (Get.isDarkMode) {
+    return backgroundDarkLight;
+  } else {
+    return Color(0xFFBCBDC4);
+  }
+}
+
 Color inputFieldColor() {
   if (Get.isDarkMode) {
     return inputBackgroundDark;

@@ -18,108 +18,110 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-    sdk: ">=2.10.0 <3.0.0"
+  sdk: ">=2.10.0 <3.0.0"
 
 dependencies:
-    flutter:
-        sdk: flutter
-    cupertino_icons: ^0.1.3
-    get: ^3.22.2
-    simple_animations: ^2.2.3
-    auto_size_text: ^2.1.0
-    font_awesome_flutter: ^8.10.0
-    sliding_sheet: ^0.4.1
-    http: ^0.12.2
-    shared_preferences: ^0.5.12+4
-    image_picker: ^0.6.7+17
-    dio: ^3.0.10
-    http_parser: ^3.1.4
-    flutter_svg: ^0.19.1
-    # Image Packages
-    permission_handler: ^5.0.1+1
-    flutter_native_image: ^0.0.5+3
-    image: ^2.1.19
-    photo_manager: ^0.5.8
-    image_crop: ^0.3.4
-    # Pageview
-    transformer_page_view: ^0.1.6
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^0.1.3
+  get: ^3.22.2
+  simple_animations: ^2.2.3
+  auto_size_text: ^2.1.0
+  font_awesome_flutter: ^8.10.0
+  sliding_sheet: ^0.4.1
+  http: ^0.12.2
+  shared_preferences: ^0.5.12+4
+  image_picker: ^0.6.7+17
+  dio: ^3.0.10
+  http_parser: ^3.1.4
+  flutter_svg: ^0.19.1
+  # Image Packages
+  permission_handler: ^5.0.1+1
+  flutter_native_image: ^0.0.5+3
+  image: ^2.1.19
+  photo_manager: ^0.5.8
+  image_crop: ^0.3.4
+  # Pageview
+  transformer_page_view: ^0.1.6
+  #Share
+  share: ^0.6.5+4
 
 dev_dependencies:
-    flutter_test:
-        sdk: flutter
+  flutter_test:
+    sdk: flutter
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:
-    # The following line ensures that the Material Icons font is
-    # included with your application, so that you can use the icons in
-    # the material Icons class.
-    uses-material-design: true
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
 
-    # To add assets to your application, add an assets section, like this:
-    assets:
-        - assets/images/
-        - assets/icons/
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/
+    - assets/icons/
 
-    # An image asset can refer to one or more resolution-specific "variants", see
-    # https://flutter.dev/assets-and-images/#resolution-aware.
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware.
 
-    # For details regarding adding assets from package dependencies, see
-    # https://flutter.dev/assets-and-images/#from-packages
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
 
-    # To add custom fonts to your application, add a fonts section here,
-    # in this "flutter" section. Each entry in this list should have a
-    # "family" key with the font family name, and a "fonts" key with a
-    # list giving the asset and other descriptors for the font. For
-    # example:
-    fonts:
-        - family: Sofia_Pro
-          fonts:
-              - asset: fonts/SofiaPro.otf
-        - family: Sofia_Pro_Bold
-          fonts:
-              - asset: fonts/SofiaPro_Bold.otf
-        - family: Sofia_Pro_SemiBold
-          fonts:
-              - asset: fonts/SofiaPro_SemiBold.otf
-        - family: Sofia_Pro_Light
-          fonts:
-              - asset: fonts/SofiaPro_Light.otf
-        - family: CustomIcons
-          fonts:
-              - asset: fonts/CustomIcons.ttf
-        #
-        - family: Gilroy
-          fonts:
-              - asset: fonts/Gilroy_Regular.ttf
-        - family: Gilroy_Medium
-          fonts:
-              - asset: fonts/Gilroy_Medium.ttf
-        - family: Gilroy_SemiBold
-          fonts:
-              - asset: fonts/Gilroy_SemiBold.ttf
-        - family: Gilroy_Bold
-          fonts:
-              - asset: fonts/Gilroy_Bold.ttf
-        - family: Gilroy_Light
-          fonts:
-              - asset: fonts/Gilroy_Light.ttf
-        - family: Gilroy_Thin
-          fonts:
-              - asset: fonts/Gilroy_Thin.ttf
-    # fonts:
-    #   - family: Schyler
-    #     fonts:
-    #       - asset: fonts/Schyler-Regular.ttf
-    #       - asset: fonts/Schyler-Italic.ttf
-    #         style: italic
-    #   - family: Trajan Pro
-    #     fonts:
-    #       - asset: fonts/TrajanPro.ttf
-    #       - asset: fonts/TrajanPro_Bold.ttf
-    #         weight: 700
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  fonts:
+    - family: Sofia_Pro
+      fonts:
+        - asset: fonts/SofiaPro.otf
+    - family: Sofia_Pro_Bold
+      fonts:
+        - asset: fonts/SofiaPro_Bold.otf
+    - family: Sofia_Pro_SemiBold
+      fonts:
+        - asset: fonts/SofiaPro_SemiBold.otf
+    - family: Sofia_Pro_Light
+      fonts:
+        - asset: fonts/SofiaPro_Light.otf
+    - family: CustomIcons
+      fonts:
+        - asset: fonts/CustomIcons.ttf
     #
-    # For details regarding fonts from package dependencies,
-    # see https://flutter.dev/custom-fonts/#from-packages
+    - family: Gilroy
+      fonts:
+        - asset: fonts/Gilroy_Regular.ttf
+    - family: Gilroy_Medium
+      fonts:
+        - asset: fonts/Gilroy_Medium.ttf
+    - family: Gilroy_SemiBold
+      fonts:
+        - asset: fonts/Gilroy_SemiBold.ttf
+    - family: Gilroy_Bold
+      fonts:
+        - asset: fonts/Gilroy_Bold.ttf
+    - family: Gilroy_Light
+      fonts:
+        - asset: fonts/Gilroy_Light.ttf
+    - family: Gilroy_Thin
+      fonts:
+        - asset: fonts/Gilroy_Thin.ttf
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages

@@ -4,10 +4,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:workflow/controllers/fetch_news_feed_controller.dart';
 import 'package:workflow/models/news_feed.dart';
+import 'package:workflow/views/clubs/clubs_upload/comment_page.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/icons.dart';
 import 'package:workflow/views/styles/styles.dart';
 import 'package:workflow/views/styles/themeData.dart';
+import 'package:share/share.dart';
 
 class PostCard extends StatelessWidget {
   PostCard({
@@ -192,57 +194,78 @@ class PostCard extends StatelessWidget {
                 SizedBox(
                   width: 15,
                 ),
-                Container(
-                  height: 25,
-                  width: 56,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 5,
-                  ),
-                  decoration: BoxDecoration(
-                    color: transparent,
-                    border: Border.all(
-                      width: 1.5,
-                      color: blue,
+                InkWell(
+                  borderRadius: BorderRadius.circular(30),
+                  onTap: () => Get.to(
+                    CommentPage(
+                      postInfo: postInfo,
                     ),
-                    borderRadius: BorderRadius.circular(30),
                   ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        commentIcon,
+                  child: Container(
+                    height: 25,
+                    width: 56,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 5,
+                    ),
+                    decoration: BoxDecoration(
+                      color: transparent,
+                      border: Border.all(
+                        width: 1.5,
                         color: blue,
-                        height: 18,
                       ),
-                      SizedBox(
-                        width: 3,
-                      ),
-                      Expanded(
-                        child: Container(
-                          child: Center(
-                            child: Text(
-                              postInfo.comments != null
-                                  ? postInfo.comments.toString()
-                                  : "0",
-                              style: textStyleSofiaSB(
-                                13,
-                                colorFont(),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          commentIcon,
+                          color: blue,
+                          height: 18,
+                        ),
+                        SizedBox(
+                          width: 3,
+                        ),
+                        Expanded(
+                          child: Container(
+                            child: Center(
+                              child: Text(
+                                postInfo.comments != null
+                                    ? postInfo.comments.toString()
+                                    : "0",
+                                style: textStyleSofiaSB(
+                                  13,
+                                  colorFont(),
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(
                   width: 15,
                 ),
-                Icon(
-                  Icons.share_rounded,
-                  size: 18,
-                  color: colorFont(),
+                InkWell(
+                  borderRadius: BorderRadius.circular(30),
+                  onTap: () => share(context, "hellllllo"),
+                  child: Container(
+                    height: 25,
+                    width: 25,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Center(
+                      child: Icon(
+                        Icons.share_rounded,
+                        size: 18,
+                        color: colorFont(),
+                      ),
+                    ),
+                  ),
                 ),
                 Spacer(),
                 GetX<FetchNewsFeedController>(builder: (controller) {
@@ -289,6 +312,16 @@ class PostCard extends StatelessWidget {
       ),
     );
   }
+}
+
+void share(BuildContext context, String text) {
+  final String text1 = text;
+  final RenderBox box = context.findRenderObject();
+  Share.share(
+    text1,
+    subject: text1,
+    sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size,
+  );
 }
 
 class ImageUploadBuilder extends StatelessWidget {
