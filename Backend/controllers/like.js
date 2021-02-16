@@ -14,6 +14,11 @@ module.exports = (req, res) => {
         timeStamp: TS
     });
     likesModel.save();
-    activity.updateOne({ parentId: id }, { $inc: { likesCount: 1 } });
+    activity.updateOne({ parentId: id }, { $inc: { likesCount: 1 } }, function (err, result) {
+        if (err) {
+            console.log(err);
+        }
+    });
     res.status(200).json("post Liked");
+
 }
