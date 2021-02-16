@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:workflow/models/news_feed.dart';
+import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 import 'package:workflow/views/styles/themeData.dart';
 import 'package:workflow/views/widgets/comment_widgets.dart';
@@ -16,6 +17,39 @@ class CommentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Transform.translate(
+        offset: Offset(0.0, -1 * MediaQuery.of(context).viewInsets.bottom),
+        child: Container(
+          color: transparent,
+          padding: EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 10,
+          ),
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(
+              color: black,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: TextFormField(
+              style: textStyleGilroyM(
+                18,
+                colorFont(),
+              ),
+              maxLines: null,
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "Add caption...",
+                hintStyle: textStyleSofiaR(
+                  16,
+                  colorFontLight(),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
       backgroundColor: bw(),
       body: CustomScrollView(
         physics: ClampingScrollPhysics(),
@@ -97,7 +131,7 @@ class CommentPage extends StatelessWidget {
                   name: "Shivam Gawade",
                   time: "1hr ago",
                   comment: "@Abhijeet Parnika mazhi ahe",
-                  likes: 2500,
+                  likes: 250000000,
                   profileImgUrl:
                       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWXHT2n5HIzscj3cf1jNJOz44jFCN9aYdFbg&usqp=CAU",
                 ),

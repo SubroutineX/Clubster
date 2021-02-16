@@ -90,6 +90,23 @@ class Comment extends StatelessWidget {
   final int likes;
   final String profileImgUrl;
 
+  String getLikes(int likes) {
+    double convertedLikesDouble;
+    int convertedLikesInt;
+    String likeString;
+    if (likes <= 999) {
+      convertedLikesInt = likes;
+      likeString = convertedLikesInt.toString();
+    } else if (1000 <= likes && likes <= 999999) {
+      convertedLikesDouble = likes / 1000;
+      likeString = convertedLikesDouble.toString() + "k";
+    } else {
+      convertedLikesDouble = likes / 1000000;
+      likeString = convertedLikesDouble.toString() + "M";
+    }
+    return likeString;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -158,24 +175,41 @@ class Comment extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.favorite,
-                        color: Colors.red,
-                        size: 15,
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        likes.toString() + " Likes",
-                        style: textStyleGilroyM(
-                          12,
-                          colorFont(),
+                  SizedBox(
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(30),
+                      onTap: () => print("liked!!!"),
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 2,
+                          horizontal: 2,
+                        ),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 3,
+                            ),
+                            Icon(
+                              Icons.favorite,
+                              color: Colors.red,
+                              size: 18,
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Expanded(
+                              child: Text(
+                                getLikes(likes),
+                                style: textStyleGilroyM(
+                                  12,
+                                  colorFont(),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
+                    ),
                   ),
                 ],
               ),
