@@ -21,6 +21,8 @@ class PostCard extends StatelessWidget {
   final NewsFeed postInfo;
   final likeController = Get.put(LikeController());
 
+  bool like = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -133,7 +135,14 @@ class PostCard extends StatelessWidget {
                   return InkWell(
                     borderRadius: BorderRadius.circular(30),
                     onTap: () {
-                      likeController.like(postInfo.id);
+                      if (postInfo.like.value) {
+                        postInfo.like.value = !postInfo.like.value;
+                        postInfo.likes -= 1;
+                      } else {
+                        likeController.like(postInfo.id);
+                        postInfo.like.value = !postInfo.like.value;
+                        postInfo.likes += 1;
+                      }
                       //  if (postInfo.like.value) {
                       //     postInfo.like.value = !postInfo.like.value;
                       //     postInfo.likes -= 1;
@@ -178,9 +187,7 @@ class PostCard extends StatelessWidget {
                             child: Container(
                               child: Center(
                                 child: Text(
-                                  postInfo.likes != null
-                                      ? postInfo.likes.toString()
-                                      : "0",
+                                  postInfo.likes.toString(),
                                   style: textStyleSofiaSB(
                                     13,
                                     postInfo.like.value ? white : colorFont(),
@@ -234,9 +241,7 @@ class PostCard extends StatelessWidget {
                           child: Container(
                             child: Center(
                               child: Text(
-                                postInfo.comments != null
-                                    ? postInfo.comments.toString()
-                                    : "0",
+                                postInfo.comments.toString(),
                                 style: textStyleSofiaSB(
                                   13,
                                   colorFont(),

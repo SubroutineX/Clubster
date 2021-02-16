@@ -43,8 +43,8 @@ class NewsFeed extends GetxController {
         user: json["user"],
         college: json["college"],
         timeStamp: json["timeStamp"],
-        likes: 0,
-        comments: 0,
+        likes: json["likes"],
+        comments: json["comments"],
       );
 
   Map<String, dynamic> toJson() => {
