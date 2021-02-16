@@ -4,11 +4,16 @@ module.exports = async (req, res) => {
     try {
         const user = req.user.userName;
         var result = await newsFeed.find({ user: user }, { _id: 0, user: 0, __v: 0 });
-        result.forEach(async (value) => {
+     
+	    result[0].posts.forEach(async (value) => {
             count = await activity.findOne({ parentId: value._id }, "likesCount commentsCount");
-            value.likes = count.likesCount;
+            console.log("inside");
+            console.log(count.likesCount);
+		    value.likes = count.likesCount;
             value.comments = count.commentsCount;
+             console.log(value.likes);
         });
+	    console.log("outside");
         res.status(200).json(result[0].posts);
         return;
 
