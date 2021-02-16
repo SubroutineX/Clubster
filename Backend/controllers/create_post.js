@@ -60,7 +60,8 @@ module.exports = async (req, res) => {
                     type: "post",
                     parentId: id,
                     likesCount: 0,
-                    commentsCount: 0
+                    commentsCount: 0,
+                    timeStamp: TS
                 });
                 activityModel.save();
 
