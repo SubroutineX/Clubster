@@ -1,5 +1,6 @@
 const likes = require("../models/likes_model");
 const mongoose = require("mongoose");
+const activity = require("../models/activity_model");
 module.exports = (req, res) => {
     const id = req.query.id;
     const type = req.query.type;
@@ -13,5 +14,6 @@ module.exports = (req, res) => {
         timeStamp: TS
     });
     likesModel.save();
+    activity.updateOne({ parentId: id }, { $inc: { likesCount: 1 } });
     res.status(200).json("post Liked");
 }

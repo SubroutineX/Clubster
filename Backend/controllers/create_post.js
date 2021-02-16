@@ -5,6 +5,7 @@ const formidable = require("formidable");
 const posts = require("../models/posts_model");
 const follows = require("../models/follows_model");
 const newsFeed = require("../models/news_feed_model");
+const activity = require("../models/activity_model");
 
 
 module.exports = async (req, res) => {
@@ -54,6 +55,15 @@ module.exports = async (req, res) => {
                         }
                     });
                 });
+                var activityModel = new activity({
+                    _id: mongoose.Types.ObjectId(),
+                    type: "post",
+                    parentId: id,
+                    likesCount: 0,
+                    commentsCount: 0
+                });
+                activityModel.save();
+
 
             });
 
