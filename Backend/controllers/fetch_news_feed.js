@@ -6,8 +6,10 @@ module.exports = async (req, res) => {
         var result = await newsFeed.find({ user: user }, { _id: 0, user: 0, __v: 0 });
 
         result[0].posts.forEach((value) => {
+		value.likes=100;
             activity.findOne({ parentId: value._id }, "likesCount commentsCount", function (err, result) {
                 value.likes = result.likesCount;
+		    console.log(result.likesCount);
                 value.comments = result.commentsCount;
             });
             console.log("inside");
