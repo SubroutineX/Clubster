@@ -136,6 +136,7 @@ class PostCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(30),
                     onTap: () {
                       if (postInfo.like.value) {
+                        likeController.unlike(postInfo.id);
                         postInfo.like.value = !postInfo.like.value;
                         postInfo.likes -= 1;
                       } else {
