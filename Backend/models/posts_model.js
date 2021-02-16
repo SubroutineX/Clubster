@@ -8,6 +8,8 @@ var PostsSchema = new Schema({
     caption: String,
     user: String,
     college: String,
+    likes: Number,
+    comments: Number,
     timeStamp: String
 });
 

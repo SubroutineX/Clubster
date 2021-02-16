@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:workflow/controllers/fetch_news_feed_controller.dart';
+import 'package:workflow/controllers/like_controller.dart';
 import 'package:workflow/models/news_feed.dart';
 import 'package:workflow/views/clubs/clubs_upload/comment_page.dart';
 import 'package:workflow/views/styles/colors.dart';
@@ -18,6 +19,7 @@ class PostCard extends StatelessWidget {
   }) : super(key: key);
 
   final NewsFeed postInfo;
+  final likeController = Get.put(LikeController());
 
   @override
   Widget build(BuildContext context) {
@@ -131,13 +133,14 @@ class PostCard extends StatelessWidget {
                   return InkWell(
                     borderRadius: BorderRadius.circular(30),
                     onTap: () {
-                      if (postInfo.like.value) {
-                        postInfo.like.value = !postInfo.like.value;
-                        postInfo.likes -= 1;
-                      } else {
-                        postInfo.like.value = !postInfo.like.value;
-                        postInfo.likes += 1;
-                      }
+                      likeController.like(postInfo.id);
+                      //  if (postInfo.like.value) {
+                      //     postInfo.like.value = !postInfo.like.value;
+                      //     postInfo.likes -= 1;
+                      //   } else {
+                      //     postInfo.like.value = !postInfo.like.value;
+                      //     postInfo.likes += 1;
+                      //   }
                     },
                     child: Container(
                       height: 25,

@@ -46,7 +46,9 @@ module.exports = async (req, res) => {
                                 caption: fields.caption,
                                 user: req.user.userName,
                                 college: req.user.college,
-                                timeStamp: TS
+                                timeStamp: TS,
+                                likes: 0,
+                                comments: 0
                             }
                         }
                     }, function (err, result) {
