@@ -20,7 +20,7 @@ class PostInfo extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: 20.0,
-        vertical: 15,
+        vertical: 8,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -102,7 +102,7 @@ class CommentBuilder extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: 20.0,
-        vertical: 15,
+        vertical: 10,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,78 +129,77 @@ class CommentBuilder extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              commentInfo.user,
+                              style: textStyleGilroySB(
+                                15,
+                                colorFont(),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Text(
+                              "2hrs ago",
+                              style: textStyleSofiaR(
+                                12,
+                                colorFontLight(),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      InkWell(
+                        borderRadius: BorderRadius.circular(50),
+                        onTap: () => print("liked"),
+                        child: Container(
+                          child: Icon(
+                            Icons.favorite,
+                            color: Colors.red,
+                            size: 18,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
                   Text(
-                    commentInfo.user,
-                    style: textStyleGilroySB(
+                    commentInfo.text,
+                    style: textStyleGilroyM(
                       15,
                       colorFont(),
                     ),
                   ),
                   SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    "2hrs ago",
-                    style: textStyleGilroyR(
-                      12,
-                      colorFontLight(),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    commentInfo.text,
-                    style: textStyleGilroyM(
-                      14,
-                      colorFontLight(),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
+                    height: 6,
                   ),
                   Divider(
                     height: 3,
                     color: commentDividerColor(),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 6,
                   ),
-                  SizedBox(
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(30),
-                      onTap: () => print("liked!!!"),
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 2,
-                          horizontal: 2,
-                        ),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: 3,
-                            ),
-                            Icon(
-                              Icons.favorite,
-                              color: Colors.red,
-                              size: 18,
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Expanded(
-                              child: Text(
-                                getLikes(12000),
-                                style: textStyleGilroyM(
-                                  12,
-                                  colorFont(),
-                                ),
-                              ),
-                            ),
-                          ],
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          getLikes(12000) + " Likes",
+                          style: textStyleGilroyM(
+                            12,
+                            colorFontLight(),
+                          ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
                 ],
               ),

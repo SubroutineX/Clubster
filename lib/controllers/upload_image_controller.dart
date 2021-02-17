@@ -31,7 +31,7 @@ class UploadImageController extends GetxController {
     // print(file.path);
     File compressedFile = await FlutterNativeImage.compressImage(
       file.path,
-      quality: 85,
+      quality: 75,
     );
     return compressedFile;
   }

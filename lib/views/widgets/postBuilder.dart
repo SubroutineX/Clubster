@@ -139,77 +139,42 @@ class PostCard extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                GetX<FetchNewsFeedController>(builder: (controller) {
-                  return InkWell(
-                    borderRadius: BorderRadius.circular(30),
-                    onTap: () {
-                      if (postInfo.like.value) {
-                        likeController.unlike(postInfo.id);
-                        postInfo.like.value = !postInfo.like.value;
-                        postInfo.likes -= 1;
-                      } else {
-                        likeController.like(postInfo.id);
-                        postInfo.like.value = !postInfo.like.value;
-                        postInfo.likes += 1;
-                      }
-                      //  if (postInfo.like.value) {
-                      //     postInfo.like.value = !postInfo.like.value;
-                      //     postInfo.likes -= 1;
-                      //   } else {
-                      //     postInfo.like.value = !postInfo.like.value;
-                      //     postInfo.likes += 1;
-                      //   }
-                    },
-                    child: Container(
-                      height: 25,
-                      width: 56,
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 5,
+                GetX<FetchNewsFeedController>(
+                  builder: (controller) {
+                    return InkWell(
+                      borderRadius: BorderRadius.circular(50),
+                      onTap: () {
+                        postInfo.bookmark.value = !postInfo.bookmark.value;
+                      },
+                      child: Icon(
+                        postInfo.bookmark.value
+                            ? Icons.bookmark_rounded
+                            : Icons.bookmark_border_outlined,
+                        size: 22,
+                        color: postInfo.bookmark.value ? mango : colorFont(),
                       ),
-                      decoration: BoxDecoration(
-                        color: postInfo.like.value ? red : transparent,
-                        border: postInfo.like.value
-                            ? Border.all(
-                                width: 0,
-                                color: red,
-                              )
-                            : Border.all(
-                                width: 1.5,
-                                color: red,
-                              ),
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.favorite,
-                            color: postInfo.like.value ? white : red,
-                            size: 16,
-                            semanticLabel: "Like",
-                          ),
-                          SizedBox(
-                            width: 3,
-                          ),
-                          Expanded(
-                            child: Container(
-                              child: Center(
-                                child: Text(
-                                  postInfo.likes.toString(),
-                                  style: textStyleSofiaSB(
-                                    13,
-                                    postInfo.like.value ? white : colorFont(),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                    );
+                  },
+                ),
+                Spacer(),
+                InkWell(
+                  borderRadius: BorderRadius.circular(30),
+                  onTap: () => share(context, "hellllllo"),
+                  child: Container(
+                    height: 25,
+                    width: 25,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Center(
+                      child: Icon(
+                        Icons.share_rounded,
+                        size: 18,
+                        color: colorFont(),
                       ),
                     ),
-                  );
-                }),
+                  ),
+                ),
                 SizedBox(
                   width: 15,
                 ),
@@ -268,40 +233,72 @@ class PostCard extends StatelessWidget {
                 SizedBox(
                   width: 15,
                 ),
-                InkWell(
-                  borderRadius: BorderRadius.circular(30),
-                  onTap: () => share(context, "hellllllo"),
-                  child: Container(
-                    height: 25,
-                    width: 25,
-                    decoration: BoxDecoration(
+                GetX<FetchNewsFeedController>(
+                  builder: (controller) {
+                    return InkWell(
                       borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: Center(
-                      child: Icon(
-                        Icons.share_rounded,
-                        size: 18,
-                        color: colorFont(),
+                      onTap: () {
+                        if (postInfo.like.value) {
+                          likeController.unlike(postInfo.id);
+                          postInfo.like.value = !postInfo.like.value;
+                          postInfo.likes -= 1;
+                        } else {
+                          likeController.like(postInfo.id);
+                          postInfo.like.value = !postInfo.like.value;
+                          postInfo.likes += 1;
+                        }
+                      },
+                      child: Container(
+                        height: 25,
+                        width: 56,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 5,
+                        ),
+                        decoration: BoxDecoration(
+                          color: postInfo.like.value ? red : transparent,
+                          border: postInfo.like.value
+                              ? Border.all(
+                                  width: 0,
+                                  color: red,
+                                )
+                              : Border.all(
+                                  width: 1.5,
+                                  color: red,
+                                ),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.favorite,
+                              color: postInfo.like.value ? white : red,
+                              size: 16,
+                              semanticLabel: "Like",
+                            ),
+                            SizedBox(
+                              width: 3,
+                            ),
+                            Expanded(
+                              child: Container(
+                                child: Center(
+                                  child: Text(
+                                    postInfo.likes.toString(),
+                                    style: textStyleSofiaSB(
+                                      13,
+                                      postInfo.like.value ? white : colorFont(),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 ),
-                Spacer(),
-                GetX<FetchNewsFeedController>(builder: (controller) {
-                  return InkWell(
-                    borderRadius: BorderRadius.circular(50),
-                    onTap: () {
-                      postInfo.bookmark.value = !postInfo.bookmark.value;
-                    },
-                    child: Icon(
-                      postInfo.bookmark.value
-                          ? Icons.bookmark_rounded
-                          : Icons.bookmark_border_outlined,
-                      size: 22,
-                      color: postInfo.bookmark.value ? mango : colorFont(),
-                    ),
-                  );
-                })
               ],
             ),
           ),

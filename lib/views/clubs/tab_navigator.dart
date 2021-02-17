@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workflow/models/story_data.dart';
-import 'package:workflow/models/story_model.dart';
 import 'package:workflow/views/clubs/club_view/club_view.dart';
 import 'package:workflow/views/clubs/club_profile/club_profile.dart';
 import 'package:workflow/views/clubs/clubs_feed/clubs_timeline.dart';
+import 'package:workflow/views/clubs/clubs_feed/stories.dart';
 import 'package:workflow/views/clubs/create/createTabs.dart';
 import 'package:workflow/views/styles/colors.dart';
-
-import 'clubs_feed/newFeed.dart';
 
 class TabNavigator extends StatelessWidget {
   final GlobalKey<NavigatorState> navigatorKey;
@@ -28,9 +26,10 @@ class TabNavigator extends StatelessWidget {
     } else if (tabItem == "Page3") {
       child = Clubtimeline();
     } else if (tabItem == "Page4") {
-      child = StoryScreen(
-        stories: stories,
-      );
+      // child = StoryScreen(
+      //   stories: stories,
+      // );
+      child = Page4();
     } else if (tabItem == "Page5") {
       child = ProfilePage();
     }

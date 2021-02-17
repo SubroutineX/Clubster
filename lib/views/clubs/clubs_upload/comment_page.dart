@@ -44,84 +44,91 @@ class _CommentPageState extends State<CommentPage> {
     return Scaffold(
       bottomNavigationBar: commentInput(context, deviceDimensions),
       backgroundColor: bw(),
-      body: CustomScrollView(
-        reverse: true,
-        // controller: scrollController,
-        physics: BouncingScrollPhysics(),
-        slivers: [
-          SliverAppBar(
-            automaticallyImplyLeading: false,
-            floating: true,
-            backgroundColor: bw(),
-            expandedHeight: 140,
-            elevation: 0,
-            flexibleSpace: FlexibleSpaceBar(
-              background: Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
+      body: Transform.translate(
+        offset: MediaQuery.of(context).viewInsets.bottom != 0
+            ? Offset(0, -70)
+            : Offset(0.0, 0),
+        child: CustomScrollView(
+          reverse: true,
+          // controller: scrollController,
+          physics: BouncingScrollPhysics(),
+          slivers: [
+            SliverAppBar(
+              automaticallyImplyLeading: false,
+              floating: true,
+              backgroundColor: bw(),
+              expandedHeight: 126,
+              elevation: 0,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 20,
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Obx(
-                                () => Text(
-                                  "Comments " +
-                                      "(" +
-                                      commentsController.comments.length
-                                          .toString() +
-                                      ")",
-                                  style: textStyleGilroySB(
-                                    20,
-                                    colorFont(),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Obx(
+                                  () => Text(
+                                    "Comments " +
+                                        "(" +
+                                        commentsController.comments.length
+                                            .toString() +
+                                        ")",
+                                    style: textStyleGilroySB(
+                                      20,
+                                      colorFont(),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          )
-                        ],
+                              ],
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    PostInfo(
-                      postImageUrl:
-                          "http://65.1.43.39:8000/fetchNewsImage?imageName=" +
-                              widget.postInfo.fileName,
-                      postProfileName: widget.postInfo.user,
-                      caption: widget.postInfo.caption,
-                    ),
-                  ],
+                      SizedBox(
+                        height: 10,
+                      ),
+                      PostInfo(
+                        postImageUrl:
+                            "http://65.1.43.39:8000/fetchNewsImage?imageName=" +
+                                widget.postInfo.fileName,
+                        postProfileName: widget.postInfo.user,
+                        caption: widget.postInfo.caption,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          SliverToBoxAdapter(
-            child: Obx(
-              () => Column(
-                children: [
-                  SizedBox(
-                    height: 30,
-                  ),
-                  for (int i = 0; i < commentsController.comments.length; i++)
-                    CommentBuilder(
-                      commentInfo: commentsController.comments[i],
-                    )
-                ],
+            SliverToBoxAdapter(
+              child: Obx(
+                () => Column(
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).viewInsets.bottom != 0
+                          ? 100
+                          : 30,
+                    ),
+                    for (int i = 0; i < commentsController.comments.length; i++)
+                      CommentBuilder(
+                        commentInfo: commentsController.comments[i],
+                      )
+                  ],
+                ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
@@ -213,7 +220,7 @@ class _CommentPageState extends State<CommentPage> {
                       child: TextFormField(
                         style: textStyleGilroyM(
                           16,
-                          inputFontColor(),
+                          colorFont(),
                         ),
                         controller: comment,
                         maxLines: null,
