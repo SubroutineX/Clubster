@@ -155,20 +155,22 @@ class _CommentPageState extends State<CommentPage> {
                 right: 0,
                 child: GestureDetector(
                   onTap: () {
-                    commentsController.addComment(
-                        comment.text, widget.postInfo.id);
-                    commentsController.comments.add(
-                      Comment(
-                          user: "Niku dada",
-                          text: comment.text,
-                          timeStamp: "now"),
-                    );
-                    comment.clear();
-                    // scrollController.animateTo(
-                    //   scrollController.initialScrollOffset,
-                    //   curve: Curves.easeOut,
-                    //   duration: const Duration(milliseconds: 300),
-                    // );
+                    if (comment.text.isEmpty) {
+                      Get.snackbar(
+                          "Empty comment", "Please enter a comment to post");
+                    } else {
+                      commentsController.addComment(
+                          comment.text, widget.postInfo.id);
+                      commentsController.comments.add(
+                        Comment(
+                            user: "Niku dada",
+                            text: comment.text,
+                            timeStamp: "now"),
+                      );
+                      Get.snackbar(
+                          "Comment posted", "Your comment has been posted");
+                      comment.clear();
+                    }
                   },
                   child: Container(
                     decoration: BoxDecoration(
