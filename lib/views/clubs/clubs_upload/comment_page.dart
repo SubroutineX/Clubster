@@ -16,43 +16,12 @@ class CommentPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var deviceDimensions = MediaQuery.of(context).size;
     return Scaffold(
-      bottomNavigationBar: Transform.translate(
-        offset: Offset(0.0, -1 * MediaQuery.of(context).viewInsets.bottom),
-        child: Container(
-          color: transparent,
-          padding: EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 10,
-          ),
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            decoration: BoxDecoration(
-              color: black,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: TextFormField(
-              style: textStyleGilroyM(
-                18,
-                colorFont(),
-              ),
-              maxLines: null,
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: "Add caption...",
-                hintStyle: textStyleSofiaR(
-                  16,
-                  colorFontLight(),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
+      bottomNavigationBar: commentInput(context, deviceDimensions),
       backgroundColor: bw(),
       body: CustomScrollView(
-        physics: ClampingScrollPhysics(),
+        physics: BouncingScrollPhysics(),
         slivers: [
           SliverAppBar(
             automaticallyImplyLeading: false,
@@ -155,6 +124,102 @@ class CommentPage extends StatelessWidget {
             ),
           )
         ],
+      ),
+    );
+  }
+
+  Transform commentInput(BuildContext context, Size deviceDimensions) {
+    return Transform.translate(
+      offset: Offset(0.0, -1 * MediaQuery.of(context).viewInsets.bottom),
+      child: Container(
+        width: deviceDimensions.width,
+        color: transparent,
+        padding: EdgeInsets.symmetric(
+          horizontal: 20,
+          vertical: 10,
+        ),
+        child: Container(
+          height: 50,
+          decoration: BoxDecoration(
+            color: inputFieldColor(),
+            borderRadius: BorderRadius.circular(50),
+          ),
+          child: Stack(
+            children: [
+              Positioned(
+                right: 0,
+                child: GestureDetector(
+                  onTap: () => print("hellllo posted"),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: neonBlue,
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    height: 50,
+                    padding: EdgeInsets.only(left: 10, right: 20),
+                    width: 100,
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Icon(
+                        Icons.send,
+                        color: white,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                width: deviceDimensions.width - 100,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: inputFieldColor(),
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      height: 35,
+                      width: 35,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: Image.asset(
+                          "assets/images/cricket.jpg",
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      width: deviceDimensions.width - 165,
+                      child: TextFormField(
+                        style: textStyleGilroyM(
+                          16,
+                          inputFontColor(),
+                        ),
+                        maxLines: null,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Add comment",
+                          hintStyle: textStyleSofiaR(
+                            16,
+                            colorFontLight(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
