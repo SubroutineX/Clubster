@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:workflow/controllers/fetch_news_feed_controller.dart';
 import 'package:workflow/controllers/like_controller.dart';
 import 'package:workflow/models/news_feed.dart';
+import 'package:workflow/views/clubs/clubs_feed/imageDisplay.dart';
 import 'package:workflow/views/clubs/clubs_upload/comment_page.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/icons.dart';
@@ -20,8 +21,6 @@ class PostCard extends StatelessWidget {
 
   final NewsFeed postInfo;
   final likeController = Get.put(LikeController());
-
-  bool like = false;
 
   @override
   Widget build(BuildContext context) {
@@ -108,16 +107,23 @@ class PostCard extends StatelessWidget {
             padding: EdgeInsets.only(left: 5, right: 5),
             child: AspectRatio(
               aspectRatio: 1.2,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(
-                  20,
-                ),
-                child: Container(
-                  color: bw(),
-                  child: Image.network(
-                    "http://65.1.43.39:8000/fetchNewsImage?imageName=" +
-                        postInfo.fileName,
-                    fit: BoxFit.cover,
+              child: GestureDetector(
+                onTap: () {
+                  Get.to(ImageView(
+                    postInfo: postInfo,
+                  ));
+                },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(
+                    20,
+                  ),
+                  child: Container(
+                    color: bw(),
+                    child: Image.network(
+                      "http://65.1.43.39:8000/fetchNewsImage?imageName=" +
+                          postInfo.fileName,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),

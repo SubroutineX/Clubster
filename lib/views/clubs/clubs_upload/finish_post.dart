@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:workflow/controllers/create_post_controller.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
+import 'package:workflow/views/styles/themeData.dart';
 import 'package:workflow/views/widgets/buttonBuilder.dart';
 import 'package:workflow/views/widgets/postBuilder.dart';
 
@@ -35,15 +36,15 @@ class FinishPost extends StatelessWidget {
           ],
         ),
       ),
-      backgroundColor: white,
+      backgroundColor: bw(),
       appBar: AppBar(
-        backgroundColor: white,
+        backgroundColor: transparent,
         elevation: 0,
         title: Text(
           "Post preview",
           style: textStyleSofiaL(
             18,
-            fontColor,
+            colorFont(),
           ),
         ),
         centerTitle: true,
@@ -53,72 +54,74 @@ class FinishPost extends StatelessWidget {
           },
           icon: Icon(
             Icons.chevron_left,
-            color: fontColor,
+            color: colorFont(),
           ),
         ),
       ),
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Column(
           children: [
             SizedBox(
               height: 20,
             ),
-            Container(
-              padding: EdgeInsets.only(left: 10, right: 10),
-              child: Column(
-                children: [
-                  Container(
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          backgroundImage: AssetImage(
-                            "assets/images/profile.jpg",
-                          ),
-                          backgroundColor: transparent,
+            Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Row(
+                    children: [
+                      CircleAvatar(
+                        backgroundImage: AssetImage(
+                          "assets/images/profile.jpg",
                         ),
-                        SizedBox(
-                          width: 15,
+                        backgroundColor: transparent,
+                      ),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Nikhil",
+                              style: textStyleSofiaSB(15, colorFont()),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "D.Y.Patil",
+                              style: textStyleSofiaL(12, colorFont()),
+                            ),
+                          ],
                         ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Nikhil",
-                                style: textStyleSofiaSB(15, fontColor),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                "D.Y.Patil",
-                                style: textStyleSofiaL(12, fontColor),
-                              ),
-                            ],
-                          ),
+                      ),
+                      Container(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              "today",
+                              style: textStyleSofiaL(12, colorFont()),
+                            ),
+                            SizedBox(width: 10),
+                            Icon(
+                              Icons.more_vert,
+                              color: colorFont(),
+                            ),
+                          ],
                         ),
-                        Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
-                                "today",
-                                style: textStyleSofiaL(12, fontColor),
-                              ),
-                              SizedBox(width: 10),
-                              Icon(
-                                Icons.more_vert,
-                                color: fontColor,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  SizedBox(height: 10),
-                  AspectRatio(
-                    aspectRatio: 1,
+                ),
+                SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                  child: AspectRatio(
+                    aspectRatio: 1.2,
                     child: Container(
                       decoration: BoxDecoration(
                         color: transparent,
@@ -133,36 +136,42 @@ class FinishPost extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 10,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  decoration: BoxDecoration(
+                    color: bw(),
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    decoration: BoxDecoration(
-                      color: white,
-                      borderRadius: BorderRadius.circular(12),
+                  child: TextFormField(
+                    style: textStyleGilroyM(
+                      18,
+                      colorFont(),
                     ),
-                    child: TextFormField(
-                      style: formFieldStyle,
-                      maxLines: null,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Add caption...",
-                        hintStyle: textStyleSofiaR(
-                          16,
-                          fontColorLight,
-                        ),
+                    maxLines: null,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: "Add caption...",
+                      hintStyle: textStyleSofiaR(
+                        16,
+                        colorFontLight(),
                       ),
-                      controller: captionController,
                     ),
+                    controller: captionController,
                   ),
-                  Divider(
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                  child: Divider(
                     thickness: 1,
-                    color: fontColorLight.withOpacity(.05),
-                  )
-                ],
-              ),
+                    color: dividerColor(),
+                  ),
+                )
+              ],
             ),
           ],
         ),

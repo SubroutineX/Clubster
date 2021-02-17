@@ -32,61 +32,62 @@ class BottomNavBar extends StatelessWidget {
         borderRadius: BorderRadius.circular(60),
       ),
       child: GetBuilder(
-          init: Get.find<NavigationController>(),
-          builder: (_controller) {
-            return CustomBottomBar(
-              curve: Curves.bounceOut,
-              duration: Duration(milliseconds: 500),
-              currentIndex: _controller.currentIndex,
-              onTap: (index) {
-                HapticFeedback.lightImpact();
-                _controller.selectTab(_controller.pageKeys[index], index);
-              },
-              unselectedItemColor: colorFont(),
-              items: [
-                CustomBottomBarItem(
-                  icon: Icon(Icons.add),
-                  title: Text(
-                    "Create",
-                    textScaleFactor: 1,
-                  ),
-                  selectedColor: teal,
+        init: Get.find<NavigationController>(),
+        builder: (_controller) {
+          return CustomBottomBar(
+            curve: Curves.bounceOut,
+            duration: Duration(milliseconds: 500),
+            currentIndex: _controller.currentIndex,
+            onTap: (index) {
+              HapticFeedback.lightImpact();
+              _controller.selectTab(_controller.pageKeys[index], index);
+            },
+            unselectedItemColor: colorFont(),
+            items: [
+              CustomBottomBarItem(
+                icon: Icon(Icons.add),
+                title: Text(
+                  "Create",
+                  textScaleFactor: 1,
                 ),
-                CustomBottomBarItem(
-                  icon: Icon(Icons.search_rounded),
-                  title: Text(
-                    "Search",
-                    textScaleFactor: 1,
-                  ),
-                  selectedColor: neonBlue,
+                selectedColor: teal,
+              ),
+              CustomBottomBarItem(
+                icon: Icon(Icons.search_rounded),
+                title: Text(
+                  "Search",
+                  textScaleFactor: 1,
                 ),
-                CustomBottomBarItem(
-                  icon: Icon(Icons.dynamic_feed_outlined),
-                  title: Text(
-                    "Feed",
-                    textScaleFactor: 1,
-                  ),
-                  selectedColor: Colors.pink,
+                selectedColor: neonBlue,
+              ),
+              CustomBottomBarItem(
+                icon: Icon(Icons.dynamic_feed_outlined),
+                title: Text(
+                  "Feed",
+                  textScaleFactor: 1,
                 ),
-                CustomBottomBarItem(
-                  icon: Icon(Icons.bookmark_outline_rounded),
-                  title: Text(
-                    "Bookmarks",
-                    textScaleFactor: 1,
-                  ),
-                  selectedColor: Colors.orange,
+                selectedColor: Colors.pink,
+              ),
+              CustomBottomBarItem(
+                icon: Icon(Icons.bookmark_outline_rounded),
+                title: Text(
+                  "Bookmarks",
+                  textScaleFactor: 1,
                 ),
-                CustomBottomBarItem(
-                  icon: Icon(Icons.person_outline_rounded),
-                  title: Text(
-                    "Profile",
-                    textScaleFactor: 1,
-                  ),
-                  selectedColor: Colors.blueAccent,
+                selectedColor: Colors.orange,
+              ),
+              CustomBottomBarItem(
+                icon: Icon(Icons.person_outline_rounded),
+                title: Text(
+                  "Profile",
+                  textScaleFactor: 1,
                 ),
-              ],
-            );
-          }),
+                selectedColor: Colors.blueAccent,
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }

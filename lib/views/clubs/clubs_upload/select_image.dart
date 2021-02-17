@@ -9,6 +9,7 @@ import 'package:workflow/controllers/upload_image_controller.dart';
 import 'package:workflow/views/clubs/clubs_upload/finish_post.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
+import 'package:workflow/views/styles/themeData.dart';
 
 class SelectImagePage extends StatelessWidget {
   final uploadController = Get.put(UploadImageController());
@@ -17,15 +18,15 @@ class SelectImagePage extends StatelessWidget {
   Widget build(BuildContext context) {
     var deviceDimensions = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: white,
+      backgroundColor: bw(),
       appBar: AppBar(
-        backgroundColor: white,
+        backgroundColor: transparent,
         elevation: 0,
         title: Text(
           "Post Image",
           style: textStyleSofiaL(
             18,
-            fontColor,
+            colorFont(),
           ),
         ),
         centerTitle: true,
@@ -37,7 +38,7 @@ class SelectImagePage extends StatelessWidget {
           },
           icon: Icon(
             Icons.chevron_left,
-            color: fontColor,
+            color: colorFont(),
           ),
         ),
         actions: [
@@ -89,6 +90,7 @@ class SelectImagePage extends StatelessWidget {
         ],
       ),
       body: SlidingSheet(
+        cornerRadius: 20,
         scrollSpec: ScrollSpec.overscroll(),
         snapSpec: const SnapSpec(
           snap: true,
@@ -108,7 +110,8 @@ class SelectImagePage extends StatelessWidget {
                   if (snapshot.hasData) {
                     return Center(
                       child: Crop(
-                        maximumScale: 3,
+                        aspectRatio: 1.2,
+                        maximumScale: 2,
                         key: controller.cropKey,
                         image: FileImage(
                           snapshot.data,
@@ -130,7 +133,7 @@ class SelectImagePage extends StatelessWidget {
         builder: (context, state) {
           return Container(
             height: deviceDimensions.height * .65,
-            color: white,
+            color: bw(),
             padding: EdgeInsets.only(
               top: 25,
               left: 10,
@@ -143,7 +146,7 @@ class SelectImagePage extends StatelessWidget {
                   "Browse images",
                   style: textStyleSofiaB(
                     18,
-                    fontColor,
+                    colorFont(),
                   ),
                 ),
                 SizedBox(
