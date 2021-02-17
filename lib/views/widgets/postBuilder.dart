@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:workflow/controllers/comments_controller.dart';
 import 'package:workflow/controllers/fetch_news_feed_controller.dart';
 import 'package:workflow/controllers/like_controller.dart';
 import 'package:workflow/models/news_feed.dart';
@@ -21,6 +22,7 @@ class PostCard extends StatelessWidget {
 
   final NewsFeed postInfo;
   final likeController = Get.put(LikeController());
+  final commentController = CommentsController();
 
   @override
   Widget build(BuildContext context) {
@@ -213,11 +215,14 @@ class PostCard extends StatelessWidget {
                 ),
                 InkWell(
                   borderRadius: BorderRadius.circular(30),
-                  onTap: () => Get.to(
-                    CommentPage(
-                      postInfo: postInfo,
-                    ),
-                  ),
+                  onTap: () {
+                    commentController.fetchComments(postInfo.id);
+                    Get.to(
+                      CommentPage(
+                        postInfo: postInfo,
+                      ),
+                    );
+                  },
                   child: Container(
                     height: 25,
                     width: 56,

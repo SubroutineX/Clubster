@@ -3,7 +3,7 @@ const comments = require("../models/comments_model");
 module.exports = async (req, res) => {
     try {
         var id = req.query.id;
-        const result = await comments.find({ parentId: id }, "user text TS");
+        const result = await comments.find({ parentId: id }, "user text timeStamp");
         res.status(200).json(result);
 
     } catch (error) {

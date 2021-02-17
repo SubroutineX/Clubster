@@ -1,14 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:workflow/controllers/comments_controller.dart';
 import 'package:workflow/models/news_feed.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 import 'package:workflow/views/styles/themeData.dart';
 import 'package:workflow/views/widgets/comment_widgets.dart';
+import 'package:get/get.dart';
 
 class CommentPage extends StatelessWidget {
   String sarangImage =
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6U_jEzon-GPDSWxhyqMilPNU9DxVYYXfyxg&usqp=CAU";
+  final commentsController = Get.put(CommentsController());
+  TextEditingController comment = TextEditingController();
 
   final NewsFeed postInfo;
 
@@ -80,46 +84,12 @@ class CommentPage extends StatelessWidget {
           SliverToBoxAdapter(
             child: Column(
               children: [
-                Comment(
-                  name: "Abhijeet Takale",
-                  time: "20sec ago",
-                  comment: "Euuuuuu",
-                  likes: 28,
-                  profileImgUrl:
-                      "https://images.unsplash.com/photo-1577933679437-f3171f9b963a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80",
-                ),
-                Comment(
-                  name: "Sushant Shivalkar",
-                  time: "30min ago",
-                  comment: "@shivam Let's party!!! mother******",
-                  likes: 2000,
-                  profileImgUrl:
-                      "https://www.famousbirthdays.com/headshots/just-sul-1.jpg",
-                ),
-                Comment(
-                  name: "Shivam Gawade",
-                  time: "1hr ago",
-                  comment: "@Abhijeet Parnika mazhi ahe",
-                  likes: 250000000,
-                  profileImgUrl:
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWXHT2n5HIzscj3cf1jNJOz44jFCN9aYdFbg&usqp=CAU",
-                ),
-                Comment(
-                  name: "Sarang kawade",
-                  time: "3hr ago",
-                  comment:
-                      "@sushant Please next time mala pan bolva mi mazhe paise bharto! ",
-                  likes: 31,
-                  profileImgUrl: sarangImage,
-                ),
-                Comment(
-                  name: "Atharva Palande",
-                  time: "8hr ago",
-                  comment: "No load ",
-                  likes: 101,
-                  profileImgUrl:
-                      "https://www.askideas.com/media/37/Funny-Eagle-Haircuts-For-Men.jpg",
-                ),
+                for (int i = commentsController.comments.length - 1;
+                    i >= 0;
+                    i--)
+                  CommentBuilder(
+                    commentInfo: commentsController.comments[i],
+                  )
               ],
             ),
           )
@@ -149,7 +119,8 @@ class CommentPage extends StatelessWidget {
               Positioned(
                 right: 0,
                 child: GestureDetector(
-                  onTap: () => print("hellllo posted"),
+                  onTap: () =>
+                      commentsController.addComment(comment.text, postInfo.id),
                   child: Container(
                     decoration: BoxDecoration(
                       color: neonBlue,
@@ -202,6 +173,7 @@ class CommentPage extends StatelessWidget {
                           16,
                           inputFontColor(),
                         ),
+                        controller: comment,
                         maxLines: null,
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workflow/models/comments_model.dart';
 import 'package:workflow/views/styles/styles.dart';
 import 'package:workflow/views/styles/themeData.dart';
 
@@ -74,21 +75,10 @@ class PostInfo extends StatelessWidget {
   }
 }
 
-class Comment extends StatelessWidget {
-  Comment({
-    Key key,
-    this.name,
-    this.time,
-    this.comment,
-    this.likes,
-    this.profileImgUrl,
-  }) : super(key: key);
+class CommentBuilder extends StatelessWidget {
+  CommentBuilder({Key key, this.commentInfo}) : super(key: key);
 
-  final String name;
-  final String time;
-  final String comment;
-  final int likes;
-  final String profileImgUrl;
+  final Comment commentInfo;
 
   String getLikes(int likes) {
     double convertedLikesDouble;
@@ -122,13 +112,8 @@ class Comment extends StatelessWidget {
             width: 50,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
-              image: DecorationImage(
-                image: NetworkImage(
-                  profileImgUrl,
-                ),
-                fit: BoxFit.cover,
-              ),
             ),
+            child: Image.asset("assets/images/dancers.jpg"),
           ),
           SizedBox(
             width: 15,
@@ -139,7 +124,7 @@ class Comment extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    name,
+                    commentInfo.user,
                     style: textStyleGilroySB(
                       15,
                       colorFont(),
@@ -149,7 +134,7 @@ class Comment extends StatelessWidget {
                     height: 5,
                   ),
                   Text(
-                    time,
+                    "2hrs ago",
                     style: textStyleGilroyR(
                       12,
                       colorFontLight(),
@@ -159,7 +144,7 @@ class Comment extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    comment,
+                    commentInfo.text,
                     style: textStyleGilroyM(
                       14,
                       colorFontLight(),
@@ -199,7 +184,7 @@ class Comment extends StatelessWidget {
                             ),
                             Expanded(
                               child: Text(
-                                getLikes(likes),
+                                getLikes(12000),
                                 style: textStyleGilroyM(
                                   12,
                                   colorFont(),
