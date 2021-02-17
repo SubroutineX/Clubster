@@ -216,7 +216,6 @@ class PostCard extends StatelessWidget {
                 InkWell(
                   borderRadius: BorderRadius.circular(30),
                   onTap: () {
-                    commentController.fetchComments(postInfo.id);
                     Get.to(
                       CommentPage(
                         postInfo: postInfo,

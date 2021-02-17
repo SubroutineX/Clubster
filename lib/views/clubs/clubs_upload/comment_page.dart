@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:workflow/controllers/comments_controller.dart';
+import 'package:workflow/models/comments_model.dart';
 import 'package:workflow/models/news_feed.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
@@ -8,15 +9,34 @@ import 'package:workflow/views/styles/themeData.dart';
 import 'package:workflow/views/widgets/comment_widgets.dart';
 import 'package:get/get.dart';
 
-class CommentPage extends StatelessWidget {
+class CommentPage extends StatefulWidget {
+  final NewsFeed postInfo;
+
+  CommentPage({Key key, @required this.postInfo}) : super(key: key);
+
+  @override
+  _CommentPageState createState() => _CommentPageState(postInfo);
+}
+
+class _CommentPageState extends State<CommentPage> {
   String sarangImage =
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6U_jEzon-GPDSWxhyqMilPNU9DxVYYXfyxg&usqp=CAU";
+
   final commentsController = Get.put(CommentsController());
+
   TextEditingController comment = TextEditingController();
 
   final NewsFeed postInfo;
 
-  CommentPage({Key key, @required this.postInfo}) : super(key: key);
+  _CommentPageState(this.postInfo);
+  // ScrollController scrollController;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    commentsController.fetchComments(postInfo.id);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +45,15 @@ class CommentPage extends StatelessWidget {
       bottomNavigationBar: commentInput(context, deviceDimensions),
       backgroundColor: bw(),
       body: CustomScrollView(
+        reverse: true,
+        // controller: scrollController,
         physics: BouncingScrollPhysics(),
         slivers: [
           SliverAppBar(
             automaticallyImplyLeading: false,
             floating: true,
             backgroundColor: bw(),
-            expandedHeight: 160,
+            expandedHeight: 140,
             elevation: 0,
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
@@ -39,7 +61,7 @@ class CommentPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 40,
+                      height: 20,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(
@@ -51,14 +73,17 @@ class CommentPage extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                "Comments " +
-                                    "(" +
-                                    postInfo.comments.toString() +
-                                    ")",
-                                style: textStyleGilroySB(
-                                  20,
-                                  colorFont(),
+                              Obx(
+                                () => Text(
+                                  "Comments " +
+                                      "(" +
+                                      commentsController.comments.length
+                                          .toString() +
+                                      ")",
+                                  style: textStyleGilroySB(
+                                    20,
+                                    colorFont(),
+                                  ),
                                 ),
                               ),
                             ],
@@ -72,9 +97,9 @@ class CommentPage extends StatelessWidget {
                     PostInfo(
                       postImageUrl:
                           "http://65.1.43.39:8000/fetchNewsImage?imageName=" +
-                              postInfo.fileName,
-                      postProfileName: postInfo.user,
-                      caption: postInfo.caption,
+                              widget.postInfo.fileName,
+                      postProfileName: widget.postInfo.user,
+                      caption: widget.postInfo.caption,
                     ),
                   ],
                 ),
@@ -82,15 +107,18 @@ class CommentPage extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(
-            child: Column(
-              children: [
-                for (int i = commentsController.comments.length - 1;
-                    i >= 0;
-                    i--)
-                  CommentBuilder(
-                    commentInfo: commentsController.comments[i],
-                  )
-              ],
+            child: Obx(
+              () => Column(
+                children: [
+                  SizedBox(
+                    height: 30,
+                  ),
+                  for (int i = 0; i < commentsController.comments.length; i++)
+                    CommentBuilder(
+                      commentInfo: commentsController.comments[i],
+                    )
+                ],
+              ),
             ),
           )
         ],
@@ -103,7 +131,7 @@ class CommentPage extends StatelessWidget {
       offset: Offset(0.0, -1 * MediaQuery.of(context).viewInsets.bottom),
       child: Container(
         width: deviceDimensions.width,
-        color: transparent,
+        color: bw(),
         padding: EdgeInsets.symmetric(
           horizontal: 20,
           vertical: 10,
@@ -119,8 +147,22 @@ class CommentPage extends StatelessWidget {
               Positioned(
                 right: 0,
                 child: GestureDetector(
-                  onTap: () =>
-                      commentsController.addComment(comment.text, postInfo.id),
+                  onTap: () {
+                    commentsController.addComment(
+                        comment.text, widget.postInfo.id);
+                    commentsController.comments.add(
+                      Comment(
+                          user: "Niku dada",
+                          text: comment.text,
+                          timeStamp: "now"),
+                    );
+                    comment.clear();
+                    // scrollController.animateTo(
+                    //   scrollController.initialScrollOffset,
+                    //   curve: Curves.easeOut,
+                    //   duration: const Duration(milliseconds: 300),
+                    // );
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                       color: neonBlue,

@@ -34,7 +34,7 @@ class CommentsController extends GetxController {
           headers: {"Authorization": "Bearer $token"});
       if (response.statusCode == 200) {
         comments.value = commentsFromJson(response.body);
-        print(comments.value[0].text);
+        print(comments.value[0]);
       } else {
         print("error" + response.body);
       }

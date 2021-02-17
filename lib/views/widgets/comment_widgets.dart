@@ -113,7 +113,13 @@ class CommentBuilder extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
             ),
-            child: Image.asset("assets/images/dancers.jpg"),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(50),
+              child: Image.asset(
+                "assets/images/dancers.jpg",
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
           SizedBox(
             width: 15,
