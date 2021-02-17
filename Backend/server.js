@@ -42,7 +42,8 @@ const fetchFeedImage = require("./controllers/fetch_feed_image");
 const like = require("./controllers/like");
 const likesData = require("./controllers/likes_data");
 const unlike = require("./controllers/unlike");
-
+const comment = require("./controllers/comment");
+const fetchComments = require("./controllers/fetch_comments");
 //Routes
 
 app.all('/', function (req, res, next) {
@@ -99,4 +100,6 @@ app.get("/fetchNewsImage", fetchFeedImage);
 app.post("/like", authenticateToken, like);
 app.post("/likesData", authenticateToken, likesData);
 app.post("/unlike", authenticateToken, unlike);
+app.post("/comment", authenticateToken, comment);
+app.post("/fetchComments", authenticateToken, fetchComments);
 app.listen(PORT);
