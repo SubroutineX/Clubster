@@ -23,6 +23,10 @@ Future<void> main() async {
   runApp(
     GetMaterialApp(
       initialBinding: AuthBinding(),
+      getPages: [
+        GetPage(name: '/tab', page: () => TabPage()),
+        GetPage(name: '/pageNav', page: () => PageNavigator()),
+      ],
       title: 'workflow managment demo',
       theme: customTheme(),
       debugShowCheckedModeBanner: false,

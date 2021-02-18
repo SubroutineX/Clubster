@@ -25,6 +25,7 @@ class PostCard extends StatelessWidget {
   final int index;
   final likeController = Get.put(LikeController());
   final commentController = CommentsController();
+  final newsFeedController = Get.find<FetchNewsFeedController>();
 
   @override
   Widget build(BuildContext context) {
@@ -219,13 +220,13 @@ class PostCard extends StatelessWidget {
                         Expanded(
                           child: Container(
                             child: Center(
-                              child: Obx(
-                                () => Text(
-                                  postInfo.comments.toString(),
-                                  style: textStyleSofiaSB(
-                                    13,
-                                    colorFont(),
-                                  ),
+                              child: Text(
+                                postInfo.comments != null
+                                    ? postInfo.comments.toString()
+                                    : "0",
+                                style: textStyleSofiaSB(
+                                  13,
+                                  colorFont(),
                                 ),
                               ),
                             ),

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:workflow/controllers/comments_controller.dart';
+import 'package:workflow/controllers/fetch_news_feed_controller.dart';
 import 'package:workflow/models/comments_model.dart';
 import 'package:workflow/models/news_feed.dart';
 import 'package:workflow/views/styles/colors.dart';
@@ -26,6 +27,7 @@ class _CommentPageState extends State<CommentPage> {
   final commentsController = Get.put(CommentsController());
 
   TextEditingController comment = TextEditingController();
+  final newsFeedController = Get.find<FetchNewsFeedController>();
 
   final NewsFeed postInfo;
   final int index;
@@ -86,7 +88,8 @@ class _CommentPageState extends State<CommentPage> {
                                   () => Text(
                                     "Comments " +
                                         "(" +
-                                        commentsController.comments.length
+                                        newsFeedController
+                                            .newsFeed[index].comments
                                             .toString() +
                                         ")",
                                     style: textStyleGilroySB(
@@ -165,7 +168,7 @@ class _CommentPageState extends State<CommentPage> {
                           "Empty comment", "Please enter a comment to post");
                     } else {
                       commentsController.addComment(
-                          comment.text, widget.postInfo.id);
+                          comment.text, widget.postInfo.id, index);
                       commentsController.comments.add(
                         Comment(
                             user: "Niku dada",
