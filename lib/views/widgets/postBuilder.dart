@@ -18,9 +18,11 @@ class PostCard extends StatelessWidget {
   PostCard({
     Key key,
     @required this.postInfo,
+    this.index,
   }) : super(key: key);
 
   final NewsFeed postInfo;
+  final int index;
   final likeController = Get.put(LikeController());
   final commentController = CommentsController();
 
@@ -184,6 +186,7 @@ class PostCard extends StatelessWidget {
                     Get.to(
                       CommentPage(
                         postInfo: postInfo,
+                        index: index,
                       ),
                     );
                   },
@@ -216,11 +219,13 @@ class PostCard extends StatelessWidget {
                         Expanded(
                           child: Container(
                             child: Center(
-                              child: Text(
-                                postInfo.comments.toString(),
-                                style: textStyleSofiaSB(
-                                  13,
-                                  colorFont(),
+                              child: Obx(
+                                () => Text(
+                                  postInfo.comments.toString(),
+                                  style: textStyleSofiaSB(
+                                    13,
+                                    colorFont(),
+                                  ),
                                 ),
                               ),
                             ),

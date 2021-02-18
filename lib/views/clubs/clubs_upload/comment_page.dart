@@ -11,11 +11,12 @@ import 'package:get/get.dart';
 
 class CommentPage extends StatefulWidget {
   final NewsFeed postInfo;
+  final int index;
 
-  CommentPage({Key key, @required this.postInfo}) : super(key: key);
+  CommentPage({Key key, @required this.postInfo, this.index}) : super(key: key);
 
   @override
-  _CommentPageState createState() => _CommentPageState(postInfo);
+  _CommentPageState createState() => _CommentPageState(postInfo, index);
 }
 
 class _CommentPageState extends State<CommentPage> {
@@ -27,15 +28,19 @@ class _CommentPageState extends State<CommentPage> {
   TextEditingController comment = TextEditingController();
 
   final NewsFeed postInfo;
+  final int index;
 
-  _CommentPageState(this.postInfo);
+  _CommentPageState(this.postInfo, this.index);
   // ScrollController scrollController;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    commentsController.fetchComments(postInfo.id);
+    commentsController.fetchComments(
+      postInfo.id,
+      index,
+    );
   }
 
   @override

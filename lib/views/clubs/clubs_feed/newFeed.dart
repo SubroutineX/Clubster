@@ -197,6 +197,7 @@ class Feed extends StatelessWidget {
                     i--)
                   PostCard(
                     postInfo: newsFeedCOntroller.newsFeed[i],
+                    index: i,
                   ),
                 SizedBox(
                   height: 80,
