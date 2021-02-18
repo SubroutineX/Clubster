@@ -101,5 +101,5 @@ app.post("/like", authenticateToken, like);
 app.post("/likesData", authenticateToken, likesData);
 app.post("/unlike", authenticateToken, unlike);
 app.post("/comment", authenticateToken, comment);
-app.get("/fetchComments", fetchComments);
+app.get("/fetchComments", authenticateToken, fetchComments);
 app.listen(PORT);
