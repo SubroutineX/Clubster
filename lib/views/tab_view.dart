@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:workflow/controllers/auth_controller.dart';
 
 //PAGES
 import 'package:workflow/views/custom_indicator.dart';
@@ -16,6 +18,7 @@ class TabPage extends StatefulWidget {
 
 class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
   TabController _tabController;
+  final authController = Get.put(AuthController());
 
   @override
   void initState() {

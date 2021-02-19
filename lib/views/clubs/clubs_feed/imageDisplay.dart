@@ -51,10 +51,107 @@ class ImageView extends StatelessWidget {
 
   Padding imageViewBottomNavbar() {
     return Padding(
-      padding: EdgeInsets.only(left: 20, right: 20),
+      padding: EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: 10,
+      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          GetX<FetchNewsFeedController>(
+            builder: (controller) {
+              return InkWell(
+                borderRadius: BorderRadius.circular(50),
+                onTap: () {
+                  postInfo.bookmark.value = !postInfo.bookmark.value;
+                },
+                child: Icon(
+                  postInfo.bookmark.value
+                      ? Icons.bookmark_rounded
+                      : Icons.bookmark_border_outlined,
+                  size: 22,
+                  color: postInfo.bookmark.value ? mango : fontColorDark,
+                ),
+              );
+            },
+          ),
+          Spacer(),
+          InkWell(
+            borderRadius: BorderRadius.circular(30),
+            onTap: () {},
+            child: Container(
+              height: 25,
+              width: 25,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Center(
+                child: Icon(
+                  Icons.share_rounded,
+                  size: 18,
+                  color: fontColorDark,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 15,
+          ),
+          InkWell(
+            borderRadius: BorderRadius.circular(30),
+            onTap: () => Get.to(
+              CommentPage(
+                postInfo: postInfo,
+              ),
+            ),
+            child: Container(
+              height: 25,
+              width: 56,
+              padding: EdgeInsets.symmetric(
+                horizontal: 5,
+              ),
+              decoration: BoxDecoration(
+                color: transparent,
+                border: Border.all(
+                  width: 1.5,
+                  color: blue,
+                ),
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(
+                    commentIcon,
+                    color: blue,
+                    height: 18,
+                  ),
+                  SizedBox(
+                    width: 3,
+                  ),
+                  Expanded(
+                    child: Container(
+                      child: Center(
+                        child: Text(
+                          postInfo.comments != null
+                              ? postInfo.comments.toString()
+                              : "0",
+                          style: textStyleSofiaSB(
+                            13,
+                            fontColorDark,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 15,
+          ),
           GetX<FetchNewsFeedController>(
             builder: (controller) {
               return InkWell(
@@ -117,100 +214,6 @@ class ImageView extends StatelessWidget {
                       ),
                     ],
                   ),
-                ),
-              );
-            },
-          ),
-          SizedBox(
-            width: 15,
-          ),
-          InkWell(
-            borderRadius: BorderRadius.circular(30),
-            onTap: () => Get.to(
-              CommentPage(
-                postInfo: postInfo,
-              ),
-            ),
-            child: Container(
-              height: 25,
-              width: 56,
-              padding: EdgeInsets.symmetric(
-                horizontal: 5,
-              ),
-              decoration: BoxDecoration(
-                color: transparent,
-                border: Border.all(
-                  width: 1.5,
-                  color: blue,
-                ),
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    commentIcon,
-                    color: blue,
-                    height: 18,
-                  ),
-                  SizedBox(
-                    width: 3,
-                  ),
-                  Expanded(
-                    child: Container(
-                      child: Center(
-                        child: Text(
-                          postInfo.comments != null
-                              ? postInfo.comments.toString()
-                              : "0",
-                          style: textStyleSofiaSB(
-                            13,
-                            fontColorDark,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(
-            width: 15,
-          ),
-          InkWell(
-            borderRadius: BorderRadius.circular(30),
-            onTap: () {},
-            child: Container(
-              height: 25,
-              width: 25,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: Center(
-                child: Icon(
-                  Icons.share_rounded,
-                  size: 18,
-                  color: fontColorDark,
-                ),
-              ),
-            ),
-          ),
-          Spacer(),
-          GetX<FetchNewsFeedController>(
-            builder: (controller) {
-              return InkWell(
-                borderRadius: BorderRadius.circular(50),
-                onTap: () {
-                  postInfo.bookmark.value = !postInfo.bookmark.value;
-                },
-                child: Icon(
-                  postInfo.bookmark.value
-                      ? Icons.bookmark_rounded
-                      : Icons.bookmark_border_outlined,
-                  size: 22,
-                  color: postInfo.bookmark.value ? mango : fontColorDark,
                 ),
               );
             },
