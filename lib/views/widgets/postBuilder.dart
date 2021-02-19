@@ -220,13 +220,15 @@ class PostCard extends StatelessWidget {
                         Expanded(
                           child: Container(
                             child: Center(
-                              child: Text(
-                                postInfo.comments != null
-                                    ? postInfo.comments.toString()
-                                    : "0",
-                                style: textStyleSofiaSB(
-                                  13,
-                                  colorFont(),
+                              child: Obx(
+                                () => Text(
+                                  newsFeedController
+                                      .newsFeed.value[index].comments
+                                      .toString(),
+                                  style: textStyleSofiaSB(
+                                    13,
+                                    colorFont(),
+                                  ),
                                 ),
                               ),
                             ),
@@ -252,6 +254,8 @@ class PostCard extends StatelessWidget {
                           likeController.like(postInfo.id);
                           postInfo.like.value = !postInfo.like.value;
                           postInfo.likes += 1;
+                          newsFeedController.newsFeed.value[index].comments +=
+                              1;
                         }
                       },
                       child: Container(
