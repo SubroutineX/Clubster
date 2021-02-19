@@ -220,14 +220,38 @@ class PostCard extends StatelessWidget {
                         Expanded(
                           child: Container(
                             child: Center(
+                              child: Text(
+                                postInfo.comments != null
+                                    ? postInfo.comments.toString()
+                                    : "0",
+                                style: textStyleSofiaSB(
+                                  13,
+                                  colorFont(),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 15,
+                ),
+                GetX<FetchNewsFeedController>(
+                  builder: (controller) {
+                    return InkWell(
+                      borderRadius: BorderRadius.circular(30),
+                      onTap: () {
+                        if (postInfo.like.value) {
                           likeController.unlike(postInfo.id);
                           postInfo.like.value = !postInfo.like.value;
                           postInfo.likes -= 1;
                         } else {
                           likeController.like(postInfo.id);
+                          postInfo.like.value = !postInfo.like.value;
                           postInfo.likes += 1;
-                          newsFeedController.newsFeed.value[index].comments +=
-                              1;
                         }
                       },
                       child: Container(
@@ -290,26 +314,11 @@ class PostCard extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Container(
-              child: RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: postInfo.caption != null
-                          ? "@" + postInfo.user + "  "
-                          : "",
-                      style: textStyleSofiaB(
-                        15,
-                        colorFont(),
-                      ),
-                    ),
-                    TextSpan(
-                      text: postInfo.caption != null ? postInfo.caption : "",
-                      style: textStyleGilroySB(
-                        15,
-                        colorFont(),
-                      ),
-                    ),
-                  ],
+              child: Text(
+                postInfo.caption != null ? postInfo.caption : "",
+                style: textStyleGilroySB(
+                  15,
+                  colorFont(),
                 ),
               ),
             ),

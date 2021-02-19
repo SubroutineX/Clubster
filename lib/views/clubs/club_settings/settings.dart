@@ -1,25 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:workflow/views/clubs/page_navigator.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 import 'package:workflow/views/styles/themeData.dart';
 
-class SettingsPage extends StatefulWidget {
-  @override
-  _SettingsPageState createState() => _SettingsPageState();
-}
-
-class _SettingsPageState extends State<SettingsPage>
-    with TickerProviderStateMixin {
+class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => Get.isDarkMode
-            ? Get.changeTheme(ThemeData.light())
-            : Get.changeTheme(ThemeData.dark()),
-      ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -32,7 +20,7 @@ class _SettingsPageState extends State<SettingsPage>
                 color: colorFont(),
               ),
               onPressed: () {
-                Get.offAll(PageNavigator());
+                Get.back();
               },
             ),
             flexibleSpace: FlexibleSpaceBar(
@@ -75,47 +63,18 @@ class _SettingsPageState extends State<SettingsPage>
                         Expanded(
                           child: AspectRatio(
                             aspectRatio: 1,
-                            child: GestureDetector(
-                              onTap: () {
-                                if (Get.isDarkMode) {
-                                  setState(
-                                    () {
-                                      Get.changeTheme(ThemeData.light());
-                                      setState(() {});
-                                    },
-                                  );
-                                } else {
-                                  setState(
-                                    () {
-                                      Get.changeTheme(ThemeData.dark());
-                                      setState(() {});
-                                    },
-                                  );
-                                }
-                              },
-                              child: AnimatedContainer(
-                                duration: Duration(
-                                  milliseconds: 500,
-                                ),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: cardColor(),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: shadowColor(),
-                                      blurRadius: 20,
-                                      spreadRadius: -5,
-                                      offset: Offset(0, 10),
-                                    ),
-                                  ],
-                                ),
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      children: [],
-                                    ),
-                                  ],
-                                ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: cardColor(),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: shadowColor(),
+                                    blurRadius: 20,
+                                    spreadRadius: -5,
+                                    offset: Offset(0, 10),
+                                  ),
+                                ],
                               ),
                             ),
                           ),

@@ -190,9 +190,9 @@ class _CommentPageState extends State<CommentPage> {
                     width: 100,
                     child: Align(
                       alignment: Alignment.centerRight,
-                      child: Text(
-                        "Post",
-                        style: textStyleGilroyM(16, white),
+                      child: Icon(
+                        Icons.send,
+                        color: white,
                       ),
                     ),
                   ),

@@ -56,41 +56,15 @@ class PostInfo extends StatelessWidget {
                   SizedBox(
                     height: 5,
                   ),
-                  RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: postProfileName != null
-                              ? "@" + postProfileName + "  "
-                              : "",
-                          style: textStyleSofiaB(
-                            15,
-                            colorFont(),
-                          ),
-                        ),
-                        TextSpan(
-                          text: caption != null
-                              ? caption.length >= 51
-                                  ? caption.toString().substring(0, 50) + " ..."
-                                  : caption
-                              : "",
-                          style: textStyleGilroySB(
-                            15,
-                            colorFont(),
-                          ),
-                        ),
-                      ],
+                  Text(
+                    caption.length >= 51
+                        ? caption.toString().substring(0, 50) + " ..."
+                        : caption,
+                    style: textStyleGilroyM(
+                      14,
+                      colorFontLight(),
                     ),
                   ),
-                  // Text(
-                  //   caption.length >= 51
-                  //       ? caption.toString().substring(0, 50) + " ..."
-                  //       : caption,
-                  //   style: textStyleGilroyM(
-                  //     14,
-                  //     colorFontLight(),
-                  //   ),
-                  // ),
                 ],
               ),
             ),
