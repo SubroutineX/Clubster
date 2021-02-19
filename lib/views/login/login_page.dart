@@ -18,7 +18,7 @@ import 'package:workflow/views/styles/styles.dart';
 //PAGES
 import 'package:workflow/views/clubs/page_navigator.dart';
 
-class Loginpage extends GetWidget<AuthController> {
+class Loginpage extends StatelessWidget {
   final TabController loginPageTabController;
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();

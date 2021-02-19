@@ -23,6 +23,7 @@ class FetchNewsFeedController extends GetxController {
       );
       if (response.statusCode == 200) {
         newsFeed.value = newsFeedFromJson(response.body);
+        print("fetched" + newsFeed.value[0].caption);
       }
     } catch (error) {
       print(error);

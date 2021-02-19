@@ -20,6 +20,7 @@ import 'package:workflow/views/styles/styles.dart';
 class PageNavigator extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
+  final authController = Get.put(AuthController());
   final navBarController = Get.put(NavigationController());
 
   @override
