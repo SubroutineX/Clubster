@@ -221,9 +221,7 @@ class PostCard extends StatelessWidget {
                           child: Container(
                             child: Center(
                               child: Text(
-                                postInfo.comments != null
-                                    ? postInfo.comments.toString()
-                                    : "0",
+                                postInfo.comments.toString(),
                                 style: textStyleSofiaSB(
                                   13,
                                   colorFont(),
@@ -314,11 +312,26 @@ class PostCard extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Container(
-              child: Text(
-                postInfo.caption != null ? postInfo.caption : "",
-                style: textStyleGilroySB(
-                  15,
-                  colorFont(),
+              child: RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: postInfo.caption != null
+                          ? "@" + postInfo.user + "  "
+                          : "",
+                      style: textStyleSofiaB(
+                        15,
+                        colorFont(),
+                      ),
+                    ),
+                    TextSpan(
+                      text: postInfo.caption != null ? postInfo.caption : "",
+                      style: textStyleGilroySB(
+                        15,
+                        colorFont(),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
