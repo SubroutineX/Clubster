@@ -170,10 +170,10 @@ class PostCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(30),
                     ),
                     child: Center(
-                      child: Icon(
-                        Icons.share_rounded,
-                        size: 18,
+                      child: SvgPicture.asset(
+                        shareIcon,
                         color: colorFont(),
+                        height: 22,
                       ),
                     ),
                   ),
@@ -183,56 +183,24 @@ class PostCard extends StatelessWidget {
                 ),
                 InkWell(
                   borderRadius: BorderRadius.circular(30),
-                  onTap: () {
-                    Get.to(
-                      CommentPage(
-                        postInfo: postInfo,
-                        index: index,
-                      ),
-                    );
-                  },
+                  onTap: () => Get.to(
+                    CommentPage(
+                      postInfo: postInfo,
+                      index: index,
+                    ),
+                  ),
                   child: Container(
                     height: 25,
-                    width: 56,
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 5,
-                    ),
+                    width: 25,
                     decoration: BoxDecoration(
-                      color: transparent,
-                      border: Border.all(
-                        width: 1.5,
-                        color: blue,
-                      ),
                       borderRadius: BorderRadius.circular(30),
                     ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(
-                          commentIcon,
-                          color: blue,
-                          height: 18,
-                        ),
-                        SizedBox(
-                          width: 3,
-                        ),
-                        Expanded(
-                          child: Container(
-                            child: Center(
-                              child: Text(
-                                postInfo.comments != null
-                                    ? postInfo.comments.toString()
-                                    : "0",
-                                style: textStyleSofiaSB(
-                                  13,
-                                  colorFont(),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                    child: Center(
+                      child: SvgPicture.asset(
+                        commentIcon,
+                        color: colorFont(),
+                        height: 25,
+                      ),
                     ),
                   ),
                 ),
