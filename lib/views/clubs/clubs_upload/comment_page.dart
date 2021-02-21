@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:workflow/controllers/auth_controller.dart';
 import 'package:workflow/controllers/comments_controller.dart';
 import 'package:workflow/controllers/fetch_news_feed_controller.dart';
 import 'package:workflow/models/comments_model.dart';
@@ -171,7 +172,14 @@ class _CommentPageState extends State<CommentPage> {
                           comment.text, widget.postInfo.id, index);
                       commentsController.comments.add(
                         Comment(
-                            user: "Niku dada",
+                            user: Get.find<AuthController>()
+                                        .currentUser
+                                        .userName !=
+                                    null
+                                ? Get.find<AuthController>()
+                                    .currentUser
+                                    .userName
+                                : "HII",
                             text: comment.text,
                             timeStamp: "now"),
                       );

@@ -48,6 +48,7 @@ dependencies:
     #story
     cached_network_image: ^2.5.0
     video_player: ^1.0.1
+    jwt_decoder: ^1.0.4
 
 dev_dependencies:
     flutter_test:

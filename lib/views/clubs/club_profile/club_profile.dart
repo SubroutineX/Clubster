@@ -51,7 +51,7 @@ class ProfilePage extends StatelessWidget {
             height: 5,
           ),
           Text(
-            "Nikhil Shinde",
+            Get.find<AuthController>().currentUser.userName,
             style: textStyleGilroyB(
               18,
               colorFont(),
@@ -61,7 +61,7 @@ class ProfilePage extends StatelessWidget {
             height: 3,
           ),
           Text(
-            "Student | D.Y.Patil University",
+            "Student | " + Get.find<AuthController>().currentUser.college,
             style: textStyleGilroyM(
               14,
               colorFontLight(),
