@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,9 +12,12 @@ class FollowsController extends GetxController {
 
       final token = sharedPreferences.getString('token');
       var response = await http.post("http://65.1.43.39:8000/follow?type=club",
-          body: {'name': name}, headers: {"Authorization": "Bearer $token"});
+          body: {'name': name, 'type': type},
+          headers: {"Authorization": "Bearer $token"});
       if (response.statusCode == 200) {
         print(response.body);
+        var body = jsonDecode(response.body);
+        Get.snackbar("success", body);
       } else {
         print("error" + response.body);
       }
