@@ -6,6 +6,7 @@ import 'package:workflow/controllers/club_controller.dart';
 
 //PACKAGES
 import 'package:sliding_sheet/sliding_sheet.dart';
+import 'package:workflow/controllers/follows_controller.dart';
 
 //PAGES
 import 'package:workflow/views/clubs/club_details/club_detail_sheet.dart';
@@ -20,6 +21,7 @@ class ClubDetailsPage extends StatelessWidget {
   dynamic clubInfoPage;
   String token;
   final cController = Get.find<ClubController>();
+  final followsController = Get.put(FollowsController());
 
   ClubDetailsPage({Key key, @required this.clubInfoPage});
 
@@ -55,9 +57,7 @@ class ClubDetailsPage extends StatelessWidget {
               buttonText: "Join",
               color: violet,
               splashColor: violetSplash,
-              onTapCall: () {
-                print("join");
-              },
+              onTapCall: () {},
             ),
             ButtonBuilder(
               multiple: .35,
@@ -66,7 +66,7 @@ class ClubDetailsPage extends StatelessWidget {
               color: blue,
               splashColor: blueSplash,
               onTapCall: () {
-                print("follow");
+                followsController.follow(clubInfoPage.clubName, "club");
               },
             ),
           ],
