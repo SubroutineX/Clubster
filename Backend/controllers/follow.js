@@ -4,7 +4,7 @@ module.exports = async (req, res) => {
     try {
         const follower = req.user.userName;
         const followee = req.body.name;
-        const type = req.query.type;
+        const type = req.body.type;
         var TS = Date().toString();
         var followsModel = new follows({
             _id: mongoose.Types.ObjectId(),
