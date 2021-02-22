@@ -2,7 +2,7 @@ const follows = require("../models/follows_model");
 const mongoose = require("mongoose");
 module.exports = async (req, res) => {
     try {
-        const follower = "req.user.userName";
+        const follower = req.user.userName;
         const followee = req.body.name;
         const type = req.query.type;
         var TS = Date().toString();
