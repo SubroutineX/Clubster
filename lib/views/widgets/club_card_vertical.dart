@@ -6,6 +6,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 //GETX CONTROLLERS
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:workflow/models/clubs.dart';
 
 //PAGES
 import 'package:workflow/views/clubs/club_details/club_details_page.dart';
@@ -19,9 +20,9 @@ import 'package:workflow/views/styles/themeData.dart';
 import 'package:workflow/views/widgets/buttonBuilder.dart';
 
 class ClubCardVertical extends StatelessWidget {
-  dynamic clubInfoCard;
+  Club clubInfo;
   String token;
-  ClubCardVertical({this.clubInfoCard});
+  ClubCardVertical({this.clubInfo});
 
   @override
   void initState() {
@@ -44,7 +45,7 @@ class ClubCardVertical extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Get.to(
-            ClubDetailsPage(clubInfoPage: clubInfoCard),
+            ClubDetailsPage(clubInfo: clubInfo),
             duration: Duration(milliseconds: 250),
           );
         },
@@ -76,17 +77,17 @@ class ClubCardVertical extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Hero(
-                      tag: clubInfoCard.id,
+                      tag: clubInfo.id,
                       child: Image.network(
                         "http://65.1.43.39:8000/fetchClubImage?imageName=" +
-                            clubInfoCard.clubName +
+                            clubInfo.clubName +
                             ".jpg",
                         headers: {"Authorization": "Bearer $token"},
                         fit: BoxFit.cover,
                       ),
                       // child: Image(
                       //   fit: BoxFit.cover,
-                      //   image: AssetImage(clubInfoCard.imgUrl),
+                      //   image: AssetImage(clubInfo.imgUrl),
                       // ),
                     ),
                   ),
@@ -108,7 +109,7 @@ class ClubCardVertical extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       AutoSizeText(
-                        clubInfoCard.clubName,
+                        clubInfo.clubName,
                         style: textStyleSofiaSB(
                           16,
                           colorFont(),
@@ -135,7 +136,7 @@ class ClubCardVertical extends StatelessWidget {
                               ),
                               SizedBox(height: 3),
                               Text(
-                                clubInfoCard.status,
+                                clubInfo.status,
                                 style: textStyleSofiaR(
                                   15,
                                   colorFont(),
@@ -168,13 +169,13 @@ class ClubCardVertical extends StatelessWidget {
               //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
               //       children: [
               //         BookmarkButtonBuilder(
-              //           pageInfo: clubInfoCard,
+              //           pageInfo: clubInfo,
               //           size: 28,
               //           iconSize: 18,
               //           shadowColor: fontColor.withOpacity(.1),
               //         ),
               //         LikeButtonBuilder(
-              //           pageInfo: clubInfoCard,
+              //           pageInfo: clubInfo,
               //           size: 28,
               //           iconSize: 18,
               //           shadowColor: fontColor.withOpacity(.1),

@@ -5,6 +5,9 @@ import 'package:get/get.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:workflow/controllers/fetch_news_feed_controller.dart';
+import 'package:workflow/models/story_model.dart';
+import 'package:workflow/models/user.dart';
+import 'package:workflow/views/clubs/clubs_feed/stories.dart';
 import 'package:workflow/views/clubs/clubs_upload/select_image.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
@@ -12,7 +15,7 @@ import 'package:workflow/views/styles/themeData.dart';
 import 'package:workflow/views/widgets/postBuilder.dart';
 import 'package:workflow/views/widgets/storyBuilder.dart';
 
-class Feed extends StatelessWidget {
+class ClubFeedBody extends StatelessWidget {
   PermissionStatus _permissionStatus;
 
   final newsFeedCOntroller = Get.put(FetchNewsFeedController());
@@ -81,6 +84,7 @@ class Feed extends StatelessWidget {
                           width: 20,
                         ),
                         UploadBuilder(
+                          user: user[0],
                           onTapCall: () async {
                             HapticFeedback.lightImpact();
 
@@ -121,60 +125,71 @@ class Feed extends StatelessWidget {
                               );
                             }
                           },
-                          storyName: "Upload",
-                          localUrl: "assets/images/profile.jpg",
                         ),
                         SizedBox(
                           width: 10,
                         ),
-                        StoryBuilder(
-                          seen: false,
-                          storyName: "Python",
-                          localUrl: "assets/images/python.jpg",
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        StoryBuilder(
-                          seen: false,
-                          storyName: "Dance workshop",
-                          localUrl: "assets/images/dance.jpg",
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        StoryBuilder(
-                          seen: false,
-                          storyName: "TATA motors",
-                          localUrl: "assets/images/tata.jpg",
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        StoryBuilder(
-                          seen: true,
-                          storyName: "HTML/CSS",
-                          localUrl: "assets/images/css.jpg",
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        StoryBuilder(
-                          seen: true,
-                          storyName: "Guest Lecture",
-                          localUrl: "assets/images/guest.jpg",
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        StoryBuilder(
-                          seen: true,
-                          storyName: "Sing along",
-                          localUrl: "assets/images/sing.jpg",
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
+                        for (int i = 0; i < user.length; i++)
+                          StoryBuilder(
+                            user: user[i],
+                            seen: false,
+                            onTapCall: () {
+                              Get.to(
+                                StoryScreen(
+                                  stories: stories,
+                                ),
+                                transition: Transition.zoom,
+                              );
+                            },
+                          ),
+                        // StoryBuilder(
+                        //   seen: false,
+                        //   storyName: "Python",
+                        //   localUrl: "assets/images/python.jpg",
+                        // ),
+                        // SizedBox(
+                        //   width: 10,
+                        // ),
+                        // StoryBuilder(
+                        //   seen: false,
+                        //   storyName: "Dance workshop",
+                        //   localUrl: "assets/images/dance.jpg",
+                        // ),
+                        // SizedBox(
+                        //   width: 10,
+                        // ),
+                        // StoryBuilder(
+                        //   seen: false,
+                        //   storyName: "TATA motors",
+                        //   localUrl: "assets/images/tata.jpg",
+                        // ),
+                        // SizedBox(
+                        //   width: 10,
+                        // ),
+                        // StoryBuilder(
+                        //   seen: true,
+                        //   storyName: "HTML/CSS",
+                        //   localUrl: "assets/images/css.jpg",
+                        // ),
+                        // SizedBox(
+                        //   width: 10,
+                        // ),
+                        // StoryBuilder(
+                        //   seen: true,
+                        //   storyName: "Guest Lecture",
+                        //   localUrl: "assets/images/guest.jpg",
+                        // ),
+                        // SizedBox(
+                        //   width: 10,
+                        // ),
+                        // StoryBuilder(
+                        //   seen: true,
+                        //   storyName: "Sing along",
+                        //   localUrl: "assets/images/sing.jpg",
+                        // ),
+                        // SizedBox(
+                        //   width: 20,
+                        // ),
                       ],
                     ),
                   ),

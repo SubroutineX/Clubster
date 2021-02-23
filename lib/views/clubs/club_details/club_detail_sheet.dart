@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 //PACKAGES
 import 'package:sliding_sheet/sliding_sheet.dart';
+import 'package:workflow/models/clubs.dart';
 import 'package:workflow/views/animations/FadeAnimation.dart';
 
 //STYLES
@@ -12,15 +13,15 @@ import 'package:workflow/views/styles/styles.dart';
 
 //WIDGETS
 import 'package:workflow/views/widgets/buttonBuilder.dart';
-import 'package:workflow/views/widgets/clubMembersBottomSheet.dart';
+import 'package:workflow/views/clubs/club_details/clubMembersBottomSheet.dart';
 
 class ClubDetailSheet extends StatelessWidget {
   const ClubDetailSheet({
     Key key,
-    @required this.page,
+    @required this.clubInfo,
   }) : super(key: key);
 
-  final dynamic page;
+  final Club clubInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +56,7 @@ class ClubDetailSheet extends StatelessWidget {
                   FadeAnimation(
                     20,
                     Text(
-                      page.clubName,
+                      clubInfo.clubName,
                       style: productDetailTitleStyle,
                     ),
                   ),
@@ -79,12 +80,12 @@ class ClubDetailSheet extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       BookmarkButtonBuilder(
-                        pageInfo: page,
+                        clubInfo: clubInfo,
                         size: 38,
                         iconSize: 20,
                       ),
                       LikeButtonBuilder(
-                        pageInfo: page,
+                        clubInfo: clubInfo,
                         size: 38,
                         iconSize: 20,
                       ),
@@ -127,7 +128,7 @@ class ClubDetailSheet extends StatelessWidget {
                                   Row(
                                     children: [
                                       Text(
-                                        page.genre,
+                                        clubInfo.genre,
                                         style: catDetailStyle,
                                         textScaleFactor: 1,
                                       ),
@@ -155,7 +156,7 @@ class ClubDetailSheet extends StatelessWidget {
                               FadeAnimation(
                                 35,
                                 Text(
-                                  page.status,
+                                  clubInfo.status,
                                   style: catDetailStyle,
                                   textScaleFactor: 1,
                                 ),
@@ -190,7 +191,7 @@ class ClubDetailSheet extends StatelessWidget {
                                   Row(
                                     children: [
                                       Text(
-                                        page.members.toString(),
+                                        clubInfo.members.toString(),
                                         style: catDetailStyle,
                                         textScaleFactor: 1,
                                       ),
@@ -218,7 +219,7 @@ class ClubDetailSheet extends StatelessWidget {
                               FadeAnimation(
                                 35,
                                 Text(
-                                  page.followers.toString(),
+                                  clubInfo.followers.toString(),
                                   style: catDetailStyle,
                                   textScaleFactor: 1,
                                 ),
@@ -241,7 +242,7 @@ class ClubDetailSheet extends StatelessWidget {
                     FadeAnimation(
                       50,
                       Text(
-                        page.description,
+                        clubInfo.description,
                         style: descriptionStyle,
                         textScaleFactor: 1,
                       ),

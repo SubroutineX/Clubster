@@ -99,7 +99,7 @@ class ClubViewBody extends StatelessWidget {
                                       i++)
                                     if (controller.clubs[i].elite == "Yes")
                                       ClubCardVertical(
-                                        clubInfoCard: controller.clubs[i],
+                                        clubInfo: controller.clubs[i],
                                       ),
                                   SizedBox(width: 5),
                                 ],
@@ -139,7 +139,7 @@ class ClubViewBody extends StatelessWidget {
                                     j++)
                                   if (controller.clubs[j].elite == "No")
                                     ClubCardHorizontal(
-                                      clubInfoCard: controller.clubs[j],
+                                      clubInfo: controller.clubs[j],
                                     ),
                               ],
                             ),

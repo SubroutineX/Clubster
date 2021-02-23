@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:workflow/models/story_model.dart';
-import 'package:workflow/models/userInfo_storyModel.dart';
 import 'package:video_player/video_player.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:workflow/models/user.dart';
 
 class StoryScreen extends StatefulWidget {
   final List<Story> stories;
@@ -40,8 +41,9 @@ class _StoryScreenState extends State<StoryScreen>
           } else {
             // Out of bounds - loop story
             // You can also Navigator.of(context).pop() here
-            _currentIndex = 0;
-            _loadStory(story: widget.stories[_currentIndex]);
+            // // _currentIndex = 0;
+            // // _loadStory(story: widget.stories[_currentIndex]);
+            Navigator.of(context).pop();
           }
         });
       }
@@ -77,18 +79,18 @@ class _StoryScreenState extends State<StoryScreen>
                       imageUrl: story.url,
                       fit: BoxFit.cover,
                     );
-                  case MediaType.video:
-                    if (_videoController != null &&
-                        _videoController.value.initialized) {
-                      return FittedBox(
-                        fit: BoxFit.cover,
-                        child: SizedBox(
-                          width: _videoController.value.size.width,
-                          height: _videoController.value.size.height,
-                          child: VideoPlayer(_videoController),
-                        ),
-                      );
-                    }
+                  // case MediaType.video:
+                  //   if (_videoController != null &&
+                  //       _videoController.value.initialized) {
+                  //     return FittedBox(
+                  //       fit: BoxFit.cover,
+                  //       child: SizedBox(
+                  //         width: _videoController.value.size.width,
+                  //         height: _videoController.value.size.height,
+                  //         child: VideoPlayer(_videoController),
+                  //       ),
+                  //     );
+                  //   }
                 }
                 return const SizedBox.shrink();
               },
@@ -149,21 +151,23 @@ class _StoryScreenState extends State<StoryScreen>
         } else {
           // Out of bounds - loop story
           // You can also Navigator.of(context).pop() here
-          _currentIndex = 0;
-          _loadStory(story: widget.stories[_currentIndex]);
+          // // _currentIndex = 0;
+          // // _loadStory(story: widget.stories[_currentIndex]);
+          Navigator.of(context).pop();
         }
       });
-    } else {
-      if (story.media == MediaType.video) {
-        if (_videoController.value.isPlaying) {
-          _videoController.pause();
-          _animController.stop();
-        } else {
-          _videoController.play();
-          _animController.forward();
-        }
-      }
     }
+    //  else {
+    //   if (story.media == MediaType.video) {
+    //     if (_videoController.value.isPlaying) {
+    //       _videoController.pause();
+    //       _animController.stop();
+    //     } else {
+    //       _videoController.play();
+    //       _animController.forward();
+    //     }
+    //   }
+    // }
   }
 
   void _loadStory({Story story, bool animateToPage = true}) {
@@ -174,18 +178,18 @@ class _StoryScreenState extends State<StoryScreen>
         _animController.duration = story.duration;
         _animController.forward();
         break;
-      case MediaType.video:
-        _videoController = null;
-        _videoController?.dispose();
-        _videoController = VideoPlayerController.network(story.url)
-          ..initialize().then((_) {
-            setState(() {});
-            if (_videoController.value.initialized) {
-              _animController.duration = _videoController.value.duration;
-              _videoController.play();
-              _animController.forward();
-            }
-          });
+        // case MediaType.video:
+        //   _videoController = null;
+        //   _videoController?.dispose();
+        //   _videoController = VideoPlayerController.network(story.url)
+        //     ..initialize().then((_) {
+        //       setState(() {});
+        //       if (_videoController.value.initialized) {
+        //         _animController.duration = _videoController.value.duration;
+        //         _videoController.play();
+        //         _animController.forward();
+        //       }
+        //     });
         break;
     }
     if (animateToPage) {
@@ -246,7 +250,7 @@ class AnimatedBar extends StatelessWidget {
 
   Container _buildContainer(double width, Color color) {
     return Container(
-      height: 5.0,
+      height: 4.0,
       width: width,
       decoration: BoxDecoration(
         color: color,

@@ -18,9 +18,9 @@ import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/widgets/buttonBuilder.dart';
 
 class ClubDetailsPage extends StatefulWidget {
-  dynamic clubInfoPage;
+  dynamic clubInfo;
 
-  ClubDetailsPage({Key key, @required this.clubInfoPage});
+  ClubDetailsPage({Key key, @required this.clubInfo});
 
   @override
   _ClubDetailsPageState createState() => _ClubDetailsPageState();
@@ -32,16 +32,14 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
   final cController = Get.find<ClubController>();
 
   void getStat() async {
-    var value =
-        await cController.fetchFollowingStat(widget.clubInfoPage.clubName);
+    var value = await cController.fetchFollowingStat(widget.clubInfo.clubName);
     setState(() {
-      widget.clubInfoPage.following = value;
+      widget.clubInfo.following = value;
     });
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     getStat();
@@ -87,24 +85,22 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
             ButtonBuilder(
               multiple: .35,
               height: 48,
-              buttonText: widget.clubInfoPage.following ?? false
-                  ? "Following"
-                  : "Follow",
-              color: widget.clubInfoPage.following ?? false ? white : blue,
-              txtColor: widget.clubInfoPage.following ?? false ? blue : white,
+              buttonText:
+                  widget.clubInfo.following ?? false ? "Following" : "Follow",
+              color: widget.clubInfo.following ?? false ? white : blue,
+              txtColor: widget.clubInfo.following ?? false ? blue : white,
               splashColor: blueSplash,
               onTapCall: () {
-                if (!widget.clubInfoPage.following) {
-                  followsController.follow(
-                      widget.clubInfoPage.clubName, "club");
+                if (!widget.clubInfo.following) {
+                  followsController.follow(widget.clubInfo.clubName, "club");
                 } else {
-                  followsController.unfollow(
-                      widget.clubInfoPage.clubName, "club");
+                  followsController.unfollow(widget.clubInfo.clubName, "club");
                 }
-                setState(() {
-                  widget.clubInfoPage.following =
-                      !widget.clubInfoPage.following;
-                });
+                setState(
+                  () {
+                    widget.clubInfo.following = !widget.clubInfo.following;
+                  },
+                );
               },
             ),
           ],
@@ -132,10 +128,10 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
                     width: deviceDimensions.width,
                     height: deviceDimensions.height * 0.45,
                     child: Hero(
-                      tag: widget.clubInfoPage.id,
+                      tag: widget.clubInfo.id,
                       child: Image.network(
                         "http://65.1.43.39:8000/fetchClubImage?imageName=" +
-                            widget.clubInfoPage.clubName +
+                            widget.clubInfo.clubName +
                             ".jpg",
                         headers: {"Authorization": "Bearer $token"},
                         fit: BoxFit.cover,
@@ -174,7 +170,7 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
               ],
             ),
             builder: (context, state) {
-              return ClubDetailSheet(page: widget.clubInfoPage);
+              return ClubDetailSheet(clubInfo: widget.clubInfo);
             },
           ),
         ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 //GETX CONTROLLERS
 import 'package:get/get.dart';
 import 'package:workflow/controllers/club_controller.dart';
+import 'package:workflow/models/clubs.dart';
 
 //STYLES
 import 'package:workflow/views/styles/colors.dart';
@@ -213,13 +214,13 @@ class GradientButtonBuilder extends StatelessWidget {
 class LikeButtonBuilder extends StatelessWidget {
   const LikeButtonBuilder(
       {Key key,
-      @required this.pageInfo,
+      @required this.clubInfo,
       this.size,
       this.iconSize,
       this.shadowColor})
       : super(key: key);
 
-  final dynamic pageInfo;
+  final dynamic clubInfo;
   final double size;
   final double iconSize;
   final Color shadowColor;
@@ -230,7 +231,7 @@ class LikeButtonBuilder extends StatelessWidget {
       builder: (controller) {
         return InkWell(
           onTap: () {
-            pageInfo.like.value = !pageInfo.like.value;
+            clubInfo.like.value = !clubInfo.like.value;
           },
           child: Container(
             width: size,
@@ -245,16 +246,16 @@ class LikeButtonBuilder extends StatelessWidget {
               color: Colors.white,
             ),
             child: Center(
-              child: pageInfo.like.value
+              child: clubInfo.like.value
                   ? Icon(
                       Icons.favorite_rounded,
                       size: iconSize,
-                      color: pageInfo.like.value ? red : Colors.grey[600],
+                      color: clubInfo.like.value ? red : Colors.grey[600],
                     )
                   : Icon(
                       Icons.favorite_outline_rounded,
                       size: iconSize,
-                      color: pageInfo.like.value ? red : Colors.grey[600],
+                      color: clubInfo.like.value ? red : Colors.grey[600],
                     ),
             ),
           ),
@@ -267,13 +268,13 @@ class LikeButtonBuilder extends StatelessWidget {
 class BookmarkButtonBuilder extends StatelessWidget {
   const BookmarkButtonBuilder({
     Key key,
-    @required this.pageInfo,
+    @required this.clubInfo,
     this.size,
     this.iconSize,
     this.shadowColor,
   }) : super(key: key);
 
-  final dynamic pageInfo;
+  final Club clubInfo;
   final double size;
   final double iconSize;
   final Color shadowColor;
@@ -284,7 +285,7 @@ class BookmarkButtonBuilder extends StatelessWidget {
       builder: (controller) {
         return InkWell(
           onTap: () {
-            pageInfo.bookmark.value = !pageInfo.bookmark.value;
+            clubInfo.bookmark.value = !clubInfo.bookmark.value;
           },
           child: Container(
             width: size,
@@ -299,18 +300,18 @@ class BookmarkButtonBuilder extends StatelessWidget {
               color: Colors.white,
             ),
             child: Center(
-              child: pageInfo.bookmark.value
+              child: clubInfo.bookmark.value
                   ? Icon(
                       Icons.bookmark_rounded,
                       size: iconSize,
                       color:
-                          pageInfo.bookmark.value ? yellow : Colors.grey[600],
+                          clubInfo.bookmark.value ? yellow : Colors.grey[600],
                     )
                   : Icon(
                       Icons.bookmark_outline_rounded,
                       size: iconSize,
                       color:
-                          pageInfo.bookmark.value ? yellow : Colors.grey[600],
+                          clubInfo.bookmark.value ? yellow : Colors.grey[600],
                     ),
             ),
           ),
