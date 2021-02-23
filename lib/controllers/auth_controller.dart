@@ -49,18 +49,13 @@ class AuthController extends GetxController {
 
   void logoutUser() async {
     try {
-      var response = await http.delete("http://65.1.43.39:8000/logout");
-      if (response.statusCode == 200) {
-        SharedPreferences sharedPreferences =
-            await SharedPreferences.getInstance();
-        sharedPreferences.clear();
-        // sharedPreferences.commit();
-        Get.delete<ClubController>();
-        Get.delete<FetchNewsFeedController>();
-        Get.off(TabPage());
-      } else {
-        Get.snackbar('error Logging Out', response.body);
-      }
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      sharedPreferences.clear();
+      // sharedPreferences.commit();
+      Get.delete<ClubController>();
+      Get.delete<FetchNewsFeedController>();
+      Get.off(TabPage());
     } catch (error) {
       Get.snackbar('Error Logging Out', error.message);
     }

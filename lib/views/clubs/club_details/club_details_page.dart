@@ -32,17 +32,19 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
   final cController = Get.find<ClubController>();
 
   void getStat() async {
-    widget.clubInfoPage.following =
+    var value =
         await cController.fetchFollowingStat(widget.clubInfoPage.clubName);
+    setState(() {
+      widget.clubInfoPage.following = value;
+    });
   }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    setState(() {
-      getStat();
-    });
+
+    getStat();
   }
 
   final followsController = Get.put(FollowsController());
