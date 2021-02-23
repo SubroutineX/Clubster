@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:workflow/controllers/auth_controller.dart';
@@ -30,6 +32,7 @@ class _CommentPageState extends State<CommentPage> {
   TextEditingController comment = TextEditingController();
   final newsFeedController = Get.find<FetchNewsFeedController>();
 
+  final animationKey = GlobalKey<AnimatedListState>();
   final NewsFeed postInfo;
   final int index;
 
@@ -100,7 +103,7 @@ class _CommentPageState extends State<CommentPage> {
                                   ),
                                 ),
                               ],
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -135,7 +138,7 @@ class _CommentPageState extends State<CommentPage> {
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -172,20 +175,25 @@ class _CommentPageState extends State<CommentPage> {
                           comment.text, widget.postInfo.id, index);
                       commentsController.comments.add(
                         Comment(
-                            user: Get.find<AuthController>()
-                                        .currentUser
-                                        .userName !=
-                                    null
-                                ? Get.find<AuthController>()
-                                    .currentUser
-                                    .userName
-                                : "HII",
-                            text: comment.text,
-                            timeStamp: "now"),
+                          user: Get.find<AuthController>()
+                                      .currentUser
+                                      .userName !=
+                                  null
+                              ? Get.find<AuthController>().currentUser.userName
+                              : "currentUser.name",
+                          text: comment.text,
+                          timeStamp: "now",
+                        ),
                       );
                       Get.snackbar(
                           "Comment posted", "Your comment has been posted");
                       comment.clear();
+                      Timer(
+                        Duration(milliseconds: 500),
+                        () {
+                          FocusScope.of(context).requestFocus(FocusNode());
+                        },
+                      );
                     }
                   },
                   child: Container(
