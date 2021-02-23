@@ -31,6 +31,14 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
 
   final cController = Get.find<ClubController>();
 
+  @override
+  void initState() async {
+    // TODO: implement initState
+    super.initState();
+    widget.clubInfoPage.following =
+        await cController.fetchFollowingStat(widget.clubInfoPage.clubName);
+  }
+
   final followsController = Get.put(FollowsController());
 
   bool following = false;
@@ -73,14 +81,16 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
             ButtonBuilder(
               multiple: .35,
               height: 48,
-              buttonText: following ? "Following" : "Follow",
-              color: following ? white : blue,
-              txtColor: following ? blue : white,
+              buttonText:
+                  widget.clubInfoPage.following ? "Following" : "Follow",
+              color: widget.clubInfoPage.following ? white : blue,
+              txtColor: widget.clubInfoPage.following ? blue : white,
               splashColor: blueSplash,
               onTapCall: () {
                 followsController.follow(widget.clubInfoPage.clubName, "club");
                 setState(() {
-                  following = !following;
+                  widget.clubInfoPage.following =
+                      !widget.clubInfoPage.following;
                 });
               },
             ),

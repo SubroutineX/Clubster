@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 //GETX CONTROLLERS
@@ -5,6 +7,7 @@ import 'package:get/get.dart';
 
 //PACKAGES
 import 'package:sliding_sheet/sliding_sheet.dart';
+import 'package:workflow/controllers/club_controller.dart';
 import 'package:workflow/views/animations/FadeAnimation.dart';
 
 //STYLES
@@ -14,14 +17,19 @@ import 'package:workflow/views/styles/styles.dart';
 import 'package:workflow/views/widgets/buttonBuilder.dart';
 import 'package:workflow/views/widgets/clubMembersBottomSheet.dart';
 
-class ClubDetailSheet extends StatelessWidget {
-  const ClubDetailSheet({
+class ClubDetailSheet extends StatefulWidget {
+  ClubDetailSheet({
     Key key,
     @required this.page,
   }) : super(key: key);
 
   final dynamic page;
 
+  @override
+  _ClubDetailSheetState createState() => _ClubDetailSheetState();
+}
+
+class _ClubDetailSheetState extends State<ClubDetailSheet> {
   @override
   Widget build(BuildContext context) {
     var deviceDimensions = MediaQuery.of(context).size;
@@ -55,7 +63,7 @@ class ClubDetailSheet extends StatelessWidget {
                   FadeAnimation(
                     20,
                     Text(
-                      page.clubName,
+                      widget.page.clubName,
                       style: productDetailTitleStyle,
                     ),
                   ),
@@ -79,12 +87,12 @@ class ClubDetailSheet extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       BookmarkButtonBuilder(
-                        pageInfo: page,
+                        pageInfo: widget.page,
                         size: 38,
                         iconSize: 20,
                       ),
                       LikeButtonBuilder(
-                        pageInfo: page,
+                        pageInfo: widget.page,
                         size: 38,
                         iconSize: 20,
                       ),
@@ -127,7 +135,7 @@ class ClubDetailSheet extends StatelessWidget {
                                   Row(
                                     children: [
                                       Text(
-                                        page.genre,
+                                        widget.page.genre,
                                         style: catDetailStyle,
                                         textScaleFactor: 1,
                                       ),
@@ -155,7 +163,7 @@ class ClubDetailSheet extends StatelessWidget {
                               FadeAnimation(
                                 35,
                                 Text(
-                                  page.status,
+                                  widget.page.status,
                                   style: catDetailStyle,
                                   textScaleFactor: 1,
                                 ),
@@ -190,7 +198,7 @@ class ClubDetailSheet extends StatelessWidget {
                                   Row(
                                     children: [
                                       Text(
-                                        page.members.toString(),
+                                        widget.page.members.toString(),
                                         style: catDetailStyle,
                                         textScaleFactor: 1,
                                       ),
@@ -218,7 +226,7 @@ class ClubDetailSheet extends StatelessWidget {
                               FadeAnimation(
                                 35,
                                 Text(
-                                  page.followers.toString(),
+                                  widget.page.followers.toString(),
                                   style: catDetailStyle,
                                   textScaleFactor: 1,
                                 ),
@@ -241,7 +249,7 @@ class ClubDetailSheet extends StatelessWidget {
                     FadeAnimation(
                       50,
                       Text(
-                        page.description,
+                        widget.page.description,
                         style: descriptionStyle,
                         textScaleFactor: 1,
                       ),
