@@ -29,7 +29,6 @@ class ClubCardHorizontal extends StatelessWidget {
   }
 
   void getToken() async {
-    print("calledddd");
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     token = sharedPreferences.getString('token');
     print(token);

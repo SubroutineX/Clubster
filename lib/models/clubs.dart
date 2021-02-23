@@ -12,15 +12,15 @@ String clubsToJson(List<Clubs> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Clubs extends GetxController {
-  Clubs({
-    this.id,
-    this.clubName,
-    this.genre,
-    this.description,
-    this.status,
-    this.memberLimit,
-    this.elite,
-  });
+  Clubs(
+      {this.id,
+      this.clubName,
+      this.genre,
+      this.description,
+      this.status,
+      this.memberLimit,
+      this.elite,
+      this.following});
 
   String id;
   String clubName;
@@ -30,7 +30,7 @@ class Clubs extends GetxController {
   int memberLimit;
   String elite;
 
-  final following = false.obs;
+  bool following = false;
   final members = 0.obs;
   final followers = 0.obs;
   final bookmark = false.obs;

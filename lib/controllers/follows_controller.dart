@@ -11,7 +11,28 @@ class FollowsController extends GetxController {
           await SharedPreferences.getInstance();
 
       final token = sharedPreferences.getString('token');
-      var response = await http.post("http://65.1.43.39:8000/follow?type=club",
+      var response = await http.post("http://65.1.43.39:8000/follow",
+          body: {'name': name, 'type': type},
+          headers: {"Authorization": "Bearer $token"});
+      if (response.statusCode == 200) {
+        print(response.body);
+        var body = jsonDecode(response.body);
+        Get.snackbar("success", body);
+      } else {
+        print("error" + response.body);
+      }
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  void unfollow(String name, String type) async {
+    try {
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+
+      final token = sharedPreferences.getString('token');
+      var response = await http.post("http://65.1.43.39:8000/unfollow",
           body: {'name': name, 'type': type},
           headers: {"Authorization": "Bearer $token"});
       if (response.statusCode == 200) {

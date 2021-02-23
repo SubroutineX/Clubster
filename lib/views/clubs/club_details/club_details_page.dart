@@ -31,17 +31,21 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
 
   final cController = Get.find<ClubController>();
 
-  @override
-  void initState() async {
-    // TODO: implement initState
-    super.initState();
+  void getStat() async {
     widget.clubInfoPage.following =
         await cController.fetchFollowingStat(widget.clubInfoPage.clubName);
   }
 
-  final followsController = Get.put(FollowsController());
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setState(() {
+      getStat();
+    });
+  }
 
-  bool following = false;
+  final followsController = Get.put(FollowsController());
 
   @override
   Widget build(BuildContext context) {
@@ -81,13 +85,20 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
             ButtonBuilder(
               multiple: .35,
               height: 48,
-              buttonText:
-                  widget.clubInfoPage.following ? "Following" : "Follow",
-              color: widget.clubInfoPage.following ? white : blue,
-              txtColor: widget.clubInfoPage.following ? blue : white,
+              buttonText: widget.clubInfoPage.following ?? false
+                  ? "Following"
+                  : "Follow",
+              color: widget.clubInfoPage.following ?? false ? white : blue,
+              txtColor: widget.clubInfoPage.following ?? false ? blue : white,
               splashColor: blueSplash,
               onTapCall: () {
-                followsController.follow(widget.clubInfoPage.clubName, "club");
+                if (!widget.clubInfoPage.following) {
+                  followsController.follow(
+                      widget.clubInfoPage.clubName, "club");
+                } else {
+                  followsController.unfollow(
+                      widget.clubInfoPage.clubName, "club");
+                }
                 setState(() {
                   widget.clubInfoPage.following =
                       !widget.clubInfoPage.following;

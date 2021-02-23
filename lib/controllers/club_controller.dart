@@ -40,12 +40,19 @@ class ClubController extends GetxController {
           await SharedPreferences.getInstance();
       final token = sharedPreferences.getString('token');
       var response = await http.get(
-        "http://65.1.43.39:8000/fetchFollowingStat",
+        "http://65.1.43.39:8000/fetchFollowingStat?name=$clubName",
         headers: {"Authorization": "Bearer $token"},
       );
       if (response.statusCode == 200) {
         var stat = jsonDecode(response.body);
+        print(stat);
+        return stat;
+      } else {
+        return false;
       }
-    } catch (error) {}
+    } catch (error) {
+      print(error);
+      return false;
+    }
   }
 }

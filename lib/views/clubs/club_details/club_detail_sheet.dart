@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 
 //GETX CONTROLLERS
@@ -7,7 +5,6 @@ import 'package:get/get.dart';
 
 //PACKAGES
 import 'package:sliding_sheet/sliding_sheet.dart';
-import 'package:workflow/controllers/club_controller.dart';
 import 'package:workflow/views/animations/FadeAnimation.dart';
 
 //STYLES
@@ -17,19 +14,14 @@ import 'package:workflow/views/styles/styles.dart';
 import 'package:workflow/views/widgets/buttonBuilder.dart';
 import 'package:workflow/views/widgets/clubMembersBottomSheet.dart';
 
-class ClubDetailSheet extends StatefulWidget {
-  ClubDetailSheet({
+class ClubDetailSheet extends StatelessWidget {
+  const ClubDetailSheet({
     Key key,
     @required this.page,
   }) : super(key: key);
 
   final dynamic page;
 
-  @override
-  _ClubDetailSheetState createState() => _ClubDetailSheetState();
-}
-
-class _ClubDetailSheetState extends State<ClubDetailSheet> {
   @override
   Widget build(BuildContext context) {
     var deviceDimensions = MediaQuery.of(context).size;
@@ -63,7 +55,7 @@ class _ClubDetailSheetState extends State<ClubDetailSheet> {
                   FadeAnimation(
                     20,
                     Text(
-                      widget.page.clubName,
+                      page.clubName,
                       style: productDetailTitleStyle,
                     ),
                   ),
@@ -87,12 +79,12 @@ class _ClubDetailSheetState extends State<ClubDetailSheet> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       BookmarkButtonBuilder(
-                        pageInfo: widget.page,
+                        pageInfo: page,
                         size: 38,
                         iconSize: 20,
                       ),
                       LikeButtonBuilder(
-                        pageInfo: widget.page,
+                        pageInfo: page,
                         size: 38,
                         iconSize: 20,
                       ),
@@ -135,7 +127,7 @@ class _ClubDetailSheetState extends State<ClubDetailSheet> {
                                   Row(
                                     children: [
                                       Text(
-                                        widget.page.genre,
+                                        page.genre,
                                         style: catDetailStyle,
                                         textScaleFactor: 1,
                                       ),
@@ -163,7 +155,7 @@ class _ClubDetailSheetState extends State<ClubDetailSheet> {
                               FadeAnimation(
                                 35,
                                 Text(
-                                  widget.page.status,
+                                  page.status,
                                   style: catDetailStyle,
                                   textScaleFactor: 1,
                                 ),
@@ -198,7 +190,7 @@ class _ClubDetailSheetState extends State<ClubDetailSheet> {
                                   Row(
                                     children: [
                                       Text(
-                                        widget.page.members.toString(),
+                                        page.members.toString(),
                                         style: catDetailStyle,
                                         textScaleFactor: 1,
                                       ),
@@ -226,7 +218,7 @@ class _ClubDetailSheetState extends State<ClubDetailSheet> {
                               FadeAnimation(
                                 35,
                                 Text(
-                                  widget.page.followers.toString(),
+                                  page.followers.toString(),
                                   style: catDetailStyle,
                                   textScaleFactor: 1,
                                 ),
@@ -249,7 +241,7 @@ class _ClubDetailSheetState extends State<ClubDetailSheet> {
                     FadeAnimation(
                       50,
                       Text(
-                        widget.page.description,
+                        page.description,
                         style: descriptionStyle,
                         textScaleFactor: 1,
                       ),
