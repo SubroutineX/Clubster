@@ -21,9 +21,11 @@ class ButtonBuilder extends StatelessWidget {
     this.splashColor,
     this.textStyle,
     this.borderRadius,
+    this.txtColor,
   }) : super(key: key);
 
   final String buttonText;
+  final Color txtColor;
   final double width;
   final double height;
   final double multiple;
@@ -68,7 +70,9 @@ class ButtonBuilder extends StatelessWidget {
           child: Center(
             child: Text(
               buttonText,
-              style: textStyle == null ? joinStyle : textStyle,
+              style: textStyle == null
+                  ? textStyleSofiaSB(18, txtColor)
+                  : textStyle,
             ),
           ),
         ),

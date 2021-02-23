@@ -30,6 +30,7 @@ class Clubs extends GetxController {
   int memberLimit;
   String elite;
 
+  final following = false.obs;
   final members = 0.obs;
   final followers = 0.obs;
   final bookmark = false.obs;

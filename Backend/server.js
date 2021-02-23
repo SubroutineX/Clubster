@@ -45,6 +45,8 @@ const unlike = require("./controllers/unlike");
 const comment = require("./controllers/comment");
 const fetchComments = require("./controllers/fetch_comments");
 const commentsCount = require("./controllers/comments_count");
+const follow = require("./controllers/follow");
+const FetchfollowingStat = require("./controllers/fetch_following_stat");
 //Routes
 
 app.all('/', function (req, res, next) {
@@ -104,4 +106,7 @@ app.post("/unlike", authenticateToken, unlike);
 app.post("/comment", authenticateToken, comment);
 app.get("/fetchComments", authenticateToken, fetchComments);
 app.get("/commentsCount", authenticateToken, commentsCount);
+app.post("/follow", authenticateToken, follow);
+app.get("/fetchFollowingStat", authenticateToken, FetchfollowingStat);
+
 app.listen(PORT);

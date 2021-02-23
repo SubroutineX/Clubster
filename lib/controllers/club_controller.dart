@@ -33,4 +33,19 @@ class ClubController extends GetxController {
       print(error);
     }
   }
+
+  Future<bool> fetchFollowingStat(String clubName) async {
+    try {
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      final token = sharedPreferences.getString('token');
+      var response = await http.get(
+        "http://65.1.43.39:8000/fetchFollowingStat",
+        headers: {"Authorization": "Bearer $token"},
+      );
+      if (response.statusCode == 200) {
+        var stat = jsonDecode(response.body);
+      }
+    } catch (error) {}
+  }
 }
