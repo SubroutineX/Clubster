@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workflow/controllers/auth_controller.dart';
@@ -20,54 +22,223 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var deviceWidth = MediaQuery.of(context).size.width;
-    return Scaffold(
-      backgroundColor: bw(),
-      body: Column(
-        children: [
-          Container(
-            height: 300,
-            child: Stack(
-              children: [
-                ClipPath(
-                  clipper: MyCustomClipper(),
-                  child: Container(
-                    height: 300,
-                    child: Image.asset(
-                      "assets/images/sing.jpg",
-                      fit: BoxFit.cover,
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        backgroundColor: bw(),
+        body: Column(
+          children: [
+            Container(
+              height: 300,
+              child: Stack(
+                children: [
+                  ClipPath(
+                    clipper: MyCustomClipper(),
+                    child: Container(
+                      height: 300,
+                      child: Image.asset(
+                        "assets/images/sing.jpg",
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
+                  Positioned(
+                    top: 190,
+                    left: (deviceWidth / 2) - 52,
+                    child: ProfileImage(),
+                  ),
+                  profilePageAppBar(),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Text(
+              "Nikhil Shinde",
+              style: textStyleGilroyB(
+                18,
+                colorFont(),
+              ),
+            ),
+            SizedBox(
+              height: 3,
+            ),
+            Text(
+              "Student | D.Y.Patil University",
+              style: textStyleGilroyM(
+                14,
+                colorFontLight(),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            TabBar(
+              indicator: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                color: yellow,
+              ),
+              tabs: [
+                Tab(
+                  text: "My Posts",
                 ),
-                Positioned(
-                  top: 190,
-                  left: (deviceWidth / 2) - 52,
-                  child: ProfileImage(),
+                Tab(
+                  text: "My Clubs",
                 ),
-                profilePageAppBar(),
               ],
             ),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Text(
-            "Nikhil Shinde",
-            style: textStyleGilroyB(
-              18,
-              colorFont(),
+            SizedBox(
+              height: 10,
             ),
-          ),
-          SizedBox(
-            height: 3,
-          ),
-          Text(
-            "Student | D.Y.Patil University",
-            style: textStyleGilroyM(
-              14,
-              colorFontLight(),
+            Expanded(
+              child: TabBarView(
+                children: [
+                  // first tab bar view widget
+                  SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 14),
+                      child: Container(
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                PostCard(),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                PostCard(),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                PostCard(),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              children: [
+                                PostCard(),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                PostCard(),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                PostCard(),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              children: [
+                                PostCard(),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                PostCard(),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                PostCard(),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              children: [
+                                PostCard(),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                PostCard(),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                PostCard(),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  // second tab bar viiew widget
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 14),
+                    child: SingleChildScrollView(
+                      child: Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Created Clubs", style: tabLabelStyle),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              height: 150,
+                              child: ListView(
+                                scrollDirection: Axis.horizontal,
+                                children: <Widget>[
+                                  PostCard(),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  PostCard(),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  PostCard(),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  PostCard(),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text("Following Clubs", style: tabLabelStyle),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              height: 150,
+                              child: ListView(
+                                scrollDirection: Axis.horizontal,
+                                children: <Widget>[
+                                  PostCard(),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  PostCard(),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  PostCard(),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  PostCard(),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -99,6 +270,24 @@ class ProfilePage extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class PostCard extends StatelessWidget {
+  const PostCard({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 115,
+      width: 115,
+      decoration: BoxDecoration(
+        color: lightred,
+        borderRadius: BorderRadius.circular(10),
       ),
     );
   }

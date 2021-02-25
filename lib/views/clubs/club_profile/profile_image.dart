@@ -79,7 +79,7 @@ class ProfileImage extends StatelessWidget {
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       );
