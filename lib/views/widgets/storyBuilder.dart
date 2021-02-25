@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workflow/models/user.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 import 'package:workflow/views/styles/themeData.dart';
@@ -6,15 +7,12 @@ import 'package:workflow/views/styles/themeData.dart';
 class StoryBuilder extends StatelessWidget {
   const StoryBuilder({
     Key key,
-    this.storyName,
-    this.storyUrl,
+    this.user,
     this.onTapCall,
-    this.localUrl,
     this.seen,
   }) : super(key: key);
-  final String storyUrl;
-  final String storyName;
-  final String localUrl;
+  final User user;
+  final String localUrl = "assets/images/profile.jpg";
   final VoidCallback onTapCall;
   final bool seen;
   @override
@@ -49,12 +47,12 @@ class StoryBuilder extends StatelessWidget {
                   borderRadius: BorderRadius.circular(21),
                   child: localUrl == null
                       ? Image.network(
-                          storyUrl,
+                          user.profileImageUrl,
                           fit: BoxFit.cover,
                         )
-                      : Image(
+                      : Image.asset(
+                          localUrl,
                           fit: BoxFit.cover,
-                          image: AssetImage(localUrl),
                         ),
                 ),
               ),
@@ -65,9 +63,9 @@ class StoryBuilder extends StatelessWidget {
           height: 10,
         ),
         Text(
-          storyName.length > 8
-              ? storyName.toString().substring(0, 8) + "..."
-              : storyName,
+          user.name.length > 8
+              ? user.name.toString().substring(0, 8) + "..."
+              : user.name,
           style: textStyleGilroyM(
             12,
             colorFont(),
@@ -79,16 +77,14 @@ class StoryBuilder extends StatelessWidget {
 }
 
 class UploadBuilder extends StatelessWidget {
-  const UploadBuilder({
+  UploadBuilder({
     Key key,
-    this.storyName,
-    this.storyUrl,
+    this.user,
     this.onTapCall,
-    this.localUrl,
   }) : super(key: key);
-  final String storyUrl;
-  final String storyName;
-  final String localUrl;
+
+  final User user;
+  final String localUrl = "assets/images/profile.jpg";
   final VoidCallback onTapCall;
   @override
   Widget build(BuildContext context) {
@@ -115,12 +111,12 @@ class UploadBuilder extends StatelessWidget {
                       borderRadius: BorderRadius.circular(21),
                       child: localUrl == null
                           ? Image.network(
-                              storyUrl,
+                              user.profileImageUrl,
                               fit: BoxFit.cover,
                             )
-                          : Image(
+                          : Image.asset(
+                              localUrl,
                               fit: BoxFit.cover,
-                              image: AssetImage(localUrl),
                             ),
                     ),
                   ),
@@ -161,9 +157,9 @@ class UploadBuilder extends StatelessWidget {
           height: 10,
         ),
         Text(
-          storyName.length > 8
-              ? storyName.toString().substring(0, 8) + "..."
-              : storyName,
+          user.name.length > 8
+              ? user.name.toString().substring(0, 8) + "..."
+              : user.name,
           style: textStyleGilroyM(12, colorFont()),
         ),
       ],

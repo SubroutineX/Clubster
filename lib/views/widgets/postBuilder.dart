@@ -7,7 +7,7 @@ import 'package:workflow/controllers/fetch_news_feed_controller.dart';
 import 'package:workflow/controllers/like_controller.dart';
 import 'package:workflow/models/news_feed.dart';
 import 'package:workflow/views/clubs/clubs_feed/imageDisplay.dart';
-import 'package:workflow/views/clubs/clubs_upload/comment_page.dart';
+import 'package:workflow/views/clubs/clubs_feed/comment_page.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/icons.dart';
 import 'package:workflow/views/styles/styles.dart';

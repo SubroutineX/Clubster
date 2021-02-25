@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:workflow/controllers/auth_controller.dart';
 import 'package:workflow/controllers/create_post_controller.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
@@ -85,14 +86,14 @@ class FinishPost extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Nikhil",
+                              Get.find<AuthController>().currentUser.userName,
                               style: textStyleSofiaSB(15, colorFont()),
                             ),
                             SizedBox(
                               height: 5,
                             ),
                             Text(
-                              "D.Y.Patil",
+                              Get.find<AuthController>().currentUser.college,
                               style: textStyleSofiaL(12, colorFont()),
                             ),
                           ],

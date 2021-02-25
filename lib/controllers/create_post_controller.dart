@@ -4,7 +4,6 @@ import 'package:dio/dio.dart' as D;
 import 'package:http_parser/http_parser.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workflow/controllers/fetch_news_feed_controller.dart';
-import 'package:workflow/views/clubs/clubs_feed/clubs_timeline.dart';
 import 'package:workflow/views/clubs/page_navigator.dart';
 
 class CreatePostController extends GetxController {

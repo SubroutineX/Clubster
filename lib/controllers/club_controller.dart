@@ -6,7 +6,7 @@ import 'package:workflow/models/clubs.dart';
 import 'package:http/http.dart' as http;
 
 class ClubController extends GetxController {
-  var clubs = List<Clubs>().obs;
+  var clubs = List<Club>().obs;
   static const IP_SERVER = '192.168.0.11';
 
   @override
@@ -31,6 +31,28 @@ class ClubController extends GetxController {
       }
     } catch (error) {
       print(error);
+    }
+  }
+
+  Future<bool> fetchFollowingStat(String clubName) async {
+    try {
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      final token = sharedPreferences.getString('token');
+      var response = await http.get(
+        "http://65.1.43.39:8000/fetchFollowingStat?name=$clubName",
+        headers: {"Authorization": "Bearer $token"},
+      );
+      if (response.statusCode == 200) {
+        var stat = jsonDecode(response.body);
+        print(stat);
+        return stat;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      print(error);
+      return false;
     }
   }
 }
