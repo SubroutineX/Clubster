@@ -2,12 +2,13 @@ const mongoose = require("mongoose");
 
 var Schema = mongoose.Schema;
 
-var LikesSchema = new Schema({
+var ClubMembersSchema = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    type: String,
     parentId: mongoose.Schema.Types.ObjectId,
     user: String,
+    role: String,
     timeStamp: String
+
 });
 
-module.exports = mongoose.model("likes", LikesSchema);
+module.exports = mongoose.model("clubMembers", ClubMembersSchema);

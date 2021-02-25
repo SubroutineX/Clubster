@@ -12,9 +12,7 @@ var UsersSchema = new Schema({
     college: String,//
     dept: String,
     profileImage: String,
-    aboutMe: String,
-    notifications: Array,
     createdAt: String
 });
-
+// 
 module.exports = mongoose.model("users", UsersSchema);

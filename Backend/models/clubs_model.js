@@ -11,7 +11,6 @@ var ClubsSchema = new Schema({
     memberLimit: Number,
     elite: String,
     college: String,
-    members: [],
     timeStamp: String
 });
 

@@ -8,7 +8,6 @@ module.exports = (req, res) => {
     var likesModel = new likes({
         _id: mongoose.Types.ObjectId(),
         type: type,
-        active: true,
         parentId: id,
         user: req.user.userName,
         timeStamp: TS

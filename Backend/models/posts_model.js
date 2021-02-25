@@ -12,5 +12,5 @@ var PostsSchema = new Schema({
     comments: Number,
     timeStamp: String
 });
-
+//need to remove likes and comments count from this model
 module.exports = mongoose.model("posts", PostsSchema);
