@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 //GETX CONTROLLERS
 import 'package:get/get.dart';
+import 'package:http/http.dart';
 import 'package:workflow/controllers/club_controller.dart';
 
 //PACKAGES
 import 'package:sliding_sheet/sliding_sheet.dart';
 import 'package:workflow/controllers/follows_controller.dart';
+import 'package:workflow/controllers/join_club_controller.dart';
 
 //PAGES
 import 'package:workflow/views/clubs/club_details/club_detail_sheet.dart';
@@ -30,11 +32,14 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
   String token;
 
   final cController = Get.find<ClubController>();
+  final joinController = Get.put(JoinClub());
 
   void getStat() async {
-    var value = await cController.fetchFollowingStat(widget.clubInfo.clubName);
+    List value = await cController.fetchFollowingStat(
+        widget.clubInfo.clubName, widget.clubInfo.id);
     setState(() {
-      widget.clubInfo.following = value;
+      widget.clubInfo.joined = value[0];
+      widget.clubInfo.following = value[1];
     });
   }
 
@@ -80,7 +85,10 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
               color: violet,
               txtColor: white,
               splashColor: violetSplash,
-              onTapCall: () {},
+              onTapCall: () {
+                joinController.joinCLub(
+                    widget.clubInfo.id, widget.clubInfo.status);
+              },
             ),
             ButtonBuilder(
               multiple: .35,
