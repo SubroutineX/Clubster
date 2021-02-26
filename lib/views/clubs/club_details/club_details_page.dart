@@ -81,13 +81,22 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
             ButtonBuilder(
               multiple: .55,
               height: 48,
-              buttonText: "Join",
-              color: violet,
-              txtColor: white,
+              buttonText: widget.clubInfo.joined ?? false ? "joined" : "Join",
+              color: widget.clubInfo.joined ?? false ? white : violet,
+              txtColor: widget.clubInfo.joined ?? false ? blue : white,
               splashColor: violetSplash,
               onTapCall: () {
-                joinController.joinCLub(
-                    widget.clubInfo.id, widget.clubInfo.status);
+                if (!widget.clubInfo.joined) {
+                  joinController.joinClub(
+                      widget.clubInfo.id, widget.clubInfo.status);
+                } else {
+                  joinController.exitClub(widget.clubInfo.id);
+                }
+                setState(
+                  () {
+                    widget.clubInfo.joined = !widget.clubInfo.joined;
+                  },
+                );
               },
             ),
             ButtonBuilder(
