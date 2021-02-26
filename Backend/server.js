@@ -48,6 +48,8 @@ const commentsCount = require("./controllers/comments_count");
 const follow = require("./controllers/follow");
 const FetchfollowingStat = require("./controllers/fetch_following_stat");
 const unfollow = require("./controllers/unfollow");
+const joinClub = require("./controllers/join_club");
+
 //Routes
 
 app.all('/', function (req, res, next) {
@@ -110,5 +112,6 @@ app.get("/commentsCount", authenticateToken, commentsCount);
 app.post("/follow", authenticateToken, follow);
 app.post("/unfollow", authenticateToken, unfollow);
 app.get("/fetchFollowingStat", authenticateToken, FetchfollowingStat);
+app.get("/joinClub", authenticateToken, joinClub);
 
 app.listen(PORT);
