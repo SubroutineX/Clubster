@@ -121,33 +121,34 @@ class UploadBuilder extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                      bottom: 0,
-                      right: 0,
-                      child: Container(
-                        height: 20,
-                        width: 20,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: bw(),
-                        ),
-                        child: Center(
-                          child: Container(
-                            width: 16,
-                            height: 16,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: orange,
-                            ),
-                            child: Center(
-                              child: Icon(
-                                Icons.add,
-                                color: white,
-                                size: 12,
-                              ),
+                    bottom: 0,
+                    right: 0,
+                    child: Container(
+                      height: 20,
+                      width: 20,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: bw(),
+                      ),
+                      child: Center(
+                        child: Container(
+                          width: 16,
+                          height: 16,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: orange,
+                          ),
+                          child: Center(
+                            child: Icon(
+                              Icons.add,
+                              color: white,
+                              size: 12,
                             ),
                           ),
                         ),
-                      ))
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

@@ -63,6 +63,58 @@ class ClubViewBody extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                    height: 150,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: violet.withOpacity(.15),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 3,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Learn something new\neveryday",
+                                style: TextStyle(
+                                  fontFamily: "Gilroy_Bold",
+                                  fontSize: 17,
+                                  color: violet,
+                                ),
+                              ),
+                              Text(
+                                "Join new clubs and learn \nnew things",
+                                style: TextStyle(
+                                  fontFamily: "Gilroy_Medium",
+                                  fontSize: 14,
+                                  color: violet.withOpacity(.5),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: Container(
+                            child: Center(
+                              child: Image.asset("assets/images/team.png"),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
                   height: 30,
                 ),
                 Container(
@@ -72,7 +124,7 @@ class ClubViewBody extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 20),
                         child: Text(
-                          "Popular",
+                          "Explore genres",
                           style: textStyleSofiaSB(
                             18,
                             colorFont(),
@@ -83,7 +135,64 @@ class ClubViewBody extends StatelessWidget {
                         height: 10,
                       ),
                       Container(
-                        height: 260,
+                        width: deviceDimensions.width,
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          physics: BouncingScrollPhysics(),
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 20,
+                              ),
+                              for (int i = 0; i < genres.length; i++)
+                                genreBuilder(
+                                  genres[i].name,
+                                  genres[i].imagePath,
+                                  genres[i].servingRestaurants,
+                                  genres[i].backgroungColor,
+                                )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: "Popular ",
+                                style: textStyleSofiaSB(
+                                  18,
+                                  violet,
+                                ),
+                              ),
+                              TextSpan(
+                                text: "Clubs",
+                                style: textStyleSofiaSB(
+                                  18,
+                                  fontColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
                         width: deviceDimensions.width,
                         padding: EdgeInsets.symmetric(vertical: 10),
                         child: GetX<ClubController>(
@@ -112,35 +221,52 @@ class ClubViewBody extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 30,
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "Other",
-                        style: textStyleSofiaSB(
-                          18,
-                          colorFont(),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: "Other ",
+                                style: textStyleSofiaSB(
+                                  18,
+                                  violet,
+                                ),
+                              ),
+                              TextSpan(
+                                text: "Clubs",
+                                style: textStyleSofiaSB(
+                                  18,
+                                  fontColor,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       SizedBox(height: 20),
                       GetX<ClubController>(
                         builder: (controller) {
                           return SingleChildScrollView(
-                            scrollDirection: Axis.vertical,
+                            scrollDirection: Axis.horizontal,
                             physics: BouncingScrollPhysics(),
-                            child: Column(
+                            child: Row(
                               children: [
+                                SizedBox(width: 20),
                                 for (int j = 0;
                                     j < controller.clubs.length;
                                     j++)
                                   if (controller.clubs[j].elite == "No")
-                                    ClubCardHorizontal(
+                                    ClubCardVertical(
                                       clubInfo: controller.clubs[j],
                                     ),
+                                SizedBox(width: 5),
                               ],
                             ),
                           );
@@ -150,7 +276,7 @@ class ClubViewBody extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 60,
+                  height: 90,
                 ),
               ],
             ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:workflow/views/clubs/club_profile/profileClubs.dart';
+import 'package:workflow/views/clubs/club_profile/profilePosts.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 
@@ -11,121 +13,44 @@ class ProfileTabview extends StatelessWidget {
       child: DefaultTabController(
         length: 2,
         child: Scaffold(
+          backgroundColor: white,
           body: Column(
             children: <Widget>[
               SizedBox(
-                height: 30,
+                height: 20,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 50),
-                child: TabBar(
-                  indicator: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: yellow,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 50,
+                  vertical: 10,
+                ),
+                child: Material(
+                  shape: StadiumBorder(),
+                  color: blue.withOpacity(0.15),
+                  child: TabBar(
+                    unselectedLabelStyle: textStyleSofiaR(16, white),
+                    labelStyle: textStyleSofiaSB(16, white),
+                    unselectedLabelColor: blue,
+                    indicator: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: blue,
+                    ),
+                    tabs: [
+                      Tab(
+                        text: "Clubs",
+                      ),
+                      Tab(
+                        text: "Posts",
+                      ),
+                    ],
                   ),
-                  tabs: [
-                    Tab(
-                      text: "My Posts",
-                    ),
-                    Tab(
-                      text: "My Clubs",
-                    ),
-                  ],
                 ),
               ),
               Expanded(
                 child: TabBarView(
                   children: [
-                    Container(
-                      child: Column(
-                        children: <Widget>[
-                          PostCardPadding(),
-                          PostCardPadding(),
-                          PostCardPadding(),
-                          PostCardPadding(),
-                          PostCardPadding(),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Clubs Created",
-                              style: tabLabelStyle,
-                            ),
-                            Container(
-                              height: 200,
-                              child: ListView(
-                                scrollDirection: Axis.horizontal,
-                                children: <Widget>[
-                                  PostCard(),
-                                  SizedBox(
-                                    width: 15,
-                                  ),
-                                  PostCard(),
-                                  SizedBox(
-                                    width: 15,
-                                  ),
-                                  PostCard(),
-                                  SizedBox(
-                                    width: 15,
-                                  ),
-                                  PostCard(),
-                                  SizedBox(
-                                    width: 15,
-                                  ),
-                                  PostCard(),
-                                  SizedBox(
-                                    width: 15,
-                                  ),
-                                  PostCard(),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: 80,
-                            ),
-                            Text(
-                              "Clubs Created",
-                              style: tabLabelStyle,
-                            ),
-                            Container(
-                              height: 200,
-                              child: ListView(
-                                scrollDirection: Axis.horizontal,
-                                children: <Widget>[
-                                  PostCard(),
-                                  SizedBox(
-                                    width: 15,
-                                  ),
-                                  PostCard(),
-                                  SizedBox(
-                                    width: 15,
-                                  ),
-                                  PostCard(),
-                                  SizedBox(
-                                    width: 15,
-                                  ),
-                                  PostCard(),
-                                  SizedBox(
-                                    width: 15,
-                                  ),
-                                  PostCard(),
-                                  SizedBox(
-                                    width: 15,
-                                  ),
-                                  PostCard(),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    ProfileClubs(),
+                    ProfilePosts(),
                   ],
                 ),
               ),
