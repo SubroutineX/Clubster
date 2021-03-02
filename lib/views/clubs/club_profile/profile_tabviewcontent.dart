@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:workflow/views/clubs/club_profile/profileClubs.dart';
 import 'package:workflow/views/clubs/club_profile/profilePosts.dart';
 import 'package:workflow/views/styles/colors.dart';
+import 'package:workflow/views/styles/themeData.dart';
 import 'package:workflow/views/styles/styles.dart';
 
 class ProfileTabview extends StatelessWidget {
@@ -13,7 +14,7 @@ class ProfileTabview extends StatelessWidget {
       child: DefaultTabController(
         length: 2,
         child: Scaffold(
-          backgroundColor: white,
+          backgroundColor: bw(),
           body: Column(
             children: <Widget>[
               SizedBox(

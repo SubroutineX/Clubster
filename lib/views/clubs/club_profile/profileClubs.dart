@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:workflow/models/clubs.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
+import 'package:workflow/views/styles/themeData.dart';
+import 'package:workflow/views/widgets/club_cards.dart';
 
 class ProfileClubs extends StatelessWidget {
   List<Club> clubs = [
@@ -30,6 +32,7 @@ class ProfileClubs extends StatelessWidget {
     var deviceWidth = MediaQuery.of(context).size.width;
     return Container(
       width: deviceWidth,
+      color: bw(),
       child: ListView(
         physics: BouncingScrollPhysics(),
         children: [
@@ -49,7 +52,7 @@ class ProfileClubs extends StatelessWidget {
                     text: "Clubs",
                     style: textStyleGilroyB(
                       18,
-                      fontColor,
+                      colorFont(),
                     ),
                   ),
                 ],
@@ -140,7 +143,7 @@ class ProfileClubs extends StatelessWidget {
                     text: "Clubs",
                     style: textStyleGilroyB(
                       18,
-                      fontColor,
+                      colorFont(),
                     ),
                   ),
                 ],
@@ -177,214 +180,4 @@ class ProfileClubs extends StatelessWidget {
       ),
     );
   }
-}
-
-class MyClubCard extends StatelessWidget {
-  MyClubCard({
-    Key key,
-    @required this.clubImagePath,
-    @required this.clubName,
-    @required this.creationDate,
-    this.borderRadius,
-  }) : super(key: key);
-
-  final String clubImagePath;
-  final String clubName;
-  final String creationDate;
-  final BorderRadius borderRadius;
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: AspectRatio(
-        aspectRatio: 0.85,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: borderRadius,
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: AssetImage(clubImagePath),
-            ),
-          ),
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              gradient: LinearGradient(
-                begin: Alignment(0, -.5),
-                end: Alignment.bottomCenter,
-                colors: [
-                  transparent,
-                  black.withOpacity(.5),
-                ],
-              ),
-            ),
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                Positioned(
-                  bottom: 15,
-                  left: 15,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        clubName,
-                        style: textStyleGilroySB(
-                          16,
-                          white,
-                        ),
-                      ),
-                      Text(
-                        creationDate,
-                        style: textStyleGilroyM(
-                          12,
-                          white,
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class CreateMyClubCard extends StatelessWidget {
-  CreateMyClubCard({
-    Key key,
-    this.borderRadius,
-  }) : super(key: key);
-
-  final BorderRadius borderRadius;
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: AspectRatio(
-        aspectRatio: 1.7,
-        child: Container(
-          decoration: BoxDecoration(
-            color: white,
-            boxShadow: [
-              BoxShadow(
-                color: black.withOpacity(0.10),
-                blurRadius: 15,
-              ),
-            ],
-            borderRadius: borderRadius,
-          ),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.add_circle_outline,
-                  color: blue,
-                  size: 34,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "Create new club",
-                  style: textStyleGilroySB(
-                    14,
-                    blue,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-Widget clubBuilder(
-  String name,
-  String backgroundImagePath,
-  int members,
-  String genre,
-) {
-  return Padding(
-    padding: EdgeInsets.only(right: 10),
-    child: Container(
-      width: 200,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: 150,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage(backgroundImagePath),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 5),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  name,
-                  style: TextStyle(
-                    fontFamily: "Gilroy_SemiBold",
-                    fontSize: 16,
-                  ),
-                ),
-                SizedBox(
-                  height: 3,
-                ),
-                Row(
-                  children: [
-                    Text(
-                      genre,
-                      style: TextStyle(
-                        fontFamily: "Gilroy_SemiBold",
-                        fontSize: 14,
-                        color: Colors.grey[500],
-                      ),
-                    ),
-                    Text(
-                      " \u2022 ",
-                      style: TextStyle(
-                        fontFamily: "Gilroy_SemiBold",
-                        fontSize: 14,
-                        color: Colors.grey[500],
-                      ),
-                    ),
-                    Text(
-                      members.toString() + " members",
-                      style: TextStyle(
-                        fontFamily: "Gilroy_SemiBold",
-                        fontSize: 14,
-                        color: Colors.grey[500],
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-          )
-        ],
-      ),
-    ),
-  );
 }

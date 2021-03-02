@@ -11,11 +11,9 @@ import 'package:workflow/views/styles/themeData.dart';
 
 class ImageView extends StatelessWidget {
   final NewsFeed postInfo;
+  final int index;
 
-  const ImageView({
-    Key key,
-    @required this.postInfo,
-  }) : super(key: key);
+  ImageView({Key key, @required this.postInfo, this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -102,50 +100,21 @@ class ImageView extends StatelessWidget {
             onTap: () => Get.to(
               CommentPage(
                 postInfo: postInfo,
+                index: index,
               ),
             ),
             child: Container(
               height: 25,
-              width: 56,
-              padding: EdgeInsets.symmetric(
-                horizontal: 5,
-              ),
+              width: 25,
               decoration: BoxDecoration(
-                color: transparent,
-                border: Border.all(
-                  width: 1.5,
-                  color: blue,
-                ),
                 borderRadius: BorderRadius.circular(30),
               ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    commentIcon,
-                    color: blue,
-                    height: 18,
-                  ),
-                  SizedBox(
-                    width: 3,
-                  ),
-                  Expanded(
-                    child: Container(
-                      child: Center(
-                        child: Text(
-                          postInfo.comments != null
-                              ? postInfo.comments.toString()
-                              : "0",
-                          style: textStyleSofiaSB(
-                            13,
-                            fontColorDark,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+              child: Center(
+                child: SvgPicture.asset(
+                  commentIcon,
+                  color: white,
+                  height: 25,
+                ),
               ),
             ),
           ),

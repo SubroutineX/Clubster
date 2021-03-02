@@ -21,7 +21,7 @@ import 'package:workflow/views/styles/themeData.dart';
 class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: white,
+      backgroundColor: bw(),
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(

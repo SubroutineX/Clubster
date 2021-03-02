@@ -115,7 +115,7 @@ class PostCard extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {
                   Get.to(ImageView(
-                    postInfo: postInfo,
+                    postInfo: postInfo,index:index,
                   ));
                 },
                 child: ClipRRect(

@@ -10,8 +10,8 @@ import 'package:workflow/views/styles/styles.dart';
 import 'package:workflow/views/styles/themeData.dart';
 
 //WIDGETS
-import 'package:workflow/views/widgets/club_card_horizontal.dart';
-import 'package:workflow/views/widgets/club_card_vertical.dart';
+import 'package:workflow/views/widgets/genre_cards.dart';
+import 'package:workflow/views/widgets/club_cards.dart';
 
 class ClubViewBody extends StatelessWidget {
   final clubController = Get.put(ClubController());
@@ -182,7 +182,7 @@ class ClubViewBody extends StatelessWidget {
                                 text: "Clubs",
                                 style: textStyleSofiaSB(
                                   18,
-                                  fontColor,
+                                  colorFont(),
                                 ),
                               ),
                             ],
@@ -207,7 +207,7 @@ class ClubViewBody extends StatelessWidget {
                                       i < controller.clubs.length;
                                       i++)
                                     if (controller.clubs[i].elite == "Yes")
-                                      ClubCardVertical(
+                                      ClubInfoCard(
                                         clubInfo: controller.clubs[i],
                                       ),
                                   SizedBox(width: 5),
@@ -243,7 +243,7 @@ class ClubViewBody extends StatelessWidget {
                                 text: "Clubs",
                                 style: textStyleSofiaSB(
                                   18,
-                                  fontColor,
+                                  colorFont(),
                                 ),
                               ),
                             ],
@@ -263,7 +263,7 @@ class ClubViewBody extends StatelessWidget {
                                     j < controller.clubs.length;
                                     j++)
                                   if (controller.clubs[j].elite == "No")
-                                    ClubCardVertical(
+                                    ClubInfoCard(
                                       clubInfo: controller.clubs[j],
                                     ),
                                 SizedBox(width: 5),
