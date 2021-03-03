@@ -19,6 +19,7 @@ Color blue = Color(0xff60A2FF);
 Color blueSplash = Color(0xff4389EC);
 Color neonBlue = Color(0xff5863F8);
 Color slateBlue = Color(0xff7F7EFF);
+Color faintViolet1 = Color(0xffEDE4FF);
 Color violet = Color(0xff8948FC);
 Color blueViolet = Color(0xff8338EC);
 Color violetSplash = Color(0xff6C29E4);

@@ -4,6 +4,7 @@ import 'dart:math' as math;
 //GETX CONTROLLERS
 import 'package:get/get.dart';
 import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workflow/controllers/club_controller.dart';
 import 'package:workflow/views/widgets/search.dart';
 
@@ -36,68 +37,68 @@ class _ClubViewBodyState extends State<ClubViewBody> {
           elevation: 0,
           expandedHeight: 120,
           flexibleSpace: FlexibleSpaceBar(
-            background: Column(
-              children: [
-                SizedBox(
-                  height: 40,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Discover Clubs",
-                            style: textStyleGilroySB(
-                              20,
-                              colorFont(),
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Container(
-                    height: 48,
-                    decoration: BoxDecoration(
-                      color: inputFieldColor(),
-                      borderRadius: BorderRadius.circular(50),
+            background: SafeArea(
+              child: Column(
+                children: [
+                  Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
                     ),
-                    child: Center(
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 10, right: 10),
-                        child: GestureDetector(
-                          onTap: () {
-                            showCustomSearch(
-                              context: context,
-                              delegate: ClubSearch(),
-                            );
-                          },
-                          child: AbsorbPointer(
-                            child: TextField(
-                              textAlignVertical: TextAlignVertical.center,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "Search...",
-                                hintStyle: textStyleSofiaR(
-                                  16,
-                                  inputFontColor(),
-                                ),
-                                contentPadding: EdgeInsets.zero,
-                                prefixIcon: Icon(
-                                  Icons.search,
-                                  color: inputFontColor(),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Discover Clubs",
+                              style: textStyleGilroySB(
+                                20,
+                                colorFont(),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Container(
+                      height: 48,
+                      decoration: BoxDecoration(
+                        color: inputFieldColor(),
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      child: Center(
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          child: GestureDetector(
+                            onTap: () {
+                              showCustomSearch(
+                                context: context,
+                                delegate: ClubSearch(),
+                              );
+                            },
+                            child: AbsorbPointer(
+                              child: TextField(
+                                textAlignVertical: TextAlignVertical.center,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Search...",
+                                  hintStyle: textStyleSofiaR(
+                                    16,
+                                    inputFontColor(),
+                                  ),
+                                  contentPadding: EdgeInsets.zero,
+                                  prefixIcon: Icon(
+                                    Icons.search,
+                                    color: inputFontColor(),
+                                  ),
                                 ),
                               ),
                             ),
@@ -106,8 +107,11 @@ class _ClubViewBodyState extends State<ClubViewBody> {
                       ),
                     ),
                   ),
-                ),
-              ],
+                  SizedBox(
+                    height: 15,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -139,7 +143,7 @@ class _ClubViewBodyState extends State<ClubViewBody> {
                             height: 150,
                             width: double.infinity,
                             decoration: BoxDecoration(
-                              color: violet.withOpacity(.15),
+                              color: faintViolet1,
                               borderRadius: BorderRadius.circular(20),
                             ),
                             child: Row(

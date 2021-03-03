@@ -32,13 +32,11 @@ class ClubFeedBody extends StatelessWidget {
           expandedHeight: 200,
           elevation: 0,
           flexibleSpace: FlexibleSpaceBar(
-            background: Container(
+            background: SafeArea(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    height: 40,
-                  ),
+                  Spacer(),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 20,
