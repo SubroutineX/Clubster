@@ -333,6 +333,12 @@ class _SearchPageState<T> extends State<_SearchPage<T>> {
                       children: [
                         Expanded(
                           child: TextField(
+                            onEditingComplete: () {
+                              print(widget.delegate._queryTextController.text);
+                            },
+                            onChanged: (query) {
+                              print(query);
+                            },
                             controller: widget.delegate._queryTextController,
                             focusNode: focusNode,
                             style: textStyleSofiaR(

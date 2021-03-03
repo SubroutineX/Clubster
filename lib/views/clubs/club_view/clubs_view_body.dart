@@ -54,7 +54,7 @@ class _ClubViewBodyState extends State<ClubViewBody> {
                           Text(
                             "Discover Clubs",
                             style: textStyleGilroySB(
-                              22,
+                              20,
                               colorFont(),
                             ),
                           ),
@@ -80,7 +80,9 @@ class _ClubViewBodyState extends State<ClubViewBody> {
                         child: GestureDetector(
                           onTap: () {
                             showCustomSearch(
-                                context: context, delegate: ClubSearch());
+                              context: context,
+                              delegate: ClubSearch(),
+                            );
                           },
                           child: AbsorbPointer(
                             child: TextField(
@@ -358,7 +360,6 @@ class _ClubViewBodyState extends State<ClubViewBody> {
 }
 
 class ClubSearch extends CustomSearch {
-  final TextEditingController _queryTextController = TextEditingController();
   List clubs = [
     "Dancer mania",
     "Inventerrs",
@@ -372,6 +373,7 @@ class ClubSearch extends CustomSearch {
     "Coders",
     "Placement Cell",
   ];
+
   @override
   List<Widget> buildActions(BuildContext context) {
     return [
@@ -418,86 +420,110 @@ class ClubSearch extends CustomSearch {
             .where((string) =>
                 string.toLowerCase().startsWith(query.toLowerCase()))
             .toList();
-    return ListView.builder(
-      physics: BouncingScrollPhysics(),
-      itemCount: suggestions.length,
-      itemBuilder: (context, index) {
-        return InkWell(
-          onTap: () {
-            query = suggestions[index];
-            setCursorPosition(suggestions[index].length);
-            showResults(context);
-          },
-          child: Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 15,
-              vertical: 2,
-            ),
-            child: Row(
-              children: [
-                Container(
-                  height: 48,
-                  width: 48,
-                  child: query.isEmpty
-                      ? Icon(
-                          Icons.history,
-                          color: inputFontColor(),
-                        )
-                      : Icon(
-                          Icons.search,
-                          color: inputFontColor(),
-                        ),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  child: Container(
-                    height: 48,
-                    padding: EdgeInsets.only(
-                      left: 20,
-                      right: 15,
+    return suggestions.isEmpty
+        ? Container(
+            height: 200,
+            child: Center(
+              child: RichText(
+                text: TextSpan(
+                  text: "'" + query + "'",
+                  style: textStyleGilroyB(
+                    16,
+                    colorFont(),
+                  ),
+                  children: [
+                    TextSpan(
+                      text: " not found",
+                      style: textStyleGilroyM(
+                        16,
+                        colorFontLight(),
+                      ),
                     ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: RichText(
-                            text: TextSpan(
-                              text:
-                                  suggestions[index].substring(0, query.length),
-                              style: textStyleGilroyM(
-                                16,
-                                colorFont(),
+                  ],
+                ),
+              ),
+            ),
+          )
+        : ListView.builder(
+            physics: BouncingScrollPhysics(),
+            itemCount: suggestions.length,
+            itemBuilder: (context, index) {
+              return InkWell(
+                onTap: () {
+                  query = suggestions[index];
+                  setCursorPosition(suggestions[index].length);
+                  showResults(context);
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 15,
+                    vertical: 2,
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 48,
+                        width: 48,
+                        child: query.isEmpty
+                            ? Icon(
+                                Icons.history,
+                                color: inputFontColor(),
+                              )
+                            : Icon(
+                                Icons.search,
+                                color: inputFontColor(),
                               ),
-                              children: [
-                                TextSpan(
-                                  text: suggestions[index]
-                                      .substring(query.length),
-                                  style: textStyleGilroyM(
-                                    16,
-                                    inputFontColor(),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Container(
+                          height: 48,
+                          padding: EdgeInsets.only(
+                            left: 20,
+                            right: 15,
+                          ),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: RichText(
+                                  text: TextSpan(
+                                    text: suggestions[index]
+                                        .substring(0, query.length),
+                                    style: textStyleGilroyM(
+                                      16,
+                                      colorFont(),
+                                    ),
+                                    children: [
+                                      TextSpan(
+                                        text: suggestions[index]
+                                            .substring(query.length),
+                                        style: textStyleGilroyM(
+                                          16,
+                                          inputFontColor(),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                              Transform.rotate(
+                                angle: math.pi / 4,
+                                child: Icon(
+                                  Icons.arrow_back,
+                                  color: inputFontColor(),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        Transform.rotate(
-                          angle: math.pi / 4,
-                          child: Icon(
-                            Icons.arrow_back,
-                            color: inputFontColor(),
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
+              );
+            },
+          );
   }
 }
