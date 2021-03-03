@@ -50,6 +50,9 @@ const FetchfollowingStat = require("./controllers/fetch_following_stat");
 const unfollow = require("./controllers/unfollow");
 const joinClub = require("./controllers/join_club");
 const exitClub = require("./controllers/exit_club");
+const requestTojoin = require("./controllers/requestToJoin");
+const fetchAllRequests = require("./controllers/fetch_all_requests");
+const handleRequest = require("./controllers/handle_request");
 
 //Routes
 
@@ -115,5 +118,7 @@ app.post("/unfollow", authenticateToken, unfollow);
 app.get("/fetchFollowingStat", authenticateToken, FetchfollowingStat);
 app.get("/joinClub", authenticateToken, joinClub);
 app.get("/exitClub", authenticateToken, exitClub);
-
+app.post("/requestToJoin", authenticateToken, requestTojoin);
+app.post("/handleRequest", authenticateToken, handleRequest);
+app.post("/fetchAllRequests", fetchAllRequests);
 app.listen(PORT);

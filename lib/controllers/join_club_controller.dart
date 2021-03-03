@@ -10,18 +10,36 @@ class JoinClub extends GetxController {
       SharedPreferences sharedPreferences =
           await SharedPreferences.getInstance();
       final token = sharedPreferences.getString('token');
-      if (status == 'open') {
-        var response = await http.get(
-            "http://65.1.43.39:8000/joinClub?clubId=$clubId",
-            headers: {"Authorization": "Bearer $token"});
-        if (response.statusCode == 200) {
-          var body = jsonDecode(response.body);
-          Get.snackbar("Success", body);
-        }
-      } else {}
+
+      var response = await http.get(
+          "http://65.1.43.39:8000/joinClub?clubId=$clubId",
+          headers: {"Authorization": "Bearer $token"});
+      if (response.statusCode == 200) {
+        var body = jsonDecode(response.body);
+        Get.snackbar("Success", body);
+      }
     } catch (error) {
       print(error);
       Get.snackbar("Error", error);
+    }
+  }
+
+  void requestToJoin(String clubId, String des) async {
+    try {
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      final token = sharedPreferences.getString('token');
+      var response = await http.post(
+          "http://65.1.43.39:8000/requestToJoin?clubId=$clubId",
+          body: {'description': des},
+          headers: {"Authorization": "Bearer $token"});
+      if (response.statusCode == 200) {
+        var body = jsonDecode(response.body);
+        Get.snackbar('Success', body);
+      }
+    } catch (error) {
+      print(error);
+      Get.snackbar('Error', error);
     }
   }
 
