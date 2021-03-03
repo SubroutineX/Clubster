@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 //GETX CONTROLLERS
 import 'package:get/get.dart';
+import 'package:http/http.dart';
 import 'package:workflow/controllers/club_controller.dart';
+import 'package:workflow/views/widgets/search.dart';
 
 // STYLES
 import 'package:workflow/views/styles/colors.dart';
@@ -13,7 +16,13 @@ import 'package:workflow/views/styles/themeData.dart';
 import 'package:workflow/views/widgets/genre_cards.dart';
 import 'package:workflow/views/widgets/club_cards.dart';
 
-class ClubViewBody extends StatelessWidget {
+class ClubViewBody extends StatefulWidget {
+  @override
+  _ClubViewBodyState createState() => _ClubViewBodyState();
+}
+
+class _ClubViewBodyState extends State<ClubViewBody> {
+  bool dismissed = false;
   final clubController = Get.put(ClubController());
 
   @override
@@ -25,33 +34,78 @@ class ClubViewBody extends StatelessWidget {
           floating: true,
           backgroundColor: bw(),
           elevation: 0,
-          expandedHeight: 50,
-          title: Container(
-            height: 48,
-            decoration: BoxDecoration(
-              color: inputFieldColor(),
-              borderRadius: BorderRadius.circular(50),
-            ),
-            child: Center(
-              child: Padding(
-                padding: EdgeInsets.only(left: 10, right: 10),
-                child: TextField(
-                  textAlignVertical: TextAlignVertical.center,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "Search...",
-                    hintStyle: textStyleSofiaR(
-                      16,
-                      inputFontColor(),
+          expandedHeight: 120,
+          flexibleSpace: FlexibleSpaceBar(
+            background: Column(
+              children: [
+                SizedBox(
+                  height: 40,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Discover Clubs",
+                            style: textStyleGilroySB(
+                              22,
+                              colorFont(),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Container(
+                    height: 48,
+                    decoration: BoxDecoration(
+                      color: inputFieldColor(),
+                      borderRadius: BorderRadius.circular(50),
                     ),
-                    contentPadding: EdgeInsets.zero,
-                    prefixIcon: Icon(
-                      Icons.search,
-                      color: inputFontColor(),
+                    child: Center(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 10, right: 10),
+                        child: GestureDetector(
+                          onTap: () {
+                            showCustomSearch(
+                                context: context, delegate: ClubSearch());
+                          },
+                          child: AbsorbPointer(
+                            child: TextField(
+                              textAlignVertical: TextAlignVertical.center,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: "Search...",
+                                hintStyle: textStyleSofiaR(
+                                  16,
+                                  inputFontColor(),
+                                ),
+                                contentPadding: EdgeInsets.zero,
+                                prefixIcon: Icon(
+                                  Icons.search,
+                                  color: inputFontColor(),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
+              ],
             ),
           ),
         ),
@@ -62,60 +116,76 @@ class ClubViewBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-                    height: 150,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: violet.withOpacity(.15),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 3,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Learn something new\neveryday",
-                                style: TextStyle(
-                                  fontFamily: "Gilroy_Bold",
-                                  fontSize: 17,
-                                  color: violet,
-                                ),
-                              ),
-                              Text(
-                                "Join new clubs and learn \nnew things",
-                                style: TextStyle(
-                                  fontFamily: "Gilroy_Medium",
-                                  fontSize: 14,
-                                  color: violet.withOpacity(.5),
-                                ),
-                              ),
-                            ],
-                          ),
+                !dismissed
+                    ? Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 20.0,
+                          vertical: 20,
                         ),
-                        Expanded(
-                          flex: 2,
+                        child: Dismissible(
+                          key: UniqueKey(),
+                          direction: DismissDirection.horizontal,
+                          onDismissed: (card) {
+                            print(card);
+                            setState(() {
+                              dismissed = true;
+                            });
+                          },
                           child: Container(
-                            child: Center(
-                              child: Image.asset("assets/images/team.png"),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 20),
+                            height: 150,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: violet.withOpacity(.15),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  flex: 3,
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Learn something new\neveryday",
+                                        style: TextStyle(
+                                          fontFamily: "Gilroy_Bold",
+                                          fontSize: 17,
+                                          color: violet,
+                                        ),
+                                      ),
+                                      Text(
+                                        "Join new clubs and learn \nnew things",
+                                        style: TextStyle(
+                                          fontFamily: "Gilroy_Medium",
+                                          fontSize: 14,
+                                          color: violet.withOpacity(.5),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 2,
+                                  child: Container(
+                                    child: Center(
+                                      child:
+                                          Image.asset("assets/images/team.png"),
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
                           ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
+                        ),
+                      )
+                    : Container(),
                 SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 Container(
                   child: Column(
@@ -283,6 +353,151 @@ class ClubViewBody extends StatelessWidget {
           ),
         )
       ],
+    );
+  }
+}
+
+class ClubSearch extends CustomSearch {
+  final TextEditingController _queryTextController = TextEditingController();
+  List clubs = [
+    "Dancer mania",
+    "Inventerrs",
+    "Cricket Club",
+    "Rocket Science",
+    "Coders",
+    "Placement Cell"
+  ];
+  List recentClubs = [
+    "Rocket Science",
+    "Coders",
+    "Placement Cell",
+  ];
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: Icon(
+          Icons.clear,
+          color: inputFontColor(),
+        ),
+        onPressed: () {
+          query = "";
+        },
+      ),
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: Icon(
+        Icons.chevron_left,
+        color: inputFontColor(),
+      ),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return Container(
+      height: 300,
+      child: Center(
+        child: Text(query),
+      ),
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    final suggestions = query.isEmpty
+        ? recentClubs
+        : clubs
+            .where((string) =>
+                string.toLowerCase().startsWith(query.toLowerCase()))
+            .toList();
+    return ListView.builder(
+      physics: BouncingScrollPhysics(),
+      itemCount: suggestions.length,
+      itemBuilder: (context, index) {
+        return InkWell(
+          onTap: () {
+            query = suggestions[index];
+            setCursorPosition(suggestions[index].length);
+            showResults(context);
+          },
+          child: Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: 15,
+              vertical: 2,
+            ),
+            child: Row(
+              children: [
+                Container(
+                  height: 48,
+                  width: 48,
+                  child: query.isEmpty
+                      ? Icon(
+                          Icons.history,
+                          color: inputFontColor(),
+                        )
+                      : Icon(
+                          Icons.search,
+                          color: inputFontColor(),
+                        ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  child: Container(
+                    height: 48,
+                    padding: EdgeInsets.only(
+                      left: 20,
+                      right: 15,
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: RichText(
+                            text: TextSpan(
+                              text:
+                                  suggestions[index].substring(0, query.length),
+                              style: textStyleGilroyM(
+                                16,
+                                colorFont(),
+                              ),
+                              children: [
+                                TextSpan(
+                                  text: suggestions[index]
+                                      .substring(query.length),
+                                  style: textStyleGilroyM(
+                                    16,
+                                    inputFontColor(),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Transform.rotate(
+                          angle: math.pi / 4,
+                          child: Icon(
+                            Icons.arrow_back,
+                            color: inputFontColor(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
