@@ -220,8 +220,8 @@ class CreateClub extends StatelessWidget {
                                       value: 'open',
                                     ),
                                     DropdownMenuItem(
-                                      child: Text("Invite only"),
-                                      value: 'invite_only',
+                                      child: Text("Private"),
+                                      value: 'private',
                                     ),
                                   ],
                                   onChanged: (value) {

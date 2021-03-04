@@ -15,47 +15,49 @@ class ProfileTabview extends StatelessWidget {
         length: 2,
         child: Scaffold(
           backgroundColor: bw(),
-          body: Column(
-            children: <Widget>[
-              SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 50,
-                  vertical: 10,
+          body: SafeArea(
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 5,
                 ),
-                child: Material(
-                  shape: StadiumBorder(),
-                  color: blue.withOpacity(0.15),
-                  child: TabBar(
-                    unselectedLabelStyle: textStyleSofiaR(16, white),
-                    labelStyle: textStyleSofiaSB(16, white),
-                    unselectedLabelColor: blue,
-                    indicator: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: blue,
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 50,
+                    vertical: 10,
+                  ),
+                  child: Material(
+                    shape: StadiumBorder(),
+                    color: blue.withOpacity(0.15),
+                    child: TabBar(
+                      unselectedLabelStyle: textStyleSofiaR(16, white),
+                      labelStyle: textStyleSofiaSB(16, white),
+                      unselectedLabelColor: blue,
+                      indicator: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: blue,
+                      ),
+                      tabs: [
+                        Tab(
+                          text: "Clubs",
+                        ),
+                        Tab(
+                          text: "Posts",
+                        ),
+                      ],
                     ),
-                    tabs: [
-                      Tab(
-                        text: "Clubs",
-                      ),
-                      Tab(
-                        text: "Posts",
-                      ),
+                  ),
+                ),
+                Expanded(
+                  child: TabBarView(
+                    children: [
+                      ProfileClubs(),
+                      ProfilePosts(),
                     ],
                   ),
                 ),
-              ),
-              Expanded(
-                child: TabBarView(
-                  children: [
-                    ProfileClubs(),
-                    ProfilePosts(),
-                  ],
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
