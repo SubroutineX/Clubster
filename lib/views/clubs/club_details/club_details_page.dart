@@ -202,12 +202,6 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
                             if (!widget.clubInfo.requested) {
                               displayPersistentBottomSheet();
                             }
-                            setState(
-                              () {
-                                widget.clubInfo.requested =
-                                    !widget.clubInfo.requested;
-                              },
-                            );
                           },
                         ),
                   ButtonBuilder(
@@ -321,9 +315,18 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
                       txtColor: white,
                       splashColor: blueSplash,
                       onTapCall: () {
-                        print(widget.clubInfo.id);
+                        if (des.text?.isEmpty ?? true) {
+                          Get.snackbar('Error', "Description field empty");
+                          return;
+                        }
                         joinController.requestToJoin(
                             widget.clubInfo.id, des.text);
+                        setState(
+                          () {
+                            widget.clubInfo.requested =
+                                !widget.clubInfo.requested;
+                          },
+                        );
                         navigator.pop(context);
                       },
                     ),
