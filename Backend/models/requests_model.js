@@ -7,6 +7,7 @@ var RequestSchema = new Schema({
     user: String,
     parentId: mongoose.Schema.Types.ObjectId,
     status: String,
+    description: String,
     type: String,
     timeStamp: String
 });

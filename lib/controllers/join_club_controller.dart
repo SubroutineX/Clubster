@@ -17,6 +17,9 @@ class JoinClub extends GetxController {
       if (response.statusCode == 200) {
         var body = jsonDecode(response.body);
         Get.snackbar("Success", body);
+      } else {
+        var body = jsonDecode(response.body);
+        Get.snackbar("Error", body);
       }
     } catch (error) {
       print(error);
@@ -31,11 +34,14 @@ class JoinClub extends GetxController {
       final token = sharedPreferences.getString('token');
       var response = await http.post(
           "http://65.1.43.39:8000/requestToJoin?clubId=$clubId",
-          body: {'description': des},
+          body: {'description': des, 'type': "club"},
           headers: {"Authorization": "Bearer $token"});
       if (response.statusCode == 200) {
         var body = jsonDecode(response.body);
         Get.snackbar('Success', body);
+      } else {
+        var body = jsonDecode(response.body);
+        Get.snackbar("Error", body);
       }
     } catch (error) {
       print(error);
@@ -54,6 +60,9 @@ class JoinClub extends GetxController {
       if (response.statusCode == 200) {
         var body = jsonDecode(response.body);
         Get.snackbar("Success", body);
+      } else {
+        var body = jsonDecode(response.body);
+        Get.snackbar("Error", body);
       }
     } catch (error) {
       print(error);

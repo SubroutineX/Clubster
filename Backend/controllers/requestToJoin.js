@@ -13,6 +13,7 @@ module.exports = async (req, res) => {
             user: user,
             parentId: id,
             type: type,
+            description: des,
             status: status,
             timeStamp: TS
         });
