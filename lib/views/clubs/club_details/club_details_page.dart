@@ -321,6 +321,7 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
                       txtColor: white,
                       splashColor: blueSplash,
                       onTapCall: () {
+                        print(widget.clubInfo.id);
                         joinController.requestToJoin(
                             widget.clubInfo.id, des.text);
                         navigator.pop(context);

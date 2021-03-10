@@ -3,11 +3,12 @@ const mongoose = require("mongoose");
 module.exports = async (req, res) => {
     try {
         user = req.user.userName;
-        id = req.query.id;
+        id = req.query.clubId;
         des = req.body.description;
         type = req.body.type;
         status = 'pending';
         TS = Date().toString();
+
         var RequestsModel = new requests_model({
             _id: mongoose.Types.ObjectId(),
             user: user,
