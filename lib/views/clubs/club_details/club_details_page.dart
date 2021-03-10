@@ -36,13 +36,15 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final cController = Get.find<ClubController>();
   final joinController = Get.put(JoinClub());
+  TextEditingController des = TextEditingController();
 
   void getStat() async {
     List value = await cController.fetchFollowingStat(
         widget.clubInfo.clubName, widget.clubInfo.id);
     setState(() {
-      widget.clubInfo.joined = value[0];
-      widget.clubInfo.following = value[1];
+      widget.clubInfo.requested = value[0];
+      widget.clubInfo.joined = value[1];
+      widget.clubInfo.following = value[2];
     });
   }
 
@@ -187,26 +189,23 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
                       : ButtonBuilder(
                           multiple: .55,
                           height: 48,
-                          buttonText: widget.clubInfo.joined ?? false
+                          buttonText: widget.clubInfo.requested ?? false
                               ? "Requested"
                               : "Join",
-                          color:
-                              widget.clubInfo.joined ?? false ? white : violet,
+                          color: widget.clubInfo.requested ?? false
+                              ? white
+                              : violet,
                           txtColor:
-                              widget.clubInfo.joined ?? false ? blue : white,
+                              widget.clubInfo.requested ?? false ? blue : white,
                           splashColor: violetSplash,
                           onTapCall: () {
-                            if (!widget.clubInfo.joined) {
-                              joinController.joinClub(
-                                  widget.clubInfo.id, widget.clubInfo.status);
-                            } else {
-                              joinController.exitClub(widget.clubInfo.id);
+                            if (!widget.clubInfo.requested) {
+                              displayPersistentBottomSheet();
                             }
-                            displayPersistentBottomSheet();
                             setState(
                               () {
-                                widget.clubInfo.joined =
-                                    !widget.clubInfo.joined;
+                                widget.clubInfo.requested =
+                                    !widget.clubInfo.requested;
                               },
                             );
                           },
@@ -281,6 +280,7 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
                       18,
                       colorFont(),
                     ),
+                    controller: des,
                     maxLines: 4,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
@@ -320,6 +320,11 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
                       color: blue,
                       txtColor: white,
                       splashColor: blueSplash,
+                      onTapCall: () {
+                        joinController.requestToJoin(
+                            widget.clubInfo.id, des.text);
+                        navigator.pop(context);
+                      },
                     ),
                   ],
                 ),

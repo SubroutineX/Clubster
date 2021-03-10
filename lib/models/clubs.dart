@@ -20,6 +20,7 @@ class Club extends GetxController {
       this.status,
       this.memberLimit,
       this.elite,
+      this.requested,
       this.following,
       this.joined});
 
@@ -31,6 +32,7 @@ class Club extends GetxController {
   int memberLimit;
   String elite;
 
+  bool requested = false;
   bool joined = false;
   bool following = false;
   final members = 0.obs;
