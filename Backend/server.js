@@ -53,7 +53,8 @@ const exitClub = require("./controllers/exit_club");
 const requestTojoin = require("./controllers/requestToJoin");
 const fetchAllRequests = require("./controllers/fetch_all_requests");
 const handleRequest = require("./controllers/handle_request");
-const scheduleInterview = require("./controllers/schedule_interview")
+const scheduleInterview = require("./controllers/schedule_interview");
+const profileData = require("./controllers/profile_data");
 
 //Routes
 
@@ -123,4 +124,5 @@ app.post("/requestToJoin", authenticateToken, requestTojoin);
 app.post("/handleRequest", authenticateToken, handleRequest);
 app.post("/fetchAllRequests", authenticateToken, fetchAllRequests);
 app.post("/scheduleInterview", authenticateToken, scheduleInterview);
+app.get("/profileData", authenticateToken, profileData);
 app.listen(PORT);
