@@ -124,5 +124,5 @@ app.post("/requestToJoin", authenticateToken, requestTojoin);
 app.post("/handleRequest", authenticateToken, handleRequest);
 app.post("/fetchAllRequests", authenticateToken, fetchAllRequests);
 app.post("/scheduleInterview", authenticateToken, scheduleInterview);
-app.get("/profileData", profileData);
+app.get("/profileData", authenticateToken, profileData);
 app.listen(PORT);
