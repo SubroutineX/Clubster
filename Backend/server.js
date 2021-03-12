@@ -55,6 +55,7 @@ const fetchAllRequests = require("./controllers/fetch_all_requests");
 const handleRequest = require("./controllers/handle_request");
 const scheduleInterview = require("./controllers/schedule_interview");
 const profileData = require("./controllers/profile_data");
+const profilePosts = require("./controllers/profile_posts");
 
 //Routes
 
@@ -125,4 +126,5 @@ app.post("/handleRequest", authenticateToken, handleRequest);
 app.post("/fetchAllRequests", authenticateToken, fetchAllRequests);
 app.post("/scheduleInterview", authenticateToken, scheduleInterview);
 app.get("/profileData", authenticateToken, profileData);
+app.get("/profilePosts", authenticateToken, profilePosts);
 app.listen(PORT);
