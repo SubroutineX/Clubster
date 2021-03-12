@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
         var createdClubs = [];
         var joinedClubs = [];
         user = req.user.userName;
-        var result = await usersModel.findOne({ userName: user });
+        var result = await usersModel.findOne({ userName: user }, { hashedPassword: 0 });
         var result1 = await clubMembersModel.find({ user: user }, { _id: 0, user: 0, timeStamp: 0, __v: 0 });
 
         for (const data of result1) {
