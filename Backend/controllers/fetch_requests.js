@@ -3,7 +3,8 @@ module.exports = async (req, res) => {
     try {
         var id = req.query.id;
         var type = req.query.type;
-        var result = await requests.find({ parentId: id, type: type });
+        var status = req.query.status;
+        var result = await requests.find({ parentId: id, type: type, status: status }, "user description timeStamp");
         if (result) {
             res.status(200).json(result);
         } else {

@@ -51,11 +51,12 @@ const unfollow = require("./controllers/unfollow");
 const joinClub = require("./controllers/join_club");
 const exitClub = require("./controllers/exit_club");
 const requestTojoin = require("./controllers/requestToJoin");
-const fetchAllRequests = require("./controllers/fetch_all_requests");
+const fetchRequests = require("./controllers/fetch_requests");
 const handleRequest = require("./controllers/handle_request");
 const scheduleInterview = require("./controllers/schedule_interview");
 const profileData = require("./controllers/profile_data");
 const profilePosts = require("./controllers/profile_posts");
+const clubMembers = require("./controllers/club_members");
 
 //Routes
 
@@ -123,8 +124,9 @@ app.get("/joinClub", authenticateToken, joinClub);
 app.get("/exitClub", authenticateToken, exitClub);
 app.post("/requestToJoin", authenticateToken, requestTojoin);
 app.post("/handleRequest", authenticateToken, handleRequest);
-app.post("/fetchAllRequests", authenticateToken, fetchAllRequests);
+app.get("/fetchRequests", authenticateToken, fetchRequests);
 app.post("/scheduleInterview", authenticateToken, scheduleInterview);
 app.get("/profileData", authenticateToken, profileData);
 app.get("/profilePosts", authenticateToken, profilePosts);
+app.get("/clubMembers", authenticateToken, clubMembers)
 app.listen(PORT);
