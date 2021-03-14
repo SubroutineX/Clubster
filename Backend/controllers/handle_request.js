@@ -20,8 +20,8 @@ module.exports = async (req, res) => {
                     timeStamp: TS
                 })
                 clubMembersModel.save();
-                res.status(200).json(`request ${status} successfully`);
             }
+            res.status(200).json(`request ${status} successfully`);
         }
     } catch (error) {
         console.log(error)

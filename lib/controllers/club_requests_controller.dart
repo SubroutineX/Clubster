@@ -43,6 +43,7 @@ class ClubRequestsController extends GetxController {
     );
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
+      fetchRequests(clubId, 'pending');
       Get.snackbar('Success', body);
     } else {
       var body = jsonDecode(response.body);
