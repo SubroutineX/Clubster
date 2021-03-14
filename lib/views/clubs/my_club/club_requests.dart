@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:workflow/controllers/club_requests_controller.dart';
+import 'package:workflow/controllers/interview_controller.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 import 'package:workflow/views/styles/themeData.dart';
@@ -20,6 +21,7 @@ class ClubRequests extends StatefulWidget {
 
 class _ClubRequestsState extends State<ClubRequests> {
   final clubRequestController = Get.put(ClubRequestsController());
+  final interviewController = Get.put(InterviewController());
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -32,6 +34,7 @@ class _ClubRequestsState extends State<ClubRequests> {
   DateTime selectedDate = DateTime.now();
   TextEditingController _date = new TextEditingController();
   TextEditingController _time = new TextEditingController();
+  TextEditingController des = new TextEditingController();
 
   Future<void> _selectTime(BuildContext context) async {
     final TimeOfDay pickedS = await showTimePicker(
@@ -163,8 +166,7 @@ class _ClubRequestsState extends State<ClubRequests> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               GestureDetector(
-                                onTap: () => showDialog1(
-                                    controller.requests.value[i].user),
+                                onTap: () {},
                                 child: Container(
                                   height: 40,
                                   decoration: BoxDecoration(
@@ -190,8 +192,7 @@ class _ClubRequestsState extends State<ClubRequests> {
                                 width: 5,
                               ),
                               GestureDetector(
-                                onTap: () => showDialog1(
-                                    controller.requests.value[i].user),
+                                onTap: () {},
                                 child: Container(
                                   height: 40,
                                   decoration: BoxDecoration(
@@ -218,7 +219,9 @@ class _ClubRequestsState extends State<ClubRequests> {
                               ),
                               GestureDetector(
                                 onTap: () => showDialog1(
-                                    controller.requests.value[i].user),
+                                  controller.requests.value[i].user,
+                                  widget.clubId,
+                                ),
                                 child: Container(
                                   height: 40,
                                   decoration: BoxDecoration(
@@ -255,7 +258,7 @@ class _ClubRequestsState extends State<ClubRequests> {
     );
   }
 
-  showDialog1(String user) {
+  showDialog1(String user, String id) {
     return showDialog(
       context: context,
       builder: (context) {
@@ -463,6 +466,7 @@ class _ClubRequestsState extends State<ClubRequests> {
                                 colorFont(),
                               ),
                               maxLines: 3,
+                              controller: des,
                               keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
@@ -488,6 +492,10 @@ class _ClubRequestsState extends State<ClubRequests> {
                         ),
                         color: violet,
                         child: InkWell(
+                          onTap: () {
+                            interviewController.scheduleInterview(
+                                des.text, _date.text, _time.text, id);
+                          },
                           borderRadius: BorderRadius.circular(12),
                           child: Container(
                             height: 50,

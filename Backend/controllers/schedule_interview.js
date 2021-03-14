@@ -1,8 +1,10 @@
 const mongoose = require("mongoose");
 const interview = require("../models/interview_model");
-module.exports = (req, res) => {
+const requestsModel = require("../models/requests_model");
+module.exports = async (req, res) => {
     try {
-        id = req.query.id;
+        clubId = req.query.clubId;
+        requestId = req.query.requestId;
         user = req.body.user;
         description = req.body.description;
         date = req.body.date;
@@ -18,7 +20,10 @@ module.exports = (req, res) => {
             timeStamp: TS
         });
         interviewModel.save();
-        res.status(200).json("Interview Scheduled successfully");
+        var status = 'interviewScheduled';
+        var result = await requestsModel.updateOne({ _id: requestId }, { status: status });
+        if (result)
+            res.status(200).json("Interview Scheduled successfully");
     } catch (error) {
         res.status(500).json(error);
     }
