@@ -124,7 +124,7 @@ app.get("/joinClub", authenticateToken, joinClub);
 app.get("/exitClub", authenticateToken, exitClub);
 app.post("/requestToJoin", authenticateToken, requestTojoin);
 app.post("/handleRequest", authenticateToken, handleRequest);
-app.get("/fetchRequests", authenticateToken, fetchRequests);
+app.get("/fetchRequests", fetchRequests);
 app.post("/scheduleInterview", authenticateToken, scheduleInterview);
 app.get("/profileData", authenticateToken, profileData);
 app.get("/profilePosts", authenticateToken, profilePosts);
