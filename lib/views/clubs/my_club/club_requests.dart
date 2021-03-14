@@ -221,6 +221,7 @@ class _ClubRequestsState extends State<ClubRequests> {
                                 onTap: () => showDialog1(
                                   controller.requests.value[i].user,
                                   widget.clubId,
+                                  controller.requests.value[i].id,
                                 ),
                                 child: Container(
                                   height: 40,
@@ -258,7 +259,7 @@ class _ClubRequestsState extends State<ClubRequests> {
     );
   }
 
-  showDialog1(String user, String id) {
+  showDialog1(String user, String clubId, String requestId) {
     return showDialog(
       context: context,
       builder: (context) {
@@ -494,7 +495,13 @@ class _ClubRequestsState extends State<ClubRequests> {
                         child: InkWell(
                           onTap: () {
                             interviewController.scheduleInterview(
-                                des.text, _date.text, _time.text, id);
+                              user,
+                              des.text,
+                              _date.text,
+                              _time.text,
+                              clubId,
+                              requestId,
+                            );
                           },
                           borderRadius: BorderRadius.circular(12),
                           child: Container(

@@ -5,15 +5,20 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 class InterviewController extends GetxController {
-  void scheduleInterview(
-      String description, String date, String time, String id) async {
+  void scheduleInterview(String user, String description, String date,
+      String time, String clubId, String requestId) async {
     try {
       SharedPreferences sharedPreferences =
           await SharedPreferences.getInstance();
       final token = sharedPreferences.getString('token');
       var response = await http.post(
-        "http://65.1.43.39:8000/scheduleInterview?id=$id",
-        body: {'description': description, 'date': date, 'time': time},
+        "http://65.1.43.39:8000/scheduleInterview?clubId=$clubId&requestId=$requestId",
+        body: {
+          'user': user,
+          'description': description,
+          'date': date,
+          'time': time
+        },
         headers: {"Authorization": "Bearer $token"},
       );
       if (response.statusCode == 200) {

@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
         TS = Date().toString();
         var interviewModel = new interview({
             _id: mongoose.Types.ObjectId(),
-            parentId: id,
+            parentId: clubId,
             user: user,
             description: description,
             date: date,
@@ -25,6 +25,7 @@ module.exports = async (req, res) => {
         if (result)
             res.status(200).json("Interview Scheduled successfully");
     } catch (error) {
+        console.log(error);
         res.status(500).json(error);
     }
 }
