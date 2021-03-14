@@ -4,7 +4,10 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
+import 'club_requests_controller.dart';
+
 class InterviewController extends GetxController {
+  final clubRequestsController = Get.find<ClubRequestsController>();
   void scheduleInterview(String user, String description, String date,
       String time, String clubId, String requestId) async {
     try {
@@ -23,6 +26,7 @@ class InterviewController extends GetxController {
       );
       if (response.statusCode == 200) {
         var body = jsonDecode(response.body);
+
         Get.snackbar("Success", body);
       } else {
         var body = jsonDecode(response.body);

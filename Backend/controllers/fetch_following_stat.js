@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
         var id = req.query.id;
         var name = req.query.name;
         var user = req.user.userName;
-        var result = await requestsModel.findOne({ user: user, parentId: id, status: "pending" }, "user");
+        var result = await requestsModel.findOne({ user: user, parentId: id, status: { $in: ["pending", "interviewScheduled"] } }, "user");
         var result1 = await clubMembers.findOne({ user: user, parentId: id }, "role");
         var result2 = await follows.findOne({ follower: user, followee: name }, "followee");
 
