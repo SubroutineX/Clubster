@@ -189,17 +189,25 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
                       : ButtonBuilder(
                           multiple: .55,
                           height: 48,
-                          buttonText: widget.clubInfo.requested ?? false
-                              ? "Requested"
-                              : "Join",
-                          color: widget.clubInfo.requested ?? false
+                          buttonText: widget.clubInfo.joined ?? false
+                              ? "joined"
+                              : widget.clubInfo.requested ?? false
+                                  ? "requested"
+                                  : "Join",
+                          color: widget.clubInfo.joined ?? false
                               ? white
-                              : violet,
-                          txtColor:
-                              widget.clubInfo.requested ?? false ? blue : white,
+                              : widget.clubInfo.requested ?? false
+                                  ? white
+                                  : violet,
+                          txtColor: widget.clubInfo.joined ?? false
+                              ? blue
+                              : widget.clubInfo.requested ?? false
+                                  ? blue
+                                  : white,
                           splashColor: violetSplash,
                           onTapCall: () {
-                            if (!widget.clubInfo.requested) {
+                            if (!widget.clubInfo.joined &&
+                                !widget.clubInfo.requested) {
                               displayPersistentBottomSheet();
                             }
                           },

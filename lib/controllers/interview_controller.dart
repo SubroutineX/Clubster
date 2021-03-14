@@ -26,7 +26,7 @@ class InterviewController extends GetxController {
       );
       if (response.statusCode == 200) {
         var body = jsonDecode(response.body);
-
+        clubRequestsController.fetchRequests(clubId, 'pending');
         Get.snackbar("Success", body);
       } else {
         var body = jsonDecode(response.body);
