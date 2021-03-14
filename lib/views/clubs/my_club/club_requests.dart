@@ -78,182 +78,209 @@ class _ClubRequestsState extends State<ClubRequests> {
     return Scaffold(
       key: _scaffoldKey,
       body: Container(
-        color: cardColor(),
+        color: bw(),
         padding: EdgeInsets.symmetric(
           horizontal: 10,
         ),
         child: GetX<ClubRequestsController>(builder: (controller) {
-          return ListView.builder(
-            itemCount: controller.requests.length,
-            itemBuilder: (context, i) {
-              return CustomExpansionTile(
-                contentPadding: EdgeInsets.symmetric(
-                  horizontal: 10,
-                ),
-                elevation: 0,
-                title: Container(
-                  height: 55,
-                  child: Row(
-                    children: [
-                      Container(
-                        height: 45,
-                        width: 45,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(
-                            12,
-                          ),
-                          child: Image.asset(
-                            "assets/images/profile.jpg",
-                            fit: BoxFit.cover,
+          if (controller?.requests?.isNotEmpty ?? false)
+            return ListView.builder(
+              itemCount: controller.requests.length,
+              itemBuilder: (context, i) {
+                return CustomExpansionTile(
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 10,
+                  ),
+                  elevation: 0,
+                  title: Container(
+                    height: 55,
+                    child: Row(
+                      children: [
+                        Container(
+                          height: 45,
+                          width: 45,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(
+                              12,
+                            ),
+                            child: Image.asset(
+                              "assets/images/profile.jpg",
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 8,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            controller.requests.value[i].user,
-                            style: textStyleGilroySB(
-                              16,
-                              colorFont(),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              controller.requests.value[i].user,
+                              style: textStyleGilroySB(
+                                16,
+                                colorFont(),
+                              ),
                             ),
-                          ),
-                          Text(
-                            "Student",
-                            style: textStyleGilroyM(
-                              12,
-                              colorFontLight(),
+                            Text(
+                              "Student",
+                              style: textStyleGilroyM(
+                                12,
+                                colorFontLight(),
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      // Text(
-                      //   controller.requests.value[i].timeStamp,
-                      // )
-                    ],
-                  ),
-                ),
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                    child: Container(
-                      width: double.infinity,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Description",
-                            style: textStyleGilroySB(
-                              14,
-                              colorFont(),
-                            ),
-                          ),
-                          Text(
-                            controller.requests.value[i].description,
-                            style: textStyleGilroyM(
-                              12,
-                              colorFontLight(),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              GestureDetector(
-                                onTap: () {},
-                                child: Container(
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.green,
-                                  ),
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 15,
-                                    vertical: 5,
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      "Accept",
-                                      style: textStyleGilroyM(
-                                        14,
-                                        white,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              GestureDetector(
-                                onTap: () {},
-                                child: Container(
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: red,
-                                  ),
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 15,
-                                    vertical: 5,
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      "Decline",
-                                      style: textStyleGilroyM(
-                                        14,
-                                        white,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              GestureDetector(
-                                onTap: () => showDialog1(
-                                  controller.requests.value[i].user,
-                                  widget.clubId,
-                                  controller.requests.value[i].id,
-                                ),
-                                child: Container(
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: neonBlue,
-                                  ),
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 15,
-                                    vertical: 5,
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      "Schedule Interview",
-                                      style: textStyleGilroyM(
-                                        14,
-                                        white,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
+                          ],
+                        ),
+                        // Text(
+                        //   controller.requests.value[i].timeStamp,
+                        // )
+                      ],
                     ),
                   ),
-                ],
-              );
-            },
-          );
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                      child: Container(
+                        width: double.infinity,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Description",
+                              style: textStyleGilroySB(
+                                14,
+                                colorFont(),
+                              ),
+                            ),
+                            Text(
+                              controller.requests.value[i].description,
+                              style: textStyleGilroyM(
+                                12,
+                                colorFontLight(),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                GestureDetector(
+                                  onTap: () {},
+                                  child: Container(
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.green,
+                                    ),
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 15,
+                                      vertical: 5,
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        "Accept",
+                                        style: textStyleGilroyM(
+                                          14,
+                                          white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                GestureDetector(
+                                  onTap: () {},
+                                  child: Container(
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: red,
+                                    ),
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 15,
+                                      vertical: 5,
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        "Decline",
+                                        style: textStyleGilroyM(
+                                          14,
+                                          white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                GestureDetector(
+                                  onTap: () => showDialog1(
+                                    controller.requests.value[i].user,
+                                    widget.clubId,
+                                    controller.requests.value[i].id,
+                                  ),
+                                  child: Container(
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: neonBlue,
+                                    ),
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 15,
+                                      vertical: 5,
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        "Interview",
+                                        style: textStyleGilroyM(
+                                          14,
+                                          white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
+            );
+          else
+            return Container(
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      "assets/images/empty.png",
+                      width: 200,
+                      height: 200,
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Text(
+                      "No requests yet!",
+                      style: textStyleGilroySB(
+                        18,
+                        colorFont(),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            );
         }),
       ),
     );
@@ -273,7 +300,9 @@ class _ClubRequestsState extends State<ClubRequests> {
               width: deviceDimensions.width * 0.8,
               padding: EdgeInsets.symmetric(vertical: 10),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20), color: white),
+                color: cardColor(),
+                borderRadius: BorderRadius.circular(20),
+              ),
               child: Material(
                 color: cardColor(),
                 borderRadius: BorderRadius.circular(20),
@@ -370,13 +399,19 @@ class _ClubRequestsState extends State<ClubRequests> {
                                     onTap: () => _selectDate(context),
                                     child: AbsorbPointer(
                                       child: TextFormField(
-                                        style: formFieldStyle,
+                                        style: textStyleGilroyM(
+                                          16,
+                                          inputFontColor(),
+                                        ),
                                         keyboardType: TextInputType.text,
                                         controller: _date,
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
                                           hintText: "Select date",
-                                          hintStyle: hintStyle,
+                                          hintStyle: textStyleSofiaR(
+                                            16,
+                                            colorFontLight(),
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -419,13 +454,25 @@ class _ClubRequestsState extends State<ClubRequests> {
                                     onTap: () => _selectTime(context),
                                     child: AbsorbPointer(
                                       child: TextFormField(
-                                        style: formFieldStyle,
+                                        style: textStyleGilroyM(
+                                          16,
+                                          inputFontColor(),
+                                        ),
+                                        validator: (text) {
+                                          if (text == null || text.isEmpty) {
+                                            return "Please select time";
+                                          }
+                                          return null;
+                                        },
                                         keyboardType: TextInputType.text,
                                         controller: _time,
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
                                           hintText: "Select time",
-                                          hintStyle: hintStyle,
+                                          hintStyle: textStyleSofiaR(
+                                            16,
+                                            colorFontLight(),
+                                          ),
                                         ),
                                       ),
                                     ),

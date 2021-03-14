@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:workflow/controllers/fetch_news_feed_controller.dart';
-import 'package:workflow/models/news_feed.dart';
+import 'package:workflow/models/post_model.dart';
 import 'package:workflow/views/clubs/clubs_feed/comment_page.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/icons.dart';
@@ -10,7 +10,7 @@ import 'package:workflow/views/styles/styles.dart';
 import 'package:workflow/views/styles/themeData.dart';
 
 class ImageView extends StatelessWidget {
-  final NewsFeed postInfo;
+  final Post postInfo;
   final int index;
 
   ImageView({Key key, @required this.postInfo, this.index}) : super(key: key);

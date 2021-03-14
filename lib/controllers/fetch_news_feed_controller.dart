@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:workflow/models/news_feed.dart';
+import 'package:workflow/models/post_model.dart';
 
 class FetchNewsFeedController extends GetxController {
-  var newsFeed = RxList<NewsFeed>();
+  var newsFeed = RxList<Post>();
   @override
   void onInit() {
     // TODO: implement onInit
@@ -22,7 +22,7 @@ class FetchNewsFeedController extends GetxController {
         headers: {"Authorization": "Bearer $token"},
       );
       if (response.statusCode == 200) {
-        newsFeed.value = newsFeedFromJson(response.body);
+        newsFeed.value = postsFromJson(response.body);
         print("fetched" + newsFeed.value[0].caption);
       }
     } catch (error) {

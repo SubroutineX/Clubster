@@ -6,7 +6,7 @@ import 'package:workflow/controllers/auth_controller.dart';
 import 'package:workflow/controllers/comments_controller.dart';
 import 'package:workflow/controllers/fetch_news_feed_controller.dart';
 import 'package:workflow/models/comments_model.dart';
-import 'package:workflow/models/news_feed.dart';
+import 'package:workflow/models/post_model.dart';
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 import 'package:workflow/views/styles/themeData.dart';
@@ -14,7 +14,7 @@ import 'package:workflow/views/widgets/comment_widgets.dart';
 import 'package:get/get.dart';
 
 class CommentPage extends StatefulWidget {
-  final NewsFeed postInfo;
+  final Post postInfo;
   final int index;
 
   CommentPage({Key key, @required this.postInfo, this.index}) : super(key: key);
@@ -33,7 +33,7 @@ class _CommentPageState extends State<CommentPage> {
   final newsFeedController = Get.find<FetchNewsFeedController>();
 
   final animationKey = GlobalKey<AnimatedListState>();
-  final NewsFeed postInfo;
+  final Post postInfo;
   final int index;
 
   _CommentPageState(this.postInfo, this.index);

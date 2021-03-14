@@ -49,6 +49,7 @@ dependencies:
     cached_network_image: ^2.5.0
     video_player: ^1.0.1
     jwt_decoder: ^1.0.4
+    scroll_to_index: ^2.0.0
 
 dev_dependencies:
     flutter_test:

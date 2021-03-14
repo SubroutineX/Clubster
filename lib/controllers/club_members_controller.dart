@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workflow/models/club_members_model.dart';
 
 class ClubMembersController extends GetxController {
-  var clubMembers = List<ClubMembers>().obs;
+  var clubMembers = <ClubMember>[].obs;
   void fetchClubMembers(String clubId) async {
     try {
       SharedPreferences sharedPreferences =

@@ -278,12 +278,12 @@ class ExpansionTileCardState extends State<CustomExpansionTile>
                       leading: widget.leading,
                       title: widget.title,
                       subtitle: widget.subtitle,
-                      // trailing: RotationTransition(
-                      //   turns: widget.trailing == null || widget.animateTrailing
-                      //       ? _iconTurns
-                      //       : AlwaysStoppedAnimation(0),
-                      //   child: widget.trailing ?? Icon(Icons.expand_more),
-                      // ),
+                      trailing: RotationTransition(
+                        turns: widget.trailing == null || widget.animateTrailing
+                            ? _iconTurns
+                            : AlwaysStoppedAnimation(0),
+                        child: widget.trailing ?? Icon(Icons.expand_more),
+                      ),
                     ),
                   ),
                 ),

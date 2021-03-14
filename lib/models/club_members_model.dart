@@ -1,17 +1,17 @@
 // To parse this JSON data, do
 //
-//     final clubMembers = clubMembersFromJson(jsonString);
+//     final ClubMember = clubMembersFromJson(jsonString);
 
 import 'dart:convert';
 
-List<ClubMembers> clubMembersFromJson(String str) => List<ClubMembers>.from(
-    json.decode(str).map((x) => ClubMembers.fromJson(x)));
+List<ClubMember> clubMembersFromJson(String str) =>
+    List<ClubMember>.from(json.decode(str).map((x) => ClubMember.fromJson(x)));
 
-String clubMembersToJson(List<ClubMembers> data) =>
+String clubMembersToJson(List<ClubMember> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class ClubMembers {
-  ClubMembers({
+class ClubMember {
+  ClubMember({
     this.id,
     this.user,
     this.role,
@@ -21,7 +21,7 @@ class ClubMembers {
   String user;
   String role;
 
-  factory ClubMembers.fromJson(Map<String, dynamic> json) => ClubMembers(
+  factory ClubMember.fromJson(Map<String, dynamic> json) => ClubMember(
         id: json["_id"],
         user: json["user"],
         role: json["role"],
