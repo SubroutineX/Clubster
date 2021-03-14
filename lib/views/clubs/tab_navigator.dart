@@ -4,6 +4,7 @@ import 'package:workflow/views/clubs/club_view/club_view.dart';
 import 'package:workflow/views/clubs/club_profile/club_profile.dart';
 import 'package:workflow/views/clubs/clubs_feed/clubs_feed.dart';
 import 'package:workflow/views/clubs/create/createTabs.dart';
+import 'package:workflow/views/clubs/create/create_club2.dart';
 import 'package:workflow/views/styles/colors.dart';
 
 class TabNavigator extends StatelessWidget {
@@ -18,7 +19,7 @@ class TabNavigator extends StatelessWidget {
     Widget child;
 
     if (tabItem == "Page1") {
-      child = CreatePage();
+      child = CreateClub2();
     } else if (tabItem == "Page2") {
       child = ClubView();
     } else if (tabItem == "Page3") {
