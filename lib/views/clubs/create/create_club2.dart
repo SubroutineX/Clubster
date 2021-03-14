@@ -86,10 +86,17 @@ class CreateClub2 extends StatelessWidget {
                               child: Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
-                                  image: DecorationImage(
-                                    image: AssetImage('assets/images/club.png'),
-                                    fit: BoxFit.cover,
-                                  ),
+                                  // image: DecorationImage(
+                                  //   image: AssetImage(
+                                  //       'assets/images/workshop.png'),
+                                  //   fit: BoxFit.cover,
+                                  // ),
+                                ),
+                                child: Stack(
+                                  children: [
+                                    SvgPicture.asset(
+                                        'asset/images/createclub.svg'),
+                                  ],
                                 ),
                               ),
                             ),

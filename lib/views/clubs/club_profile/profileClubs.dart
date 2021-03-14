@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:workflow/controllers/navigation_controller.dart';
 import 'package:workflow/controllers/profile_controller.dart';
 import 'package:workflow/models/clubs.dart';
 import 'package:workflow/views/styles/colors.dart';
@@ -9,6 +10,7 @@ import 'package:workflow/views/widgets/club_cards.dart';
 
 class ProfileClubs extends StatelessWidget {
   final profileController = Get.put(ProfileController());
+  final navController = Get.find<NavigationController>();
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +66,10 @@ class ProfileClubs extends StatelessWidget {
                               ),
                             )
                           : CreateMyClubCard(
+                              onTap: () {
+                                navController.selectTab(
+                                    navController.pageKeys[0], 0);
+                              },
                               borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(25),
                                 topLeft: Radius.circular(25),
@@ -84,6 +90,10 @@ class ProfileClubs extends StatelessWidget {
                               ),
                             )
                           : CreateMyClubCard(
+                              onTap: () {
+                                navController.selectTab(
+                                    navController.pageKeys[0], 0);
+                              },
                               borderRadius: BorderRadius.only(
                                 bottomRight: Radius.circular(25),
                                 topLeft: Radius.circular(25),
@@ -112,6 +122,10 @@ class ProfileClubs extends StatelessWidget {
                               ),
                             )
                           : CreateMyClubCard(
+                              onTap: () {
+                                navController.selectTab(
+                                    navController.pageKeys[0], 0);
+                              },
                               borderRadius: BorderRadius.only(
                                 bottomRight: Radius.circular(25),
                                 topLeft: Radius.circular(25),
@@ -132,6 +146,10 @@ class ProfileClubs extends StatelessWidget {
                               ),
                             )
                           : CreateMyClubCard(
+                              onTap: () {
+                                navController.selectTab(
+                                    navController.pageKeys[0], 0);
+                              },
                               borderRadius: BorderRadius.only(
                                 bottomRight: Radius.circular(25),
                                 bottomLeft: Radius.circular(25),
