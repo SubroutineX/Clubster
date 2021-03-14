@@ -18,9 +18,6 @@ class ProfileTabview extends StatelessWidget {
           body: SafeArea(
             child: Column(
               children: <Widget>[
-                SizedBox(
-                  height: 5,
-                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 50,

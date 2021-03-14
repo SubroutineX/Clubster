@@ -6,17 +6,19 @@ import 'package:http/http.dart' as http;
 import 'package:workflow/models/requests_model.dart';
 
 class ClubRequestsController extends GetxController {
+  var requests = <Requests>[].obs;
+
   void fetchRequests(String clubId, String status) async {
     try {
-      var requests = List<Requests>().obs;
       var type = 'club';
       SharedPreferences sharedPreferences =
           await SharedPreferences.getInstance();
       final token = sharedPreferences.getString('token');
       var response = await http.get(
-        "http://65.1.43.39:8000/fetchRequests",
+        "http://65.1.43.39:8000/fetchRequests?id=$clubId&status=$status&type=$type",
         headers: {"Authorization": "Bearer $token"},
       );
+
       if (response.statusCode == 200) {
         requests.value = requestsFromJson(response.body);
       } else {
