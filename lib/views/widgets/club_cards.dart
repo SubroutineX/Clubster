@@ -412,46 +412,51 @@ class CreateMyClubCard extends StatelessWidget {
   CreateMyClubCard({
     Key key,
     this.borderRadius,
+    this.onTap,
   }) : super(key: key);
 
   final BorderRadius borderRadius;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: AspectRatio(
         aspectRatio: 1.7,
-        child: Container(
-          decoration: BoxDecoration(
-            color: cardColor(),
-            boxShadow: [
-              BoxShadow(
-                color: shadowColor(),
-                blurRadius: 15,
-              ),
-            ],
-            borderRadius: borderRadius,
-          ),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.add_circle_outline,
-                  color: blue,
-                  size: 34,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "Create new club",
-                  style: textStyleGilroySB(
-                    14,
-                    blue,
-                  ),
+        child: GestureDetector(
+          onTap: onTap,
+          child: Container(
+            decoration: BoxDecoration(
+              color: cardColor(),
+              boxShadow: [
+                BoxShadow(
+                  color: shadowColor(),
+                  blurRadius: 15,
                 ),
               ],
+              borderRadius: borderRadius,
+            ),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.add_circle_outline,
+                    color: blue,
+                    size: 34,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "Create new club",
+                    style: textStyleGilroySB(
+                      14,
+                      blue,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

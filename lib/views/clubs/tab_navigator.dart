@@ -26,7 +26,7 @@ class TabNavigator extends StatelessWidget {
     } else if (tabItem == "Page3") {
       child = ClubFeed();
     } else if (tabItem == "Page4") {
-      child = Page4();
+      child = CreateClub2();
     } else if (tabItem == "Page5") {
       child = ProfilePage();
     }

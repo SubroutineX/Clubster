@@ -19,22 +19,6 @@ class CreatePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: clubsBackground,
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.menu,
-            color: fontColor,
-          ),
-        ),
-        // actions: [
-        //   IconButton(
-        //     tooltip: "Logout",
-        //     icon: Icon(
-        //       Icons.login_outlined,
-        //       color: fontColor,
-        //     ),
-        //   ),
-        // ],
         iconTheme: IconThemeData(color: fontColor),
         centerTitle: true,
         backgroundColor: transparent,
