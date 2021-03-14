@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 module.exports = async (req, res) => {
     try {
         id = req.query.requestId;
-        parentId = req.body.clubId;
+        parentId = req.query.clubId;
         user = req.body.user;
         status = req.body.status;
 
