@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:workflow/models/club_members_model.dart';
 
 //STYLES
 import 'package:workflow/views/styles/colors.dart';
 import 'package:workflow/views/styles/styles.dart';
 
 class ClubMemberCard extends StatelessWidget {
+  final ClubMembers clubMember;
   const ClubMemberCard({
     Key key,
+    this.clubMember,
   }) : super(key: key);
 
   @override

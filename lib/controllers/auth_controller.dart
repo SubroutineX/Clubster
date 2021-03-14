@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workflow/controllers/club_controller.dart';
+import 'package:workflow/controllers/club_requests_controller.dart';
 import 'package:workflow/controllers/fetch_news_feed_controller.dart';
+import 'package:workflow/controllers/profile_controller.dart';
 import 'package:workflow/models/current_user.dart';
 import 'package:workflow/views/clubs/page_navigator.dart';
 import 'package:workflow/views/tab_view.dart';
@@ -55,6 +57,8 @@ class AuthController extends GetxController {
       // sharedPreferences.commit();
       Get.delete<ClubController>();
       Get.delete<FetchNewsFeedController>();
+      Get.delete<ProfileController>();
+      Get.delete<ClubRequestsController>();
       Get.off(TabPage());
     } catch (error) {
       Get.snackbar('Error Logging Out', error.message);

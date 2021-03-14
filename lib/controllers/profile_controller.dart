@@ -8,7 +8,7 @@ import 'package:workflow/models/profile_posts_model.dart';
 
 class ProfileController extends GetxController {
   var profileData = Profile().obs;
-  var profilePosts = List<ProfilePosts>().obs;
+  var profilePosts = <ProfilePosts>[].obs;
 
   @override
   void onInit() {
@@ -29,9 +29,12 @@ class ProfileController extends GetxController {
       );
       if (response.statusCode == 200) {
         profileData.value = profileFromJson(response.body);
-
-        print(profileData.value.userData.id);
-        print(profileData.value.createdClubs[0].college);
+        var createdlength = profileData.value.createdClubs.length;
+        // print(profileData.value.userData.id);
+        for (int i = createdlength; i < 4; i++) {
+          profileData.value.createdClubs.add(null);
+        }
+        print(profileData.value.createdClubs.length);
       } else {
         var result = jsonDecode(response.body);
         Get.snackbar("Error", result);

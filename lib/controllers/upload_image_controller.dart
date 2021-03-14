@@ -51,7 +51,7 @@ class UploadImageController extends GetxController {
         setCurrentImage(selectedImages[0].file);
       }
       // print(selectedAssets[0]);
-      Widget gridView = await GridView.builder(
+      Widget gridView = GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
           mainAxisSpacing: 5,
@@ -69,6 +69,19 @@ class UploadImageController extends GetxController {
       // print(err);
     }
   }
+
+  // List<DropdownMenuItem> getItems() {
+  //   return albums
+  //           .map((e) => DropdownMenuItem(
+  //                 child: Text(
+  //                   e.name,
+  //                   style: TextStyle(color: Colors.black),
+  //                 ),
+  //                 value: e,
+  //               ))
+  //           .toList() ??
+  //       [];
+  // }
 
   buildImageThumbnail(AssetEntity asset) {
     return FutureBuilder<Uint8List>(

@@ -6,7 +6,7 @@ import 'package:workflow/models/clubs.dart';
 import 'package:http/http.dart' as http;
 
 class ClubController extends GetxController {
-  var clubs = List<Club>().obs;
+  var clubs = <Club>[].obs;
   static const IP_SERVER = '192.168.0.11';
 
   @override

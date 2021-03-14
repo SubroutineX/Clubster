@@ -20,7 +20,6 @@ import 'package:workflow/views/styles/themeData.dart';
 
 class ProfilePageheader extends StatelessWidget {
   final authController = Get.find<AuthController>();
-  final profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -54,23 +53,6 @@ class ProfilePageheader extends StatelessWidget {
         SizedBox(
           height: 5,
         ),
-        // Text(
-        //   "Nikhil Shinde",
-        //   style: textStyleGilroyB(
-        //     18,
-        //     colorFont(),
-        //   ),
-        // ),
-        // SizedBox(
-        //   height: 3,
-        // ),
-        // Text(
-        //   "Student | D.Y.Patil University",
-        //   style: textStyleGilroyM(
-        //     14,
-        //     colorFontLight(),
-        //   ),
-        // ),
         SizedBox(
           height: 10,
         ),
