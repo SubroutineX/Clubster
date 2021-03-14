@@ -3,8 +3,8 @@ const clubMembers = require("../models/club_members_model");
 const mongoose = require("mongoose");
 module.exports = async (req, res) => {
     try {
-        id = req.query.id;
-        parentId = req.body.parentId;
+        id = req.query.requestId;
+        parentId = req.body.clubId;
         user = req.body.user;
         status = req.body.status;
 

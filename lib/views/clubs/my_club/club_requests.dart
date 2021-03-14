@@ -166,7 +166,13 @@ class _ClubRequestsState extends State<ClubRequests> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  controller.handleRequest(
+                                      controller.requests.value[i].id,
+                                      widget.clubId,
+                                      controller.requests.value[i].user,
+                                      "accepted");
+                                },
                                 child: Container(
                                   height: 40,
                                   decoration: BoxDecoration(
@@ -192,7 +198,13 @@ class _ClubRequestsState extends State<ClubRequests> {
                                 width: 5,
                               ),
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  controller.handleRequest(
+                                      controller.requests.value[i].id,
+                                      widget.clubId,
+                                      controller.requests.value[i].user,
+                                      "declined");
+                                },
                                 child: Container(
                                   height: 40,
                                   decoration: BoxDecoration(

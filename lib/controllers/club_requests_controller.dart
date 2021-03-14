@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -28,6 +29,24 @@ class ClubRequestsController extends GetxController {
     } catch (error) {
       print(error);
       Get.snackbar("Error", error);
+    }
+  }
+
+  void handleRequest(
+      String requestId, String clubId, String user, String status) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    final token = sharedPreferences.getString('token');
+    var response = await http.post(
+      "http://65.1.43.39:8000/handleRequest?requestId=$requestId&clubId=$clubId",
+      body: {'user': user, 'status': status},
+      headers: {"Authorization": "Bearer $token"},
+    );
+    if (response.statusCode == 200) {
+      var body = jsonDecode(response.body);
+      Get.snackbar('Success', body);
+    } else {
+      var body = jsonDecode(response.body);
+      Get.snackbar("Error", body);
     }
   }
 }
