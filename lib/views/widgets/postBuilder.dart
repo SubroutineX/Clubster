@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:workflow/controllers/comments_controller.dart';
 import 'package:workflow/controllers/fetch_news_feed_controller.dart';
 import 'package:workflow/controllers/like_controller.dart';
-import 'package:workflow/models/news_feed.dart';
+import 'package:workflow/models/post_model.dart';
 import 'package:workflow/views/clubs/clubs_feed/imageDisplay.dart';
 import 'package:workflow/views/clubs/clubs_feed/comment_page.dart';
 import 'package:workflow/views/styles/colors.dart';
@@ -21,7 +21,7 @@ class PostCard extends StatelessWidget {
     this.index,
   }) : super(key: key);
 
-  final NewsFeed postInfo;
+  final Post postInfo;
   final int index;
   final likeController = Get.put(LikeController());
   final commentController = CommentsController();
@@ -115,7 +115,8 @@ class PostCard extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {
                   Get.to(ImageView(
-                    postInfo: postInfo,index:index,
+                    postInfo: postInfo,
+                    index: index,
                   ));
                 },
                 child: ClipRRect(

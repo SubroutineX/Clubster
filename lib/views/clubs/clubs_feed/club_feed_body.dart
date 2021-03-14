@@ -18,7 +18,7 @@ import 'package:workflow/views/widgets/storyBuilder.dart';
 class ClubFeedBody extends StatelessWidget {
   PermissionStatus _permissionStatus;
 
-  final newsFeedCOntroller = Get.put(FetchNewsFeedController());
+  final newsFeedController = Get.put(FetchNewsFeedController());
 
   @override
   Widget build(BuildContext context) {
@@ -205,11 +205,11 @@ class ClubFeedBody extends StatelessWidget {
           child: Obx(
             () => Column(
               children: [
-                for (int i = newsFeedCOntroller.newsFeed.length - 1;
+                for (int i = newsFeedController.newsFeed.length - 1;
                     i >= 0;
                     i--)
                   PostCard(
-                    postInfo: newsFeedCOntroller.newsFeed[i],
+                    postInfo: newsFeedController.newsFeed[i],
                     index: i,
                   ),
                 SizedBox(

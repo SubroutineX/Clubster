@@ -1,24 +1,25 @@
 // To parse this JSON data, do
 //
-//     final profilePosts = profilePostsFromJson(jsonString);
+//     final Post = newsFeedFromJson(jsonString);
 
 import 'dart:convert';
 
-List<ProfilePosts> profilePostsFromJson(String str) => List<ProfilePosts>.from(
-    json.decode(str).map((x) => ProfilePosts.fromJson(x)));
+import 'package:get/get.dart';
 
-String profilePostsToJson(List<ProfilePosts> data) =>
+List<Post> postsFromJson(String str) =>
+    List<Post>.from(json.decode(str).map((x) => Post.fromJson(x)));
+
+String postsToJson(List<Post> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class ProfilePosts {
-  ProfilePosts({
+class Post extends GetxController {
+  Post({
     this.id,
     this.fileName,
     this.caption,
     this.user,
     this.college,
     this.timeStamp,
-    this.v,
     this.likes,
     this.comments,
   });
@@ -29,18 +30,19 @@ class ProfilePosts {
   String user;
   String college;
   String timeStamp;
-  int v;
   int likes;
   int comments;
 
-  factory ProfilePosts.fromJson(Map<String, dynamic> json) => ProfilePosts(
+  final bookmark = false.obs;
+  final like = false.obs;
+
+  factory Post.fromJson(Map<String, dynamic> json) => Post(
         id: json["_id"],
         fileName: json["fileName"],
         caption: json["caption"],
         user: json["user"],
         college: json["college"],
         timeStamp: json["timeStamp"],
-        v: json["__v"],
         likes: json["likes"],
         comments: json["comments"],
       );
@@ -52,7 +54,6 @@ class ProfilePosts {
         "user": user,
         "college": college,
         "timeStamp": timeStamp,
-        "__v": v,
         "likes": likes,
         "comments": comments,
       };

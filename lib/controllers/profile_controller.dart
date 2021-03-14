@@ -3,16 +3,15 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:workflow/models/post_model.dart';
 import 'package:workflow/models/profile_model.dart';
-import 'package:workflow/models/profile_posts_model.dart';
 
 class ProfileController extends GetxController {
   var profileData = Profile().obs;
-  var profilePosts = <ProfilePosts>[].obs;
+  var profilePosts = <Post>[].obs;
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     getProfileData();
     getProfilePosts();
@@ -54,7 +53,7 @@ class ProfileController extends GetxController {
         headers: {"Authorization": "Bearer $token"},
       );
       if (response.statusCode == 200) {
-        profilePosts.value = profilePostsFromJson(response.body);
+        profilePosts.value = postsFromJson(response.body);
         //  print(profilePosts.value[0].caption);
       } else {
         var result = jsonDecode(response.body);

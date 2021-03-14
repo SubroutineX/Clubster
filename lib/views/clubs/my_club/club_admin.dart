@@ -302,17 +302,82 @@ class _ClubAdminState extends State<ClubAdmin> with TickerProviderStateMixin {
                             controller: _tabController,
                             children: [
                               Container(
-                                color: red,
+                                child: Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Image.asset(
+                                        "assets/images/underdev.png",
+                                        width: 200,
+                                        height: 200,
+                                      ),
+                                      SizedBox(
+                                        height: 30,
+                                      ),
+                                      Text(
+                                        "Under Development",
+                                        style: textStyleGilroySB(
+                                          18,
+                                          colorFont(),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
                               ),
-                              ClubMembers(),
+                              ClubMemberList(
+                                clubId: widget.clubInfo.id,
+                              ),
                               ClubRequests(
                                 clubId: widget.clubInfo.id,
                               ),
                               Container(
-                                color: teal,
+                                child: Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Image.asset(
+                                        "assets/images/underdev.png",
+                                        width: 200,
+                                        height: 200,
+                                      ),
+                                      SizedBox(
+                                        height: 30,
+                                      ),
+                                      Text(
+                                        "Under Development",
+                                        style: textStyleGilroySB(
+                                          18,
+                                          colorFont(),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
                               ),
                               Container(
-                                color: red,
+                                child: Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Image.asset(
+                                        "assets/images/underdev.png",
+                                        width: 200,
+                                        height: 200,
+                                      ),
+                                      SizedBox(
+                                        height: 30,
+                                      ),
+                                      Text(
+                                        "Under Development",
+                                        style: textStyleGilroySB(
+                                          18,
+                                          colorFont(),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
                               ),
                             ],
                           ),

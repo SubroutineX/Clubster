@@ -11,7 +11,6 @@ import 'package:workflow/views/clubs/club_profile/profile_image.dart';
 import 'package:workflow/views/clubs/club_settings/settings.dart';
 
 //PAGES
-import 'package:workflow/views/clubs/club_view/clubs_view_body.dart';
 
 // STYLES
 import 'package:workflow/views/styles/colors.dart';
@@ -51,10 +50,35 @@ class ProfilePageheader extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 5,
+          height: 25,
         ),
-        SizedBox(
-          height: 10,
+        Positioned(
+          bottom: 150,
+          child: Container(
+            width: deviceWidth,
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    "assets/images/underdev.png",
+                    width: 200,
+                    height: 200,
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Text(
+                    "Under Development",
+                    style: textStyleGilroySB(
+                      18,
+                      colorFont(),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
         ),
       ],
     );
