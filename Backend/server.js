@@ -109,7 +109,7 @@ app.post("/registerClub", authenticateToken, registerClub);
 app.get("/fetchClubs", authenticateToken, fetchClubs);
 app.get("/fetchClubImage", fetchClubImage);
 app.post("/createPost", authenticateToken, createPost);
-app.get("/fetchNewsFeed", authenticateToken, fetchNewsFeed);
+app.get("/fetchNewsFeed", fetchNewsFeed);
 app.get("/fetchNewsImage", fetchFeedImage);
 app.post("/like", authenticateToken, like);
 app.post("/likesData", authenticateToken, likesData);
@@ -127,6 +127,6 @@ app.post("/handleRequest", authenticateToken, handleRequest);
 app.get("/fetchRequests", authenticateToken, fetchRequests);
 app.post("/scheduleInterview", authenticateToken, scheduleInterview);
 app.get("/profileData", authenticateToken, profileData);
-app.get("/profilePosts", authenticateToken, profilePosts);
+app.get("/profilePosts", profilePosts);
 app.get("/clubMembers", authenticateToken, clubMembers)
 app.listen(PORT);

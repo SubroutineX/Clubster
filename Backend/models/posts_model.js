@@ -8,6 +8,8 @@ var PostsSchema = new Schema({
     caption: String,
     user: String,
     college: String,
-    timeStamp: String
+    timeStamp: String,
+    likes: Number,
+    comments: Number
 });
 module.exports = mongoose.model("posts", PostsSchema);
