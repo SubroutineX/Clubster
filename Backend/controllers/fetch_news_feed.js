@@ -8,8 +8,8 @@ module.exports = async (req, res) => {
         for (const data of result[0].posts) {
             var value = await activity.findOne({ parentId: data._id }, "likesCount commentsCount");
             console.log(value);
-            data.likes = value.likesCount;
-            data.comments = value.commentsCount;
+            data['likes'] = value.likesCount;
+            data['comments'] = value.commentsCount;
         };
         console.log(result[0].posts);
         res.status(200).json(result[0].posts);
