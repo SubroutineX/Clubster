@@ -1,5 +1,5 @@
 # Clubster
 
-A new Flutter project to help colleges in managing and monitoring and also increasing club activities.
+A  Flutter project to help colleges manage, monitor, and  increase club activities.
 
 
