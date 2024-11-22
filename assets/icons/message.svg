@@ -1,13 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Chat Bubble 3</title><g id="Chat_Bubble_3" data-name="Chat Bubble 3"><path id="_Path_" data-name="&lt;Path&gt;" d="M23.5,10.5c0-5-5.15-9-11.5-9S.5,5.53.5,10.5c0,4.43,4.09,8.1,9.47,8.85h0c2.93.46,1.56,3.14,1.56,3.14l7.75-5h0A8.42,8.42,0,0,0,23.5,10.5Z" style="fill:none;stroke:#303c42;stroke-linecap:round;stroke-linejoin:round"/></g>
-	<metadata>
-		<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:dc="http://purl.org/dc/elements/1.1/">
-			<rdf:Description about="https://iconscout.com/legal#licenses" dc:title="message; chat; bubble (3)" dc:description="message; chat; bubble (3)" dc:publisher="Iconscout" dc:date="2017-02-21" dc:format="image/svg+xml" dc:language="en">
-				<dc:creator>
-					<rdf:Bag>
-						<rdf:li>Alpár - Etele Méder</rdf:li>
-					</rdf:Bag>
-				</dc:creator>
-			</rdf:Description>
-		</rdf:RDF>
-    </metadata></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Chat Bubble 3</title><g id="Chat_Bubble_3" data-name="Chat Bubble 3"><path id="_Path_" d="M23.5,10.5c0-5-5.15-9-11.5-9S.5,5.53.5,10.5c0,4.43,4.09,8.1,9.47,8.85h0c2.93.46,1.56,3.14,1.56,3.14l7.75-5h0A8.42,8.42,0,0,0,23.5,10.5Z" data-name="&lt;Path&gt;" style="fill:none;stroke:#303c42;stroke-linecap:round;stroke-linejoin:round"/></g><metadata><rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"><rdf:Description about="https://iconscout.com/legal#licenses" dc:date="2017-02-21" dc:description="message; chat; bubble (3)" dc:format="image/svg+xml" dc:language="en" dc:publisher="Iconscout" dc:title="message; chat; bubble (3)"><dc:creator><rdf:Bag><rdf:li>Alpár - Etele Méder</rdf:li></rdf:Bag></dc:creator></rdf:Description></rdf:RDF></metadata></svg>
